@@ -60,6 +60,20 @@ void yuvToRgb(const cv::Mat& yuvImage, cv::Mat& rgbImage) {
     }
 }
 
+cv::Mat convertToGrayscale(const cv::Mat& colorImage) {
+    cv::Mat grayscaleImage(colorImage.rows, colorImage.cols, CV_8UC1);
+
+    for (int i = 0; i < colorImage.rows; ++i) {
+        for (int j = 0; j < colorImage.cols; ++j) {
+            cv::Vec3b pixel = colorImage.at<cv::Vec3b>(i, j);
+            uchar grayValue = static_cast<uchar>(0.299 * pixel[2] + 0.587 * pixel[1] + 0.114 * pixel[0]);
+            grayscaleImage.at<uchar>(i, j) = grayValue;
+        }
+    }
+
+    return grayscaleImage;
+}
+
 int main() {
     cv::VideoCapture video("../TestVideo.mp4");
 
@@ -69,7 +83,6 @@ int main() {
     }
 
     cv::Mat frame, yuvFrame, rgbFrame;
-
     while (true) {
         video >> frame;
 
@@ -89,8 +102,11 @@ int main() {
         // Convert YUV back to RGB for display
         yuvToRgb(yuvFrame, rgbFrame);
 
+        // Convert RGB to grayscale
+        cv::Mat grayscaleFrame = convertToGrayscale(frame);
+
         // Display the frames
-        //cv::imshow("Video Player", rgbFrame);
+        cv::imshow("Video Player", grayscaleFrame);
 
         // Break the loop if 'q' is pressed
         if (cv::waitKey(30) == 'q')
