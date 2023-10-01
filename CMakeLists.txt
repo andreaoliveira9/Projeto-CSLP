@@ -1,0 +1,7 @@
+target_link_libraries(VideoPlayer ${OpenCV_LIBS} )
+cmake_minimum_required(VERSION 3.17)
+project( VideoPlayer )
+find_package( OpenCV REQUIRED )
+include_directories( ${OpenCV_INCLUDE_DIRS} )
+add_executable( VideoPlayer VideoPlayer.cpp )
+target_link_libraries( VideoPlayer ${OpenCV_LIBS} )
