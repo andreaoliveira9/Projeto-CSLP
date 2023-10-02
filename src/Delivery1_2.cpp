@@ -29,10 +29,10 @@ int main() {
         yuvToRgb(yuvFrame, rgbFrame);
 
         // YUV 4:2:0
-        subSampling420(frame, yuvFrame420);
+        subSampling420(yuvFrame, yuvFrame420);
 
         // TODO: 4:2:2
-        subSampling422(frame, yuvFrame422);
+        subSampling422(yuvFrame, yuvFrame422);
 
         // Display the frames
         imshow("Original Frame", frame);
