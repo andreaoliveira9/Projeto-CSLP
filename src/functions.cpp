@@ -230,16 +230,12 @@ void subSampling420(const cv::Mat &yuvImage, cv::Mat &yuvImage420)
     }
 }
 
-Mat regular_blur(Mat initial_image, int b1, int b2)
+void regular_blur(Mat& initial_image, int b1, int b2, Mat& blured_image)
 {
-    Mat blured_image;
     blur(initial_image, blured_image, Size(b1, b2));
-    return blured_image;
 }
 
-Mat gaussian_blur(Mat initial_image, int k1, int k2)
+void gaussian_blur(Mat& initial_image, int k1, int k2, Mat& filtered_image)
 {
-    Mat filtered_image;
     GaussianBlur(initial_image, filtered_image, Size(k1, k2), 0, 0);
-    return filtered_image;
 }

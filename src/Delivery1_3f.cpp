@@ -59,9 +59,6 @@ void getBlurKernelSize(int &b1, int &b2)
 
 int main()
 {
-    Mat initial_image, gaussian_blured_image, blured_image;
-    int k1, k2, b1, b2;
-
     VideoCapture video("../../vid/akiyo_qcif.y4m");
 
     if (!video.isOpened())
@@ -70,50 +67,32 @@ int main()
         return -1;
     }
 
+    int k1, k2, b1, b2;
     getGaussianKernelSize(k1, k2);
     getBlurKernelSize(b1, b2);
 
+    Mat frame, gaussian_blured_image, blured_image;
     // Gaussian
-    while (1)
+    while (true)
     {
-        Mat frame, resized_frame;
         video >> frame;
 
         if (frame.empty())
             break;
 
-        resize(frame, resized_frame, Size(500, 500));
+        resize(frame, frame, Size(500, 500));
 
-        gaussian_blured_image = gaussian_blur(resized_frame, k1, k2);
+        // Apply Gaussian blur
+        gaussian_blur(frame, k1, k2, gaussian_blured_image);
+        // Apply regular blur
+        regular_blur(frame, b1, b2, blured_image);
 
+        // Display the frames
         imshow("Gaussian Blured Video", gaussian_blured_image);
-
-        // Pressionar ESC para sair
-        char c = (char)waitKey(25);
-        if (c == 27)
-            break;
-    }
-
-    // Blurring
-    while (1)
-    {
-        Mat frame2, resized_frame2;
-        video >> frame2;
-
-        if (frame2.empty())
-            break;
-
-        resize(frame2, resized_frame2, Size(500, 500));
-
-        blured_image = regular_blur(resized_frame2, b1, b2);
-
         imshow("Blured Video", blured_image);
 
-        // Pressionar ESC para sair
-        char c = (char)waitKey(25);
-        if (c == 27)
+        // Break the loop if 'q' is pressed
+        if (waitKey(30) == 'q')
             break;
     }
-
-    waitKey(0);
 }

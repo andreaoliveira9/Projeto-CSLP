@@ -16,6 +16,6 @@ void subSampling422(const cv::Mat yuvImage, cv::Mat yuvImage420);
 
 void subSampling422(const cv::Mat yuvImage, cv::Mat yuvImage422);
 
-cv::Mat regular_blur(cv::Mat initial_image, int b1, int b2);
+void regular_blur(cv::Mat &initial_image, int b1, int b2);
 
-cv::Mat gaussian_blur(cv::Mat initial_image, int k1, int k2);
+void gaussian_blur(cv::Mat &initial_image, int k1, int k2);
