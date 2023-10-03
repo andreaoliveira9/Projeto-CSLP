@@ -5,6 +5,15 @@
 using namespace std;
 using namespace cv;
 
+// Mat thresholdImage(const Mat& image, int thresholdType, int thresholdValue = 0, int maxBinaryValue = 255)
+// {
+//     Mat thresholdedImage;
+
+//     threshold(image, thresholdedImage, thresholdValue, maxBinaryValue, thresholdType);
+
+//     return thresholdedImage;
+// }
+
 Mat setWatermark(Mat image, Mat watermark, double opacity)
 {
     double alpha;

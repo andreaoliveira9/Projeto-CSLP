@@ -15,3 +15,5 @@ void convertToGrayscale(const cv::Mat& colorImage, cv::Mat& grayscaleImage);
 void subSampling422(const cv::Mat yuvImage, cv::Mat yuvImage420);
 
 void subSampling422(const cv::Mat yuvImage, cv::Mat yuvImage422);
+
+// void thresholdImage(const cv::Mat& image, cv::Mat& thresholdImage, int thresholdType, int thresholdValue, int maxBinaryValue);
