@@ -2,55 +2,47 @@
 #include<fstream>
 #include "BitStream.cpp"
 
-using namespace std;
+int main() {
+    // Writing bits to the file
+    {
+        BitStream bs("example.bin", std::ios::out);
 
-int main(void)
-{
+        bs.write_bit(1);
+        bs.write_bit(0); 
+        bs.write_n_bits(0b1010, 4);
 
-    BitStream bsw("test.bin", 'w');
-    
-    bsw.writeBit(1);
-    bsw.writeBit(1);
-    bsw.writeBit(1);
-    bsw.writeBit(1);
-    bsw.writeBit(0);
-    bsw.writeBit(1);
-    bsw.writeBit(0);
-    bsw.writeBit(0);
-    
-    bsw.writeBit(1);
-    bsw.writeBit(1);
-    bsw.writeBit(1);
-    bsw.writeBit(1);
-    bsw.writeBit(1);
-    bsw.writeBit(0);
-    bsw.writeBit(1);
-    bsw.writeBit(1); 
-    
 
-    bsw.closeOutputFile(); 
+        bs.write_n_bits(0b111, 3);
 
-    BitStream bsr("test.bin", 'r');
-    
-    bsr.readFile();
-    
-    cout << "Reading the first 3 bits, individually" << "\n";
-    cout << bsr.readBit() << "\n";
-    cout << bsr.readBit() << "\n";
-    cout << bsr.readBit() << "\n";
-    
-    cout << "\n";
-    
+        bs.write_bit(1);
+        bs.write_bit(0);
+        bs.write_n_bits(0b1011, 4);
+    }
 
-    cout << "Reading the first 11 bits" << "\n";
-    
-    bsr.readNBits(11);
-    cout << "\n"; 
+    // Reading bits from the file and printing to console
+    {
+        BitStream bs("example.bin", std::ios::in);
 
-    cout << "Writing int 3 in 6 bits" << "\n";
-    bsw.writeNBits(3,6);
-    bsw.closeOutputFile();
-    
+        std::cout << "Reading bits from the file:\n";
 
-    bsr.readFile();
+        while (true) {
+            bool bit = bs.read_bit();
+            if (bs.eof())
+                break;
+
+            std::cout << bit;
+        }
+        std::cout << "\n";
+    }
+
+    // Reading bits from the file and printing to console
+    {
+        BitStream bs("example.bin", std::ios::in);
+
+        std::string value = bs.read_n_bits(5);  // Reads 4 bits from the file
+        std::cout << "Read value: " << value << std::endl;
+
+    }
+
+    return 0;
 }
