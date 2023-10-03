@@ -28,7 +28,7 @@ Mat setWatermark(Mat image, Mat watermark, double opacity)
 void rgbToYuv(const cv::Mat &rgbImage, cv::Mat &yuvImage)
 {
     // Ensure input image is not empty and is in BGR format
-    /* if (rgbImage.empty() || rgbImage.channels() != 3)
+    if (rgbImage.empty() || rgbImage.channels() != 3)
     {
         std::cerr << "Input image is empty or not in BGR format." << std::endl;
         return;
@@ -51,7 +51,7 @@ void rgbToYuv(const cv::Mat &rgbImage, cv::Mat &yuvImage)
             yuvImage.at<cv::Vec3b>(i, j)[1] = static_cast<uchar>(-0.148 * R - 0.291 * G + 0.439 * B + 128); // U
             yuvImage.at<cv::Vec3b>(i, j)[2] = static_cast<uchar>(0.439 * R - 0.368 * G - 0.071 * B + 128);  // V
         }
-    } */
+    } 
 
     cvtColor(rgbImage, yuvImage, COLOR_BGR2YUV);
 }
@@ -169,68 +169,66 @@ void convertToGrayscale(const cv::Mat &colorImage, cv::Mat &grayscaleImage)
     }
 }
 
-void subSampling422(const cv::Mat yuvImage, cv::Mat yuvImage422)
-{
-    // Ensure input image is not empty and is in YUV format
-    if (yuvImage.empty() || yuvImage.channels() != 3)
-    {
-        std::cerr << "Input image is empty or not in YUV format." << std::endl;
-        return;
-    }
-
-    // Ensure rgbImage has the correct dimensions and type
-    yuvImage422.create(yuvImage.size(), CV_8UC3);
-
-    for (int i = 0; i < yuvImage.rows; ++i)
-    {
-        for (int j = 0; j < yuvImage.cols; j += 2)
-        {
-            yuvImage422.at<cv::Vec3b>(i, j)[0] = yuvImage.at<cv::Vec3b>(i, j)[0];
-            yuvImage422.at<cv::Vec3b>(i, j + 1)[0] = yuvImage.at<cv::Vec3b>(i, j + 1)[0];
-        }
-    }
-    // Downsample U and V channels by a factor of 2 in the horizontal direction only
-    for (int i = 0; i < yuvImage.rows; ++i)
-    {
-        for (int j = 0; j < yuvImage.cols / 2; ++j)
-        {
-            yuvImage422.at<cv::Vec3b>(i, j * 2)[1] = yuvImage.at<cv::Vec3b>(i, j * 2)[1];
-            yuvImage422.at<cv::Vec3b>(i, j * 2 + 1)[2] = yuvImage.at<cv::Vec3b>(i, j * 2 + 1)[2];
-        }
-    }
-}
-
 void subSampling420(const cv::Mat &yuvImage, cv::Mat &yuvImage420)
 {
-    // Ensure input image is not empty and is in YUV format
-    if (yuvImage.empty() || yuvImage.channels() != 3)
-    {
-        std::cerr << "Input image is empty or not in YUV format." << std::endl;
-        return;
+    Mat channels[3];
+    split(yuvImage, channels);
+    Size target_size = Size(channels[0].size[1], channels[0].size[0]);
+    float scaling[2];
+    if (yuvImage.cols % 2 != 0) {
+        throw std::runtime_error("Matrix must have an even number of columns");
     }
+    // 1/2 horizontal sampling, 1/2 vertical sampling
+    scaling[0] = 0.5;
+    scaling[1] = 0.5;
 
-    // Ensure yuvImage420 has the correct dimensions and type
-    yuvImage420.create(yuvImage.size(), CV_8UC3);
+    // Create output matrices for Y, U, and V channels
+    Mat y_channel(target_size, CV_8UC1);
+    Mat u_channel(target_size, CV_8UC1);
+    Mat v_channel(target_size, CV_8UC1);
 
-    // Copy Y channel to yuvImage420
-    for (int i = 0; i < yuvImage.rows; ++i)
-    {
-        for (int j = 0; j < yuvImage.cols; ++j)
-        {
-            yuvImage420.at<cv::Vec3b>(i, j)[0] = yuvImage.at<cv::Vec3b>(i, j)[0];
-        }
-    }
+    // Resize Y channel
+    resize(channels[0], y_channel, target_size, 0, 0, INTER_LINEAR);
 
-    // Downsample U and V channels by a factor of 2 in both the horizontal and vertical directions
-    for (int i = 0; i < yuvImage.rows / 2; ++i)
-    {
-        for (int j = 0; j < yuvImage.cols / 2; ++j)
-        {
-            yuvImage420.at<cv::Vec3b>(i * 2, j * 2)[1] = yuvImage.at<cv::Vec3b>(i * 2, j * 2)[1];
-            yuvImage420.at<cv::Vec3b>(i * 2, j * 2)[2] = yuvImage.at<cv::Vec3b>(i * 2, j * 2)[2];
-        }
-    }
+    // Resize U and V channels
+    resize(channels[1], u_channel, target_size, 0, 0, INTER_LINEAR);
+    resize(channels[2], v_channel, target_size, 0, 0, INTER_LINEAR);
+
+    // Merge Y, U, and V channels back into a single image
+    vector<Mat> merged_channels = {y_channel, u_channel, v_channel};
+    merge(merged_channels, yuvImage420);
 }
+
+void subSampling422(const cv::Mat &yuvImage, cv::Mat &yuvImage422)
+{
+    Mat channels[3];
+    split(yuvImage, channels);
+    Size target_size = Size(channels[0].size[1], channels[0].size[0]);
+    float scaling[2];
+    if (yuvImage.cols % 2 != 0) {
+        throw std::runtime_error("Matrix must have an even number of columns");
+    }
+    // 1/2 horizontal sampling, full vertical sampling
+    scaling[0] = 0.5;
+    scaling[1] = 1;
+
+    // Create output matrices for Y, U, and V channels
+    Mat y_channel(target_size, CV_8UC1);
+    Mat u_channel(target_size, CV_8UC1);
+    Mat v_channel(target_size, CV_8UC1);
+
+    // Resize Y channel
+    resize(channels[0], y_channel, target_size, 0, 0, INTER_LINEAR);
+
+    // Resize U and V channels
+    resize(channels[1], u_channel, target_size, 0, 0, INTER_LINEAR);
+    resize(channels[2], v_channel, target_size, 0, 0, INTER_LINEAR);
+
+    // Merge Y, U, and V channels back into a single image
+    vector<Mat> merged_channels = {y_channel, u_channel, v_channel};
+    merge(merged_channels, yuvImage422);
+}
+
 
 void regular_blur(Mat& initial_image, int b1, int b2, Mat& blured_image)
 {

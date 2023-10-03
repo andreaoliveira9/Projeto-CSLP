@@ -12,9 +12,9 @@ void applyHistogramEqualization(cv::Mat &image);
 
 void convertToGrayscale(const cv::Mat &colorImage, cv::Mat &grayscaleImage);
 
-void subSampling422(const cv::Mat yuvImage, cv::Mat yuvImage420);
+void subSampling420(const cv::Mat &yuvImage, cv::Mat &yuvImage420);
 
-void subSampling422(const cv::Mat yuvImage, cv::Mat yuvImage422);
+void subSampling422(const cv::Mat &yuvImage, cv::Mat &yuvImage422);
 
 void regular_blur(cv::Mat &initial_image, int b1, int b2);
 

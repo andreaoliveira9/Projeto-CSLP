@@ -20,7 +20,7 @@ int main() {
         if (frame.empty())
             break;
 
-        resize(frame, frame, Size(500, 500));
+        resize(frame, frame, Size(256, 256));
 
         // Convert RGB to YUV
         rgbToYuv(frame, yuvFrame);
@@ -31,7 +31,7 @@ int main() {
         // YUV 4:2:0
         subSampling420(yuvFrame, yuvFrame420);
 
-        // TODO: 4:2:2
+        // YUV 4:2:2
         subSampling422(yuvFrame, yuvFrame422);
 
         // Display the frames
@@ -39,7 +39,7 @@ int main() {
         imshow("RGB Frame", rgbFrame);
         imshow("YUV 4:4:4", yuvFrame);
         imshow("YUV 4:2:0", yuvFrame420);
-        //imshow("YUV 4:2:2", yuvFrame422);
+        imshow("YUV 4:2:2", yuvFrame422);
 
         // Break the loop if 'q' is pressed
         if (waitKey(30) == 'q')

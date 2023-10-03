@@ -21,6 +21,10 @@ static void Threshold_Demo(int, void* userData) {
     imshow(windowName, thresholdedImage);
 }
 
+static void onTrackbar(int, void* userData) {
+    // Do nothing
+}
+
 int main() {
     VideoCapture video("../../vid/akiyo_qcif.y4m");
 
