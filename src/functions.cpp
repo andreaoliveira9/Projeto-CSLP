@@ -28,7 +28,7 @@ Mat setWatermark(Mat image, Mat watermark, double opacity)
 void rgbToYuv(const cv::Mat &rgbImage, cv::Mat &yuvImage)
 {
     // Ensure input image is not empty and is in BGR format
-    if (rgbImage.empty() || rgbImage.channels() != 3)
+    /* if (rgbImage.empty() || rgbImage.channels() != 3)
     {
         std::cerr << "Input image is empty or not in BGR format." << std::endl;
         return;
@@ -51,7 +51,9 @@ void rgbToYuv(const cv::Mat &rgbImage, cv::Mat &yuvImage)
             yuvImage.at<cv::Vec3b>(i, j)[1] = static_cast<uchar>(-0.148 * R - 0.291 * G + 0.439 * B + 128); // U
             yuvImage.at<cv::Vec3b>(i, j)[2] = static_cast<uchar>(0.439 * R - 0.368 * G - 0.071 * B + 128);  // V
         }
-    }
+    } */
+
+    cvtColor(rgbImage, yuvImage, COLOR_BGR2YUV);
 }
 
 void yuvToRgb(const cv::Mat &yuvImage, cv::Mat &rgbImage)
