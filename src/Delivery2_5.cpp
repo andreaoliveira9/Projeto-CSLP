@@ -16,7 +16,7 @@ int main() {
 
         bs.write_bit(1);
         bs.write_bit(0);
-        bs.write_n_bits(0b1011, 4);
+        bs.write_n_bits(0b1, 1);
     }
 
     // Reading bits from the file and printing to console
@@ -32,7 +32,7 @@ int main() {
 
             std::cout << bit;
         }
-        std::cout << "\n";
+        std::cout << "\n\n";
     }
 
     // Reading bits from the file and printing to console
@@ -40,6 +40,10 @@ int main() {
         BitStream bs("example.bin", std::ios::in);
 
         std::string value = bs.read_n_bits(5);  // Reads 4 bits from the file
+        std::cout << "Read value: " << value << std::endl;
+        value = bs.read_n_bits(6);  // Reads 4 bits from the file
+        std::cout << "Read value: " << value << std::endl;
+        value = bs.read_n_bits(7);  // Reads 4 bits from the file
         std::cout << "Read value: " << value << std::endl;
 
     }
