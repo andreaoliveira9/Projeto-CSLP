@@ -1,6 +1,7 @@
 #include<iostream>
 #include<fstream>
 #include<bitset>
+#include "BitStream.hpp"
 
 using namespace std;
 
@@ -66,10 +67,10 @@ public:
     }
 
     void write_n_bits(unsigned int value, int num_bits) {
-      for (int i = num_bits - 1; i >= 0; --i) {
-          bool bit = (value >> i) & 1;
-          write_bit(bit);
-      }
+        for (int i = num_bits - 1; i >= 0; --i) {
+            bool bit = (value >> i) & 1;
+            write_bit(bit);
+        }
     }
 
     std::string read_n_bits(int n) {
