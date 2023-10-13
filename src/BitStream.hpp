@@ -1,6 +1,11 @@
+#ifndef BITSTREAM_HPP
+#define BITSTREAM_HPP
+
 #include <iostream>
 #include <fstream>
 #include <bitset>
+
+using namespace std;
 
 class BitStream {
 private:
@@ -17,10 +22,12 @@ private:
 public:
     BitStream(const std::string& filePath, std::ios_base::openmode mode);
     ~BitStream();
-    
+
     void write_bit(bool bit);
     bool read_bit();
     void write_n_bits(unsigned int value, int num_bits);
     std::string read_n_bits(int n);
     bool eof() const;
 };
+
+#endif // BITSTREAM_HPP

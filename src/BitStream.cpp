@@ -1,7 +1,5 @@
 #include "BitStream.hpp"
 
-using namespace std;
-
 void BitStream::write_byte() {
     file_out.write(&byte_buffer, 1);
     byte_buffer = 0;
