@@ -1,26 +1,28 @@
 #ifndef GOLOMB_HPP
 #define GOLOMB_HPP
 
-#include <iostream>
-#include <bitset>
-#include <string>
-#include <cmath>
 #include "BitStream.hpp"
+#include <cmath>
 
 using namespace std;
 
 class Golomb {
 private:
-    int m; // Parameter for Golomb code
+    BitStream* bitStream; 
+    int m; 
 
 public:
-    Golomb(int m);
-    ~Golomb();
+    Golomb(const string& filePath,ios_base::openmode mode, int m) {
+        this -> bitStream = new BitStream(filePath,ios::in|ios::out);
+        this -> m = m;
+    }
+    ~Golomb() {delete bitStream;}
 
-    std::string encode(int num);
-    int decode(const std::string& encodedString);
+    void encode(int n);
+    int decode();
 };
 
 #endif // GOLOMB_HPP
+
 
 

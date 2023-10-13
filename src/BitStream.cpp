@@ -1,18 +1,5 @@
 #include "BitStream.hpp"
 
-void BitStream::write_byte() {
-    file_out.write(&byte_buffer, 1);
-    byte_buffer = 0;
-    bit_count = 0;
-}
-
-char BitStream::read_byte() {
-    char byte;
-    file_in.read(&byte, 1);
-    is_end_of_file = file_in.eof();
-    return byte;
-}
-
 BitStream::BitStream(const std::string& filePath, std::ios_base::openmode mode) 
     : file_path(filePath), file_out(filePath, mode | std::ios::binary), file_in(filePath, mode | std::ios::binary) {
     byte_buffer = 0;
@@ -25,6 +12,19 @@ BitStream::~BitStream() {
         write_byte();
     file_out.close();
     file_in.close();
+}
+
+void BitStream::write_byte() {
+    file_out.write(&byte_buffer, 1);
+    byte_buffer = 0;
+    bit_count = 0;
+}
+
+char BitStream::read_byte() {
+    char byte;
+    file_in.read(&byte, 1);
+    is_end_of_file = file_in.eof();
+    return byte;
 }
 
 void BitStream::write_bit(bool bit) {
@@ -58,15 +58,17 @@ void BitStream::write_n_bits(unsigned int value, int num_bits) {
     }
 }
 
-string BitStream::read_n_bits(int n) {
-    string result;
-    for (int i = 0; i < n; ++i) {
+unsigned int BitStream::read_n_bits(int n) {
+    unsigned int result = 0;
+
+    for (int i = n - 1; i >= 0; --i) {
         bool bit = read_bit();
         if (is_end_of_file)
             break;
 
-        result += bit ? '1' : '0';
+        result |= (bit << i);
     }
+
     return result;
 }
 

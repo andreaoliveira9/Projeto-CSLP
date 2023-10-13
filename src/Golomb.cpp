@@ -1,43 +1,36 @@
 #include "Golomb.hpp"
 
-Golomb::Golomb(int m) : m(m) {}
-
-Golomb::~Golomb() {}
-
-std::string Golomb::encode(int num) {
-    std::string encodedString;
-    int quotient = num / m;
-    int remainder = num % m;
-
-    // Encode quotient using unary code
-    for (int i = 0; i < quotient; ++i)
-        encodedString += '1';
-    encodedString += '0'; // Separator
-
-    // Encode remainder using binary representation
-    std::string remainderBinary = std::bitset<32>(remainder).to_string();
-    encodedString += remainderBinary.substr(32 - m);
-
-    return encodedString;
-}
-
-int Golomb::decode(const std::string& encodedString) {
-    int quotient = 0;
-    int i = 0;
-
-    // Decode quotient using unary code
-    while (i < encodedString.size() && encodedString[i] == '1') {
-        quotient++;
-        i++;
+void Golomb::encode(int n) {
+    if (m <= 0) {
+        throw invalid_argument("Value of m unknown or invalid");
     }
 
-    // Separator
-    i++;
+    int q = n / m;
+    int r = n % m;
 
-    // Decode remainder using binary representation
-    std::string remainderBinary = encodedString.substr(i, m);
-    int remainder = std::stoi(remainderBinary, nullptr, 2);
+    // Encode q using unary coding
+    while (q--)
+        bitStream -> write_bit(1);
+    bitStream -> write_bit(0);
 
-    return quotient * m + remainder;
+    // Encode r using binary encoding
+    int k = static_cast<int>(log2(m));
+    bitStream -> write_n_bits(r, k);
 }
 
+int Golomb::decode() {
+    if (m <= 0) {
+        throw invalid_argument("Value of m unknown or invalid");
+    }
+
+    // Decode q using unary coding
+    int q = 0;
+    while (bitStream -> read_bit())
+        q++;
+
+    // Decode r using binary decoding
+    int k = static_cast<int>(log2(m));
+    int r = bitStream -> read_n_bits(k);
+
+    return q * m + r;
+}

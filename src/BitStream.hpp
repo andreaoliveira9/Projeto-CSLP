@@ -9,9 +9,9 @@ using namespace std;
 
 class BitStream {
 private:
-    std::string file_path;
-    std::ofstream file_out;
-    std::ifstream file_in;
+    string file_path;
+    ofstream file_out;
+    ifstream file_in;
     char byte_buffer;
     int bit_count;
     bool is_end_of_file;
@@ -20,13 +20,13 @@ private:
     char read_byte();
 
 public:
-    BitStream(const std::string& filePath, std::ios_base::openmode mode);
+    BitStream(const string& filePath, ios_base::openmode mode);
     ~BitStream();
 
     void write_bit(bool bit);
     bool read_bit();
     void write_n_bits(unsigned int value, int num_bits);
-    std::string read_n_bits(int n);
+    unsigned int read_n_bits(int n);
     bool eof() const;
 };
 

@@ -2,10 +2,12 @@
 #include<fstream>
 #include "BitStream.cpp"
 
+using namespace std;
+
 int main() {
     // Writing bits to the file
     {
-        BitStream bs("example.bin", std::ios::out);
+        BitStream bs("example.bin", ios::out);
 
         bs.write_bit(1);
         bs.write_bit(0); 
@@ -21,30 +23,30 @@ int main() {
 
     // Reading bits from the file and printing to console
     {
-        BitStream bs("example.bin", std::ios::in);
+        BitStream bs("example.bin", ios::in);
 
-        std::cout << "Reading bits from the file:\n";
+        cout << "Reading bits from the file:\n";
 
         while (true) {
             bool bit = bs.read_bit();
             if (bs.eof())
                 break;
 
-            std::cout << bit;
+            cout << bit;
         }
-        std::cout << "\n\n";
+        cout << "\n\n";
     }
 
     // Reading bits from the file and printing to console
     {
-        BitStream bs("example.bin", std::ios::in);
+        BitStream bs("example.bin", ios::in);
 
-        std::string value = bs.read_n_bits(5);  // Reads 4 bits from the file
-        std::cout << "Read value: " << value << std::endl;
+        int value = bs.read_n_bits(5);  // Reads 4 bits from the file
+        cout << "Read value: " << value << endl;
         value = bs.read_n_bits(6);  // Reads 4 bits from the file
-        std::cout << "Read value: " << value << std::endl;
+        cout << "Read value: " << value << endl;
         value = bs.read_n_bits(7);  // Reads 4 bits from the file
-        std::cout << "Read value: " << value << std::endl;
+        cout << "Read value: " << value << endl;
 
     }
 
