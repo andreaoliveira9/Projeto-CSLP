@@ -16,6 +16,14 @@ using namespace cv;
 
 Mat setWatermark(Mat image, Mat watermark, double opacity)
 {
+    /*
+    *   Set the watermark on the image with the given opacity
+    *   @param image: The image to set the watermark on
+    *   @param watermark: The watermark to set on the image
+    *   @param opacity: The opacity of the watermark
+    *   @return: The watermarked image
+    * 
+    */
     double alpha;
     Mat watermarkedImage;
 

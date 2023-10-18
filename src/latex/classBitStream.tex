@@ -1,0 +1,137 @@
+\hypertarget{classBitStream}{}\doxysection{Bit\+Stream Class Reference}
+\label{classBitStream}\index{BitStream@{BitStream}}
+
+
+A class for reading and writing individual bits to a binary file.  
+
+
+
+
+{\ttfamily \#include $<$Bit\+Stream.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classBitStream_aa9b182fa43b804dfaf4c10ce21566717}{Bit\+Stream}} (const string \&file\+Path, ios\+\_\+base\+::openmode mode)
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{classBitStream}{Bit\+Stream}} class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBitStream_a63cf0f27c7519417a7984c476a32c9c9}\label{classBitStream_a63cf0f27c7519417a7984c476a32c9c9}} 
+\mbox{\hyperlink{classBitStream_a63cf0f27c7519417a7984c476a32c9c9}{$\sim$\+Bit\+Stream}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \mbox{\hyperlink{classBitStream}{Bit\+Stream}} class. Closes the file if open. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBitStream_a27413bf207ad7f877a13d2c58a6dfc93}{write\+\_\+bit}} (bool bit)
+\begin{DoxyCompactList}\small\item\em Writes a single bit to the binary file. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classBitStream_a4a71fa1b6c457591af8e20f4814b86b7}{read\+\_\+bit}} ()
+\begin{DoxyCompactList}\small\item\em Reads a single bit from the binary file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBitStream_a364bf6202e5aa20182001c20fab87579}{write\+\_\+n\+\_\+bits}} (unsigned int value, int num\+\_\+bits)
+\begin{DoxyCompactList}\small\item\em Writes a specified number of bits to the binary file. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{classBitStream_a63ee1f7612090b878043f27631f34634}{read\+\_\+n\+\_\+bits}} (int n)
+\begin{DoxyCompactList}\small\item\em Reads a specified number of bits from the binary file. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classBitStream_a2cb7af3f3b41a1f7063d5d239f4171d6}{eof}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the end of the file has been reached. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class for reading and writing individual bits to a binary file. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classBitStream_aa9b182fa43b804dfaf4c10ce21566717}\label{classBitStream_aa9b182fa43b804dfaf4c10ce21566717}} 
+\index{BitStream@{BitStream}!BitStream@{BitStream}}
+\index{BitStream@{BitStream}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{BitStream()}{BitStream()}}
+{\footnotesize\ttfamily Bit\+Stream\+::\+Bit\+Stream (\begin{DoxyParamCaption}\item[{const string \&}]{file\+Path,  }\item[{ios\+\_\+base\+::openmode}]{mode }\end{DoxyParamCaption})}
+
+
+
+Constructor for the \mbox{\hyperlink{classBitStream}{Bit\+Stream}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Path} & The path to the binary file to read from or write to. \\
+\hline
+{\em mode} & The open mode for the file (e.\+g., std\+::ios\+::in or std\+::ios\+::out). \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classBitStream_a2cb7af3f3b41a1f7063d5d239f4171d6}\label{classBitStream_a2cb7af3f3b41a1f7063d5d239f4171d6}} 
+\index{BitStream@{BitStream}!eof@{eof}}
+\index{eof@{eof}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{eof()}{eof()}}
+{\footnotesize\ttfamily bool Bit\+Stream\+::eof (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Checks if the end of the file has been reached. 
+
+\begin{DoxyReturn}{Returns}
+true if the end of the file has been reached, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBitStream_a4a71fa1b6c457591af8e20f4814b86b7}\label{classBitStream_a4a71fa1b6c457591af8e20f4814b86b7}} 
+\index{BitStream@{BitStream}!read\_bit@{read\_bit}}
+\index{read\_bit@{read\_bit}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{read\_bit()}{read\_bit()}}
+{\footnotesize\ttfamily bool Bit\+Stream\+::read\+\_\+bit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads a single bit from the binary file. 
+
+\begin{DoxyReturn}{Returns}
+The bit (0 or 1) read from the file. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBitStream_a63ee1f7612090b878043f27631f34634}\label{classBitStream_a63ee1f7612090b878043f27631f34634}} 
+\index{BitStream@{BitStream}!read\_n\_bits@{read\_n\_bits}}
+\index{read\_n\_bits@{read\_n\_bits}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{read\_n\_bits()}{read\_n\_bits()}}
+{\footnotesize\ttfamily unsigned int Bit\+Stream\+::read\+\_\+n\+\_\+bits (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Reads a specified number of bits from the binary file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & The number of bits to read. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value containing the read bits. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBitStream_a27413bf207ad7f877a13d2c58a6dfc93}\label{classBitStream_a27413bf207ad7f877a13d2c58a6dfc93}} 
+\index{BitStream@{BitStream}!write\_bit@{write\_bit}}
+\index{write\_bit@{write\_bit}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{write\_bit()}{write\_bit()}}
+{\footnotesize\ttfamily void Bit\+Stream\+::write\+\_\+bit (\begin{DoxyParamCaption}\item[{bool}]{bit }\end{DoxyParamCaption})}
+
+
+
+Writes a single bit to the binary file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bit} & The bit (0 or 1) to write. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classBitStream_a364bf6202e5aa20182001c20fab87579}\label{classBitStream_a364bf6202e5aa20182001c20fab87579}} 
+\index{BitStream@{BitStream}!write\_n\_bits@{write\_n\_bits}}
+\index{write\_n\_bits@{write\_n\_bits}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{write\_n\_bits()}{write\_n\_bits()}}
+{\footnotesize\ttfamily void Bit\+Stream\+::write\+\_\+n\+\_\+bits (\begin{DoxyParamCaption}\item[{unsigned int}]{value,  }\item[{int}]{num\+\_\+bits }\end{DoxyParamCaption})}
+
+
+
+Writes a specified number of bits to the binary file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value containing the bits to write. \\
+\hline
+{\em num\+\_\+bits} & The number of bits to write from the value. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Bit\+Stream.\+hpp\item 
+Bit\+Stream.\+cpp\end{DoxyCompactItemize}

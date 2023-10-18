@@ -1,0 +1,210 @@
+\hypertarget{classImageManipulator}{}\doxysection{Image\+Manipulator Class Reference}
+\label{classImageManipulator}\index{ImageManipulator@{ImageManipulator}}
+
+
+A class for loading, manipulating, and saving PPM image files.  
+
+
+
+
+{\ttfamily \#include $<$Image\+Manipulator.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classImageManipulator_a3c2bf8982f8bc1e0fddcc9695155d0fe}\label{classImageManipulator_a3c2bf8982f8bc1e0fddcc9695155d0fe}} 
+\mbox{\hyperlink{classImageManipulator_a3c2bf8982f8bc1e0fddcc9695155d0fe}{Image\+Manipulator}} ()
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{classImageManipulator}{Image\+Manipulator}} class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classImageManipulator_a0c04140fcc668f434d67ea5f6c75954d}\label{classImageManipulator_a0c04140fcc668f434d67ea5f6c75954d}} 
+\mbox{\hyperlink{classImageManipulator_a0c04140fcc668f434d67ea5f6c75954d}{$\sim$\+Image\+Manipulator}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \mbox{\hyperlink{classImageManipulator}{Image\+Manipulator}} class. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classImageManipulator_afb536bb54cd0577144f7d9f0b919df0d}{load\+PPM}} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em Load a PPM image from a file. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classImageManipulator_a687d6e7a434e2fb2a826bc77da91f3fb}{save\+PPM}} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em Save the image as a PPM file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classImageManipulator_ad3432ad4490392d33f0de9e0af2f9b4c}{copy\+Image}} (const \mbox{\hyperlink{classImageManipulator}{Image\+Manipulator}} \&source)
+\begin{DoxyCompactList}\small\item\em Copy the content of another \mbox{\hyperlink{classImageManipulator}{Image\+Manipulator}} object. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classImageManipulator_aaa15aa4953ccfb54d8a42dc8e4ead581}{get\+Width}} () const
+\begin{DoxyCompactList}\small\item\em Get the width of the image. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classImageManipulator_a130ece20907920836b1067b7ee91c734}{get\+Height}} () const
+\begin{DoxyCompactList}\small\item\em Get the height of the image. \end{DoxyCompactList}\item 
+unsigned char \mbox{\hyperlink{classImageManipulator_a12f14eee0fefe01464804bea4593f8a3}{get\+Red}} (int x, int y) const
+\begin{DoxyCompactList}\small\item\em Get the red component of a pixel at a specific position. \end{DoxyCompactList}\item 
+unsigned char \mbox{\hyperlink{classImageManipulator_a30f594f51ec9c698e6e3acf6bddba7e6}{get\+Green}} (int x, int y) const
+\begin{DoxyCompactList}\small\item\em Get the green component of a pixel at a specific position. \end{DoxyCompactList}\item 
+unsigned char \mbox{\hyperlink{classImageManipulator_aa0f65fa2d32b8d8e7e67b6334b3c1687}{get\+Blue}} (int x, int y) const
+\begin{DoxyCompactList}\small\item\em Get the blue component of a pixel at a specific position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classImageManipulator_a973c3fffc118202d45440fa1a417cb79}{set\+Pixel}} (int x, int y, unsigned char red, unsigned char green, unsigned char blue)
+\begin{DoxyCompactList}\small\item\em Set the RGB components of a pixel at a specific position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class for loading, manipulating, and saving PPM image files. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classImageManipulator_ad3432ad4490392d33f0de9e0af2f9b4c}\label{classImageManipulator_ad3432ad4490392d33f0de9e0af2f9b4c}} 
+\index{ImageManipulator@{ImageManipulator}!copyImage@{copyImage}}
+\index{copyImage@{copyImage}!ImageManipulator@{ImageManipulator}}
+\doxysubsubsection{\texorpdfstring{copyImage()}{copyImage()}}
+{\footnotesize\ttfamily void Image\+Manipulator\+::copy\+Image (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classImageManipulator}{Image\+Manipulator}} \&}]{source }\end{DoxyParamCaption})}
+
+
+
+Copy the content of another \mbox{\hyperlink{classImageManipulator}{Image\+Manipulator}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & The source \mbox{\hyperlink{classImageManipulator}{Image\+Manipulator}} object to copy from. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classImageManipulator_aa0f65fa2d32b8d8e7e67b6334b3c1687}\label{classImageManipulator_aa0f65fa2d32b8d8e7e67b6334b3c1687}} 
+\index{ImageManipulator@{ImageManipulator}!getBlue@{getBlue}}
+\index{getBlue@{getBlue}!ImageManipulator@{ImageManipulator}}
+\doxysubsubsection{\texorpdfstring{getBlue()}{getBlue()}}
+{\footnotesize\ttfamily unsigned char Image\+Manipulator\+::get\+Blue (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption}) const}
+
+
+
+Get the blue component of a pixel at a specific position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The x-\/coordinate of the pixel. \\
+\hline
+{\em y} & The y-\/coordinate of the pixel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The blue component of the pixel. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classImageManipulator_a30f594f51ec9c698e6e3acf6bddba7e6}\label{classImageManipulator_a30f594f51ec9c698e6e3acf6bddba7e6}} 
+\index{ImageManipulator@{ImageManipulator}!getGreen@{getGreen}}
+\index{getGreen@{getGreen}!ImageManipulator@{ImageManipulator}}
+\doxysubsubsection{\texorpdfstring{getGreen()}{getGreen()}}
+{\footnotesize\ttfamily unsigned char Image\+Manipulator\+::get\+Green (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption}) const}
+
+
+
+Get the green component of a pixel at a specific position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The x-\/coordinate of the pixel. \\
+\hline
+{\em y} & The y-\/coordinate of the pixel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The green component of the pixel. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classImageManipulator_a130ece20907920836b1067b7ee91c734}\label{classImageManipulator_a130ece20907920836b1067b7ee91c734}} 
+\index{ImageManipulator@{ImageManipulator}!getHeight@{getHeight}}
+\index{getHeight@{getHeight}!ImageManipulator@{ImageManipulator}}
+\doxysubsubsection{\texorpdfstring{getHeight()}{getHeight()}}
+{\footnotesize\ttfamily int Image\+Manipulator\+::get\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the height of the image. 
+
+\begin{DoxyReturn}{Returns}
+The height of the image. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classImageManipulator_a12f14eee0fefe01464804bea4593f8a3}\label{classImageManipulator_a12f14eee0fefe01464804bea4593f8a3}} 
+\index{ImageManipulator@{ImageManipulator}!getRed@{getRed}}
+\index{getRed@{getRed}!ImageManipulator@{ImageManipulator}}
+\doxysubsubsection{\texorpdfstring{getRed()}{getRed()}}
+{\footnotesize\ttfamily unsigned char Image\+Manipulator\+::get\+Red (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption}) const}
+
+
+
+Get the red component of a pixel at a specific position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The x-\/coordinate of the pixel. \\
+\hline
+{\em y} & The y-\/coordinate of the pixel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The red component of the pixel. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classImageManipulator_aaa15aa4953ccfb54d8a42dc8e4ead581}\label{classImageManipulator_aaa15aa4953ccfb54d8a42dc8e4ead581}} 
+\index{ImageManipulator@{ImageManipulator}!getWidth@{getWidth}}
+\index{getWidth@{getWidth}!ImageManipulator@{ImageManipulator}}
+\doxysubsubsection{\texorpdfstring{getWidth()}{getWidth()}}
+{\footnotesize\ttfamily int Image\+Manipulator\+::get\+Width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the width of the image. 
+
+\begin{DoxyReturn}{Returns}
+The width of the image. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classImageManipulator_afb536bb54cd0577144f7d9f0b919df0d}\label{classImageManipulator_afb536bb54cd0577144f7d9f0b919df0d}} 
+\index{ImageManipulator@{ImageManipulator}!loadPPM@{loadPPM}}
+\index{loadPPM@{loadPPM}!ImageManipulator@{ImageManipulator}}
+\doxysubsubsection{\texorpdfstring{loadPPM()}{loadPPM()}}
+{\footnotesize\ttfamily bool Image\+Manipulator\+::load\+PPM (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})}
+
+
+
+Load a PPM image from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The name of the PPM file to load. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the loading was successful, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classImageManipulator_a687d6e7a434e2fb2a826bc77da91f3fb}\label{classImageManipulator_a687d6e7a434e2fb2a826bc77da91f3fb}} 
+\index{ImageManipulator@{ImageManipulator}!savePPM@{savePPM}}
+\index{savePPM@{savePPM}!ImageManipulator@{ImageManipulator}}
+\doxysubsubsection{\texorpdfstring{savePPM()}{savePPM()}}
+{\footnotesize\ttfamily bool Image\+Manipulator\+::save\+PPM (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})}
+
+
+
+Save the image as a PPM file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The name of the PPM file to save. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the saving was successful, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classImageManipulator_a973c3fffc118202d45440fa1a417cb79}\label{classImageManipulator_a973c3fffc118202d45440fa1a417cb79}} 
+\index{ImageManipulator@{ImageManipulator}!setPixel@{setPixel}}
+\index{setPixel@{setPixel}!ImageManipulator@{ImageManipulator}}
+\doxysubsubsection{\texorpdfstring{setPixel()}{setPixel()}}
+{\footnotesize\ttfamily void Image\+Manipulator\+::set\+Pixel (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{unsigned char}]{red,  }\item[{unsigned char}]{green,  }\item[{unsigned char}]{blue }\end{DoxyParamCaption})}
+
+
+
+Set the RGB components of a pixel at a specific position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The x-\/coordinate of the pixel. \\
+\hline
+{\em y} & The y-\/coordinate of the pixel. \\
+\hline
+{\em red} & The new red component of the pixel. \\
+\hline
+{\em green} & The new green component of the pixel. \\
+\hline
+{\em blue} & The new blue component of the pixel. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Image\+Manipulator.\+hpp\item 
+Image\+Manipulator.\+cpp\end{DoxyCompactItemize}
