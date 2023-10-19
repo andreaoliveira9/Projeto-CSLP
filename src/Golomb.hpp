@@ -22,17 +22,12 @@ public:
      * @param mode The open mode for the file (e.g., std::ios::in or std::ios::out).
      * @param m The Golomb parameter (positive integer).
      */
-    Golomb(const string& filePath,ios_base::openmode mode, int m) {
-        this -> bitStream = new BitStream(filePath,ios::in|ios::out);
-        this -> m = m;
-    }
+    Golomb(const string& filePath,ios_base::openmode mode, int m);
 
     /**
      * @brief Destructor for the Golomb class. Cleans up resources.
      */
-    ~Golomb() {
-        delete bitStream;
-    }
+    ~Golomb();
 
     /**
      * @brief Encodes an integer using Golomb coding and writes it to the bitstream.
