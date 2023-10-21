@@ -177,64 +177,74 @@ void convertToGrayscale(const cv::Mat &colorImage, cv::Mat &grayscaleImage)
     }
 }
 
-void subSampling420(const cv::Mat &yuvImage, cv::Mat &yuvImage420)
-{
+void subSampling420(const cv::Mat &yuvImage, cv::Mat &yuvImage420) {
+    // Split YUV image into Y, U, and V channels
     Mat channels[3];
     split(yuvImage, channels);
-    Size target_size = Size(channels[0].size[1], channels[0].size[0]);
-    float scaling[2];
-    if (yuvImage.cols % 2 != 0) {
-        throw std::runtime_error("Matrix must have an even number of columns");
+
+    if (yuvImage.cols % 2 != 0 || yuvImage.rows % 2 != 0) {
+        throw std::runtime_error("Both width and height of the matrix must be even.");
     }
-    // 1/2 horizontal sampling, 1/2 vertical sampling
-    scaling[0] = 0.5;
-    scaling[1] = 0.5;
+
+    Size target_size = Size(channels[0].cols, channels[0].rows);  // Mantém o tamanho original
 
     // Create output matrices for Y, U, and V channels
     Mat y_channel(target_size, CV_8UC1);
     Mat u_channel(target_size, CV_8UC1);
     Mat v_channel(target_size, CV_8UC1);
 
-    // Resize Y channel
-    resize(channels[0], y_channel, target_size, 0, 0, INTER_LINEAR);
+    // Copia o canal Y original (luma) para o novo canal Y
+    channels[0].copyTo(y_channel);
 
-    // Resize U and V channels
-    resize(channels[1], u_channel, target_size, 0, 0, INTER_LINEAR);
-    resize(channels[2], v_channel, target_size, 0, 0, INTER_LINEAR);
+    // Realiza 1/2 de amostragem horizontal e vertical para U e V
+    for (int row = 0; row < target_size.height; row += 2) {
+        for (int col = 0; col < target_size.width; col += 2) {
+            int u_sum = 0;
+            int v_sum = 0;
+            for (int i = 0; i < 2; i++) {
+                for (int j = 0; j < 2; j++) {
+                    u_sum += channels[1].at<uchar>(row + i, col + j);
+                    v_sum += channels[2].at<uchar>(row + i, col + j);
+                }
+            }
+            u_channel.at<uchar>(row, col) = u_sum / 4;
+            v_channel.at<uchar>(row, col) = v_sum / 4;
+        }
+    }
 
     // Merge Y, U, and V channels back into a single image
     vector<Mat> merged_channels = {y_channel, u_channel, v_channel};
     merge(merged_channels, yuvImage420);
 }
 
+
 void subSampling422(const cv::Mat &yuvImage, cv::Mat &yuvImage422)
 {
-    Mat channels[3];
-    split(yuvImage, channels);
-    Size target_size = Size(channels[0].size[1], channels[0].size[0]);
+    Mat parts[3];
+    split(yuvImage, parts);
     float scaling[2];
     if (yuvImage.cols % 2 != 0) {
         throw std::runtime_error("Matrix must have an even number of columns");
     }
-    // 1/2 horizontal sampling, full vertical sampling
-    scaling[0] = 0.5;
-    scaling[1] = 1;
 
-    // Create output matrices for Y, U, and V channels
-    Mat y_channel(target_size, CV_8UC1);
-    Mat u_channel(target_size, CV_8UC1);
-    Mat v_channel(target_size, CV_8UC1);
+    int type = CV_8UC1;
+    int interpolation = INTER_LINEAR;
+
+    // Create output matrices for Y, U, and V parts
+    Mat y_channel(Size(parts[0].size[1], parts[0].size[0]), type);
+    Mat u_channel(Size(parts[0].size[1], parts[0].size[0]), type);
+    Mat v_channel(Size(parts[0].size[1], parts[0].size[0]), type);
 
     // Resize Y channel
-    resize(channels[0], y_channel, target_size, 0, 0, INTER_LINEAR);
+    resize(parts[0], y_channel, Size(parts[0].size[1], parts[0].size[0]), 0, 0, interpolation);
 
-    // Resize U and V channels
-    resize(channels[1], u_channel, target_size, 0, 0, INTER_LINEAR);
-    resize(channels[2], v_channel, target_size, 0, 0, INTER_LINEAR);
+    // Resize U and V parts
+    resize(parts[1], u_channel, Size(parts[0].size[1], parts[0].size[0]), 0, 0, interpolation);
+    resize(parts[2], v_channel, Size(parts[0].size[1], parts[0].size[0]), 0, 0, interpolation);
 
-    // Merge Y, U, and V channels back into a single image
-    vector<Mat> merged_channels = {y_channel, u_channel, v_channel};
-    merge(merged_channels, yuvImage422);
+    // Merge Y, U, and V parts back into a single image
+    vector<Mat> merged_parts = {y_channel, u_channel, v_channel};
+    merge(merged_parts, yuvImage422);
 }
 
 

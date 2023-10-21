@@ -4,7 +4,7 @@ project( VideoPlayer )
 find_package( OpenCV REQUIRED )
 include_directories( ${OpenCV_INCLUDE_DIRS} )
 set(SOURCES
-  Delivery3_7.cpp
+  Delivery1_2.cpp
 )
 add_executable( ${PROJECT_NAME} ${SOURCES})
 target_link_libraries( ${PROJECT_NAME} ${OpenCV_LIBS} )
