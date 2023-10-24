@@ -39,6 +39,8 @@ target_link_libraries( ${PROJECT_NAME} ${OpenCV_LIBS} )
 
 ### Then, you need to run the following commands:
 
+_You need to be in the src directory of the project_
+
 ```
 mkdir build && cd build
 cmake ..
