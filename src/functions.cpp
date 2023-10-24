@@ -14,16 +14,18 @@ using namespace cv;
 //     return thresholdedImage;
 // }
 
+/**
+ * @brief Set a watermark on an image with a specified opacity.
+ *
+ * @param image The image to set the watermark on.
+ * @param watermark The watermark to apply to the image.
+ * @param opacity The opacity of the watermark (0.0 for fully transparent, 1.0 for fully opaque).
+ * @return The watermarked image.
+ */
+
 Mat setWatermark(Mat image, Mat watermark, double opacity)
 {
-    /*
-    *   Set the watermark on the image with the given opacity
-    *   @param image: The image to set the watermark on
-    *   @param watermark: The watermark to set on the image
-    *   @param opacity: The opacity of the watermark
-    *   @return: The watermarked image
-    * 
-    */
+
     double alpha;
     Mat watermarkedImage;
 
@@ -32,6 +34,13 @@ Mat setWatermark(Mat image, Mat watermark, double opacity)
 
     return watermarkedImage;
 }
+
+/**
+ * @brief Convert an RGB image to YUV color space.
+ *
+ * @param rgbImage The input RGB image.
+ * @param yuvImage The output YUV image.
+ */
 
 void rgbToYuv(const cv::Mat &rgbImage, cv::Mat &yuvImage)
 {
@@ -63,6 +72,12 @@ void rgbToYuv(const cv::Mat &rgbImage, cv::Mat &yuvImage)
 
     cvtColor(rgbImage, yuvImage, COLOR_BGR2YUV);
 }
+/**
+ * @brief Convert a YUV image back to RGB color space.
+ *
+ * @param yuvImage The input YUV image.
+ * @param rgbImage The output RGB image.
+ */
 
 void yuvToRgb(const cv::Mat &yuvImage, cv::Mat &rgbImage)
 {
@@ -102,6 +117,12 @@ void yuvToRgb(const cv::Mat &yuvImage, cv::Mat &rgbImage)
         }
     }
 }
+
+/**
+ * @brief Calculate and display the histogram of an image.
+ *
+ * @param image The input image for which the histogram will be calculated and displayed.
+ */
 
 void calculateAndDisplayHistogram(const cv::Mat &image)
 {
@@ -149,6 +170,12 @@ void calculateAndDisplayHistogram(const cv::Mat &image)
     cv::waitKey(0);
 }
 
+/**
+ * @brief Apply histogram equalization to an image.
+ *
+ * @param image The input image to which histogram equalization will be applied.
+ */
+
 void applyHistogramEqualization(cv::Mat &image)
 {
     // Check if the image is not in the correct format
@@ -161,6 +188,14 @@ void applyHistogramEqualization(cv::Mat &image)
     // Equalize histogram
     cv::equalizeHist(image, image);
 }
+
+
+/**
+ * @brief Convert a color image to grayscale.
+ *
+ * @param colorImage The input color image.
+ * @param grayscaleImage The output grayscale image.
+ */
 
 void convertToGrayscale(const cv::Mat &colorImage, cv::Mat &grayscaleImage)
 {
@@ -176,6 +211,13 @@ void convertToGrayscale(const cv::Mat &colorImage, cv::Mat &grayscaleImage)
         }
     }
 }
+
+/**
+ * @brief Perform 4:2:0 subsampling on a YUV image.
+ *
+ * @param yuvImage The input YUV image.
+ * @param yuvImage420 The output YUV image in 4:2:0 format.
+ */
 
 void subSampling420(const cv::Mat &yuvImage, cv::Mat &yuvImage420) {
     // Split YUV image into Y, U, and V channels
@@ -217,6 +259,12 @@ void subSampling420(const cv::Mat &yuvImage, cv::Mat &yuvImage420) {
     merge(merged_channels, yuvImage420);
 }
 
+/**
+ * @brief Perform 4:2:2 subsampling on a YUV image.
+ *
+ * @param yuvImage The input YUV image.
+ * @param yuvImage422 The output YUV image in 4:2:2 format.
+ */
 
 void subSampling422(const cv::Mat &yuvImage, cv::Mat &yuvImage422)
 {
@@ -247,11 +295,28 @@ void subSampling422(const cv::Mat &yuvImage, cv::Mat &yuvImage422)
     merge(merged_parts, yuvImage422);
 }
 
+/**
+ * @brief Apply a regular blur to an image.
+ *
+ * @param initial_image The input image to be blurred.
+ * @param b1 The first parameter for the blur operation.
+ * @param b2 The second parameter for the blur operation.
+ * @param blured_image The output blured image.
+ */
 
 void regular_blur(Mat& initial_image, int b1, int b2, Mat& blured_image)
 {
     blur(initial_image, blured_image, Size(b1, b2));
 }
+
+/**
+ * @brief Apply a Gaussian blur to an image.
+ *
+ * @param initial_image The input image to be blurred.
+ * @param k1 The first parameter for the Gaussian blur operation.
+ * @param k2 The second parameter for the Gaussian blur operation.
+ * @param filtered_image The output filtered image.
+ */
 
 void gaussian_blur(Mat& initial_image, int k1, int k2, Mat& filtered_image)
 {

@@ -78,25 +78,18 @@ $(function() {
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">int</span> m; </div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classGolomb.html#a6bc44a4ff5ad0370528ee737e177aafa">   25</a></span>&#160;    <a class="code" href="classGolomb.html#a6bc44a4ff5ad0370528ee737e177aafa">Golomb</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; filePath,ios_base::openmode mode, <span class="keywordtype">int</span> m) {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keyword">this</span> -&gt; bitStream = <span class="keyword">new</span> <a class="code" href="classBitStream.html">BitStream</a>(filePath,ios::in|ios::out);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keyword">this</span> -&gt; m = m;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    }</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classGolomb.html#a3695ea307f313060e2d2f7d32fc5fad9">   33</a></span>&#160;    <a class="code" href="classGolomb.html#a3695ea307f313060e2d2f7d32fc5fad9">~Golomb</a>() {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keyword">delete</span> bitStream;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    }</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> encode(<span class="keywordtype">int</span> n);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">int</span> decode();</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;};</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// GOLOMB_HPP</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="classGolomb.html">Golomb</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; filePath,ios_base::openmode mode, <span class="keywordtype">int</span> m);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    ~<a class="code" href="classGolomb.html">Golomb</a>();</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">void</span> encode(<span class="keywordtype">int</span> n);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">int</span> decode();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;};</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// GOLOMB_HPP</span></div>
 <div class="ttc" id="aclassBitStream_html"><div class="ttname"><a href="classBitStream.html">BitStream</a></div><div class="ttdoc">A class for reading and writing individual bits to a binary file.</div><div class="ttdef"><b>Definition:</b> BitStream.hpp:14</div></div>
 <div class="ttc" id="aclassGolomb_html"><div class="ttname"><a href="classGolomb.html">Golomb</a></div><div class="ttdoc">A class for Golomb coding, used for encoding and decoding integers.</div><div class="ttdef"><b>Definition:</b> Golomb.hpp:12</div></div>
-<div class="ttc" id="aclassGolomb_html_a3695ea307f313060e2d2f7d32fc5fad9"><div class="ttname"><a href="classGolomb.html#a3695ea307f313060e2d2f7d32fc5fad9">Golomb::~Golomb</a></div><div class="ttdeci">~Golomb()</div><div class="ttdoc">Destructor for the Golomb class. Cleans up resources.</div><div class="ttdef"><b>Definition:</b> Golomb.hpp:33</div></div>
-<div class="ttc" id="aclassGolomb_html_a6bc44a4ff5ad0370528ee737e177aafa"><div class="ttname"><a href="classGolomb.html#a6bc44a4ff5ad0370528ee737e177aafa">Golomb::Golomb</a></div><div class="ttdeci">Golomb(const string &amp;filePath, ios_base::openmode mode, int m)</div><div class="ttdoc">Constructor for Golomb class.</div><div class="ttdef"><b>Definition:</b> Golomb.hpp:25</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
