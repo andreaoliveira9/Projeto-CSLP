@@ -8,13 +8,47 @@
 | 108215 | Hugo Correia | <hf.correia@ua.pt> |   [MrLoydHD](https://github.com/MrLoydHD) |
 | 107637 | André Oliveira | <andreaoliveira@ua.pt> | [andreaoliveira9](https://github.com/andreaoliveira9) |
 
-
-<be>
+<br>
 
 ## How to run
+
+### Before running the programs, you need to install the following library:
+
+- OpenCV
+  
+    _To install it, you need to run the following command:_
+
+    ```
+    sudo apt-get install libopencv-dev
+    ```
+
+### To run each of the programs, you need to specify the program name on CMakeLists.txt file, and then run the following commands:
+
+```makefile
+target_link_libraries(VideoPlayer ${OpenCV_LIBS} )
+cmake_minimum_required(VERSION 3.17)
+project( VideoPlayer )
+find_package( OpenCV REQUIRED )
+include_directories( ${OpenCV_INCLUDE_DIRS} )
+set(SOURCES
+  Delivery3_7.cpp # Program name (change this)
+)
+add_executable( ${PROJECT_NAME} ${SOURCES})
+target_link_libraries( ${PROJECT_NAME} ${OpenCV_LIBS} )
+```
+
+### Then, you need to run the following commands:
 
 ```
 mkdir build && cd build
 cmake ..
 make
 ```
+
+### After that, you can run the program by running the following command:
+
+```
+./VideoPlayer
+```
+
+<br>

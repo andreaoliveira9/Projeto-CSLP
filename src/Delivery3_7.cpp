@@ -8,7 +8,7 @@ int main() {
     int m = 5;
 
     // Number to be encoded
-    int num = 255;
+    int num = -255;
 
     // Create a Golomb instance
     Golomb *golombEncoder = new Golomb("encoded.bin", ios::out, m);
