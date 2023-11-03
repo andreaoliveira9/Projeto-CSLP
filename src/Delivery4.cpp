@@ -12,7 +12,7 @@ int main(int argc, char* argv[]){
     int golombParameter = 24;
     PredictiveCoding predictorEncoder;
 
-    VideoCapture videoCapture("../../vid/ducks.y4m");
+    VideoCapture videoCapture("../../vid/akiyo_qcif.y4m");
     if (!videoCapture.isOpened()) {
         cout << "Erro ao abrir o vídeo" << endl;
         return 0;
