@@ -1,77 +1,115 @@
 #include "BitStream.hpp"
+#include <iostream>
 
-BitStream::BitStream(const std::string& filePath, std::ios_base::openmode mode) 
-    : file_path(filePath), file_out(filePath, mode | std::ios::binary), file_in(filePath, mode | std::ios::binary) {
-    byte_buffer = 0;
-    bit_count = 0;
-    is_end_of_file = false;
+BitStream::BitStream(string fileName, string fileMode) {
+    if (fileMode == "read") {
+        openToRead(fileName);
+    } else {
+        openToWrite(fileName); 
+    }
+}
+
+void BitStream::openToRead(string fileName) {
+		mode = 0;
+		file.open(fileName.c_str(), fstream::in | fstream::binary);
+
+		if (!file)
+				cerr << "Erro ao abrir o arquivo" << endl;
+
+		currentPosition = 0;
+		currentByte = 0;
+		byteCount = 0;
+}
+
+void BitStream::openToWrite(string fileName) {
+		mode = 1;
+		file.open(fileName.c_str(), fstream::out | fstream::binary);
+
+		if (!file)
+				cerr << "Erro ao abrir o arquivo" << endl;
+
+		currentPosition = 0;
+		currentByte = 0;
+		byteCount = 0;
+}
+
+BitStream::BitStream() {
+    currentPosition = 0;
+    currentByte = 0;
+    byteCount = 0;
 }
 
 BitStream::~BitStream() {
-    if (bit_count > 0)
-        write_byte();
-    file_out.close();
-    file_in.close();
+    close();
 }
 
-void BitStream::write_byte() {
-    file_out.write(&byte_buffer, 1);
-    byte_buffer = 0;
-    bit_count = 0;
+int BitStream::getByteCount() {
+		return byteCount;
 }
 
-char BitStream::read_byte() {
-    char byte;
-    file_in.read(&byte, 1);
-    is_end_of_file = file_in.eof();
-    return byte;
+void BitStream::close() {
+    if (mode == 1) {
+        writeBufferToFile();
+    }
+    file.close();
 }
 
-void BitStream::write_bit(bool bit) {
-    if (bit_count == 8)
-        write_byte();
-
-    byte_buffer |= (bit << (7 - bit_count));
-    bit_count++;
-}
-
-bool BitStream::read_bit() {
-    if (bit_count == 0) {
-        byte_buffer = read_byte();
-        if (is_end_of_file)
-            return false;
+void BitStream::writeBit(int value) {
+    if (currentPosition == 0) {
+        currentPosition = 1;
     }
 
-    bool bit = (byte_buffer >> (7 - bit_count)) & 1;
-    bit_count++;
+    if (currentPosition == 256) {
+				writeBufferToFile();
+        currentPosition = 1;
+        currentByte = 0;
+        byteCount++;
+    }
 
-    if (bit_count == 8)
-        bit_count = 0;
+    currentByte = currentByte | (value * currentPosition);
+    currentPosition = currentPosition << 1;
+}
 
+int BitStream::readBit() {
+    if (currentPosition == 256 || currentPosition == 0) {
+        readByteFromfile();
+        if (!file) {
+            return -1;
+        }
+        currentPosition = 1;
+    }
+
+    int bit = (currentByte & currentPosition) != 0 ? 1 : 0;
+    currentPosition = currentPosition << 1;
     return bit;
 }
 
-void BitStream::write_n_bits(unsigned int value, int num_bits) {
-    for (int i = num_bits - 1; i >= 0; --i) {
-        bool bit = (value >> i) & 1;
-        write_bit(bit);
+void BitStream::writeNBits(int value, int numBits) {
+    while (numBits--) {
+        writeBit((value >> numBits) & 1);
     }
 }
 
-unsigned int BitStream::read_n_bits(int n) {
-    unsigned int result = 0;
+int BitStream::readNBits(int numBits) {
+    int bits = 0;
 
-    for (int i = n - 1; i >= 0; --i) {
-        bool bit = read_bit();
-        if (is_end_of_file)
-            break;
+    while (numBits--) {
+        int bit = readBit();
 
-        result |= (bit << i);
+        if (bit == -1) {
+            return -1;
+        }
+
+        bits = (bits << 1) | bit;
     }
 
-    return result;
+    return bits;
 }
 
-bool BitStream::eof() const {
-    return is_end_of_file;
+void BitStream::writeBufferToFile() {
+		file.write(reinterpret_cast<char *>(&currentByte), sizeof(char));
+}
+
+void BitStream::readByteFromfile() {
+		file.read(reinterpret_cast<char *>(&currentByte), sizeof(char));
 }

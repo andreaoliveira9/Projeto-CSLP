@@ -1,62 +1,83 @@
+#include <cmath>
+#include <cstdlib>
+#include <iostream>
 #include "Golomb.hpp"
 
-Golomb::Golomb(const string& filePath, ios_base::openmode mode, int m) {
-    this -> bitStream = new BitStream(filePath, ios::in | ios::out);
-    this -> m = m;
+Golomb::Golomb(BitStream* bitStream, int divisor) {
+    this->bitStream = bitStream;
+    this->divisor = divisor;
+
+    this->parameterB = static_cast<int>(std::ceil(std::log2(divisor)));
+    this->parameterL = std::pow(2, parameterB) - divisor;
+    this->parameterH = divisor - parameterL;
 }
 
 Golomb::~Golomb() {
-    delete bitStream;
 }
 
-void Golomb::encode(int n) {
-    if (m <= 0) {
-        throw invalid_argument("Value of m unknown or invalid");
+void Golomb::encode(int value) {
+    bool isNegative = false;
+    if (value < 0) {
+        isNegative = true;
+        value = std::abs(value);
     }
 
-    int sign = 1;  // Default to positive
+    unsigned int quotient, remainder;
+    quotient = value / divisor;
+    remainder = value % divisor;
 
-    if (n < 0) {
-        sign = -1;  // Set the sign to negative
-        n = -n;      // Make n positive for encoding
+    if (isNegative) {
+        bitStream->writeBit(1);
+    } else {
+        bitStream->writeBit(0);
     }
 
-    int q = n / m;
-    int r = n % m;
+    if (remainder < parameterL) {
+        bitStream->writeNBits(remainder, parameterB - 1);
+    } else {
+        bitStream->writeNBits(remainder + parameterL, parameterB);
+    }
 
-    // Encode the sign (1 for negative, 0 for positive)
-    bitStream->write_bit(sign < 0 ? 1 : 0);
+    for (unsigned int i = 0; i < quotient; i++) {
+        bitStream->writeBit(1);
+    }
 
-    // Encode q using unary coding
-    while (q--)
-        bitStream->write_bit(1);
-    bitStream->write_bit(0);
-
-    // Encode r using binary encoding
-    int k = static_cast<int>(log2(m));
-    bitStream->write_n_bits(r, k);
+    bitStream->writeBit(0);
 }
 
 int Golomb::decode() {
-    if (m <= 0) {
-        throw invalid_argument("Value of m unknown or invalid");
+    bool isNegative = bitStream->readBit();
+
+    unsigned int quotient = 0, remainder, temporaryValue;
+
+    temporaryValue = bitStream->readNBits(parameterB - 1);
+    if (temporaryValue == -1) {
+        return -1;
     }
 
-    // Decode the sign
-    int sign = bitStream->read_bit() == 1 ? -1 : 1;
+    if (temporaryValue < parameterL) {
+        remainder = temporaryValue;
+    } else {
+        int additionalBit = bitStream->readNBits(1);
+        if (additionalBit == -1) {
+            return -1;
+        }
+        temporaryValue = (temporaryValue << 1) | additionalBit;
+        remainder = temporaryValue - parameterL;
+    }
 
-    // Decode q using unary coding
-    int q = 0;
-    while (bitStream->read_bit())
-        q++;
+    int tmp;
+    while ((tmp = bitStream->readBit()) == 1) {
+        quotient++;
+    }
 
-    // Decode r using binary decoding
-    int k = static_cast<int>(log2(m));
-    int r = bitStream->read_n_bits(k);
+    if (tmp == -1) {
+        return -1;
+    }
 
-    // Calculate the magnitude
-    int magnitude = q * m + r;
-
-    // Combine the sign and magnitude to get the original value
-    return sign * magnitude;
+    int result = quotient * divisor + remainder;
+    if (isNegative) {
+        result *= -1;
+    }
+    return result;
 }

@@ -1,87 +1,70 @@
-#ifndef BITSTREAM_HPP
-#define BITSTREAM_HPP
+#ifndef _BITSTREAM_
+#define _BITSTREAM_
 
-#include <iostream>
 #include <fstream>
-#include <bitset>
 
 using namespace std;
 
-/**
- * @class BitStream
- * @brief A class for reading and writing individual bits to a binary file.
+/* 
+ *@class BitStream to read and write bits on a file.
  */
-class BitStream {
-private:
-    string file_path; ///< The path to the binary file.
-    ofstream file_out; ///< Output file stream for writing.
-    ifstream file_in; ///< Input file stream for reading.
-    char byte_buffer; ///< Buffer for accumulating bits before writing a byte.
-    int bit_count; ///< The count of bits in the byte buffer.
-    bool is_end_of_file; ///< Flag indicating the end of the file.
+class BitStream
+{
+	public:
+		BitStream();
+		/** Constructor 
+			\param fileName The string containing the name of the encoded file.
+			\param mode The string w or r. */
+		BitStream(string fileName, string m);
 
-    /**
-     * @brief Writes a byte to the binary file.
-     */
-    void write_byte();
+		void openToRead(string fileName);
+		void openToWrite(string fileName);
 
-    /**
-     * @brief Reads a byte from the binary file.
-     *
-     * @return The byte read from the file.
-     */
-    char read_byte();
+		/** Destructor */ 
+		~BitStream();
 
-public:
-    /**
-     * @brief Constructor for the BitStream class.
-     *
-     * @param filePath The path to the binary file to read from or write to.
-     * @param mode The open mode for the file (e.g., std::ios::in or std::ios::out).
-     */
-    BitStream(const string& filePath, ios_base::openmode mode);
+		/** Method to close bitStream */
+		void close();
 
-    /**
-     * @brief Destructor for the BitStream class. Closes the file if open.
-     */
-    ~BitStream();
+		/** Method to write a bit in the bitstream.
+			\param value The bit to be written. */
+		void writeBit(int value);
 
-    /**
-     * @brief Writes a single bit to the binary file.
-     *
-     * @param bit The bit (0 or 1) to write.
-     */
-    void write_bit(bool bit);
+		/** Method to read a bit from the bitstream.
+			\return 0 or 1 depending on the bit. */
+		int readBit();
 
-    /**
-     * @brief Reads a single bit from the binary file.
-     *
-     * @return The bit (0 or 1) read from the file.
-     */
-    bool read_bit();
+		/** Method to write several bits into the bitstream.
+			\param nb The number of bits to write in the bitstream.
+			\param value The value to be written*/
+		void writeNBits(int value, int nb);
 
-    /**
-     * @brief Writes a specified number of bits to the binary file.
-     *
-     * @param value The value containing the bits to write.
-     * @param num_bits The number of bits to write from the value.
-     */
-    void write_n_bits(unsigned int value, int num_bits);
+		/** Method to read several bits from the bitstream.
+			\param nb The number of bits to read from the bitstream.
+			\return The value contained in the n bits. */
+		int readNBits(int nb);
 
-    /**
-     * @brief Reads a specified number of bits from the binary file.
-     *
-     * @param n The number of bits to read.
-     * @return The value containing the read bits.
-     */
-    unsigned int read_n_bits(int n);
+		/** return count */
+		int getByteCount();
 
-    /**
-     * @brief Checks if the end of the file has been reached.
-     *
-     * @return true if the end of the file has been reached, false otherwise.
-     */
-    bool eof() const;
+	private:
+		/** Buffer to store the data. */
+		unsigned char currentByte;
+
+		/** Position on the buffer where the bit is being accessed. */
+		int currentPosition;
+
+		/** File pointer */
+		fstream file;
+
+		/** Read or Write mode */
+		int mode; // 0 for read, 1 for write
+		
+		/** Count bytes */
+		int byteCount;
+		
+		void writeBufferToFile();
+		void readByteFromfile();
 };
 
-#endif // BITSTREAM_HPP
+#endif

@@ -1,47 +1,24 @@
-#ifndef GOLOMB_HPP
-#define GOLOMB_HPP
+#ifndef _GOLOMB_
+#define _GOLOMB_
+
+#include <stdio.h>
 
 #include "BitStream.hpp"
-#include <cmath>
 
-using namespace std;
-/**
- * @class Golomb
- * @brief A class for Golomb coding, used for encoding and decoding integers.
- */
 class Golomb {
-private:
-    BitStream* bitStream; ///< A BitStream object for reading and writing bits.
-    int m; ///< The Golomb parameter (m value).
-
 public:
-    /**
-     * @brief Constructor for Golomb class.
-     *
-     * @param filePath The path to the binary file used for bitstream operations.
-     * @param mode The open mode for the file (e.g., std::ios::in or std::ios::out).
-     * @param m The Golomb parameter (positive integer).
-     */
-    Golomb(const string& filePath,ios_base::openmode mode, int m);
+	Golomb(BitStream *bs, int m);
+	~Golomb();
 
-    /**
-     * @brief Destructor for the Golomb class. Cleans up resources.
-     */
-    ~Golomb();
+	void encode(int e);
+	int decode();
 
-    /**
-     * @brief Encodes an integer using Golomb coding and writes it to the bitstream.
-     *
-     * @param n The integer to be encoded and written to the bitstream.
-     */
-    void encode(int n);
-
-    /**
-     * @brief Decodes an integer from the bitstream using Golomb coding.
-     *
-     * @return The decoded integer.
-     */
-    int decode();
+protected:
+	BitStream* bitStream;
+  int divisor;
+  int parameterB;
+  int parameterL;
+  int parameterH;
 };
 
-#endif // GOLOMB_HPP
+#endif
