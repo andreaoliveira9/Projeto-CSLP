@@ -1,5 +1,4 @@
 #include "BitStream.hpp"
-#include <iostream>
 
 BitStream::BitStream(string fileName, string fileMode) {
     if (fileMode == "read") {

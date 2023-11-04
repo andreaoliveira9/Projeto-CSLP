@@ -1,8 +1,9 @@
+#ifndef _PREDICTIVE_ENCODING_
+#define _PREDICTIVE_ENCODING_
+
 #include <opencv2/opencv.hpp>
 #include <iostream>
-
-#include "BitStream.cpp"
-#include "Golomb.cpp"
+#include <fstream>
 
 using namespace std;
 using namespace cv;
@@ -12,3 +13,5 @@ public:
   void encodeAndPredict(Mat frame, int m, BitStream *bs);
   int decodeAndReconstruct(BitStream *bs, int m, int rows, int cols);
 };
+
+#endif 

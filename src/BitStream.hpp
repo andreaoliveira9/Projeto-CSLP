@@ -2,6 +2,7 @@
 #define _BITSTREAM_
 
 #include <fstream>
+#include <iostream>
 
 using namespace std;
 

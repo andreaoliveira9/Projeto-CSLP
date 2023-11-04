@@ -1,10 +1,6 @@
 #ifndef _GOLOMB_
 #define _GOLOMB_
 
-#include <stdio.h>
-
-#include "BitStream.hpp"
-
 class Golomb {
 public:
 	Golomb(BitStream *bs, int m);

@@ -1,6 +1,3 @@
-#include <opencv2/opencv.hpp>
-#include <iostream>
-
 #include "PredictiveCoding.hpp"
 
 void PredictiveCoding::encodeAndPredict(Mat frame, int m, BitStream *bs) {

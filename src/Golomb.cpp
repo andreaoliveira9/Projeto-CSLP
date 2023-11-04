@@ -1,6 +1,3 @@
-#include <cmath>
-#include <cstdlib>
-#include <iostream>
 #include "Golomb.hpp"
 
 Golomb::Golomb(BitStream* bitStream, int m) {
