@@ -3,42 +3,38 @@
 #include <iostream>
 #include "Golomb.hpp"
 
-Golomb::Golomb(BitStream* bitStream, int divisor) {
+Golomb::Golomb(BitStream* bitStream, int m) {
     this->bitStream = bitStream;
-    this->divisor = divisor;
+    this->m = m;
 
-    this->parameterB = static_cast<int>(std::ceil(std::log2(divisor)));
-    this->parameterL = std::pow(2, parameterB) - divisor;
-    this->parameterH = divisor - parameterL;
+    this->parameterB = static_cast<int>(ceil(log2(m)));
+    this->parameterL = pow(2, parameterB) - m;
 }
 
 Golomb::~Golomb() {
 }
 
 void Golomb::encode(int value) {
-    bool isNegative = false;
+    int sign = 1;  
+
     if (value < 0) {
-        isNegative = true;
-        value = std::abs(value);
+        sign = -1; 
+        value = -value; 
     }
 
-    unsigned int quotient, remainder;
-    quotient = value / divisor;
-    remainder = value % divisor;
+    unsigned int q, r;
+    q = value / m;
+    r = value % m;
 
-    if (isNegative) {
-        bitStream->writeBit(1);
+    bitStream->writeBit(sign < 0 ? 1 : 0);
+
+    if (r < parameterL) {
+        bitStream->writeNBits(r, parameterB - 1);
     } else {
-        bitStream->writeBit(0);
+        bitStream->writeNBits(r + parameterL, parameterB);
     }
 
-    if (remainder < parameterL) {
-        bitStream->writeNBits(remainder, parameterB - 1);
-    } else {
-        bitStream->writeNBits(remainder + parameterL, parameterB);
-    }
-
-    for (unsigned int i = 0; i < quotient; i++) {
+    while (q--) {
         bitStream->writeBit(1);
     }
 
@@ -46,9 +42,9 @@ void Golomb::encode(int value) {
 }
 
 int Golomb::decode() {
-    bool isNegative = bitStream->readBit();
+    int sign = bitStream->readBit() == 1 ? -1 : 1;
 
-    unsigned int quotient = 0, remainder, temporaryValue;
+    unsigned int q = 0, r, temporaryValue;
 
     temporaryValue = bitStream->readNBits(parameterB - 1);
     if (temporaryValue == -1) {
@@ -56,28 +52,24 @@ int Golomb::decode() {
     }
 
     if (temporaryValue < parameterL) {
-        remainder = temporaryValue;
+        r = temporaryValue;
     } else {
         int additionalBit = bitStream->readNBits(1);
         if (additionalBit == -1) {
             return -1;
         }
         temporaryValue = (temporaryValue << 1) | additionalBit;
-        remainder = temporaryValue - parameterL;
+        r = temporaryValue - parameterL;
     }
 
     int tmp;
     while ((tmp = bitStream->readBit()) == 1) {
-        quotient++;
+        q++;
     }
 
     if (tmp == -1) {
         return -1;
     }
 
-    int result = quotient * divisor + remainder;
-    if (isNegative) {
-        result *= -1;
-    }
-    return result;
+    return (q * m + r) * sign;
 }

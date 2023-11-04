@@ -15,10 +15,9 @@ public:
 
 protected:
 	BitStream* bitStream;
-  int divisor;
+  int m;
   int parameterB;
   int parameterL;
-  int parameterH;
 };
 
 #endif
