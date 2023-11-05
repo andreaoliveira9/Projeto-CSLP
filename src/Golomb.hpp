@@ -12,8 +12,6 @@ public:
 protected:
 	BitStream* bitStream;
   int m;
-  int parameterB;
-  int parameterL;
 };
 
 #endif

@@ -1,6 +1,3 @@
-#include <opencv2/opencv.hpp>
-#include <iostream>
-
 #include "BitStream.cpp"    
 #include "Golomb.cpp"
 #include "PredictiveCoding.cpp"

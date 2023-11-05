@@ -3,9 +3,6 @@
 Golomb::Golomb(BitStream* bitStream, int m) {
     this->bitStream = bitStream;
     this->m = m;
-
-    this->parameterB = static_cast<int>(ceil(log2(m)));
-    this->parameterL = pow(2, parameterB) - m;
 }
 
 Golomb::~Golomb() {
@@ -24,6 +21,9 @@ void Golomb::encode(int value) {
     r = value % m;
 
     bitStream->writeBit(sign < 0 ? 1 : 0);
+    
+    parameterB = static_cast<int>(ceil(log2(this->m)));
+    parameterL = pow(2, parameterB) - this->m;
 
     if (r < parameterL) {
         bitStream->writeNBits(r, parameterB - 1);
@@ -42,6 +42,9 @@ int Golomb::decode() {
     int sign = bitStream->readBit() == 1 ? -1 : 1;
 
     unsigned int q = 0, r, temporaryValue;
+
+    parameterB = static_cast<int>(ceil(log2(this->m)));
+    parameterL = pow(2, parameterB) - this->m;
 
     temporaryValue = bitStream->readNBits(parameterB - 1);
     if (temporaryValue == -1) {
