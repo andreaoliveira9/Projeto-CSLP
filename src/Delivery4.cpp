@@ -43,8 +43,8 @@ int main(int argc, char* argv[]){
     int imageWidth = bitStreamDecoder.readNBits(12);
 
     while (frameCount--) {
-        int result = predictorDecoder.decodeAndReconstruct(&bitStreamDecoder, m, imageHeight, imageWidth);
-        if (result == -1) {
+        Mat result = predictorDecoder.decodeAndReconstruct(&bitStreamDecoder, m, imageHeight, imageWidth);
+        if (frameCount == -1) {
             break;
         }
     }

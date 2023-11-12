@@ -11,7 +11,7 @@ using namespace cv;
 class PredictiveCoding {
 public:
   void encodeAndPredict(Mat frame, int m, BitStream *bs);
-  int decodeAndReconstruct(BitStream *bs, int m, int rows, int cols);
+  Mat decodeAndReconstruct(BitStream *bs, int m, int rows, int cols);
 };
 
 #endif 

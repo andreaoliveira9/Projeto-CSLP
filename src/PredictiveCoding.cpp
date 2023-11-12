@@ -50,13 +50,13 @@ void PredictiveCoding::encodeAndPredict(Mat frame, int m, BitStream *bs) {
     }
 }
 
-int PredictiveCoding::decodeAndReconstruct(BitStream *bs, int m, int rows, int cols) {
+Mat PredictiveCoding::decodeAndReconstruct(BitStream *bs, int m, int rows, int cols) {
     Golomb golombDecoder(bs, m);
     vector<Mat> channels;
     int error, pixelValue;
 
     if (rows == 0 || cols == 0) {
-        return -1;
+        return Mat();
     }
 
     for (int channel = 0; channel < 3; channel++) {
@@ -79,5 +79,5 @@ int PredictiveCoding::decodeAndReconstruct(BitStream *bs, int m, int rows, int c
     imshow("Reconstructed Image", reconstructedImage);
     char key = static_cast<char>(waitKey(3));
 
-    return 0;
+    return reconstructedImage;
 }
