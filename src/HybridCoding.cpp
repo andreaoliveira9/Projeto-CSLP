@@ -116,8 +116,8 @@ Mat HybridCoding::decode(Mat previousFrame, int frameHeight, int frameWidth, int
         }
 
         merge(res, result);
+        imshow("Reconstructed Image", result);
     }
-    imshow("Frame", result);
     return result;
 }
 
