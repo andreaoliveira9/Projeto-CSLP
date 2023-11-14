@@ -23,12 +23,10 @@ int main(int argc, char* argv[]){
     int periodicity = 3;
     int frameWidth = videoCapture.get(CAP_PROP_FRAME_WIDTH);
     int frameHeight = videoCapture.get(CAP_PROP_FRAME_HEIGHT);
-    int frameCountTotal = videoCapture.get(CAP_PROP_FRAME_COUNT);
 
     /* bitStreamEncoder.writeNBits(m, 5);
     bitStreamEncoder.writeNBits(frameHeight, 12);
     bitStreamEncoder.writeNBits(frameWidth, 12);
-    bitStreamEncoder.writeNBits(frameCountTotal, 9);
     bitStreamEncoder.writeNBits(blockSize, 4);
     bitStreamEncoder.writeNBits(searchArea, 4);
     bitStreamEncoder.writeNBits(periodicity, 4);
@@ -36,8 +34,8 @@ int main(int argc, char* argv[]){
     HybridCoding hybridEncoder(&bitStreamEncoder, blockSize, searchArea, periodicity, m); */
 
     Mat previousFrame;
-    int frameCount = 0;
-    /* while (true) {
+    /* int frameCount = 0;
+    while (true) {
         Mat currentFrame;
         videoCapture >> currentFrame;
 
@@ -57,18 +55,18 @@ int main(int argc, char* argv[]){
     m = bitStreamDecoder.readNBits(5);
     frameHeight = bitStreamDecoder.readNBits(12);
     frameWidth = bitStreamDecoder.readNBits(12);
-    frameCountTotal = bitStreamDecoder.readNBits(9);
     blockSize = bitStreamDecoder.readNBits(4);
     searchArea = bitStreamDecoder.readNBits(4);
     periodicity = bitStreamDecoder.readNBits(4);
     HybridCoding hybridDecoder(&bitStreamDecoder, blockSize, searchArea, periodicity, m);
 
-    frameCount = 0;
-    while (frameCountTotal--) {
-        Mat frame = hybridDecoder.decode(previousFrame, frameHeight, frameWidth, frameCount);
+    int frameCount = 300;
+    int frameNum = 0;
+    while (frameCount--) {
+        Mat frame = hybridDecoder.decode(previousFrame, frameHeight, frameWidth, frameNum);
         
         previousFrame = frame;
-        frameCount++;
+        frameNum++;
     }
     videoCapture.release();
 }

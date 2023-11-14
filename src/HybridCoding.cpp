@@ -58,7 +58,7 @@ void HybridCoding::encode(Mat referenceFrame, Mat currentFrame, int frameNum) {
                             }
                         }
                     }
-                    lastSum = 10000;
+                    lastSum = 100000;
 
                     golombEncoder.encode(row - d_x);
 					golombEncoder.encode(col - d_y);
