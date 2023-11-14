@@ -37,7 +37,7 @@ void HybridCoding::encode(Mat referenceFrame, Mat currentFrame, int frameNum) {
 
                     for (int i = startRow; i < endRow; i++) {
                         for (int j = startCol; j < endCol; j++) {
-                            if (i < 0 || j < 0 || i + blockSize > matrix.rows || j + blockSize > matrix.cols) {
+                            if (i < 0 || j < 0 || i + blockSize >= matrix.rows || j + blockSize >= matrix.cols) {
                                 currentSum = 0;
                                 continue;
                             }
@@ -47,6 +47,7 @@ void HybridCoding::encode(Mat referenceFrame, Mat currentFrame, int frameNum) {
                             for (int a = 0; a < blockSize; a++) {
                                 for (int b = 0; b < blockSize; b++) {
                                     currentSum = currentSum + abs(((int)currentBlock.at<uchar>(a, b)-(int)possibleBlock.at<uchar>(a, b)));
+                                    // erro quadratico
                                 }
                             }
 
@@ -60,8 +61,8 @@ void HybridCoding::encode(Mat referenceFrame, Mat currentFrame, int frameNum) {
                     }
                     lastSum = 100000;
 
-                    golombEncoder.encode(row - d_x);
-					golombEncoder.encode(col - d_y);
+                    golombEncoder.encode(d_x);
+					golombEncoder.encode(d_y);
 
                     for(int n = 0; n < blockSize; n++){
                         for(int m = 0; m < blockSize; m++){
@@ -92,23 +93,23 @@ Mat HybridCoding::decode(Mat previousFrame, int frameHeight, int frameWidth, int
             res[channel] = Mat(frameHeight, frameWidth, CV_8UC1, Scalar(0)); // Initialize each channel matrix
         }
 
-        for (int row = 0; row < frameHeight; row += blockSize) {
-            for (int col = 0; col < frameWidth; col += blockSize) {
-                // Decode the motion vectors
-                int rowDiff = golombDecoder.decode();
-                int colDiff = golombDecoder.decode();
-                int d_x = row - rowDiff;
-                int d_y = col - colDiff;
+        for (int channel = 0; channel < 3; ++channel) {
+            for (int row = 0; row < frameHeight; row += blockSize) {
+                for (int col = 0; col < frameWidth; col += blockSize) {
+                    
+                    // Decode the motion vectors
+                    int d_x = golombDecoder.decode();
+                    int d_y = golombDecoder.decode();
 
-                for (int channel = 0; channel < 3; ++channel) {
+                
                     for (int n = 0; n < blockSize; ++n) {
                         for (int m = 0; m < blockSize; ++m) {
                             int z = golombDecoder.decode();
                             int pixelValue = previousFrameChannels[channel].at<uchar>(d_x + n, d_y + m) + z;
                             // Avoid out-of-bounds access
-                            if (d_x + n < frameHeight && d_y + m < frameWidth) {
-                                res[channel].at<uchar>(d_x + n, d_y + m) = pixelValue;
-                            }
+
+                            res[channel].at<uchar>(row + n, col + m) = pixelValue;
+
                         }
                     }
                 }
