@@ -6,10 +6,9 @@
 using namespace std;
 using namespace cv;
 
-int main(int argc, char* argv[]){
+int main(int argc, char* argv[]) {
     string outputFileName = "encoded_image.bin";  
-    /* BitStream bitStreamEncoder(outputFileName, "write"); */
-    
+    BitStream bitStreamEncoder(outputFileName, "write");
 
     VideoCapture videoCapture("../../vid/akiyo_qcif.y4m");
     if (!videoCapture.isOpened()) {
@@ -17,25 +16,24 @@ int main(int argc, char* argv[]){
         return 0;
     }
 
-    int m = 24;
+    int m = 5;
     int blockSize = 8; 
     int searchArea= 3;
     int periodicity = 3;
     int frameWidth = videoCapture.get(CAP_PROP_FRAME_WIDTH);
     int frameHeight = videoCapture.get(CAP_PROP_FRAME_HEIGHT);
 
-    /* bitStreamEncoder.writeNBits(m, 5);
+    bitStreamEncoder.writeNBits(m, 5);
     bitStreamEncoder.writeNBits(frameHeight, 12);
     bitStreamEncoder.writeNBits(frameWidth, 12);
     bitStreamEncoder.writeNBits(blockSize, 4);
     bitStreamEncoder.writeNBits(searchArea, 4);
-    bitStreamEncoder.writeNBits(periodicity, 4);
-
-    HybridCoding hybridEncoder(&bitStreamEncoder, blockSize, searchArea, periodicity, m); */
+    HybridCoding hybridEncoder(&bitStreamEncoder, blockSize, searchArea, m, periodicity);
 
     Mat previousFrame;
-    /* int frameCount = 0;
+    int frameCount = 0;
     while (true) {
+        cout << "Frame: " << frameCount << endl;
         Mat currentFrame;
         videoCapture >> currentFrame;
 
@@ -49,7 +47,7 @@ int main(int argc, char* argv[]){
         frameCount++;
     }
 
-    bitStreamEncoder.close(); */
+    bitStreamEncoder.close();
 
     BitStream bitStreamDecoder(outputFileName, "read");
     m = bitStreamDecoder.readNBits(5);
@@ -57,16 +55,12 @@ int main(int argc, char* argv[]){
     frameWidth = bitStreamDecoder.readNBits(12);
     blockSize = bitStreamDecoder.readNBits(4);
     searchArea = bitStreamDecoder.readNBits(4);
-    periodicity = bitStreamDecoder.readNBits(4);
-    HybridCoding hybridDecoder(&bitStreamDecoder, blockSize, searchArea, periodicity, m);
+    HybridCoding hybridDecoder(&bitStreamDecoder, blockSize, searchArea, m);
 
-    int frameCount = 300;
-    int frameNum = 0;
     while (frameCount--) {
-        Mat frame = hybridDecoder.decode(previousFrame, frameHeight, frameWidth, frameNum);
-        
+        Mat frame = hybridDecoder.decode(previousFrame, frameHeight, frameWidth);
         previousFrame = frame;
-        frameNum++;
     }
+
     videoCapture.release();
 }

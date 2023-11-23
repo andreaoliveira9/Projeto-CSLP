@@ -1,5 +1,5 @@
-#ifndef _HYBRID_ENCODER_
-#define _HYBRID_ENCODER_
+#ifndef _HYBRID_CODING_
+#define _HYBRID_CODING_
 
 #include <stdio.h>
 #include <cmath>
@@ -14,13 +14,12 @@ using namespace cv;
 class HybridCoding {
 public:
     HybridCoding(BitStream *bitStream, int blockSize, int searchArea, int periodicity, int m);
-    void encode(Mat referenceFrame, Mat currentFrame, int frameNum);
-    Mat decode(Mat previousFram, int frameHeight, int frameWidth, int frameNum);
+    void encode(const Mat& referenceFrame, const Mat& currentFrame, int frameNum);
+    Mat decode(const Mat& previousFrame, int frameHeight, int frameWidth);
 
 private:
     int blockSize, searchArea, periodicity, m;
     BitStream *bitStream;
-    int frameNum = 1;
 };
 
-#endif  // HYBRID_ENCODER_HPP
+#endif  // _HYBRID_CODING_
