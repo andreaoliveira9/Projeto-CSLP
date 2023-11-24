@@ -1,0 +1,79 @@
+\hypertarget{classPredictiveCoding}{}\doxysection{Predictive\+Coding Class Reference}
+\label{classPredictiveCoding}\index{PredictiveCoding@{PredictiveCoding}}
+
+
+Class for implementing predictive encoding and decoding.  
+
+
+
+
+{\ttfamily \#include $<$Predictive\+Coding.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classPredictiveCoding_aaa84784f1df8ca6b23cd2971293857ba}{encode\+And\+Predict}} (Mat frame, int m, \mbox{\hyperlink{classBitStream}{Bit\+Stream}} $\ast$bs)
+\begin{DoxyCompactList}\small\item\em Encodes a frame using predictive encoding and stores the result. \end{DoxyCompactList}\item 
+Mat \mbox{\hyperlink{classPredictiveCoding_a515082c801656b037fae3ab2ede7a39a}{decode\+And\+Reconstruct}} (\mbox{\hyperlink{classBitStream}{Bit\+Stream}} $\ast$bs, int m, int rows, int cols)
+\begin{DoxyCompactList}\small\item\em Decodes a bit stream and reconstructs the video frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for implementing predictive encoding and decoding. 
+
+This class utilises methods of predictive encoding and decoding, which are common techniques in image and video compression. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classPredictiveCoding_a515082c801656b037fae3ab2ede7a39a}\label{classPredictiveCoding_a515082c801656b037fae3ab2ede7a39a}} 
+\index{PredictiveCoding@{PredictiveCoding}!decodeAndReconstruct@{decodeAndReconstruct}}
+\index{decodeAndReconstruct@{decodeAndReconstruct}!PredictiveCoding@{PredictiveCoding}}
+\doxysubsubsection{\texorpdfstring{decodeAndReconstruct()}{decodeAndReconstruct()}}
+{\footnotesize\ttfamily Mat Predictive\+Coding\+::decode\+And\+Reconstruct (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBitStream}{Bit\+Stream}} $\ast$}]{bs,  }\item[{int}]{m,  }\item[{int}]{rows,  }\item[{int}]{cols }\end{DoxyParamCaption})}
+
+
+
+Decodes a bit stream and reconstructs the video frame. 
+
+This method reads an encoded bit stream and reconstructs the video frame using predictive decoding.
+
+
+\begin{DoxyParams}{Parameters}
+{\em bs} & Pointer to the encoded bit stream. \\
+\hline
+{\em m} & Parameter for the predictive decoding. \\
+\hline
+{\em rows} & Number of rows in the frame to be reconstructed. \\
+\hline
+{\em cols} & Number of columns in the frame to be reconstructed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Mat Decoded video frame. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPredictiveCoding_aaa84784f1df8ca6b23cd2971293857ba}\label{classPredictiveCoding_aaa84784f1df8ca6b23cd2971293857ba}} 
+\index{PredictiveCoding@{PredictiveCoding}!encodeAndPredict@{encodeAndPredict}}
+\index{encodeAndPredict@{encodeAndPredict}!PredictiveCoding@{PredictiveCoding}}
+\doxysubsubsection{\texorpdfstring{encodeAndPredict()}{encodeAndPredict()}}
+{\footnotesize\ttfamily void Predictive\+Coding\+::encode\+And\+Predict (\begin{DoxyParamCaption}\item[{Mat}]{frame,  }\item[{int}]{m,  }\item[{\mbox{\hyperlink{classBitStream}{Bit\+Stream}} $\ast$}]{bs }\end{DoxyParamCaption})}
+
+
+
+Encodes a frame using predictive encoding and stores the result. 
+
+This method applies predictive encoding to a video frame and stores the results in a bit stream.
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame} & Video frame to be encoded. \\
+\hline
+{\em m} & Parameter for the predictive encoding. \\
+\hline
+{\em bs} & Pointer to the bit stream where the encoded data will be stored. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Predictive\+Coding.\+hpp\item 
+Predictive\+Coding.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,206 @@
+\hypertarget{classBitStream}{}\doxysection{Bit\+Stream Class Reference}
+\label{classBitStream}\index{BitStream@{BitStream}}
+
+
+Class to read and write bits to a file.  
+
+
+
+
+{\ttfamily \#include $<$Bit\+Stream.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classBitStream_af1db2867532d571330d4676cf7a34093}\label{classBitStream_af1db2867532d571330d4676cf7a34093}} 
+\mbox{\hyperlink{classBitStream_af1db2867532d571330d4676cf7a34093}{Bit\+Stream}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classBitStream_a26982a97ff35edd815e06203d99db8d1}{Bit\+Stream}} (string file\+Name, string m)
+\begin{DoxyCompactList}\small\item\em Constructor with file name and mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBitStream_abb3d236deb0d7cc0ac9f926622965bfd}{open\+To\+Read}} (string file\+Name)
+\begin{DoxyCompactList}\small\item\em Opens a file for reading. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBitStream_a3a3d5a951045f574d8a2642865c82166}{open\+To\+Write}} (string file\+Name)
+\begin{DoxyCompactList}\small\item\em Opens a file for writing. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBitStream_a63cf0f27c7519417a7984c476a32c9c9}\label{classBitStream_a63cf0f27c7519417a7984c476a32c9c9}} 
+\mbox{\hyperlink{classBitStream_a63cf0f27c7519417a7984c476a32c9c9}{$\sim$\+Bit\+Stream}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBitStream_a17a01273ccc12e3c0a1045a010736a8e}\label{classBitStream_a17a01273ccc12e3c0a1045a010736a8e}} 
+void \mbox{\hyperlink{classBitStream_a17a01273ccc12e3c0a1045a010736a8e}{close}} ()
+\begin{DoxyCompactList}\small\item\em Closes the current bitstream. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBitStream_adad2f010548549bc2d7696fa4f264886}{write\+Bit}} (int value)
+\begin{DoxyCompactList}\small\item\em Writes a bit to the bitstream. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBitStream_a4bebf59fe9379dbdefb4647fdd2ddf01}{read\+Bit}} ()
+\begin{DoxyCompactList}\small\item\em Reads a bit from the bitstream. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBitStream_ab1854609ed30f4ecb6516060c2b7a31f}{write\+NBits}} (int value, int nb)
+\begin{DoxyCompactList}\small\item\em Writes multiple bits to the bitstream. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBitStream_a3019873a6213b65472e886ef00ffd941}{read\+NBits}} (int nb)
+\begin{DoxyCompactList}\small\item\em Reads multiple bits from the bitstream. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBitStream_a04bd33c37e81832a1eb21da5e9877f97}{get\+Byte\+Count}} ()
+\begin{DoxyCompactList}\small\item\em Gets the byte count of processed data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classBitStream_a071549195f9c93ed73ca0a974e0c6cd6}\label{classBitStream_a071549195f9c93ed73ca0a974e0c6cd6}} 
+void \mbox{\hyperlink{classBitStream_a071549195f9c93ed73ca0a974e0c6cd6}{write\+Buffer\+To\+File}} ()
+\begin{DoxyCompactList}\small\item\em Writes the buffer to the file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBitStream_a921038455bd78e3b8a2e6bdb059323f8}\label{classBitStream_a921038455bd78e3b8a2e6bdb059323f8}} 
+void \mbox{\hyperlink{classBitStream_a921038455bd78e3b8a2e6bdb059323f8}{read\+Byte\+Fromfile}} ()
+\begin{DoxyCompactList}\small\item\em Reads the next byte from the file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classBitStream_ac5a6c7c315bc71971647e7b1d180ef4b}\label{classBitStream_ac5a6c7c315bc71971647e7b1d180ef4b}} 
+unsigned char \mbox{\hyperlink{classBitStream_ac5a6c7c315bc71971647e7b1d180ef4b}{current\+Byte}}
+\begin{DoxyCompactList}\small\item\em Buffer to store the current byte of data. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBitStream_a7eb7b5230f26aae7999a467ad08848cd}\label{classBitStream_a7eb7b5230f26aae7999a467ad08848cd}} 
+int \mbox{\hyperlink{classBitStream_a7eb7b5230f26aae7999a467ad08848cd}{current\+Position}}
+\begin{DoxyCompactList}\small\item\em Position in the buffer for the next bit operation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBitStream_adf0687ded8bcbb3a852fce3ae709fee9}\label{classBitStream_adf0687ded8bcbb3a852fce3ae709fee9}} 
+fstream \mbox{\hyperlink{classBitStream_adf0687ded8bcbb3a852fce3ae709fee9}{file}}
+\begin{DoxyCompactList}\small\item\em File stream for reading/writing. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBitStream_ac3c2f97fb036a1f48b3c7e5d487d9a91}\label{classBitStream_ac3c2f97fb036a1f48b3c7e5d487d9a91}} 
+int \mbox{\hyperlink{classBitStream_ac3c2f97fb036a1f48b3c7e5d487d9a91}{mode}}
+\begin{DoxyCompactList}\small\item\em Mode of operation (0 for read, 1 for write). \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBitStream_a53515d9501b45c826c6cef938f8db9e2}\label{classBitStream_a53515d9501b45c826c6cef938f8db9e2}} 
+int \mbox{\hyperlink{classBitStream_a53515d9501b45c826c6cef938f8db9e2}{byte\+Count}}
+\begin{DoxyCompactList}\small\item\em Counter for the number of bytes processed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class to read and write bits to a file. 
+
+This class provides functionalities to handle bit-\/level operations on files, allowing for both reading and writing of individual bits or multiple bits. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classBitStream_a26982a97ff35edd815e06203d99db8d1}\label{classBitStream_a26982a97ff35edd815e06203d99db8d1}} 
+\index{BitStream@{BitStream}!BitStream@{BitStream}}
+\index{BitStream@{BitStream}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{BitStream()}{BitStream()}}
+{\footnotesize\ttfamily Bit\+Stream\+::\+Bit\+Stream (\begin{DoxyParamCaption}\item[{string}]{file\+Name,  }\item[{string}]{m }\end{DoxyParamCaption})}
+
+
+
+Constructor with file name and mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & The string containing the name of the file to be processed. \\
+\hline
+{\em m} & The mode for file operations (\textquotesingle{}w\textquotesingle{} for write, \textquotesingle{}r\textquotesingle{} for read). \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classBitStream_a04bd33c37e81832a1eb21da5e9877f97}\label{classBitStream_a04bd33c37e81832a1eb21da5e9877f97}} 
+\index{BitStream@{BitStream}!getByteCount@{getByteCount}}
+\index{getByteCount@{getByteCount}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{getByteCount()}{getByteCount()}}
+{\footnotesize\ttfamily int Bit\+Stream\+::get\+Byte\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the byte count of processed data. 
+
+\begin{DoxyReturn}{Returns}
+The number of bytes processed. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBitStream_abb3d236deb0d7cc0ac9f926622965bfd}\label{classBitStream_abb3d236deb0d7cc0ac9f926622965bfd}} 
+\index{BitStream@{BitStream}!openToRead@{openToRead}}
+\index{openToRead@{openToRead}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{openToRead()}{openToRead()}}
+{\footnotesize\ttfamily void Bit\+Stream\+::open\+To\+Read (\begin{DoxyParamCaption}\item[{string}]{file\+Name }\end{DoxyParamCaption})}
+
+
+
+Opens a file for reading. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & The name of the file to be opened. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classBitStream_a3a3d5a951045f574d8a2642865c82166}\label{classBitStream_a3a3d5a951045f574d8a2642865c82166}} 
+\index{BitStream@{BitStream}!openToWrite@{openToWrite}}
+\index{openToWrite@{openToWrite}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{openToWrite()}{openToWrite()}}
+{\footnotesize\ttfamily void Bit\+Stream\+::open\+To\+Write (\begin{DoxyParamCaption}\item[{string}]{file\+Name }\end{DoxyParamCaption})}
+
+
+
+Opens a file for writing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & The name of the file to be opened. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classBitStream_a4bebf59fe9379dbdefb4647fdd2ddf01}\label{classBitStream_a4bebf59fe9379dbdefb4647fdd2ddf01}} 
+\index{BitStream@{BitStream}!readBit@{readBit}}
+\index{readBit@{readBit}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{readBit()}{readBit()}}
+{\footnotesize\ttfamily int Bit\+Stream\+::read\+Bit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads a bit from the bitstream. 
+
+\begin{DoxyReturn}{Returns}
+The read bit (0 or 1). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBitStream_a3019873a6213b65472e886ef00ffd941}\label{classBitStream_a3019873a6213b65472e886ef00ffd941}} 
+\index{BitStream@{BitStream}!readNBits@{readNBits}}
+\index{readNBits@{readNBits}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{readNBits()}{readNBits()}}
+{\footnotesize\ttfamily int Bit\+Stream\+::read\+NBits (\begin{DoxyParamCaption}\item[{int}]{nb }\end{DoxyParamCaption})}
+
+
+
+Reads multiple bits from the bitstream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nb} & The number of bits to read. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value contained in the read bits. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBitStream_adad2f010548549bc2d7696fa4f264886}\label{classBitStream_adad2f010548549bc2d7696fa4f264886}} 
+\index{BitStream@{BitStream}!writeBit@{writeBit}}
+\index{writeBit@{writeBit}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{writeBit()}{writeBit()}}
+{\footnotesize\ttfamily void Bit\+Stream\+::write\+Bit (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Writes a bit to the bitstream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The bit to be written (0 or 1). \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classBitStream_ab1854609ed30f4ecb6516060c2b7a31f}\label{classBitStream_ab1854609ed30f4ecb6516060c2b7a31f}} 
+\index{BitStream@{BitStream}!writeNBits@{writeNBits}}
+\index{writeNBits@{writeNBits}!BitStream@{BitStream}}
+\doxysubsubsection{\texorpdfstring{writeNBits()}{writeNBits()}}
+{\footnotesize\ttfamily void Bit\+Stream\+::write\+NBits (\begin{DoxyParamCaption}\item[{int}]{value,  }\item[{int}]{nb }\end{DoxyParamCaption})}
+
+
+
+Writes multiple bits to the bitstream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value to be written. \\
+\hline
+{\em nb} & The number of bits to write. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Bit\+Stream.\+hpp\item 
+Bit\+Stream.\+cpp\end{DoxyCompactItemize}

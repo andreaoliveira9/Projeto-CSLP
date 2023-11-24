@@ -8,6 +8,10 @@ using namespace std;
 /**
  * @class ImageManipulator
  * @brief A class for loading, manipulating, and saving PPM image files.
+ * 
+ * The PPM format is a simple image format with a text file header followed by the binary pixel data.
+ * This class provides functionalities to handle PPM images including loading from and saving to files,
+ * accessing and modifying pixel data.
  */
 class ImageManipulator {
 private:

@@ -3,7 +3,7 @@
 /**
  * @brief Adds a watermark to an image.
  *
- * This function overlays a watermark image on top of the input image with a specified transparency.
+ * This function overlays a watermark image on top of the input image with a specified level of transparency.
  *
  * @param image The input image to which the watermark will be applied.
  * @param watermark The watermark image to overlay.
