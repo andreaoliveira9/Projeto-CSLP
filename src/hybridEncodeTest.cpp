@@ -7,8 +7,7 @@ using namespace std;
 using namespace cv;
 
 int main(int argc, char* argv[]) {
-    string outputFileName = "encoded_image.bin";  
-    BitStream bitStreamEncoder(outputFileName, "write");
+    BitStream bitStreamEncoder("encoded_image.bin", "write");
 
     VideoCapture videoCapture("../../vid/akiyo_qcif.y4m");
     if (!videoCapture.isOpened()) {
