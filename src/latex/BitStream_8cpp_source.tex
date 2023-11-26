@@ -1,0 +1,119 @@
+\doxysection{Bit\+Stream.\+cpp}
+\hypertarget{BitStream_8cpp_source}{}\label{BitStream_8cpp_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}BitStream.hpp"{}}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \mbox{\hyperlink{classBitStream_af1db2867532d571330d4676cf7a34093}{BitStream::BitStream}}(\textcolor{keywordtype}{string}\ fileName,\ \textcolor{keywordtype}{string}\ fileMode)\ \{}
+\DoxyCodeLine{00004\ \ \ \ \ \textcolor{keywordflow}{if}\ (fileMode\ ==\ \textcolor{stringliteral}{"{}read"{}})\ \{}
+\DoxyCodeLine{00005\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBitStream_abb3d236deb0d7cc0ac9f926622965bfd}{openToRead}}(fileName);}
+\DoxyCodeLine{00006\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBitStream_a3a3d5a951045f574d8a2642865c82166}{openToWrite}}(fileName);\ }
+\DoxyCodeLine{00008\ \ \ \ \ \}}
+\DoxyCodeLine{00009\ \}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classBitStream_abb3d236deb0d7cc0ac9f926622965bfd}{BitStream::openToRead}}(\textcolor{keywordtype}{string}\ fileName)\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBitStream_ac3c2f97fb036a1f48b3c7e5d487d9a91}{mode}}\ =\ 0;}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBitStream_adf0687ded8bcbb3a852fce3ae709fee9}{file}}.open(fileName.c\_str(),\ fstream::in\ |\ fstream::binary);}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classBitStream_adf0687ded8bcbb3a852fce3ae709fee9}{file}})}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Erro\ ao\ abrir\ o\ arquivo"{}}\ <<\ endl;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBitStream_a7eb7b5230f26aae7999a467ad08848cd}{currentPosition}}\ =\ 0;}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBitStream_ac5a6c7c315bc71971647e7b1d180ef4b}{currentByte}}\ =\ 0;}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBitStream_a53515d9501b45c826c6cef938f8db9e2}{byteCount}}\ =\ 0;}
+\DoxyCodeLine{00021\ \}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classBitStream_a3a3d5a951045f574d8a2642865c82166}{BitStream::openToWrite}}(\textcolor{keywordtype}{string}\ fileName)\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBitStream_ac3c2f97fb036a1f48b3c7e5d487d9a91}{mode}}\ =\ 1;}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBitStream_adf0687ded8bcbb3a852fce3ae709fee9}{file}}.open(fileName.c\_str(),\ fstream::out\ |\ fstream::binary);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classBitStream_adf0687ded8bcbb3a852fce3ae709fee9}{file}})}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cerr\ <<\ \textcolor{stringliteral}{"{}Erro\ ao\ abrir\ o\ arquivo"{}}\ <<\ endl;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBitStream_a7eb7b5230f26aae7999a467ad08848cd}{currentPosition}}\ =\ 0;}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBitStream_ac5a6c7c315bc71971647e7b1d180ef4b}{currentByte}}\ =\ 0;}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBitStream_a53515d9501b45c826c6cef938f8db9e2}{byteCount}}\ =\ 0;}
+\DoxyCodeLine{00033\ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \mbox{\hyperlink{classBitStream_af1db2867532d571330d4676cf7a34093}{BitStream::BitStream}}()\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{classBitStream_a7eb7b5230f26aae7999a467ad08848cd}{currentPosition}}\ =\ 0;}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{classBitStream_ac5a6c7c315bc71971647e7b1d180ef4b}{currentByte}}\ =\ 0;}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{classBitStream_a53515d9501b45c826c6cef938f8db9e2}{byteCount}}\ =\ 0;}
+\DoxyCodeLine{00039\ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \mbox{\hyperlink{classBitStream_a63cf0f27c7519417a7984c476a32c9c9}{BitStream::\string~BitStream}}()\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{classBitStream_a17a01273ccc12e3c0a1045a010736a8e}{close}}();}
+\DoxyCodeLine{00043\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classBitStream_a04bd33c37e81832a1eb21da5e9877f97}{BitStream::getByteCount}}()\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classBitStream_a53515d9501b45c826c6cef938f8db9e2}{byteCount}};}
+\DoxyCodeLine{00047\ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classBitStream_a17a01273ccc12e3c0a1045a010736a8e}{BitStream::close}}()\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classBitStream_ac3c2f97fb036a1f48b3c7e5d487d9a91}{mode}}\ ==\ 1)\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBitStream_a071549195f9c93ed73ca0a974e0c6cd6}{writeBufferToFile}}();}
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{classBitStream_adf0687ded8bcbb3a852fce3ae709fee9}{file}}.close();}
+\DoxyCodeLine{00054\ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classBitStream_adad2f010548549bc2d7696fa4f264886}{BitStream::writeBit}}(\textcolor{keywordtype}{int}\ value)\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classBitStream_a7eb7b5230f26aae7999a467ad08848cd}{currentPosition}}\ ==\ 0)\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBitStream_a7eb7b5230f26aae7999a467ad08848cd}{currentPosition}}\ =\ 1;}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classBitStream_a7eb7b5230f26aae7999a467ad08848cd}{currentPosition}}\ ==\ 256)\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBitStream_a071549195f9c93ed73ca0a974e0c6cd6}{writeBufferToFile}}();}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBitStream_a7eb7b5230f26aae7999a467ad08848cd}{currentPosition}}\ =\ 1;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBitStream_ac5a6c7c315bc71971647e7b1d180ef4b}{currentByte}}\ =\ 0;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBitStream_a53515d9501b45c826c6cef938f8db9e2}{byteCount}}++;}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{classBitStream_ac5a6c7c315bc71971647e7b1d180ef4b}{currentByte}}\ =\ \mbox{\hyperlink{classBitStream_ac5a6c7c315bc71971647e7b1d180ef4b}{currentByte}}\ |\ (value\ *\ \mbox{\hyperlink{classBitStream_a7eb7b5230f26aae7999a467ad08848cd}{currentPosition}});}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{classBitStream_a7eb7b5230f26aae7999a467ad08848cd}{currentPosition}}\ =\ \mbox{\hyperlink{classBitStream_a7eb7b5230f26aae7999a467ad08848cd}{currentPosition}}\ <<\ 1;}
+\DoxyCodeLine{00070\ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classBitStream_a4bebf59fe9379dbdefb4647fdd2ddf01}{BitStream::readBit}}()\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classBitStream_a7eb7b5230f26aae7999a467ad08848cd}{currentPosition}}\ ==\ 256\ ||\ \mbox{\hyperlink{classBitStream_a7eb7b5230f26aae7999a467ad08848cd}{currentPosition}}\ ==\ 0)\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBitStream_a921038455bd78e3b8a2e6bdb059323f8}{readByteFromfile}}();}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classBitStream_adf0687ded8bcbb3a852fce3ae709fee9}{file}})\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBitStream_a7eb7b5230f26aae7999a467ad08848cd}{currentPosition}}\ =\ 1;}
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{int}\ bit\ =\ (\mbox{\hyperlink{classBitStream_ac5a6c7c315bc71971647e7b1d180ef4b}{currentByte}}\ \&\ \mbox{\hyperlink{classBitStream_a7eb7b5230f26aae7999a467ad08848cd}{currentPosition}})\ !=\ 0\ ?\ 1\ :\ 0;}
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{classBitStream_a7eb7b5230f26aae7999a467ad08848cd}{currentPosition}}\ =\ \mbox{\hyperlink{classBitStream_a7eb7b5230f26aae7999a467ad08848cd}{currentPosition}}\ <<\ 1;}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{return}\ bit;}
+\DoxyCodeLine{00084\ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classBitStream_ab1854609ed30f4ecb6516060c2b7a31f}{BitStream::writeNBits}}(\textcolor{keywordtype}{int}\ value,\ \textcolor{keywordtype}{int}\ numBits)\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{while}\ (numBits-\/-\/)\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBitStream_adad2f010548549bc2d7696fa4f264886}{writeBit}}((value\ >>\ numBits)\ \&\ 1);}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classBitStream_a3019873a6213b65472e886ef00ffd941}{BitStream::readNBits}}(\textcolor{keywordtype}{int}\ numBits)\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{int}\ bits\ =\ 0;}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{while}\ (numBits-\/-\/)\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ bit\ =\ \mbox{\hyperlink{classBitStream_a4bebf59fe9379dbdefb4647fdd2ddf01}{readBit}}();}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bit\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ bits\ =\ (bits\ <<\ 1)\ |\ bit;}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordflow}{return}\ bits;}
+\DoxyCodeLine{00106\ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classBitStream_a071549195f9c93ed73ca0a974e0c6cd6}{BitStream::writeBufferToFile}}()\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBitStream_adf0687ded8bcbb3a852fce3ae709fee9}{file}}.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}\ *\textcolor{keyword}{>}(\&\mbox{\hyperlink{classBitStream_ac5a6c7c315bc71971647e7b1d180ef4b}{currentByte}}),\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}));}
+\DoxyCodeLine{00110\ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classBitStream_a921038455bd78e3b8a2e6bdb059323f8}{BitStream::readByteFromfile}}()\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classBitStream_adf0687ded8bcbb3a852fce3ae709fee9}{file}}.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}\ *\textcolor{keyword}{>}(\&\mbox{\hyperlink{classBitStream_ac5a6c7c315bc71971647e7b1d180ef4b}{currentByte}}),\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}));}
+\DoxyCodeLine{00114\ \}}
+
+\end{DoxyCode}

@@ -1,66 +1,66 @@
-\hypertarget{classGolomb}{}\doxysection{Golomb Class Reference}
-\label{classGolomb}\index{Golomb@{Golomb}}
+\doxysection{Golomb Class Reference}
+\hypertarget{classGolomb}{}\label{classGolomb}\index{Golomb@{Golomb}}
 
 
-Class for \mbox{\hyperlink{classGolomb}{Golomb}} coding, a lossless data compression method.  
+Class for \doxylink{classGolomb}{Golomb} coding, a lossless data compression method.  
 
 
 
 
 {\ttfamily \#include $<$Golomb.\+hpp$>$}
 
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classGolomb_a63def34e7c1d82383edad1355d655331}{Golomb}} (\mbox{\hyperlink{classBitStream}{Bit\+Stream}} $\ast$bs, int \mbox{\hyperlink{classGolomb_aea433fe3049440988ad1fa1a5eb536a3}{m}})
-\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classGolomb}{Golomb}} coding object. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classGolomb_a3695ea307f313060e2d2f7d32fc5fad9}\label{classGolomb_a3695ea307f313060e2d2f7d32fc5fad9}} 
-\mbox{\hyperlink{classGolomb_a3695ea307f313060e2d2f7d32fc5fad9}{$\sim$\+Golomb}} ()
-\begin{DoxyCompactList}\small\item\em Destructor for the \mbox{\hyperlink{classGolomb}{Golomb}} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classGolomb_a63def34e7c1d82383edad1355d655331}{Golomb}} (\mbox{\hyperlink{classBitStream}{Bit\+Stream}} \texorpdfstring{$\ast$}{*}bs, int \mbox{\hyperlink{classGolomb_aea433fe3049440988ad1fa1a5eb536a3}{m}})
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classGolomb}{Golomb} coding object. \end{DoxyCompactList}\item 
+\Hypertarget{classGolomb_a3695ea307f313060e2d2f7d32fc5fad9}\label{classGolomb_a3695ea307f313060e2d2f7d32fc5fad9} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Golomb} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{classGolomb}{Golomb} class. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classGolomb_a3e0098310f29e44ec11e2429dcb561c6}{encode}} (int e)
-\begin{DoxyCompactList}\small\item\em Encodes an integer using \mbox{\hyperlink{classGolomb}{Golomb}} coding. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Encodes an integer using \doxylink{classGolomb}{Golomb} coding. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classGolomb_abfc8d58261fc9bcc5d5e2559aed4a288}{decode}} ()
 \begin{DoxyCompactList}\small\item\em Decodes and returns the next integer from the bit stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Protected Attributes}
+\doxysubsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classGolomb_a9c11d9994536a4869744ce5c96dcce15}\label{classGolomb_a9c11d9994536a4869744ce5c96dcce15}} 
-\mbox{\hyperlink{classBitStream}{Bit\+Stream}} $\ast$ \mbox{\hyperlink{classGolomb_a9c11d9994536a4869744ce5c96dcce15}{bit\+Stream}}
+\Hypertarget{classGolomb_a9c11d9994536a4869744ce5c96dcce15}\label{classGolomb_a9c11d9994536a4869744ce5c96dcce15} 
+\mbox{\hyperlink{classBitStream}{Bit\+Stream}} \texorpdfstring{$\ast$}{*} {\bfseries bit\+Stream}
 \begin{DoxyCompactList}\small\item\em Pointer to the bit stream used for encoding/decoding. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classGolomb_aea433fe3049440988ad1fa1a5eb536a3}\label{classGolomb_aea433fe3049440988ad1fa1a5eb536a3}} 
-int \mbox{\hyperlink{classGolomb_aea433fe3049440988ad1fa1a5eb536a3}{m}}
-\begin{DoxyCompactList}\small\item\em The parameter \textquotesingle{}m\textquotesingle{} used in \mbox{\hyperlink{classGolomb}{Golomb}} coding. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\Hypertarget{classGolomb_aea433fe3049440988ad1fa1a5eb536a3}\label{classGolomb_aea433fe3049440988ad1fa1a5eb536a3} 
+int {\bfseries m}
+\begin{DoxyCompactList}\small\item\em The parameter \textquotesingle{}m\textquotesingle{} used in \doxylink{classGolomb}{Golomb} coding. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Class for \mbox{\hyperlink{classGolomb}{Golomb}} coding, a lossless data compression method. 
+Class for \doxylink{classGolomb}{Golomb} coding, a lossless data compression method. 
 
-\mbox{\hyperlink{classGolomb}{Golomb}} coding is particularly suited for geometrically distributed integer streams. This class provides functionality to encode and decode such streams. 
+\doxylink{classGolomb}{Golomb} coding is particularly suited for geometrically distributed integer streams. This class provides functionality to encode and decode such streams. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classGolomb_a63def34e7c1d82383edad1355d655331}\label{classGolomb_a63def34e7c1d82383edad1355d655331}} 
+\Hypertarget{classGolomb_a63def34e7c1d82383edad1355d655331}\label{classGolomb_a63def34e7c1d82383edad1355d655331} 
 \index{Golomb@{Golomb}!Golomb@{Golomb}}
 \index{Golomb@{Golomb}!Golomb@{Golomb}}
 \doxysubsubsection{\texorpdfstring{Golomb()}{Golomb()}}
-{\footnotesize\ttfamily Golomb\+::\+Golomb (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBitStream}{Bit\+Stream}} $\ast$}]{bs,  }\item[{int}]{m }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Golomb\+::\+Golomb (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBitStream}{Bit\+Stream}} \texorpdfstring{$\ast$}{*}}]{bs,  }\item[{int}]{m }\end{DoxyParamCaption})}
 
 
 
-Constructs a \mbox{\hyperlink{classGolomb}{Golomb}} coding object. 
+Constructs a \doxylink{classGolomb}{Golomb} coding object. 
 
-Initialises a \mbox{\hyperlink{classGolomb}{Golomb}} encoder/decoder with a specific bit stream and parameter \textquotesingle{}m\textquotesingle{}.
+Initialises a \doxylink{classGolomb}{Golomb} encoder/decoder with a specific bit stream and parameter \textquotesingle{}m\textquotesingle{}.
 
 
 \begin{DoxyParams}{Parameters}
-{\em bs} & Pointer to the \mbox{\hyperlink{classBitStream}{Bit\+Stream}} object used for reading/writing encoded data. \\
+{\em bs} & Pointer to the \doxylink{classBitStream}{Bit\+Stream} object used for reading/writing encoded data. \\
 \hline
-{\em m} & The parameter \textquotesingle{}m\textquotesingle{} in \mbox{\hyperlink{classGolomb}{Golomb}} coding, related to the distribution of the input values. \\
+{\em m} & The parameter \textquotesingle{}m\textquotesingle{} in \doxylink{classGolomb}{Golomb} coding, related to the distribution of the input values. \\
 \hline
 \end{DoxyParams}
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classGolomb_abfc8d58261fc9bcc5d5e2559aed4a288}\label{classGolomb_abfc8d58261fc9bcc5d5e2559aed4a288}} 
+\Hypertarget{classGolomb_abfc8d58261fc9bcc5d5e2559aed4a288}\label{classGolomb_abfc8d58261fc9bcc5d5e2559aed4a288} 
 \index{Golomb@{Golomb}!decode@{decode}}
 \index{decode@{decode}!Golomb@{Golomb}}
 \doxysubsubsection{\texorpdfstring{decode()}{decode()}}
@@ -73,7 +73,7 @@ Decodes and returns the next integer from the bit stream.
 \begin{DoxyReturn}{Returns}
 int The decoded integer. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classGolomb_a3e0098310f29e44ec11e2429dcb561c6}\label{classGolomb_a3e0098310f29e44ec11e2429dcb561c6}} 
+\Hypertarget{classGolomb_a3e0098310f29e44ec11e2429dcb561c6}\label{classGolomb_a3e0098310f29e44ec11e2429dcb561c6} 
 \index{Golomb@{Golomb}!encode@{encode}}
 \index{encode@{encode}!Golomb@{Golomb}}
 \doxysubsubsection{\texorpdfstring{encode()}{encode()}}
@@ -81,7 +81,7 @@ int The decoded integer.
 
 
 
-Encodes an integer using \mbox{\hyperlink{classGolomb}{Golomb}} coding. 
+Encodes an integer using \doxylink{classGolomb}{Golomb} coding. 
 
 
 \begin{DoxyParams}{Parameters}

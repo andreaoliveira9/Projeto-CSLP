@@ -26,7 +26,7 @@ public:
    * the intra encoding process.
    * 
    * @param frame Video frame to be encoded.
-   * @param m Parameter for the intra encoding.
+   * @param m Parameter for the Golomb enocde.
    * @param bs Pointer to the bit stream where the encoded data will be stored.
    */
   void encodeAndPredict(Mat frame, int m, BitStream *bs);
@@ -40,7 +40,7 @@ public:
    * to be specified for accurate reconstruction.
    * 
    * @param bs Pointer to the encoded bit stream.
-   * @param m Parameter for the intra decoding.
+   * @param m Parameter for the Golomb decode.
    * @param rows Number of rows in the frame to be reconstructed.
    * @param cols Number of columns in the frame to be reconstructed.
    * @return Mat Decoded video frame.

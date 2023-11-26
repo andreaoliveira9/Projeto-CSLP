@@ -28,15 +28,16 @@ public:
      * @param bitStream Pointer to the BitStream object for reading or writing encoded data.
      * @param blockSize Size of the block for motion estimation and compensation.
      * @param searchArea Area around the block where motion is estimated.
-     * @param periodicity Interval between key frames.
-     * @param m Parameter related to the quality or compression ratio.
+     * @param periodicity Interval intra and inter encoding.
+     * @param m Parameter for the Golomb code.
      */
     HybridCoding(BitStream *bitStream, int blockSize, int searchArea, int periodicity, int m);
 
     /**
      * @brief Encodes a video frame using hybrid coding.
      * 
-     * Encodes the current frame by comparing it with a reference frame and storing the differences.
+     * Encodes the current frame by comparing it with a reference 
+     * frame and storing the differences, periodically alternating between intra and inter coding.
      * 
      * @param referenceFrame The reference frame for motion estimation.
      * @param currentFrame The current frame to be encoded.
@@ -47,7 +48,8 @@ public:
     /**
      * @brief Decodes an encoded frame.
      *
-     * Reconstructs a video frame from the encoded data using the previous frame as a reference.
+     * Reconstructs a video frame from the encoded data using the previous frame as a reference, 
+     * alternately employing inter and intra coding based on the initial bit.
      * 
      * @param previousFrame The previous frame used for reference in decoding.
      * @param frameHeight Height of the frame to be decoded.

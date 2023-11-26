@@ -1,0 +1,129 @@
+\doxysection{Hybrid\+Coding.\+cpp}
+\hypertarget{HybridCoding_8cpp_source}{}\label{HybridCoding_8cpp_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}HybridCoding.hpp"{}}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \mbox{\hyperlink{classHybridCoding_a5bfe0470fc4d3eb11bebf28a0f9bf53f}{HybridCoding::HybridCoding}}(\mbox{\hyperlink{classBitStream}{BitStream}}\ *bitStream,\ \textcolor{keywordtype}{int}\ blockSize,\ \textcolor{keywordtype}{int}\ searchArea,\ \textcolor{keywordtype}{int}\ m,\ \textcolor{keywordtype}{int}\ periodicity\ =\ 0)\ \{}
+\DoxyCodeLine{00004\ \ \ \ \ this-\/>bitStream\ =\ \mbox{\hyperlink{classHybridCoding_a29751555cba3b324fdf5f610d015b572}{bitStream}};}
+\DoxyCodeLine{00005\ \ \ \ \ this-\/>blockSize\ =\ blockSize;}
+\DoxyCodeLine{00006\ \ \ \ \ this-\/>searchArea\ =\ searchArea;}
+\DoxyCodeLine{00007\ \ \ \ \ this-\/>m\ =\ \mbox{\hyperlink{classHybridCoding_a11c0c1d5ce7cd1e070a70f054ffc7531}{m}};}
+\DoxyCodeLine{00008\ \ \ \ \ this-\/>periodicity\ =\ periodicity;}
+\DoxyCodeLine{00009\ \}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classHybridCoding_a27e71d54cdc932e28b0b0be5ae8b00da}{HybridCoding::encode}}(\textcolor{keyword}{const}\ Mat\&\ referenceFrame,\ \textcolor{keyword}{const}\ Mat\&\ currentFrame,\ \textcolor{keywordtype}{int}\ frameNum)\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{classGolomb}{Golomb}}\ golombEncoder(\mbox{\hyperlink{classHybridCoding_a29751555cba3b324fdf5f610d015b572}{bitStream}},\ \mbox{\hyperlink{classHybridCoding_a11c0c1d5ce7cd1e070a70f054ffc7531}{m}});}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordflow}{if}\ (frameNum\ \%\ periodicity\ ==\ 0)\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ golombEncoder.\mbox{\hyperlink{classGolomb_a3e0098310f29e44ec11e2429dcb561c6}{encode}}(0);}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classintraCoding}{intraCoding}}\ pred;}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ pred.\mbox{\hyperlink{classintraCoding_ab994659a5bc1cf65b7f6f7367e7340e6}{encodeAndPredict}}(currentFrame,\ \mbox{\hyperlink{classHybridCoding_a11c0c1d5ce7cd1e070a70f054ffc7531}{m}},\ \mbox{\hyperlink{classHybridCoding_a29751555cba3b324fdf5f610d015b572}{bitStream}});}
+\DoxyCodeLine{00018\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ golombEncoder.\mbox{\hyperlink{classGolomb_a3e0098310f29e44ec11e2429dcb561c6}{encode}}(1);}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ Mat\ currentBlock,\ possibleBlock,\ nearestMatrix;}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ lastSum\ =\ 100000;}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ currentSum\ =\ 0;}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ d\_x\ =\ 0;}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ d\_y\ =\ 0;}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ channel\ =\ 0;}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ vector<Mat>\ currentMatrix,\ referenceMatrix;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ split(currentFrame,\ currentMatrix);}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ split(referenceFrame,\ referenceMatrix);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ matrix\ :\ currentMatrix)\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ row\ =\ 0;\ row\ <\ matrix.rows;\ row\ +=\ blockSize)\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ col\ =\ 0;\ col\ <\ matrix.cols;\ col\ +=\ blockSize)\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ currentBlock\ =\ Mat(matrix,\ Rect(col,\ row,\ blockSize,\ blockSize));}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ startRow\ =\ row\ -\/\ searchArea;}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ startCol\ =\ col\ -\/\ searchArea;}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ endRow\ =\ row\ +\ searchArea\ +\ blockSize;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ endCol\ =\ col\ +\ searchArea\ +\ blockSize;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ startRow;\ i\ <\ endRow;\ i++)\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ startCol;\ j\ <\ endCol;\ j++)\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ <\ 0\ ||\ j\ <\ 0\ ||\ i\ +\ blockSize\ >=\ matrix.rows\ ||\ j\ +\ blockSize\ >=\ matrix.cols)\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ currentSum\ =\ 0;}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ possibleBlock\ =\ Mat(referenceMatrix[channel],\ Rect(j,\ i,\ blockSize,\ blockSize));}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uchar*\ currentPtr\ =\ currentBlock.ptr<uchar>(i\ -\/\ row);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uchar*\ possiblePtr\ =\ possibleBlock.ptr<uchar>(0);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ a\ =\ 0;\ a\ <\ blockSize;\ a++)\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ currentSum\ +=\ abs(currentPtr[a]\ -\/\ possiblePtr[a]);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (currentSum\ <\ lastSum)\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lastSum\ =\ currentSum;}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d\_x\ =\ i;}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ d\_y\ =\ j;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nearestMatrix\ =\ possibleBlock;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lastSum\ =\ 100000;}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ golombEncoder.\mbox{\hyperlink{classGolomb_a3e0098310f29e44ec11e2429dcb561c6}{encode}}(d\_x);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ golombEncoder.\mbox{\hyperlink{classGolomb_a3e0098310f29e44ec11e2429dcb561c6}{encode}}(d\_y);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ n\ =\ 0;\ n\ <\ blockSize;\ n++)\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uchar*\ nearestPtr\ =\ nearestMatrix.ptr<uchar>(n);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uchar*\ currentPtr\ =\ currentBlock.ptr<uchar>(n);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{classHybridCoding_a11c0c1d5ce7cd1e070a70f054ffc7531}{m}}\ =\ 0;\ \mbox{\hyperlink{classHybridCoding_a11c0c1d5ce7cd1e070a70f054ffc7531}{m}}\ <\ blockSize;\ \mbox{\hyperlink{classHybridCoding_a11c0c1d5ce7cd1e070a70f054ffc7531}{m}}++)\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ z\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(nearestPtr[\mbox{\hyperlink{classHybridCoding_a11c0c1d5ce7cd1e070a70f054ffc7531}{m}}])\ -\/\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(currentPtr[\mbox{\hyperlink{classHybridCoding_a11c0c1d5ce7cd1e070a70f054ffc7531}{m}}]);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ golombEncoder.\mbox{\hyperlink{classGolomb_a3e0098310f29e44ec11e2429dcb561c6}{encode}}(z);}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ channel++;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ Mat\ \mbox{\hyperlink{classHybridCoding_aed056ca4fa56d41bd73afe7ae205d24e}{HybridCoding::decode}}(\textcolor{keyword}{const}\ Mat\&\ previousFrame,\ \textcolor{keywordtype}{int}\ frameHeight,\ \textcolor{keywordtype}{int}\ frameWidth)\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ Mat\ result(frameHeight,\ frameWidth,\ CV\_8UC3,\ Scalar(0,\ 0,\ 0));}
+\DoxyCodeLine{00088\ \ \ \ \ \mbox{\hyperlink{classGolomb}{Golomb}}\ golombDecoder(\mbox{\hyperlink{classHybridCoding_a29751555cba3b324fdf5f610d015b572}{bitStream}},\ \mbox{\hyperlink{classHybridCoding_a11c0c1d5ce7cd1e070a70f054ffc7531}{m}});}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{if}\ (golombDecoder.\mbox{\hyperlink{classGolomb_abfc8d58261fc9bcc5d5e2559aed4a288}{decode}}()\ ==\ 0)\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classintraCoding}{intraCoding}}\ pred;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ pred.\mbox{\hyperlink{classintraCoding_a5dcb5854af64ab2769d6c3c3dcc271d6}{decodeAndReconstruct}}(\mbox{\hyperlink{classHybridCoding_a29751555cba3b324fdf5f610d015b572}{bitStream}},\ \mbox{\hyperlink{classHybridCoding_a11c0c1d5ce7cd1e070a70f054ffc7531}{m}},\ frameHeight,\ frameWidth);}
+\DoxyCodeLine{00093\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ vector<Mat>\ previousFrameChannels;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ split(previousFrame,\ previousFrameChannels);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ vector<Mat>\ res(3);\ \textcolor{comment}{//\ Initialize\ a\ vector\ to\ hold\ three\ channels}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ channel\ =\ 0;\ channel\ <\ 3;\ ++channel)\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ res[channel]\ =\ Mat(frameHeight,\ frameWidth,\ CV\_8UC1,\ Scalar(0));\ \textcolor{comment}{//\ Initialize\ each\ channel\ matrix}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ channel\ =\ 0;\ channel\ <\ 3;\ ++channel)\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ row\ =\ 0;\ row\ <\ frameHeight;\ row\ +=\ blockSize)\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ col\ =\ 0;\ col\ <\ frameWidth;\ col\ +=\ blockSize)\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ d\_x\ =\ golombDecoder.\mbox{\hyperlink{classGolomb_abfc8d58261fc9bcc5d5e2559aed4a288}{decode}}();}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ d\_y\ =\ golombDecoder.\mbox{\hyperlink{classGolomb_abfc8d58261fc9bcc5d5e2559aed4a288}{decode}}();}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ n\ =\ 0;\ n\ <\ blockSize;\ ++n)\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uchar*\ previousPtr\ =\ previousFrameChannels[channel].ptr<uchar>(d\_x\ +\ n);}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{classHybridCoding_a11c0c1d5ce7cd1e070a70f054ffc7531}{m}}\ =\ 0;\ \mbox{\hyperlink{classHybridCoding_a11c0c1d5ce7cd1e070a70f054ffc7531}{m}}\ <\ blockSize;\ ++\mbox{\hyperlink{classHybridCoding_a11c0c1d5ce7cd1e070a70f054ffc7531}{m}})\ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ z\ =\ golombDecoder.\mbox{\hyperlink{classGolomb_abfc8d58261fc9bcc5d5e2559aed4a288}{decode}}();}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ pixelValue\ =\ previousPtr[d\_y\ +\ \mbox{\hyperlink{classHybridCoding_a11c0c1d5ce7cd1e070a70f054ffc7531}{m}}]\ +\ z;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ res[channel].at<uchar>(row\ +\ n,\ col\ +\ \mbox{\hyperlink{classHybridCoding_a11c0c1d5ce7cd1e070a70f054ffc7531}{m}})\ =\ pixelValue;}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ merge(res,\ result);}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ imshow(\textcolor{stringliteral}{"{}Reconstructed\ Image"{}},\ result);}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00124\ \}}
+
+\end{DoxyCode}
