@@ -13,7 +13,7 @@ using namespace cv;
 
 /**
  * @class HybridCoding
- * @brief Class for implementing hybrid video coding.
+ * @brief Class for implementing hybrid video coding and decoding.
  *
  * This class uses a combination of motion-compensated predictive coding 
  * and transform coding to efficiently encode and decode video frames.

@@ -61,9 +61,6 @@ $(function() {
 
 </div><!-- top -->
 <div class="header">
-  <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="classPredictiveCoding-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">PredictiveCoding Class Reference</div>  </div>
 </div><!--header-->
@@ -72,122 +69,12 @@ $(function() {
 <p>Class for implementing predictive encoding and decoding.  
  <a href="classPredictiveCoding.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="PredictiveCoding_8hpp_source.html">PredictiveCoding.hpp</a>&gt;</code></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:aaa84784f1df8ca6b23cd2971293857ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPredictiveCoding.html#aaa84784f1df8ca6b23cd2971293857ba">encodeAndPredict</a> (Mat frame, int m, <a class="el" href="classBitStream.html">BitStream</a> *bs)</td></tr>
-<tr class="memdesc:aaa84784f1df8ca6b23cd2971293857ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes a frame using predictive encoding and stores the result.  <a href="classPredictiveCoding.html#aaa84784f1df8ca6b23cd2971293857ba">More...</a><br /></td></tr>
-<tr class="separator:aaa84784f1df8ca6b23cd2971293857ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a515082c801656b037fae3ab2ede7a39a"><td class="memItemLeft" align="right" valign="top">Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPredictiveCoding.html#a515082c801656b037fae3ab2ede7a39a">decodeAndReconstruct</a> (<a class="el" href="classBitStream.html">BitStream</a> *bs, int m, int rows, int cols)</td></tr>
-<tr class="memdesc:a515082c801656b037fae3ab2ede7a39a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decodes a bit stream and reconstructs the video frame.  <a href="classPredictiveCoding.html#a515082c801656b037fae3ab2ede7a39a">More...</a><br /></td></tr>
-<tr class="separator:a515082c801656b037fae3ab2ede7a39a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
+<p><code>#include &lt;<a class="el" href="intraCoding_8hpp_source.html">intraCoding.hpp</a>&gt;</code></p>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for implementing predictive encoding and decoding. </p>
 <p>This class utilises methods of predictive encoding and decoding, which are common techniques in image and video compression. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a515082c801656b037fae3ab2ede7a39a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a515082c801656b037fae3ab2ede7a39a">&#9670;&nbsp;</a></span>decodeAndReconstruct()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Mat PredictiveCoding::decodeAndReconstruct </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classBitStream.html">BitStream</a> *&#160;</td>
-          <td class="paramname"><em>bs</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>m</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>rows</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>cols</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Decodes a bit stream and reconstructs the video frame. </p>
-<p>This method reads an encoded bit stream and reconstructs the video frame using predictive decoding.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">bs</td><td>Pointer to the encoded bit stream. </td></tr>
-    <tr><td class="paramname">m</td><td>Parameter for the predictive decoding. </td></tr>
-    <tr><td class="paramname">rows</td><td>Number of rows in the frame to be reconstructed. </td></tr>
-    <tr><td class="paramname">cols</td><td>Number of columns in the frame to be reconstructed. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Mat Decoded video frame. </dd></dl>
-
-</div>
-</div>
-<a id="aaa84784f1df8ca6b23cd2971293857ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaa84784f1df8ca6b23cd2971293857ba">&#9670;&nbsp;</a></span>encodeAndPredict()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void PredictiveCoding::encodeAndPredict </td>
-          <td>(</td>
-          <td class="paramtype">Mat&#160;</td>
-          <td class="paramname"><em>frame</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>m</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classBitStream.html">BitStream</a> *&#160;</td>
-          <td class="paramname"><em>bs</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Encodes a frame using predictive encoding and stores the result. </p>
-<p>This method applies predictive encoding to a video frame and stores the results in a bit stream.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">frame</td><td>Video frame to be encoded. </td></tr>
-    <tr><td class="paramname">m</td><td>Parameter for the predictive encoding. </td></tr>
-    <tr><td class="paramname">bs</td><td>Pointer to the bit stream where the encoded data will be stored. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="PredictiveCoding_8hpp_source.html">PredictiveCoding.hpp</a></li>
-<li>PredictiveCoding.cpp</li>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
+<li><a class="el" href="intraCoding_8hpp_source.html">intraCoding.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

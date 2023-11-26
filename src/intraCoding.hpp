@@ -10,22 +10,23 @@ using namespace cv;
 
 
 /**
- * @class PredictiveCoding
- * @brief Class for implementing predictive encoding and decoding.
+ * @class intraCoding
+ * @brief Class for implementing intra encoding and decoding.
  *
- * This class utilises methods of predictive encoding and decoding,
+ * This class utilises methods of intra encoding and decoding,
  * which are common techniques in image and video compression.
  */
 class intraCoding {
 public:
   /**
-   * @brief Encodes a frame using predictive encoding and stores the result.
+   * @brief Encodes a frame using intra encoding and stores the result.
    * 
-   * This method applies predictive encoding to a video frame and stores
-   * the results in a bit stream.
+   * This method applies intra encoding to a video frame and stores
+   * the results in a bit stream. It utilizes the parameter m for
+   * the intra encoding process.
    * 
    * @param frame Video frame to be encoded.
-   * @param m Parameter for the predictive encoding.
+   * @param m Parameter for the intra encoding.
    * @param bs Pointer to the bit stream where the encoded data will be stored.
    */
   void encodeAndPredict(Mat frame, int m, BitStream *bs);
@@ -34,10 +35,12 @@ public:
    * @brief Decodes a bit stream and reconstructs the video frame.
    *
    * This method reads an encoded bit stream and reconstructs the video frame
-   * using predictive decoding.
+   * using intra decoding. The parameter m is used for the intra
+   * decoding process. The dimensions of the video frame (rows and cols) need
+   * to be specified for accurate reconstruction.
    * 
    * @param bs Pointer to the encoded bit stream.
-   * @param m Parameter for the predictive decoding.
+   * @param m Parameter for the intra decoding.
    * @param rows Number of rows in the frame to be reconstructed.
    * @param cols Number of columns in the frame to be reconstructed.
    * @return Mat Decoded video frame.

@@ -1,0 +1,79 @@
+\hypertarget{classintraCoding}{}\doxysection{intra\+Coding Class Reference}
+\label{classintraCoding}\index{intraCoding@{intraCoding}}
+
+
+Class for implementing intra encoding and decoding.  
+
+
+
+
+{\ttfamily \#include $<$intra\+Coding.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classintraCoding_ab994659a5bc1cf65b7f6f7367e7340e6}{encode\+And\+Predict}} (Mat frame, int m, \mbox{\hyperlink{classBitStream}{Bit\+Stream}} $\ast$bs)
+\begin{DoxyCompactList}\small\item\em Encodes a frame using intra encoding and stores the result. \end{DoxyCompactList}\item 
+Mat \mbox{\hyperlink{classintraCoding_a5dcb5854af64ab2769d6c3c3dcc271d6}{decode\+And\+Reconstruct}} (\mbox{\hyperlink{classBitStream}{Bit\+Stream}} $\ast$bs, int m, int rows, int cols)
+\begin{DoxyCompactList}\small\item\em Decodes a bit stream and reconstructs the video frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for implementing intra encoding and decoding. 
+
+This class utilises methods of intra encoding and decoding, which are common techniques in image and video compression. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classintraCoding_a5dcb5854af64ab2769d6c3c3dcc271d6}\label{classintraCoding_a5dcb5854af64ab2769d6c3c3dcc271d6}} 
+\index{intraCoding@{intraCoding}!decodeAndReconstruct@{decodeAndReconstruct}}
+\index{decodeAndReconstruct@{decodeAndReconstruct}!intraCoding@{intraCoding}}
+\doxysubsubsection{\texorpdfstring{decodeAndReconstruct()}{decodeAndReconstruct()}}
+{\footnotesize\ttfamily Mat intra\+Coding\+::decode\+And\+Reconstruct (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classBitStream}{Bit\+Stream}} $\ast$}]{bs,  }\item[{int}]{m,  }\item[{int}]{rows,  }\item[{int}]{cols }\end{DoxyParamCaption})}
+
+
+
+Decodes a bit stream and reconstructs the video frame. 
+
+This method reads an encoded bit stream and reconstructs the video frame using intra decoding. The parameter m is used for the intra decoding process. The dimensions of the video frame (rows and cols) need to be specified for accurate reconstruction.
+
+
+\begin{DoxyParams}{Parameters}
+{\em bs} & Pointer to the encoded bit stream. \\
+\hline
+{\em m} & Parameter for the intra decoding. \\
+\hline
+{\em rows} & Number of rows in the frame to be reconstructed. \\
+\hline
+{\em cols} & Number of columns in the frame to be reconstructed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Mat Decoded video frame. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classintraCoding_ab994659a5bc1cf65b7f6f7367e7340e6}\label{classintraCoding_ab994659a5bc1cf65b7f6f7367e7340e6}} 
+\index{intraCoding@{intraCoding}!encodeAndPredict@{encodeAndPredict}}
+\index{encodeAndPredict@{encodeAndPredict}!intraCoding@{intraCoding}}
+\doxysubsubsection{\texorpdfstring{encodeAndPredict()}{encodeAndPredict()}}
+{\footnotesize\ttfamily void intra\+Coding\+::encode\+And\+Predict (\begin{DoxyParamCaption}\item[{Mat}]{frame,  }\item[{int}]{m,  }\item[{\mbox{\hyperlink{classBitStream}{Bit\+Stream}} $\ast$}]{bs }\end{DoxyParamCaption})}
+
+
+
+Encodes a frame using intra encoding and stores the result. 
+
+This method applies intra encoding to a video frame and stores the results in a bit stream. It utilizes the parameter m for the intra encoding process.
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame} & Video frame to be encoded. \\
+\hline
+{\em m} & Parameter for the intra encoding. \\
+\hline
+{\em bs} & Pointer to the bit stream where the encoded data will be stored. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+intra\+Coding.\+hpp\item 
+intra\+Coding.\+cpp\end{DoxyCompactItemize}
