@@ -2,10 +2,10 @@
 
 ## Members of the group
 
-| Nmec | Name | Email | Github |
-| --- | --- | --- | --- |
-| 107359 | Duarte Cruz | <duarteccruz@ua.pt> | [DuarteCruz31](https://github.com/DuarteCruz31) |
-| 108215 | Hugo Correia | <hf.correia@ua.pt> |   [MrLoydHD](https://github.com/MrLoydHD) |
+| Nmec   | Name           | Email                  | Github                                                |
+| ------ | -------------- | ---------------------- | ----------------------------------------------------- |
+| 107359 | Duarte Cruz    | <duarteccruz@ua.pt>    | [DuarteCruz31](https://github.com/DuarteCruz31)       |
+| 108215 | Hugo Correia   | <hf.correia@ua.pt>     | [MrLoydHD](https://github.com/MrLoydHD)               |
 | 107637 | André Oliveira | <andreaoliveira@ua.pt> | [andreaoliveira9](https://github.com/andreaoliveira9) |
 
 <br>
@@ -15,23 +15,23 @@
 ### Before running the programs, you need to install the following library:
 
 - OpenCV
-  
-    _To install it, you need to run the following command:_
 
-    ```
-    sudo apt-get install libopencv-dev
-    ```
+  _To install it, you need to run the following command:_
+
+  ```
+  sudo apt-get install libopencv-dev
+  ```
 
 ### To run each of the programs, you need to specify the program name on CMakeLists.txt file, and then run the following commands:
 
 ```makefile
 target_link_libraries(VideoPlayer ${OpenCV_LIBS} )
 cmake_minimum_required(VERSION 3.17)
-project( VideoPlayer )
+project( ProjetoCSLP )
 find_package( OpenCV REQUIRED )
 include_directories( ${OpenCV_INCLUDE_DIRS} )
 set(SOURCES
-  Delivery3_7.cpp # Program name (change this)
+  hybridEncodeTest.cpp # For this deliverable use this files (hybridDecodeTest.cpp, hybridEncodeTest.cpp, instraEncodeTest.cpp, intraDecodeTest.cpp)
 )
 add_executable( ${PROJECT_NAME} ${SOURCES})
 target_link_libraries( ${PROJECT_NAME} ${OpenCV_LIBS} )
@@ -50,7 +50,7 @@ make
 ### After that, you can run the program by running the following command:
 
 ```
-./VideoPlayer
+./ProjetoCSLP
 ```
 
 <br>
