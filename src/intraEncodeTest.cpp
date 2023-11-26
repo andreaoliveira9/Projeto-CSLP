@@ -1,13 +1,13 @@
 #include "BitStream.cpp"    
 #include "Golomb.cpp"
-#include "PredictiveCoding.cpp"
+#include "intraCoding.cpp"
 
 using namespace std;
 using namespace cv;
 
 int main(int argc, char* argv[]){
     BitStream bitStreamEncoder("encoded_image.bin", "write");
-    PredictiveCoding predictorEncoder;
+    intraCoding intraEncoder;
     
     VideoCapture videoCapture("../../vid/akiyo_qcif.y4m");
     if (!videoCapture.isOpened()) {
@@ -31,7 +31,7 @@ int main(int argc, char* argv[]){
         if (currentFrame.empty()) {
             break;
         }
-        predictorEncoder.encodeAndPredict(currentFrame, m, &bitStreamEncoder);
+        intraEncoder.encodeAndPredict(currentFrame, m, &bitStreamEncoder);
     }
 
     bitStreamEncoder.close();

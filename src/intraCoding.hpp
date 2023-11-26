@@ -1,5 +1,5 @@
-#ifndef _PREDICTIVE_ENCODING_
-#define _PREDICTIVE_ENCODING_
+#ifndef _INTRA_ENCODING_
+#define _INTRA_ENCODING_
 
 #include <opencv2/opencv.hpp>
 #include <iostream>
@@ -16,7 +16,7 @@ using namespace cv;
  * This class utilises methods of predictive encoding and decoding,
  * which are common techniques in image and video compression.
  */
-class PredictiveCoding {
+class intraCoding {
 public:
   /**
    * @brief Encodes a frame using predictive encoding and stores the result.

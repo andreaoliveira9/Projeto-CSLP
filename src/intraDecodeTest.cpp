@@ -1,12 +1,12 @@
 #include "BitStream.cpp"    
 #include "Golomb.cpp"
-#include "PredictiveCoding.cpp"
+#include "intraCoding.cpp"
 
 using namespace std;
 using namespace cv;
 
 int main(int argc, char* argv[]){
-    PredictiveCoding predictorDecoder;
+    intraCoding intraDecoder;
     BitStream bitStreamDecoder("encoded_image.bin", "read");
     int m = bitStreamDecoder.readNBits(5);
     int imageHeight = bitStreamDecoder.readNBits(12);
@@ -14,7 +14,7 @@ int main(int argc, char* argv[]){
     int frameCount = bitStreamDecoder.readNBits(32);
 
     while (frameCount--) {
-        Mat result = predictorDecoder.decodeAndReconstruct(&bitStreamDecoder, m, imageHeight, imageWidth);
+        Mat result = intraDecoder.decodeAndReconstruct(&bitStreamDecoder, m, imageHeight, imageWidth);
         if (frameCount == -1) {
             break;
         }

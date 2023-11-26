@@ -1,6 +1,6 @@
-#include "PredictiveCoding.hpp"
+#include "intraCoding.hpp"
 
-void PredictiveCoding::encodeAndPredict(Mat frame, int m, BitStream *bs) {
+void intraCoding::encodeAndPredict(Mat frame, int m, BitStream *bs) {
     Golomb golombEncoder(bs, m);
     vector<Mat> rgbChannels(3);
     split(frame, rgbChannels);
@@ -50,7 +50,7 @@ void PredictiveCoding::encodeAndPredict(Mat frame, int m, BitStream *bs) {
     }
 }
 
-Mat PredictiveCoding::decodeAndReconstruct(BitStream *bs, int m, int rows, int cols) {
+Mat intraCoding::decodeAndReconstruct(BitStream *bs, int m, int rows, int cols) {
     Golomb golombDecoder(bs, m);
     vector<Mat> channels;
     int error, pixelValue;

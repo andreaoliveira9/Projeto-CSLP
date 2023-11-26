@@ -13,7 +13,7 @@ void HybridCoding::encode(const Mat& referenceFrame, const Mat& currentFrame, in
     Golomb golombEncoder(bitStream, m);
     if (frameNum % periodicity == 0) {
         golombEncoder.encode(0);
-        PredictiveCoding pred;
+        intraCoding pred;
         pred.encodeAndPredict(currentFrame, m, bitStream);
     } else {
         golombEncoder.encode(1);
@@ -88,7 +88,7 @@ Mat HybridCoding::decode(const Mat& previousFrame, int frameHeight, int frameWid
     Golomb golombDecoder(bitStream, m);
 
     if (golombDecoder.decode() == 0) {
-        PredictiveCoding pred;
+        intraCoding pred;
         pred.decodeAndReconstruct(bitStream, m, frameHeight, frameWidth);
     } else {
         vector<Mat> previousFrameChannels;

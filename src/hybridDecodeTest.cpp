@@ -1,6 +1,6 @@
 #include "BitStream.cpp"
 #include "Golomb.cpp"
-#include "PredictiveCoding.cpp"
+#include "intraCoding.cpp"
 #include "HybridCoding.cpp"
 
 using namespace std;
