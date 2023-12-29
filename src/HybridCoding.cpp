@@ -1,124 +1,299 @@
 #include "HybridCoding.hpp"
 
-HybridCoding::HybridCoding(BitStream *bitStream, int blockSize, int searchArea, int m, int periodicity = 0) {
-    this->bitStream = bitStream;
-    this->blockSize = blockSize;
-    this->searchArea = searchArea;
-    this->m = m;
-    this->periodicity = periodicity;
+HybridEncoder::HybridEncoder(string inputFile, int periodicity, int searchArea, int shift) : periodicity(periodicity), searchArea(searchArea), shift(shift) {
+    // read file header
+    ifstream file(inputFile, ios::binary);
+
+    // Read the file header
+
+    string fileHeader;
+    getline(file, fileHeader);
+
+    // split the file header into tokens
+
+    istringstream iss(fileHeader);
+
+    vector<string> tokens{istream_iterator<string>{iss}, istream_iterator<string>{}};
+
+    if (tokens.size() > 6) {
+        if (tokens[6].compare("C444") == 0) {
+            format = 0;
+        } else if (tokens[6].compare("C422") == 0) {
+            format = 1;
+        }
+    } else {
+        format = 2;
+    }
+
+    // open the video file
+    video = VideoCapture(inputFile);
+
+    videoWidth = video.get(CAP_PROP_FRAME_WIDTH);
+    videoHeight = video.get(CAP_PROP_FRAME_HEIGHT);
+    frameNumber = video.get(CAP_PROP_FRAME_COUNT);
+}
+
+HybridEncoder::~HybridEncoder() {
 }
 
 
-void HybridCoding::encode(const Mat& referenceFrame, const Mat& currentFrame, int frameNum) {
-    Golomb golombEncoder(bitStream, m);
-    if (frameNum % periodicity == 0) {
-        golombEncoder.encode(0);
-        intraCoding pred;
-        pred.encodeAndPredict(currentFrame, m, bitStream);
-    } else {
-        golombEncoder.encode(1);
-        Mat currentBlock, possibleBlock, nearestMatrix;
-        int lastSum = 100000;
-        int currentSum = 0;
-        int d_x = 0;
-        int d_y = 0;
-        int channel = 0;
-        vector<Mat> currentMatrix, referenceMatrix;
+void HybridEncoder::encode(string outputFile) {
+    Converter converter;
+    GolombEncoder GolombEncoder(outputFile);
 
-        split(currentFrame, currentMatrix);
-        split(referenceFrame, referenceMatrix);
+    IntraEncoder instraEncoder(GolombEncoder, shift);
+    InterEncoder interEncoder(GolombEncoder, blockSize, searchArea, shift);
 
-        for (const auto& matrix : currentMatrix) {
-            for (int row = 0; row < matrix.rows; row += blockSize) {
-                for (int col = 0; col < matrix.cols; col += blockSize) {
-                    currentBlock = Mat(matrix, Rect(col, row, blockSize, blockSize));
+    Mat currentFrame;
+    Mat previousFrame;
 
-                    int startRow = row - searchArea;
-                    int startCol = col - searchArea;
-                    int endRow = row + searchArea + blockSize;
-                    int endCol = col + searchArea + blockSize;
+    GolombEncoder.encode(format);
+    GolombEncoder.encode(searchArea);
+    GolombEncoder.encode(shift);
+    GolombEncoder.encode(periodicity);
+    GolombEncoder.encode(frameNumber);
 
-                    for (int i = startRow; i < endRow; i++) {
-                        for (int j = startCol; j < endCol; j++) {
-                            if (i < 0 || j < 0 || i + blockSize >= matrix.rows || j + blockSize >= matrix.cols) {
-                                currentSum = 0;
-                                continue;
-                            }
+    int count = 0;
+    switch (format) {
+        case 0: 
+        {
+            while (true) {
+                video >> currentFrame;
+                if (currentFrame.empty()) {
+                    break;
+                };
+                currentFrame = converter.rgb_to_yuv444(currentFrame);
 
-                            possibleBlock = Mat(referenceMatrix[channel], Rect(j, i, blockSize, blockSize));
-
-                            const uchar* currentPtr = currentBlock.ptr<uchar>(i - row);
-                            const uchar* possiblePtr = possibleBlock.ptr<uchar>(0);
-
-                            for (int a = 0; a < blockSize; a++) {
-                                currentSum += abs(currentPtr[a] - possiblePtr[a]);
-                            }
-
-                            if (currentSum < lastSum) {
-                                lastSum = currentSum;
-                                d_x = i;
-                                d_y = j;
-                                nearestMatrix = possibleBlock;
-                            }
+                if (count == 0) {
+                    int a = currentFrame.cols;
+                    int b = currentFrame.rows;
+                    if (a != b) {
+                        int gcd = -1;
+                        while (b != 0)
+                        {
+                            a %= b;
+                            if (a == 0)
+                                gcd = b;
+                            break;
+                            b %= a;
                         }
+                        if (gcd == -1)
+                            gcd = a;
+                        if (gcd == a || gcd == b)
+                            gcd = 16;
+                        this->blockSize = gcd;
+                        interEncoder.setBlockSize(gcd);
+                        GolombEncoder.encode(gcd);
+                    } else {
+                        this->blockSize = 16;
+                        interEncoder.setBlockSize(16);
+                        GolombEncoder.encode(16);
                     }
-                    lastSum = 100000;
 
-                    golombEncoder.encode(d_x);
-                    golombEncoder.encode(d_y);
-
-                    for (int n = 0; n < blockSize; n++) {
-                        const uchar* nearestPtr = nearestMatrix.ptr<uchar>(n);
-                        const uchar* currentPtr = currentBlock.ptr<uchar>(n);
-
-                        for (int m = 0; m < blockSize; m++) {
-                            int z = static_cast<int>(nearestPtr[m]) - static_cast<int>(currentPtr[m]);
-                            golombEncoder.encode(z);
-                        }
-                    }
+                    GolombEncoder.encode(currentFrame.cols);
+                    GolombEncoder.encode(currentFrame.rows);
                 }
+
+                if (count % periodicity == 0) {
+                    currentFrame.copyTo(previousFrame);
+                    instraEncoder.encode(currentFrame);
+                } else {
+                    interEncoder.encode(previousFrame, currentFrame);
+                }
+                count++;
             }
-            channel++;
+            break;
+        }
+        case 1: 
+        {
+            while (true) {
+                video >> currentFrame;
+                if (currentFrame.empty()) {
+                    break;
+                };
+                currentFrame = converter.rgb_to_yuv422(currentFrame);
+
+                if (count == 0) {
+                    int a = currentFrame.cols;
+                    int b = currentFrame.rows;
+                    if (a != b) {
+                        int gcd = -1;
+                        while (b != 0) {
+                            a %= b;
+                            if (a == 0) {
+                                gcd = b;
+                            }
+                            break;
+                            b %= a;
+                        }
+                        if (gcd == -1) {
+                            gcd = a;
+                        }
+                        if (gcd == a || gcd == b) {
+                            gcd = 16;
+                        }
+                        this->blockSize = gcd;
+                        interEncoder.setBlockSize(gcd);
+                        GolombEncoder.encode(gcd);
+                    } else {
+                        this->blockSize = 16;
+                        interEncoder.setBlockSize(16);
+                        GolombEncoder.encode(16);
+                    }
+
+                    GolombEncoder.encode(currentFrame.cols);
+                    GolombEncoder.encode(currentFrame.rows);
+                }
+
+                if (count % periodicity == 0) {
+                    currentFrame.copyTo(previousFrame);
+                    instraEncoder.encode(currentFrame);
+                } else {
+                    interEncoder.encode(previousFrame, currentFrame);
+                }
+                count++;
+            }
+            break;
+        }
+        case 2:
+        {
+            while (true) {
+                video >> currentFrame;
+                if (currentFrame.empty()) {
+                    break;
+                };
+                currentFrame = converter.rgb_to_yuv420(currentFrame);
+
+                if (count == 0) {
+                    int a = currentFrame.cols;
+                    int b = currentFrame.rows;
+                    if (a != b) {
+                        int gcd = -1;
+                        while (b != 0) {
+                            a %= b;
+                            if (a == 0) {
+                                gcd = b;
+                            }
+                            break;
+                            b %= a;
+                        }
+                        if (gcd == -1) {
+                            gcd = a;
+                        }
+                        if (gcd == a || gcd == b) {
+                            gcd = 16;
+                        }
+                        this->blockSize = gcd;
+                        interEncoder.setBlockSize(gcd);
+                        GolombEncoder.encode(gcd);
+                    } else {
+                        this->blockSize = 16;
+                        interEncoder.setBlockSize(16);
+                        GolombEncoder.encode(16);
+                    }
+
+                    GolombEncoder.encode(currentFrame.cols);
+                    GolombEncoder.encode(currentFrame.rows);
+                }
+
+                if (count % periodicity == 0) {
+                    currentFrame.copyTo(previousFrame);
+                    instraEncoder.encode(currentFrame);
+                } else {
+                    interEncoder.encode(previousFrame, currentFrame);
+                }
+                count++;
+            }
+            break;
         }
     }
+
+    GolombEncoder.finishEncoding();
 }
 
-Mat HybridCoding::decode(const Mat& previousFrame, int frameHeight, int frameWidth) {
-    Mat result(frameHeight, frameWidth, CV_8UC3, Scalar(0, 0, 0));
-    Golomb golombDecoder(bitStream, m);
+HybridDecoder::HybridDecoder(string inputFile) {
+    this->inputFile = inputFile;
+}
 
-    if (golombDecoder.decode() == 0) {
-        intraCoding pred;
-        pred.decodeAndReconstruct(bitStream, m, frameHeight, frameWidth);
-    } else {
-        vector<Mat> previousFrameChannels;
-        split(previousFrame, previousFrameChannels);
+HybridDecoder::~HybridDecoder() {}
 
-        vector<Mat> res(3); // Initialize a vector to hold three channels
-        for (int channel = 0; channel < 3; ++channel) {
-            res[channel] = Mat(frameHeight, frameWidth, CV_8UC1, Scalar(0)); // Initialize each channel matrix
-        }
+Mat HybridDecoder::decode(string outputFile) {
+    Converter conv;
+    GolombDecoder GolombDecoder(this->inputFile);
 
-        for (int channel = 0; channel < 3; ++channel) {
-            for (int row = 0; row < frameHeight; row += blockSize) {
-                for (int col = 0; col < frameWidth; col += blockSize) {
-                    int d_x = golombDecoder.decode();
-                    int d_y = golombDecoder.decode();
+    int format = GolombDecoder.decode();
+    int searchArea = GolombDecoder.decode();
+    int shift = GolombDecoder.decode();
+    int periodicity = GolombDecoder.decode();
+    int frameNumber = GolombDecoder.decode();
+    int blockSize = GolombDecoder.decode();
+    int width = GolombDecoder.decode();
+    int height = GolombDecoder.decode();
 
-                    for (int n = 0; n < blockSize; ++n) {
-                        const uchar* previousPtr = previousFrameChannels[channel].ptr<uchar>(d_x + n);
-                        for (int m = 0; m < blockSize; ++m) {
-                            int z = golombDecoder.decode();
-                            int pixelValue = previousPtr[d_y + m] + z;
-                            res[channel].at<uchar>(row + n, col + m) = pixelValue;
-                        }
-                    }
+    IntraDecoder intraDecoder(GolombDecoder, shift);
+    InterDecoder interDecoder(GolombDecoder, blockSize, searchArea, shift);
+
+    Mat currentFrame;
+    Mat previousFrame;
+
+    int count = 0;
+    switch (format) {
+        case 0:
+        {
+            while (count < frameNumber) {
+                currentFrame = Mat::zeros(height, width, CV_8UC3);
+
+                if (count % periodicity == 0) {
+                    intraDecoder.decode(currentFrame);
+                    currentFrame.copyTo(previousFrame);
+                } else {
+                    interDecoder.decode(previousFrame, currentFrame);
                 }
+
+                imshow("Image", converter.yuv444_to_rgb(currentFrame));
+                if (waitKey(10) == 27) {
+                    destroyAllWindows();
+                }; 
+                count++;
             }
         }
+        case 1:
+        {
+            while (count < frameNumber) {
+                currentFrame = Mat::zeros(height, width, CV_8UC1);
 
-        merge(res, result);
-        imshow("Reconstructed Image", result);
+                if (count % periodicity == 0) {
+                    intraDecoder.decode(currentFrame);
+                    currentFrame.copyTo(previousFrame);
+                } else {
+                    interDecoder.decode(previousFrame, currentFrame);
+                }
+
+                imshow("Image", converter.yuv422_to_rgb(currentFrame));
+                if (waitKey(10) == 27) {
+                    destroyAllWindows();
+                }; 
+                count++;
+            }
+        }
+        case 2:
+        {
+            while (count < frameNumber) {
+                currentFrame = Mat::zeros(height, width, CV_8UC1);
+
+                if (count % periodicity == 0) {
+                    intraDecoder.decode(currentFrame);
+                    currentFrame.copyTo(previousFrame);
+                } else {
+                    interDecoder.decode(previousFrame, currentFrame);
+                }
+
+                imshow("Image", converter.yuv420_to_rgb(currentFrame));
+                if (waitKey(10) == 27) {
+                    destroyAllWindows();
+                }; 
+                count++;
+            }
+        }
     }
-    return result;
 }

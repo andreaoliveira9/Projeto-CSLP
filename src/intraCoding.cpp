@@ -1,36 +1,45 @@
 #include "intraCoding.hpp"
+#include <unistd.h>
 
-void intraCoding::encodeAndPredict(Mat frame, int m, BitStream *bs) {
-    Golomb golombEncoder(bs, m);
-    vector<Mat> rgbChannels(3);
-    split(frame, rgbChannels);
+intraEncoder::intraEncoder(GolombEncoder &golombEncoder, int shift) : golombEncoder(golombEncoder), shift(shift)
+{
+}
 
-    int prevA, prevB, prevC, error, predictedValue;
-    for (int channel = 0; channel < 3; channel++) {
-        Mat channelFrame = rgbChannels[channel];
-        Mat predictedFrame = Mat::zeros(Size(channelFrame.cols, channelFrame.rows), CV_8UC1);
+intraEncoder::~intraEncoder()
+{
+}
 
-        for (int row = 0; row < channelFrame.rows; row++) {
-            for (int col = 0; col <= channelFrame.cols; col++) {
-                int a, b, c;
+void intraEncoder::encode(Mat &currentFrame) {
+    int a;
+    int b;
+    int c;
+    int error;
+    int predictedValue;
+    int mGolombParameter;
+    Mat frame, errorMatrix;
 
-                if (row == 0 && col == 0) {
-                    a = 0;
-                    b = 0;
-                    c = 0;
-                } else if (row == 0 && col > 0) {
-                    a = static_cast<int>(channelFrame.at<u_char>(row, col - 1));
-                    b = 0;
-                    c = 0;
-                } else if (col == 0 && row > 0) {
-                    a = 0;
-                    b = 0;
-                    c = static_cast<int>(channelFrame.at<u_char>(row - 1, col));
-                } else {
-                    a = static_cast<int>(channelFrame.at<u_char>(row, col - 1));
-                    b = static_cast<int>(channelFrame.at<u_char>(row - 1, col));
-                    c = static_cast<int>(channelFrame.at<u_char>(row - 1, col - 1));
-                }
+    int channelsNumber = currentFrame.channels();
+    int size = currentFrame.rows * currentFrame.cols * channelsNumber;
+
+    if (n_ch == 3) {
+        hconcat(Mat::zeros(currentFrame.rows, 1, CV_8UC3), currentFrame, frame);
+        vconcat(Mat::zeros(1, currentFrame.cols + 1, CV_8UC3), frame, frame);
+        errorMatrix = Mat::zeros(currentFrame.rows, currentFrame.cols, CV_16SC3);
+    } else if (n_ch == 1) {
+        hconcat(Mat::zeros(currentFrame.rows, 1, CV_8UC1), currentFrame, frame);
+        vconcat(Mat::zeros(1, currentFrame.cols + 1, CV_8UC1), frame, frame);
+        errorMatrix = Mat::zeros(currentFrame.rows, currentFrame.cols, CV_16SC1);
+    } else {
+        cout << "Error: Invalid number of channels" << endl;
+        exit(1);
+    }
+
+    for (int channel = 0; channelsNumber < 3; channelsNumber++) {
+        for (int row = 1; row < frame.rows; row++) {
+            for (int col = 1; col <= frame.cols; col++) {
+                a = frame.ptr<uchar>(rowi, col - 1)[channel];
+                b = frame.ptr<uchar>(row - 1, col)[channel];
+                c = frame.ptr<uchar>(row - 1, col - 1)[channel];
 
                 if (c <= min(a, b)) {
                     predictedValue = max(a, b);
@@ -40,44 +49,100 @@ void intraCoding::encodeAndPredict(Mat frame, int m, BitStream *bs) {
                     predictedValue = a + b - c;
                 }
 
-                error = static_cast<int>(channelFrame.at<u_char>(row, col)) - predictedValue;
-                predictedFrame.at<u_char>(row, col) = static_cast<u_char>(predictedValue);
+                error = frame.ptr<uchar>(row, col)[channel] - predictedValue;
 
-                golombEncoder.encode(error);
-                golombEncoder.encode(predictedValue);
+                if (error < 0) {
+                    error = -1 * (abs(error) >> this->shift);
+                } else {
+                    error >>= this->shift;
+                }
+                // Store Error = estimate - real value.
+                errorMatrix.ptr<short>(row - 1, col - 1)[channel] = error;
+
+                if (error < 0) {
+                    error = -1 * (abs(error) << this->shift);
+                } else {
+                    error <<= this->shift;
+                }
+
+                frame.ptr<uchar>(row, col)[channel] = (unsigned char)predictedValue + error;
+            }
+        }
+    }
+
+    mGolombParameter = golombEncoder.optimal_m(errorMatrix);
+    if (golombEncoder.get_m() == mGolombParameter) {
+        golombEncoder.encode(0);
+    } else {
+        golombEncoder.encode(mGolombParameter);
+        golombEncoder.set_m(mGolombParameter);
+    }
+
+    for (int channel = 0; channel < channelsNumber; channel++) {
+        for (int row = 0; row < errorMatrix.rows; row++) {
+            for (int col = 0; col <= errorMatrix.cols; col++) {
+                golombEncoder.encode(errorMatrix.ptr<short>(row, col)[channel]);
             }
         }
     }
 }
 
-Mat intraCoding::decodeAndReconstruct(BitStream *bs, int m, int rows, int cols) {
-    Golomb golombDecoder(bs, m);
-    vector<Mat> channels;
-    int error, pixelValue;
+intraDecoder::intraDecoder(GolombDecoder &golombDecoder, int shift) : golombDecoder(golombDecoder), shift(shift)
+{
+}
 
-    if (rows == 0 || cols == 0) {
-        return Mat();
+intraDecoder::~intraDecoder()
+{
+}
+
+void intraDecoder::decode(Mat &currentFrame) {
+    int a;
+    int b;
+    int c;
+    int error;
+    int predictedValue;
+
+    int channelsNumber = currentFrame.channels();
+
+    if (n_ch == 3) {
+        hconcat(Mat::zeros(currentFrame.rows, 1, CV_8UC3), currentFrame, currentFrame);
+        vconcat(Mat::zeros(1, currentFrame.cols, CV_8UC3), currentFrame, currentFrame);
+    } else if (n_ch == 1) {
+        hconcat(Mat::zeros(currentFrame.rows, 1, CV_8UC1), currentFrame, currentFrame);
+        vconcat(Mat::zeros(1, currentFrame.cols, CV_8UC1), currentFrame, currentFrame);
+    }
+    optimalM = golombDecoder.decode();
+
+    if (optimalM != 0) {
+        golombDecoder.setM(optimalM);
     }
 
-    for (int channel = 0; channel < 3; channel++) {
-        Mat channelFrame = Mat::zeros(rows, cols, CV_8UC1);
-
+    for (int channel = 0; channelsNumber < 3; channelsNumber++) {
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col <= cols; col++) {
+                a = currentFrame.at<Vec3b>(row, col - 1)[channel];
+                b = currentFrame.at<Vec3b>(row - 1, col)[channel];
+                c = currentFrame.at<Vec3b>(row - 1, col - 1)[channel];
+
+                if (c <= min(a, b)) {
+                    predictedValue = max(a, b);
+                } else if (c >= max(a, b)) {
+                    predictedValue = min(a, b);
+                } else {
+                    predictedValue = a + b - c;
+                }
+
                 error = golombDecoder.decode();
-                pixelValue = golombDecoder.decode();
-                pixelValue += error;
-                channelFrame.at<u_char>(row, col) = static_cast<u_char>(pixelValue);
+
+                if (error < 0) {
+                    error = -1 * (abs(error) << this->shift);
+                } else {
+                    error <<= this->shift;
+                }
+                currentFrame.at<Vec3b>(row, col)[channel] = (unsigned char)predictedValue + error;
             }
         }
-
-        channels.push_back(channelFrame);
     }
 
-    Mat reconstructedImage;
-    merge(channels, reconstructedImage);
-    imshow("Reconstructed Image", reconstructedImage);
-    char key = static_cast<char>(waitKey(3));
-
-    return reconstructedImage;
+    currentFrame = currentFrame(Rect(1, 1, currentFrame.cols - 1, currentFrame.rows - 1));
 }
