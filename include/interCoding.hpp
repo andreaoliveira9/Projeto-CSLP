@@ -11,28 +11,15 @@ using namespace std;
 class InterEncoder
 {
 private:
-    int blockSize;       
-    int searchArea;       
-    int shift;             
+    int blockSize;
+    int searchArea;
+    int shift;
     GolombEncoder &GolombEncoder; 
 
 public:
-    /**
-     * @brief Construct a new Inter Encoder object
-     *
-     * @param golomb Golomb encoder for encoding
-     * @param block_size Size of the blocks for encoding
-     * @param block_range Range of the blocks for encoding
-     * @param shift Shift for encoding
-     */
-    InterEncoder(GolombEncoder &GolombEncoder, int blockSize, int searchArea, int shift = 0);
+    InterEncoder(class GolombEncoder &GolombEncoder, int blockSize, int searchArea, int shift = 0);
 
     ~InterEncoder();
-
-    /**
-     * @brief Default constructor
-     */
-    InterEncoder() = default;
 
     /**
      * @brief Get the block size
@@ -71,7 +58,7 @@ public:
      * @return Result of the encoding
      */
     void encode(Mat &previousFrame, Mat &currentFrame);
-}
+};
 
 class InterDecoder
 {
@@ -90,14 +77,9 @@ public:
      * @param block_range Range of the blocks for decoding
      * @param shift Shift for decoding
      */
-    InterDecoder(GolombDecoder &GolombDecoder, int blockSize, int searchArea, int shift = 0);
+    InterDecoder(class GolombDecoder &GolombDecoder, int blockSize, int searchArea, int shift = 0);
 
     ~InterDecoder();
-
-    /**
-     * @brief Default constructor
-     */
-    InterDecoder() = default;
     
     /**
      * @brief Decode a frame
@@ -106,5 +88,7 @@ public:
      * @param currentFrame Current frame
      * @return Result of the decoding
      */
-    int decode(Mat &previousFrame, Mat &currentFrame);
-}
+    void decode(Mat &previousFrame, Mat &currentFrame);
+};
+
+#endif

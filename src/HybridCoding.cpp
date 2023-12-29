@@ -31,17 +31,17 @@ HybridEncoder::HybridEncoder(string inputFile, int periodicity, int searchArea, 
     videoWidth = video.get(CAP_PROP_FRAME_WIDTH);
     videoHeight = video.get(CAP_PROP_FRAME_HEIGHT);
     frameNumber = video.get(CAP_PROP_FRAME_COUNT);
-}
+};
 
 HybridEncoder::~HybridEncoder() {
-}
+};
 
 
 void HybridEncoder::encode(string outputFile) {
     Converter converter;
     GolombEncoder GolombEncoder(outputFile);
 
-    IntraEncoder instraEncoder(GolombEncoder, shift);
+    IntraEncoder intraEncoder(GolombEncoder, shift);
     InterEncoder interEncoder(GolombEncoder, blockSize, searchArea, shift);
 
     Mat currentFrame;
@@ -96,7 +96,7 @@ void HybridEncoder::encode(string outputFile) {
 
                 if (count % periodicity == 0) {
                     currentFrame.copyTo(previousFrame);
-                    instraEncoder.encode(currentFrame);
+                    intraEncoder.encode(currentFrame);
                 } else {
                     interEncoder.encode(previousFrame, currentFrame);
                 }
@@ -147,7 +147,7 @@ void HybridEncoder::encode(string outputFile) {
 
                 if (count % periodicity == 0) {
                     currentFrame.copyTo(previousFrame);
-                    instraEncoder.encode(currentFrame);
+                    intraEncoder.encode(currentFrame);
                 } else {
                     interEncoder.encode(previousFrame, currentFrame);
                 }
@@ -198,7 +198,7 @@ void HybridEncoder::encode(string outputFile) {
 
                 if (count % periodicity == 0) {
                     currentFrame.copyTo(previousFrame);
-                    instraEncoder.encode(currentFrame);
+                    intraEncoder.encode(currentFrame);
                 } else {
                     interEncoder.encode(previousFrame, currentFrame);
                 }
@@ -209,16 +209,16 @@ void HybridEncoder::encode(string outputFile) {
     }
 
     GolombEncoder.finishEncoding();
-}
+};
 
 HybridDecoder::HybridDecoder(string inputFile) {
     this->inputFile = inputFile;
-}
+};
 
-HybridDecoder::~HybridDecoder() {}
+HybridDecoder::~HybridDecoder() {};
 
-Mat HybridDecoder::decode(string outputFile) {
-    Converter conv;
+void HybridDecoder::decode(string outputFile) {
+    Converter converter;
     GolombDecoder GolombDecoder(this->inputFile);
 
     int format = GolombDecoder.decode();
@@ -296,4 +296,4 @@ Mat HybridDecoder::decode(string outputFile) {
             }
         }
     }
-}
+};

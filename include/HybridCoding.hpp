@@ -3,7 +3,8 @@
 
 #include "Converter.hpp"
 #include "Golomb.hpp"
-#include "IntraCoding.hpp"
+#include "intraCoding.hpp"
+#include "interCoding.hpp"
 #include <vector>
 
 using namespace cv;
@@ -95,7 +96,7 @@ public:
      * @param frameWidth Width of the frame to be decoded.
      * @return Mat The decoded video frame.
      */
-    Mat decode(string outputFile);
+    void decode(string outputFile);
 };
 
 #endif  // _HYBRID_CODING_H

@@ -15,15 +15,15 @@ using namespace std;
  * This class utilises methods of intra encoding and decoding,
  * which are common techniques in image and video compression.
  */
-class intraEncoder {
+class IntraEncoder {
 private:
     int shift;
     GolombEncoder &golombEncoder;
 
 public:
-  intraEncoder(GolombEncoder &golombEncoder, int shift = 0);
+  IntraEncoder(GolombEncoder &golombEncoder, int shift = 0);
   
-  ~intraEncoder();
+  ~IntraEncoder();
 
   /**
    * @brief Encodes a frame using intra encoding and stores the result.
@@ -46,15 +46,15 @@ public:
  * This class utilises methods of intra encoding and decoding,
  * which are common techniques in image and video compression.
  */
-class intraDecoder {
+class IntraDecoder {
 private:
     int shift;
     GolombDecoder &golombDecoder;
 
 public:
-  intraDecoder(GolombDecoder &golombDecoder, int shift = 0);
+  IntraDecoder(GolombDecoder &golombDecoder, int shift = 0);
   
-  ~intraDecoder();
+  ~IntraDecoder();
 
     /**
    * @brief Decodes a bit stream and reconstructs the video frame.

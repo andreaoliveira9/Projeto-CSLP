@@ -1,7 +1,7 @@
 #include "interCoding.hpp"
 #include <unistd.h>
 
-InterEncoder::InterEncoder(GolombEncoder &golombEncoder, int blockSize, int searchArea, int shift) : golombEncoder(golombEncoder), blockSize(blockSize), searchArea(searchArea), shift(shift)
+InterEncoder::InterEncoder(class GolombEncoder &GolombEncoder, int blockSize, int searchArea, int shift) : GolombEncoder(GolombEncoder), blockSize(blockSize), searchArea(searchArea), shift(shift)
 {
 }
 
@@ -111,14 +111,14 @@ void InterEncoder::encode(Mat &previousFrame, Mat &currentFrame)
         }
     }
     // Calculate optimal m...
-    mGolombParameter = golombEncoder.optimal_m(auxiliarFrame);
+    mGolombParameter = GolombEncoder.optimal_m(auxiliarFrame);
 
     // If m stays the same encode 0, otherwise, encode m
-    if (golombEncoder.get_m() == mGolombParameter) {
-        golombEncoder.encode(0);
+    if (GolombEncoder.get_m() == mGolombParameter) {
+        GolombEncoder.encode(0);
     } else {
-        golombEncoder.encode(mGolombParameter);
-        golombEncoder.set_m(mGolombParameter);
+        GolombEncoder.encode(mGolombParameter);
+        GolombEncoder.set_m(mGolombParameter);
     }
 
     count = 0;
@@ -126,8 +126,8 @@ void InterEncoder::encode(Mat &previousFrame, Mat &currentFrame)
     for (int row = 0; row <= max_y; row += this->blockSize)
         for (int col = 0; col <= max_x; col += this->blockSize)
         {
-            golombEncoder.encode(locations[count++]);
-            golombEncoder.encode(locations[count++]);
+            GolombEncoder.encode(locations[count++]);
+            GolombEncoder.encode(locations[count++]);
             for (int i = row; i < row + this->blockSize; i++)
                 for (int j = col; j < col + this->blockSize; j++)
                     for (int channel = 0; channel < channelsNumber; channel++)
@@ -140,7 +140,7 @@ void InterEncoder::encode(Mat &previousFrame, Mat &currentFrame)
                             error >>= this->shift;
                         }
 
-                        golombEncoder.encode(error);
+                        GolombEncoder.encode(error);
 
                         if (error < 0) {
                             error = -1 * (abs(error) << this->shift);
@@ -153,7 +153,7 @@ void InterEncoder::encode(Mat &previousFrame, Mat &currentFrame)
         }
 }
 
-InterDecoder::InterDecoder(GolombDecoder &golombDecoder, int blockSize, int searchArea, int shift) : golombDecoder(golombDecoder), blockSize(blockSize), searchArea(searchArea), shift(shift)
+InterDecoder::InterDecoder(class GolombDecoder &GolombDecoder, int blockSize, int searchArea, int shift) : GolombDecoder(GolombDecoder), blockSize(blockSize), searchArea(searchArea), shift(shift)
 {
 }
 
@@ -169,19 +169,19 @@ void InterDecoder::decode(Mat &previousFrame, Mat &currentFrame)
     int d_y;
     int error;
 
-    golombDecoder.set_m(golombDecoder.decode());
+    GolombDecoder.set_m(GolombDecoder.decode());
 
     for (int row = 0; row <= max_y; row += this->blockSize)
     {
         for (int col = 0; col <= max_x; col += this->blockSize)
         {
-            d_x = golombDecoder.decode();
-            d_y = golombDecoder.decode();
+            d_x = GolombDecoder.decode();
+            d_y = GolombDecoder.decode();
             for (int i = row; i < row + this->blockSize; i++) {
                 for (int j = col; j < col + this->blockSize; j++) {
                     for (int channel = 0; channel < currentFrame.channels(); channel++)
                     {
-                        error = golombDecoder.decode();
+                        error = GolombDecoder.decode();
                         if (error < 0) {
                             error = -1 * (abs(error) >> this->shift);
                         } else {
