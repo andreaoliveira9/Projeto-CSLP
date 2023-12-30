@@ -64,8 +64,6 @@ int main(int argc, char const *argv[])
             format = 2;
         }
 
-        // print the format
-
         cout << "Format: " << format << endl;
 
         string command = "mkdir -p " + dir + files[i];
@@ -91,22 +89,17 @@ int main(int argc, char const *argv[])
         encoder.encode(num_frames);
 
         int count = 0;
-        auto start_full = chrono::high_resolution_clock::now(); // start timer
+        auto start_full = chrono::high_resolution_clock::now(); 
         switch (format)
         {
         case 0:
         {
             while (true)
             {
-                // percentage = (cap.get(CAP_PROP_POS_FRAMES) / num_frames) * 100;
-                // cout << "Frame %: " << fixed << setprecision(1) << percentage << "\% ETA ~ " << average_time * (100 - percentage) << "s" << endl;
                 cap >> frame;
 
                 if (frame.empty())
                 {
-                    // cout << "\033[F" << flush;
-                    // // clear line
-                    // cout << "\033[K" << flush;
                     break;
                 }
 
@@ -116,21 +109,8 @@ int main(int argc, char const *argv[])
                     encoder.encode(frame.cols);
                     encoder.encode(frame.rows);
                 }
-                // auto start = chrono::high_resolution_clock::now(); // start timer
 
                 intra_encoder.encode(frame);
-                // auto end = chrono::high_resolution_clock::now(); // end timer
-                // double time_taken = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
-
-                // time_taken *= 1e-9;
-
-                // average_time *= count;
-                // average_time += time_taken;
-                // average_time /= ++count;
-                // // move to start of previous line
-                // cout << "\033[F" << flush;
-                // // clear line
-                // cout << "\033[K" << flush;
                 count++;
             }
         }
@@ -138,15 +118,10 @@ int main(int argc, char const *argv[])
         {
             while (true)
             {
-                // percentage = (cap.get(CAP_PROP_POS_FRAMES) / num_frames) * 100;
-                // cout << "Frame %: " << fixed << setprecision(1) << percentage << "\% ETA ~ " << average_time * (100 - percentage) << "s" << endl;
                 cap >> frame;
 
                 if (frame.empty())
                 {
-                    // cout << "\033[F" << flush;
-                    // // clear line
-                    // cout << "\033[K" << flush;
                     break;
                 }
 
@@ -156,21 +131,8 @@ int main(int argc, char const *argv[])
                     encoder.encode(frame.cols);
                     encoder.encode(frame.rows);
                 }
-                // auto start = chrono::high_resolution_clock::now(); // start timer
 
                 intra_encoder.encode(frame);
-                // auto end = chrono::high_resolution_clock::now(); // end timer
-                // double time_taken = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
-
-                // time_taken *= 1e-9;
-
-                // average_time *= count;
-                // average_time += time_taken;
-                // average_time /= ++count;
-                // // move to start of previous line
-                // cout << "\033[F" << flush;
-                // // clear line
-                // cout << "\033[K" << flush;
                 count++;
             }
         }
@@ -178,15 +140,10 @@ int main(int argc, char const *argv[])
         {
             while (true)
             {
-                // percentage = (cap.get(CAP_PROP_POS_FRAMES) / num_frames) * 100;
-                // cout << "Frame %: " << fixed << setprecision(1) << percentage << "\% ETA ~ " << average_time * (100 - percentage) << "s" << endl;
                 cap >> frame;
 
                 if (frame.empty())
                 {
-                    // cout << "\033[F" << flush;
-                    // // clear line
-                    // cout << "\033[K" << flush;
                     break;
                 }
 
@@ -196,21 +153,8 @@ int main(int argc, char const *argv[])
                     encoder.encode(frame.cols);
                     encoder.encode(frame.rows);
                 }
-                // auto start = chrono::high_resolution_clock::now(); // start timer
 
                 intra_encoder.encode(frame);
-                // auto end = chrono::high_resolution_clock::now(); // end timer
-                // double time_taken = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
-
-                // time_taken *= 1e-9;
-
-                // average_time *= count;
-                // average_time += time_taken;
-                // average_time /= ++count;
-                // // move to start of previous line
-                // cout << "\033[F" << flush;
-                // // clear line
-                // cout << "\033[K" << flush;
                 count++;
             }
         }
