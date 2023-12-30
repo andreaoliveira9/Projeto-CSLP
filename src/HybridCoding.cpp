@@ -1,4 +1,6 @@
 #include "HybridCoding.hpp"
+#include <chrono>
+#include <iostream>
 
 HybridEncoder::HybridEncoder(string inputFile, int periodicity, int searchArea, int shift) : periodicity(periodicity), searchArea(searchArea), shift(shift) {
     // read file header

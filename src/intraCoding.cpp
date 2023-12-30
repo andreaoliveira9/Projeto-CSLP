@@ -19,7 +19,6 @@ void IntraEncoder::encode(Mat &currentFrame) {
     Mat frame, errorMatrix;
 
     int channelsNumber = currentFrame.channels();
-    int size = currentFrame.rows * currentFrame.cols * channelsNumber;
 
     if (channelsNumber == 3) {
         hconcat(Mat::zeros(currentFrame.rows, 1, CV_8UC3), currentFrame, frame);
@@ -34,9 +33,10 @@ void IntraEncoder::encode(Mat &currentFrame) {
         exit(1);
     }
 
-    for (int channel = 0; channelsNumber < 3; channelsNumber++) {
-        for (int row = 1; row < frame.rows; row++) {
-            for (int col = 1; col <= frame.cols; col++) {
+    
+    for (int row = 1; row < frame.rows; row++) {
+        for (int col = 1; col < frame.cols; col++) {
+            for (int channel = 0; channel < channelsNumber; channel++) {
                 a = frame.ptr<uchar>(row, col - 1)[channel];
                 b = frame.ptr<uchar>(row - 1, col)[channel];
                 c = frame.ptr<uchar>(row - 1, col - 1)[channel];
@@ -78,9 +78,10 @@ void IntraEncoder::encode(Mat &currentFrame) {
         golombEncoder.set_m(mGolombParameter);
     }
 
-    for (int channel = 0; channel < channelsNumber; channel++) {
-        for (int row = 0; row < errorMatrix.rows; row++) {
-            for (int col = 0; col <= errorMatrix.cols; col++) {
+    
+    for (int row = 0; row < errorMatrix.rows; row++) {
+        for (int col = 0; col < errorMatrix.cols; col++) {
+            for (int channel = 0; channel < channelsNumber; channel++) {
                 golombEncoder.encode(errorMatrix.ptr<short>(row, col)[channel]);
             }
         }
@@ -117,12 +118,21 @@ void IntraDecoder::decode(Mat &currentFrame) {
         golombDecoder.set_m(optimalM);
     }
 
-    for (int channel = 0; channelsNumber < 3; channelsNumber++) {
-        for (int row = 0; row < currentFrame.rows; row++) {
-            for (int col = 0; col <= currentFrame.cols; col++) {
-                a = currentFrame.at<Vec3b>(row, col - 1)[channel];
-                b = currentFrame.at<Vec3b>(row - 1, col)[channel];
-                c = currentFrame.at<Vec3b>(row - 1, col - 1)[channel];
+    
+    for (int row = 1; row < currentFrame.rows; row++) {
+        for (int col = 1; col < currentFrame.cols; col++) {
+            for (int channel = 0; channel < channelsNumber; channel++) {
+                a = currentFrame.ptr<uchar>(row, col - 1)[channel];
+                b = currentFrame.ptr<uchar>(row - 1, col)[channel];
+                c = currentFrame.ptr<uchar>(row - 1, col - 1)[channel];
+
+                error = golombDecoder.decode();                
+
+                if (error < 0) {
+                    error = -1 * (abs(error) << this->shift);
+                } else {
+                    error <<= this->shift;
+                }
 
                 if (c <= min(a, b)) {
                     predictedValue = max(a, b);
@@ -132,14 +142,7 @@ void IntraDecoder::decode(Mat &currentFrame) {
                     predictedValue = a + b - c;
                 }
 
-                error = golombDecoder.decode();
-
-                if (error < 0) {
-                    error = -1 * (abs(error) << this->shift);
-                } else {
-                    error <<= this->shift;
-                }
-                currentFrame.at<Vec3b>(row, col)[channel] = (unsigned char)predictedValue + error;
+                currentFrame.ptr<uchar>(row, col)[channel] = (unsigned char)predictedValue + error;
             }
         }
     }
