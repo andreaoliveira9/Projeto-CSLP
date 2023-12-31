@@ -43,14 +43,6 @@ public:
     void setBlockSize(int blockSize);
 
     /**
-     * @brief Calculate the cost of encoding a block
-     *
-     * @param block Block to be encoded
-     * @return Cost of encoding the block
-     */
-    float cost(Mat block);
-
-    /**
      * @brief Encode a frame
      *
      * @param old_frame Previous frame

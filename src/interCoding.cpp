@@ -24,15 +24,9 @@ void InterEncoder::setBlockSize(int blockSize)
     this->blockSize = blockSize;
 }
 
-float InterEncoder::cost(Mat block)
-{
-    return sum(sum(abs(block)))[0];
-}
-
 void InterEncoder::encode(Mat &previousFrame, Mat &currentFrame)
 {
     int lastSum;
-    int currentSum;
     int mGolombParameter;
     int error;
     int d_x;
@@ -44,7 +38,10 @@ void InterEncoder::encode(Mat &previousFrame, Mat &currentFrame)
     Mat blocksDifferences;
     Mat nearestBlock;
     Mat auxiliarFrame;
+    Mat currentBlock;
+    Mat possibleBlock;
 
+    int currentSum = 0;
     int count = 0;
     int max_x = currentFrame.cols - this->blockSize;
     int max_y = currentFrame.rows - this->blockSize;
@@ -66,24 +63,39 @@ void InterEncoder::encode(Mat &previousFrame, Mat &currentFrame)
         {
             lastSum = 10000000;
 
-            Mat curr = Mat(currentFrame, Rect(col, row, this->blockSize, this->blockSize));
+            currentBlock = Mat(currentFrame, Rect(col, row, this->blockSize, this->blockSize));
 
-            startRow = ((row - this->searchArea < 0) ? 0 : (row - this->searchArea));
-            startCol = ((col - this->searchArea < 0) ? 0 : (col - this->searchArea));
-            endRow = ((row + this->searchArea >= max_y) ? max_y : (row + this->searchArea));
-            endCol = ((col + this->searchArea >= max_x) ? max_x : (col + this->searchArea));
+            startRow = row - this->searchArea;
+            startCol = col - this->searchArea;
+            endRow = row + this->searchArea;
+            endCol = col + this->searchArea;
+
+            if (startRow < 0) {
+                startRow = 0;
+            }
+            if (startCol < 0) {
+                startCol = 0;
+            }
+            if (endRow > max_y) {
+                endRow = max_y;
+            }
+            if (endCol > max_x) {
+                endCol = max_x;
+            }
 
             // Iterate through previous frame's blocks
             for (int i = startRow; i <= endRow; i++) {
                 for (int j = startCol; j <= endCol; j++) {
-                    Mat old = Mat(previousFrame, Rect(j, i, this->blockSize, this->blockSize));
+                    possibleBlock = Mat(previousFrame, Rect(j, i, this->blockSize, this->blockSize));
 
                     if (channelsNumber == 1) {
-                        subtract(curr, old, blocksDifferences, noArray(), CV_16SC1);
+                        subtract(currentBlock, possibleBlock, blocksDifferences, noArray(), CV_16SC1);
                     } else if (channelsNumber == 3) {
-                        subtract(curr, old, blocksDifferences, noArray(), CV_16SC3);
+                        subtract(currentBlock, possibleBlock, blocksDifferences, noArray(), CV_16SC3);
                     }
-                    currentSum = this->cost(blocksDifferences);
+
+                    currentSum = sum(sum(abs(blocksDifferences)))[0];
+
                     if (currentSum < lastSum)
                     {
                         d_x = j;
