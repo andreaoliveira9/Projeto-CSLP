@@ -2,7 +2,7 @@
 \label{classIntraDecoder}\index{IntraDecoder@{IntraDecoder}}
 
 
-Class for implementing intra decoding.  
+Class for implementing intra-\/frame decoding.  
 
 
 
@@ -18,13 +18,13 @@ Class for implementing intra decoding.
 \mbox{\hyperlink{classIntraDecoder_a35df5df502a72d8ef398b5a595938b41}{$\sim$\+Intra\+Decoder}} ()
 \begin{DoxyCompactList}\small\item\em Destructor for the \mbox{\hyperlink{classIntraDecoder}{Intra\+Decoder}} class. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classIntraDecoder_a90b9543e3a23eee0b488643be4b50a1a}{decode}} (Mat \&current\+Frame)
-\begin{DoxyCompactList}\small\item\em Decodes a bit stream and reconstructs the video frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Decodes an encoded video frame using intra-\/frame decoding. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Class for implementing intra decoding. 
+Class for implementing intra-\/frame decoding. 
 
-This class uses transform coding techniques to efficiently decode video frames. It supports efficient decoding of video frames by considering spatial redundancies. It also uses Golomb codes for entropy coding. 
+Decodes video frames from their encoded state using transform coding techniques, reconstructing the original frame by exploiting spatial redundancies and using Golomb coding for entropy decoding. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classIntraDecoder_ac2d4e72beeac94c5d565c66993b5e52c}\label{classIntraDecoder_ac2d4e72beeac94c5d565c66993b5e52c}} 
@@ -39,7 +39,7 @@ Constructor for the \mbox{\hyperlink{classIntraDecoder}{Intra\+Decoder}} class.
 
 
 \begin{DoxyParams}{Parameters}
-{\em golomb\+Decoder} & Reference to a \mbox{\hyperlink{classGolombDecoder}{Golomb\+Decoder}} object for entropy coding. \\
+{\em golomb\+Decoder} & Reference to a \mbox{\hyperlink{classGolombDecoder}{Golomb\+Decoder}} object for entropy decoding. \\
 \hline
 {\em shift} & Shift value used for transform coding (default is 0). \\
 \hline
@@ -55,24 +55,13 @@ Constructor for the \mbox{\hyperlink{classIntraDecoder}{Intra\+Decoder}} class.
 
 
 
-Decodes a bit stream and reconstructs the video frame. 
-
-This method reads an encoded bit stream and reconstructs the video frame using intra decoding. The parameter m is used for the intra decoding process. The dimensions of the video frame (rows and cols) need to be specified for accurate reconstruction.
+Decodes an encoded video frame using intra-\/frame decoding. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em bs} & Pointer to the encoded bit stream. \\
-\hline
-{\em m} & Parameter for the Golomb decode. \\
-\hline
-{\em rows} & Number of rows in the frame to be reconstructed. \\
-\hline
-{\em cols} & Number of columns in the frame to be reconstructed. \\
+{\em current\+Frame} & The video frame to be decoded and reconstructed. \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-Mat Decoded video frame. 
-\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

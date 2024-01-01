@@ -69,7 +69,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Class for implementing hybrid video coding.  
+<p>Encodes video using hybrid coding techniques.  
  <a href="classHybridEncoder.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="HybridCoding_8hpp_source.html">HybridCoding.hpp</a>&gt;</code></p>
@@ -77,15 +77,19 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af8efd2b8a14dfe41d2c9b210f689a9ff"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHybridEncoder.html#af8efd2b8a14dfe41d2c9b210f689a9ff">HybridEncoder</a> (string inputFile, int periodicity=20, int searchArea=4, int shift=0)</td></tr>
-<tr class="memdesc:af8efd2b8a14dfe41d2c9b210f689a9ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a HybridCoding object.  <a href="classHybridEncoder.html#af8efd2b8a14dfe41d2c9b210f689a9ff">More...</a><br /></td></tr>
+<tr class="memdesc:af8efd2b8a14dfe41d2c9b210f689a9ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="classHybridEncoder.html" title="Encodes video using hybrid coding techniques.">HybridEncoder</a>.  <a href="classHybridEncoder.html#af8efd2b8a14dfe41d2c9b210f689a9ff">More...</a><br /></td></tr>
 <tr class="separator:af8efd2b8a14dfe41d2c9b210f689a9ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8b5e8203b876bd4845dbc81c16c702b"><td class="memItemLeft" align="right" valign="top"><a id="aa8b5e8203b876bd4845dbc81c16c702b"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHybridEncoder.html#aa8b5e8203b876bd4845dbc81c16c702b">~HybridEncoder</a> ()</td></tr>
+<tr class="memdesc:aa8b5e8203b876bd4845dbc81c16c702b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for <a class="el" href="classHybridEncoder.html" title="Encodes video using hybrid coding techniques.">HybridEncoder</a>. <br /></td></tr>
+<tr class="separator:aa8b5e8203b876bd4845dbc81c16c702b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a0d371ff0c3c7120eee5fd8e0c11b2d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHybridEncoder.html#a9a0d371ff0c3c7120eee5fd8e0c11b2d">encode</a> (string outputFile)</td></tr>
-<tr class="memdesc:a9a0d371ff0c3c7120eee5fd8e0c11b2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes a video frame using hybrid coding.  <a href="classHybridEncoder.html#a9a0d371ff0c3c7120eee5fd8e0c11b2d">More...</a><br /></td></tr>
+<tr class="memdesc:a9a0d371ff0c3c7120eee5fd8e0c11b2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes a video using hybrid coding.  <a href="classHybridEncoder.html#a9a0d371ff0c3c7120eee5fd8e0c11b2d">More...</a><br /></td></tr>
 <tr class="separator:a9a0d371ff0c3c7120eee5fd8e0c11b2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Class for implementing hybrid video coding. </p>
-<p>The <a class="el" href="classHybridEncoder.html" title="Class for implementing hybrid video coding.">HybridEncoder</a> class is designed to encode video using a combination of motion-compensated predictive coding and transform coding techniques. It supports efficient encoding of video frames by considering spatial and temporal redundancies. </p>
+<div class="textblock"><p>Encodes video using hybrid coding techniques. </p>
+<p>The <a class="el" href="classHybridEncoder.html" title="Encodes video using hybrid coding techniques.">HybridEncoder</a> class is designed to encode video using a combination of motion-compensated predictive coding (inter-coding) and transform coding (intra-coding). It supports efficient encoding by exploiting both spatial and temporal redundancies. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af8efd2b8a14dfe41d2c9b210f689a9ff"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af8efd2b8a14dfe41d2c9b210f689a9ff">&#9670;&nbsp;</a></span>HybridEncoder()</h2>
@@ -125,15 +129,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructs a HybridCoding object. </p>
-<p>Initialises the hybrid coding system with parameters for video encoding and decoding.</p>
+<p>Constructor for <a class="el" href="classHybridEncoder.html" title="Encodes video using hybrid coding techniques.">HybridEncoder</a>. </p>
+<p>Initializes the hybrid encoder with the necessary parameters for video encoding.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">bitStream</td><td>Pointer to the <a class="el" href="classBitStream.html" title="Class that performs operations with bits.">BitStream</a> object for reading or writing encoded data. </td></tr>
-    <tr><td class="paramname">blockSize</td><td>Size of the block for motion estimation and compensation. </td></tr>
-    <tr><td class="paramname">searchArea</td><td>Area around the block where motion is estimated. </td></tr>
-    <tr><td class="paramname">periodicity</td><td>Interval intra and inter encoding. </td></tr>
-    <tr><td class="paramname">m</td><td>Parameter for the Golomb code. </td></tr>
+    <tr><td class="paramname">inputFile</td><td>The path to the input video file. </td></tr>
+    <tr><td class="paramname">periodicity</td><td>The frequency of I-frames in the video sequence. </td></tr>
+    <tr><td class="paramname">searchArea</td><td>The size of the area around the block where motion is estimated. </td></tr>
+    <tr><td class="paramname">shift</td><td>The shift value used for transform coding. </td></tr>
   </table>
   </dd>
 </dl>
@@ -157,13 +160,11 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Encodes a video frame using hybrid coding. </p>
-<p>Encodes the current frame by comparing it with a reference frame and storing the differences, periodically alternating between intra and inter coding.</p>
+<p>Encodes a video using hybrid coding. </p>
+<p>Encodes video by comparing each frame with a reference frame and storing the differences. It alternates between intra and inter coding, depending on the frame position and periodicity.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">referenceFrame</td><td>The reference frame for motion estimation. </td></tr>
-    <tr><td class="paramname">currentFrame</td><td>The current frame to be encoded. </td></tr>
-    <tr><td class="paramname">frameNum</td><td>The number of the current frame in the sequence. </td></tr>
+    <tr><td class="paramname">outputFile</td><td>The path to the output file where the encoded data will be saved. </td></tr>
   </table>
   </dd>
 </dl>

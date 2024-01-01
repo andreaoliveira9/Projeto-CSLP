@@ -12,12 +12,11 @@ using namespace std;
 
 /**
  * @class HybridEncoder
- * @brief Class for implementing hybrid video coding.
+ * @brief Encodes video using hybrid coding techniques.
  * 
  * The HybridEncoder class is designed to encode video using a combination of 
- * motion-compensated predictive coding and transform coding techniques. It 
- * supports efficient encoding of video frames by considering spatial and 
- * temporal redundancies.
+ * motion-compensated predictive coding (inter-coding) and transform coding (intra-coding). 
+ * It supports efficient encoding by exploiting both spatial and temporal redundancies.
  */
 class HybridEncoder {
 private:
@@ -33,71 +32,68 @@ private:
 
 public:
     /**
-     * @brief Constructs a HybridCoding object.
+     * @brief Constructor for HybridEncoder.
      * 
-     * Initialises the hybrid coding system with parameters for video encoding and decoding.
+     * Initializes the hybrid encoder with the necessary parameters for video encoding.
      * 
-     * @param bitStream Pointer to the BitStream object for reading or writing encoded data.
-     * @param blockSize Size of the block for motion estimation and compensation.
-     * @param searchArea Area around the block where motion is estimated.
-     * @param periodicity Interval intra and inter encoding.
-     * @param m Parameter for the Golomb code.
+     * @param inputFile The path to the input video file.
+     * @param periodicity The frequency of I-frames in the video sequence.
+     * @param searchArea The size of the area around the block where motion is estimated.
+     * @param shift The shift value used for transform coding.
      */
     HybridEncoder(string inputFile, int periodicity = 20, int searchArea = 4, int shift = 0);
+
+    /**
+     * @brief Destructor for HybridEncoder.
+     */
 
     ~HybridEncoder();
 
     /**
-     * @brief Encodes a video frame using hybrid coding.
+     * @brief Encodes a video using hybrid coding.
      * 
-     * Encodes the current frame by comparing it with a reference 
-     * frame and storing the differences, periodically alternating between intra and inter coding.
+     * Encodes video by comparing each frame with a reference frame and storing the differences. 
+     * It alternates between intra and inter coding, depending on the frame position and periodicity.
      * 
-     * @param referenceFrame The reference frame for motion estimation.
-     * @param currentFrame The current frame to be encoded.
-     * @param frameNum The number of the current frame in the sequence.
+     * @param outputFile The path to the output file where the encoded data will be saved.
      */
     void encode(string outputFile);
 };
 
 /**
  * @class HybridDecoder
- * @brief Class for implementing hybrid video decoding.
- *
- * The HybridDecoder class handles the decoding of video that was encoded using
- * the HybridEncoder class. It uses motion-compensated predictive coding and 
- * transform coding to reconstruct video frames from encoded data.
+ * @brief Decodes video that was encoded using hybrid coding techniques.
+ * 
+ * The HybridDecoder class is responsible for decoding video that was encoded by the HybridEncoder class. 
+ * It uses motion-compensated predictive coding and transform coding to reconstruct the original video frames.
  */
 class HybridDecoder {
 private:
-    string inputFile; ///< Path to the input file.
+    string inputFile; ///< Path to the encoded input file.
 
 public:
     /**
-     * @brief Constructs a HybridCoding object.
+     * @brief Constructor for HybridDecoder.
      * 
-     * Initialises the hybrid coding system with parameters for video encoding and decoding.
+     * Initializes the hybrid decoder with the necessary parameters for video decoding.
      * 
-     * @param bitStream Pointer to the BitStream object for reading or writing encoded data.
-     * @param blockSize Size of the block for motion estimation and compensation.
-     * @param searchArea Area around the block where motion is estimated.
-     * @param periodicity Interval intra and inter encoding.
-     * @param m Parameter for the Golomb code.
+     * @param inputFile The path to the encoded input video file.
      */
     HybridDecoder(string inputFile);
+
+    /**
+     * @brief Destructor for HybridDecoder.
+     */
 
     ~HybridDecoder();
 
     /**
-     * @brief Decodes an encoded frame.
-     *
-     * Reconstructs a video frame from the encoded data using the previous frame as a reference, 
-     * alternately employing inter and intra coding based on the initial bit.
+     * @brief Decodes an encoded video.
      * 
-     * @param previousFrame The previous frame used for reference in decoding.
-     * @param frameHeight Height of the frame to be decoded.
-     * @param frameWidth Width of the frame to be decoded.
-     * @return Mat The decoded video frame.
+     * Reconstructs the video frames from the encoded data, using the previous frame as a reference. 
+     * It alternates between inter and intra coding methods during the decoding process.
+     * 
+     * @param outputFile The path to the output file where the decoded video will be saved.
      */
     void decode(string outputFile);
 };

@@ -2,7 +2,7 @@
 \label{classInterEncoder}\index{InterEncoder@{InterEncoder}}
 
 
-Class for implementing inter-\/frame coding.  
+Class for implementing inter-\/frame encoding.  
 
 
 
@@ -18,19 +18,19 @@ Class for implementing inter-\/frame coding.
 \mbox{\hyperlink{classInterEncoder_ac83d4d98cfd08cd6d5596efa52358af7}{$\sim$\+Inter\+Encoder}} ()
 \begin{DoxyCompactList}\small\item\em Destructor for the \mbox{\hyperlink{classInterEncoder}{Inter\+Encoder}} class. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classInterEncoder_ab4f66f41f7ad47e7de3df4fae5c6d369}{get\+Block\+Size}} () const
-\begin{DoxyCompactList}\small\item\em Get the block size. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Get the size of the blocks used for motion estimation. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classInterEncoder_a16af093187843352ca4e2060338a46ca}{get\+Search\+Area}} () const
-\begin{DoxyCompactList}\small\item\em Get the block range. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Get the size of the search area for motion estimation. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classInterEncoder_a850b7928467280091e4c271c7db494b0}{set\+Block\+Size}} (int block\+Size)
-\begin{DoxyCompactList}\small\item\em Set the block size. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Set the size of the blocks used for motion estimation. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classInterEncoder_ae7b4f3cd3666e9a579b1ac1dfaa66cf6}{encode}} (Mat \&previous\+Frame, Mat \&current\+Frame)
-\begin{DoxyCompactList}\small\item\em Encode a frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Encode a frame using inter-\/frame coding. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Class for implementing inter-\/frame coding. 
+Class for implementing inter-\/frame encoding. 
 
-This class uses motion estimation and compensation techniques to efficiently encode video frames. 
+Utilizes motion estimation and compensation techniques to efficiently encode video frames by predicting frame content based on previous frames, thereby reducing temporal redundancy. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classInterEncoder_aeacc2d2588bc70716e72d94f14930670}\label{classInterEncoder_aeacc2d2588bc70716e72d94f14930670}} 
@@ -45,7 +45,7 @@ Constructor for the \mbox{\hyperlink{classInterEncoder}{Inter\+Encoder}} class.
 
 
 \begin{DoxyParams}{Parameters}
-{\em \mbox{\hyperlink{classGolombEncoder}{Golomb\+Encoder}}} & Reference to a \mbox{\hyperlink{classGolombEncoder}{Golomb\+Encoder}} object for entropy coding. \\
+{\em golomb\+Encoder} & Reference to a \mbox{\hyperlink{classGolombEncoder}{Golomb\+Encoder}} object for entropy coding. \\
 \hline
 {\em block\+Size} & Size of the blocks used for motion estimation. \\
 \hline
@@ -65,18 +65,15 @@ Constructor for the \mbox{\hyperlink{classInterEncoder}{Inter\+Encoder}} class.
 
 
 
-Encode a frame. 
+Encode a frame using inter-\/frame coding. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em old\+\_\+frame} & Previous frame \\
+{\em previous\+Frame} & The previous video frame for reference. \\
 \hline
-{\em new\+\_\+frame} & Current frame \\
+{\em current\+Frame} & The current video frame to be encoded. \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-Result of the encoding 
-\end{DoxyReturn}
 \mbox{\Hypertarget{classInterEncoder_ab4f66f41f7ad47e7de3df4fae5c6d369}\label{classInterEncoder_ab4f66f41f7ad47e7de3df4fae5c6d369}} 
 \index{InterEncoder@{InterEncoder}!getBlockSize@{getBlockSize}}
 \index{getBlockSize@{getBlockSize}!InterEncoder@{InterEncoder}}
@@ -85,10 +82,10 @@ Result of the encoding
 
 
 
-Get the block size. 
+Get the size of the blocks used for motion estimation. 
 
 \begin{DoxyReturn}{Returns}
-Block size 
+Size of the blocks. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classInterEncoder_a16af093187843352ca4e2060338a46ca}\label{classInterEncoder_a16af093187843352ca4e2060338a46ca}} 
 \index{InterEncoder@{InterEncoder}!getSearchArea@{getSearchArea}}
@@ -98,10 +95,10 @@ Block size
 
 
 
-Get the block range. 
+Get the size of the search area for motion estimation. 
 
 \begin{DoxyReturn}{Returns}
-Block range 
+Size of the search area. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classInterEncoder_a850b7928467280091e4c271c7db494b0}\label{classInterEncoder_a850b7928467280091e4c271c7db494b0}} 
 \index{InterEncoder@{InterEncoder}!setBlockSize@{setBlockSize}}
@@ -111,11 +108,11 @@ Block range
 
 
 
-Set the block size. 
+Set the size of the blocks used for motion estimation. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em block\+\_\+size} & New block size \\
+{\em block\+Size} & New size of the blocks. \\
 \hline
 \end{DoxyParams}
 

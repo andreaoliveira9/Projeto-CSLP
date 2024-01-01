@@ -69,7 +69,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Class for implementing intra decoding.  
+<p>Class for implementing intra-frame decoding.  
  <a href="classIntraDecoder.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="intraCoding_8hpp_source.html">intraCoding.hpp</a>&gt;</code></p>
@@ -77,19 +77,19 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ac2d4e72beeac94c5d565c66993b5e52c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIntraDecoder.html#ac2d4e72beeac94c5d565c66993b5e52c">IntraDecoder</a> (<a class="el" href="classGolombDecoder.html">GolombDecoder</a> &amp;golombDecoder, int shift=0)</td></tr>
-<tr class="memdesc:ac2d4e72beeac94c5d565c66993b5e52c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <a class="el" href="classIntraDecoder.html" title="Class for implementing intra decoding.">IntraDecoder</a> class.  <a href="classIntraDecoder.html#ac2d4e72beeac94c5d565c66993b5e52c">More...</a><br /></td></tr>
+<tr class="memdesc:ac2d4e72beeac94c5d565c66993b5e52c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <a class="el" href="classIntraDecoder.html" title="Class for implementing intra-frame decoding.">IntraDecoder</a> class.  <a href="classIntraDecoder.html#ac2d4e72beeac94c5d565c66993b5e52c">More...</a><br /></td></tr>
 <tr class="separator:ac2d4e72beeac94c5d565c66993b5e52c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a35df5df502a72d8ef398b5a595938b41"><td class="memItemLeft" align="right" valign="top"><a id="a35df5df502a72d8ef398b5a595938b41"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIntraDecoder.html#a35df5df502a72d8ef398b5a595938b41">~IntraDecoder</a> ()</td></tr>
-<tr class="memdesc:a35df5df502a72d8ef398b5a595938b41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for the <a class="el" href="classIntraDecoder.html" title="Class for implementing intra decoding.">IntraDecoder</a> class. <br /></td></tr>
+<tr class="memdesc:a35df5df502a72d8ef398b5a595938b41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for the <a class="el" href="classIntraDecoder.html" title="Class for implementing intra-frame decoding.">IntraDecoder</a> class. <br /></td></tr>
 <tr class="separator:a35df5df502a72d8ef398b5a595938b41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a90b9543e3a23eee0b488643be4b50a1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIntraDecoder.html#a90b9543e3a23eee0b488643be4b50a1a">decode</a> (Mat &amp;currentFrame)</td></tr>
-<tr class="memdesc:a90b9543e3a23eee0b488643be4b50a1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decodes a bit stream and reconstructs the video frame.  <a href="classIntraDecoder.html#a90b9543e3a23eee0b488643be4b50a1a">More...</a><br /></td></tr>
+<tr class="memdesc:a90b9543e3a23eee0b488643be4b50a1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decodes an encoded video frame using intra-frame decoding.  <a href="classIntraDecoder.html#a90b9543e3a23eee0b488643be4b50a1a">More...</a><br /></td></tr>
 <tr class="separator:a90b9543e3a23eee0b488643be4b50a1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Class for implementing intra decoding. </p>
-<p>This class uses transform coding techniques to efficiently decode video frames. It supports efficient decoding of video frames by considering spatial redundancies. It also uses Golomb codes for entropy coding. </p>
+<div class="textblock"><p>Class for implementing intra-frame decoding. </p>
+<p>Decodes video frames from their encoded state using transform coding techniques, reconstructing the original frame by exploiting spatial redundancies and using Golomb coding for entropy decoding. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ac2d4e72beeac94c5d565c66993b5e52c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac2d4e72beeac94c5d565c66993b5e52c">&#9670;&nbsp;</a></span>IntraDecoder()</h2>
@@ -117,10 +117,10 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructor for the <a class="el" href="classIntraDecoder.html" title="Class for implementing intra decoding.">IntraDecoder</a> class. </p>
+<p>Constructor for the <a class="el" href="classIntraDecoder.html" title="Class for implementing intra-frame decoding.">IntraDecoder</a> class. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">golombDecoder</td><td>Reference to a <a class="el" href="classGolombDecoder.html" title="Class used to decode numbers from a file based on Golomb codes.">GolombDecoder</a> object for entropy coding. </td></tr>
+    <tr><td class="paramname">golombDecoder</td><td>Reference to a <a class="el" href="classGolombDecoder.html" title="Class used to decode numbers from a file based on Golomb codes.">GolombDecoder</a> object for entropy decoding. </td></tr>
     <tr><td class="paramname">shift</td><td>Shift value used for transform coding (default is 0). </td></tr>
   </table>
   </dd>
@@ -145,18 +145,13 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Decodes a bit stream and reconstructs the video frame. </p>
-<p>This method reads an encoded bit stream and reconstructs the video frame using intra decoding. The parameter m is used for the intra decoding process. The dimensions of the video frame (rows and cols) need to be specified for accurate reconstruction.</p>
+<p>Decodes an encoded video frame using intra-frame decoding. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">bs</td><td>Pointer to the encoded bit stream. </td></tr>
-    <tr><td class="paramname">m</td><td>Parameter for the Golomb decode. </td></tr>
-    <tr><td class="paramname">rows</td><td>Number of rows in the frame to be reconstructed. </td></tr>
-    <tr><td class="paramname">cols</td><td>Number of columns in the frame to be reconstructed. </td></tr>
+    <tr><td class="paramname">currentFrame</td><td>The video frame to be decoded and reconstructed. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Mat Decoded video frame. </dd></dl>
 
 </div>
 </div>

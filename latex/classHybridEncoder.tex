@@ -2,7 +2,7 @@
 \label{classHybridEncoder}\index{HybridEncoder@{HybridEncoder}}
 
 
-Class for implementing hybrid video coding.  
+Encodes video using hybrid coding techniques.  
 
 
 
@@ -13,15 +13,18 @@ Class for implementing hybrid video coding.
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classHybridEncoder_af8efd2b8a14dfe41d2c9b210f689a9ff}{Hybrid\+Encoder}} (string input\+File, int periodicity=20, int search\+Area=4, int shift=0)
-\begin{DoxyCompactList}\small\item\em Constructs a Hybrid\+Coding object. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Constructor for \mbox{\hyperlink{classHybridEncoder}{Hybrid\+Encoder}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHybridEncoder_aa8b5e8203b876bd4845dbc81c16c702b}\label{classHybridEncoder_aa8b5e8203b876bd4845dbc81c16c702b}} 
+\mbox{\hyperlink{classHybridEncoder_aa8b5e8203b876bd4845dbc81c16c702b}{$\sim$\+Hybrid\+Encoder}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for \mbox{\hyperlink{classHybridEncoder}{Hybrid\+Encoder}}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classHybridEncoder_a9a0d371ff0c3c7120eee5fd8e0c11b2d}{encode}} (string output\+File)
-\begin{DoxyCompactList}\small\item\em Encodes a video frame using hybrid coding. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Encodes a video using hybrid coding. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Class for implementing hybrid video coding. 
+Encodes video using hybrid coding techniques. 
 
-The \mbox{\hyperlink{classHybridEncoder}{Hybrid\+Encoder}} class is designed to encode video using a combination of motion-\/compensated predictive coding and transform coding techniques. It supports efficient encoding of video frames by considering spatial and temporal redundancies. 
+The \mbox{\hyperlink{classHybridEncoder}{Hybrid\+Encoder}} class is designed to encode video using a combination of motion-\/compensated predictive coding (inter-\/coding) and transform coding (intra-\/coding). It supports efficient encoding by exploiting both spatial and temporal redundancies. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classHybridEncoder_af8efd2b8a14dfe41d2c9b210f689a9ff}\label{classHybridEncoder_af8efd2b8a14dfe41d2c9b210f689a9ff}} 
@@ -32,21 +35,19 @@ The \mbox{\hyperlink{classHybridEncoder}{Hybrid\+Encoder}} class is designed to 
 
 
 
-Constructs a Hybrid\+Coding object. 
+Constructor for \mbox{\hyperlink{classHybridEncoder}{Hybrid\+Encoder}}. 
 
-Initialises the hybrid coding system with parameters for video encoding and decoding.
+Initializes the hybrid encoder with the necessary parameters for video encoding.
 
 
 \begin{DoxyParams}{Parameters}
-{\em bit\+Stream} & Pointer to the \mbox{\hyperlink{classBitStream}{Bit\+Stream}} object for reading or writing encoded data. \\
+{\em input\+File} & The path to the input video file. \\
 \hline
-{\em block\+Size} & Size of the block for motion estimation and compensation. \\
+{\em periodicity} & The frequency of I-\/frames in the video sequence. \\
 \hline
-{\em search\+Area} & Area around the block where motion is estimated. \\
+{\em search\+Area} & The size of the area around the block where motion is estimated. \\
 \hline
-{\em periodicity} & Interval intra and inter encoding. \\
-\hline
-{\em m} & Parameter for the Golomb code. \\
+{\em shift} & The shift value used for transform coding. \\
 \hline
 \end{DoxyParams}
 
@@ -60,17 +61,13 @@ Initialises the hybrid coding system with parameters for video encoding and deco
 
 
 
-Encodes a video frame using hybrid coding. 
+Encodes a video using hybrid coding. 
 
-Encodes the current frame by comparing it with a reference frame and storing the differences, periodically alternating between intra and inter coding.
+Encodes video by comparing each frame with a reference frame and storing the differences. It alternates between intra and inter coding, depending on the frame position and periodicity.
 
 
 \begin{DoxyParams}{Parameters}
-{\em reference\+Frame} & The reference frame for motion estimation. \\
-\hline
-{\em current\+Frame} & The current frame to be encoded. \\
-\hline
-{\em frame\+Num} & The number of the current frame in the sequence. \\
+{\em output\+File} & The path to the output file where the encoded data will be saved. \\
 \hline
 \end{DoxyParams}
 

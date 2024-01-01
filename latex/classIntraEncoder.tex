@@ -2,7 +2,7 @@
 \label{classIntraEncoder}\index{IntraEncoder@{IntraEncoder}}
 
 
-Class for implementing intra encoding.  
+Class for implementing intra-\/frame encoding.  
 
 
 
@@ -18,13 +18,13 @@ Class for implementing intra encoding.
 \mbox{\hyperlink{classIntraEncoder_a23bbfa750a99b76ee45eace988af7484}{$\sim$\+Intra\+Encoder}} ()
 \begin{DoxyCompactList}\small\item\em Destructor for the \mbox{\hyperlink{classIntraEncoder}{Intra\+Encoder}} class. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classIntraEncoder_af7a074fd764022b416d58692f6271262}{encode}} (Mat \&current\+Frame)
-\begin{DoxyCompactList}\small\item\em Encodes a frame using intra encoding and stores the result. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Encodes a video frame using intra-\/frame encoding. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Class for implementing intra encoding. 
+Class for implementing intra-\/frame encoding. 
 
-This class uses transform coding techniques to efficiently encode video frames. It supports efficient encoding of video frames by considering spatial redundancies. It also uses Golomb codes for entropy coding. 
+Encodes video frames individually using transform coding techniques, exploiting spatial redundancies within a frame and employing Golomb coding for entropy encoding. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classIntraEncoder_a97268602d5adc5660759c67dcd4cdf21}\label{classIntraEncoder_a97268602d5adc5660759c67dcd4cdf21}} 
@@ -55,17 +55,11 @@ Constructor for the \mbox{\hyperlink{classIntraEncoder}{Intra\+Encoder}} class.
 
 
 
-Encodes a frame using intra encoding and stores the result. 
-
-This method applies intra encoding to a video frame and stores the results in a bit stream. It utilizes the parameter m for the intra encoding process.
+Encodes a video frame using intra-\/frame encoding. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em frame} & Video frame to be encoded. \\
-\hline
-{\em m} & Parameter for the Golomb enocde. \\
-\hline
-{\em bs} & Pointer to the bit stream where the encoded data will be stored. \\
+{\em current\+Frame} & The video frame to be encoded. \\
 \hline
 \end{DoxyParams}
 

@@ -81,43 +81,43 @@ $(function() {
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">using namespace </span>cv;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">using namespace </span>std;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classHybridEncoder.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="classHybridEncoder.html">HybridEncoder</a> {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    VideoCapture video; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">int</span> format; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">int</span> videoWidth; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">int</span> videoHeight; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">int</span> frameNumber; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">int</span> periodicity; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">int</span> blockSize; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">int</span> searchArea; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">int</span> shift; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="classHybridEncoder.html">HybridEncoder</a>(<span class="keywordtype">string</span> inputFile, <span class="keywordtype">int</span> periodicity = 20, <span class="keywordtype">int</span> searchArea = 4, <span class="keywordtype">int</span> shift = 0);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    ~<a class="code" href="classHybridEncoder.html">HybridEncoder</a>();</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classHybridEncoder.html">   21</a></span>&#160;<span class="keyword">class </span><a class="code" href="classHybridEncoder.html">HybridEncoder</a> {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    VideoCapture video; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">int</span> format; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">int</span> videoWidth; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">int</span> videoHeight; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">int</span> frameNumber; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">int</span> periodicity; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">int</span> blockSize; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">int</span> searchArea; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">int</span> shift; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="classHybridEncoder.html">HybridEncoder</a>(<span class="keywordtype">string</span> inputFile, <span class="keywordtype">int</span> periodicity = 20, <span class="keywordtype">int</span> searchArea = 4, <span class="keywordtype">int</span> shift = 0);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    ~<a class="code" href="classHybridEncoder.html">HybridEncoder</a>();</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> encode(<span class="keywordtype">string</span> outputFile);</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;};</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="classHybridDecoder.html">   71</a></span>&#160;<span class="keyword">class </span><a class="code" href="classHybridDecoder.html">HybridDecoder</a> {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">string</span> inputFile; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <a class="code" href="classHybridDecoder.html">HybridDecoder</a>(<span class="keywordtype">string</span> inputFile);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    ~<a class="code" href="classHybridDecoder.html">HybridDecoder</a>();</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordtype">void</span> decode(<span class="keywordtype">string</span> outputFile);</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;};</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">// _HYBRID_CODING_H</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="classHybridDecoder.html">   70</a></span>&#160;<span class="keyword">class </span><a class="code" href="classHybridDecoder.html">HybridDecoder</a> {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">string</span> inputFile; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="classHybridDecoder.html">HybridDecoder</a>(<span class="keywordtype">string</span> inputFile);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    ~<a class="code" href="classHybridDecoder.html">HybridDecoder</a>();</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">void</span> decode(<span class="keywordtype">string</span> outputFile);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;};</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">// _HYBRID_CODING_H</span></div>
 <div class="ttc" id="aConverter_8hpp_html"><div class="ttname"><a href="Converter_8hpp.html">Converter.hpp</a></div><div class="ttdoc">Class used to convert frames between RGB, YUV444, YUV422, and YUV420 formats.</div></div>
 <div class="ttc" id="aGolomb_8hpp_html"><div class="ttname"><a href="Golomb_8hpp.html">Golomb.hpp</a></div><div class="ttdoc">Header file for the GolombEncoder class.</div></div>
-<div class="ttc" id="aclassHybridDecoder_html"><div class="ttname"><a href="classHybridDecoder.html">HybridDecoder</a></div><div class="ttdoc">Class for implementing hybrid video decoding.</div><div class="ttdef"><b>Definition:</b> HybridCoding.hpp:71</div></div>
-<div class="ttc" id="aclassHybridEncoder_html"><div class="ttname"><a href="classHybridEncoder.html">HybridEncoder</a></div><div class="ttdoc">Class for implementing hybrid video coding.</div><div class="ttdef"><b>Definition:</b> HybridCoding.hpp:22</div></div>
+<div class="ttc" id="aclassHybridDecoder_html"><div class="ttname"><a href="classHybridDecoder.html">HybridDecoder</a></div><div class="ttdoc">Decodes video that was encoded using hybrid coding techniques.</div><div class="ttdef"><b>Definition:</b> HybridCoding.hpp:70</div></div>
+<div class="ttc" id="aclassHybridEncoder_html"><div class="ttname"><a href="classHybridEncoder.html">HybridEncoder</a></div><div class="ttdoc">Encodes video using hybrid coding techniques.</div><div class="ttdef"><b>Definition:</b> HybridCoding.hpp:21</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

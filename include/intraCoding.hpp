@@ -10,11 +10,11 @@ using namespace std;
 
 /**
  * @class IntraEncoder
- * @brief Class for implementing intra encoding.
+ * @brief Class for implementing intra-frame encoding.
  *
- * This class uses transform coding techniques to efficiently encode video frames.
- * It supports efficient encoding of video frames by considering spatial redundancies.
- * It also uses Golomb codes for entropy coding.
+ * Encodes video frames individually using transform coding techniques, 
+ * exploiting spatial redundancies within a frame and employing Golomb coding 
+ * for entropy encoding.
  */
 class IntraEncoder {
 private:
@@ -22,76 +22,57 @@ private:
     GolombEncoder &golombEncoder; ///< Reference to a GolombEncoder object for entropy coding.
 
 public:
-    /** @fn IntraEncoder
-     *  @brief Constructor for the IntraEncoder class.
-     *
-     *  @param golombEncoder Reference to a GolombEncoder object for entropy coding.
-     *  @param shift Shift value used for transform coding (default is 0).
-     */
+  /**
+    * @brief Constructor for the IntraEncoder class.
+    * @param golombEncoder Reference to a GolombEncoder object for entropy coding.
+    * @param shift Shift value used for transform coding (default is 0).
+    */
   IntraEncoder(GolombEncoder &golombEncoder, int shift = 0);
   
-    /** @fn ~IntraEncoder
-     *  @brief Destructor for the IntraEncoder class.
-     */
+  /**
+   * @brief Destructor for the IntraEncoder class.
+   */
   ~IntraEncoder();
 
   /**
-   * @brief Encodes a frame using intra encoding and stores the result.
-   * 
-   * This method applies intra encoding to a video frame and stores
-   * the results in a bit stream. It utilizes the parameter m for
-   * the intra encoding process.
-   * 
-   * @param frame Video frame to be encoded.
-   * @param m Parameter for the Golomb enocde.
-   * @param bs Pointer to the bit stream where the encoded data will be stored.
+   * @brief Encodes a video frame using intra-frame encoding.
+   * @param currentFrame The video frame to be encoded.
    */
   void encode(Mat &currentFrame);
 };
 
 /**
  * @class IntraDecoder
- * @brief Class for implementing intra decoding.
+ * @brief Class for implementing intra-frame decoding.
  *
- * This class uses transform coding techniques to efficiently decode video frames.
- * It supports efficient decoding of video frames by considering spatial redundancies.
- * It also uses Golomb codes for entropy coding.
+ * Decodes video frames from their encoded state using transform coding techniques,
+ * reconstructing the original frame by exploiting spatial redundancies and using 
+ * Golomb coding for entropy decoding.
  */
 class IntraDecoder {
 private:
     int shift; ///< Shift value used for transform coding.
-    GolombDecoder &golombDecoder; ///< Reference to a GolombDecoder object for entropy coding.
+    GolombDecoder &golombDecoder; ///< Reference to a GolombDecoder object for entropy decoding.
 
 public:
 
-    /** @fn IntraDecoder
-     *  @brief Constructor for the IntraDecoder class.
-     *
-     *  @param golombDecoder Reference to a GolombDecoder object for entropy coding.
-     *  @param shift Shift value used for transform coding (default is 0).
+    /**
+     * @brief Constructor for the IntraDecoder class.
+     * @param golombDecoder Reference to a GolombDecoder object for entropy decoding.
+     * @param shift Shift value used for transform coding (default is 0).
      */
   IntraDecoder(GolombDecoder &golombDecoder, int shift = 0);
   
 
-    /** @fn ~IntraDecoder
-     *  @brief Destructor for the IntraDecoder class.
+    /**
+     * @brief Destructor for the IntraDecoder class.
      */
   ~IntraDecoder();
 
     /**
-   * @brief Decodes a bit stream and reconstructs the video frame.
-   *
-   * This method reads an encoded bit stream and reconstructs the video frame
-   * using intra decoding. The parameter m is used for the intra
-   * decoding process. The dimensions of the video frame (rows and cols) need
-   * to be specified for accurate reconstruction.
-   * 
-   * @param bs Pointer to the encoded bit stream.
-   * @param m Parameter for the Golomb decode.
-   * @param rows Number of rows in the frame to be reconstructed.
-   * @param cols Number of columns in the frame to be reconstructed.
-   * @return Mat Decoded video frame.
-   */
+     * @brief Decodes an encoded video frame using intra-frame decoding.
+     * @param currentFrame The video frame to be decoded and reconstructed.
+     */
   void decode(Mat &currentFrame);
 };
 

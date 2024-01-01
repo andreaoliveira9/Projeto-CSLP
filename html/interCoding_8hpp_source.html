@@ -79,51 +79,51 @@ $(function() {
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">using namespace </span>cv;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">using namespace </span>std;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classInterEncoder.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="classInterEncoder.html">InterEncoder</a></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">int</span> blockSize; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">int</span> searchArea; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">int</span> shift; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="classGolombEncoder.html">GolombEncoder</a> &amp;<a class="code" href="classGolombEncoder.html">GolombEncoder</a>; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="classInterEncoder.html">InterEncoder</a>(<span class="keyword">class</span> <a class="code" href="classGolombEncoder.html">GolombEncoder</a> &amp;<a class="code" href="classGolombEncoder.html">GolombEncoder</a>, <span class="keywordtype">int</span> blockSize, <span class="keywordtype">int</span> searchArea, <span class="keywordtype">int</span> shift = 0);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    ~<a class="code" href="classInterEncoder.html">InterEncoder</a>();</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">int</span> getBlockSize() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classInterEncoder.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="classInterEncoder.html">InterEncoder</a></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">int</span> blockSize; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">int</span> searchArea; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">int</span> shift; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="classGolombEncoder.html">GolombEncoder</a> &amp;golombEncoder; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="classInterEncoder.html">InterEncoder</a>(<span class="keyword">class</span> <a class="code" href="classGolombEncoder.html">GolombEncoder</a> &amp;<a class="code" href="classGolombEncoder.html">GolombEncoder</a>, <span class="keywordtype">int</span> blockSize, <span class="keywordtype">int</span> searchArea, <span class="keywordtype">int</span> shift = 0);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    ~<a class="code" href="classInterEncoder.html">InterEncoder</a>();</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">int</span> getBlockSize() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">int</span> getSearchArea() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">void</span> setBlockSize(<span class="keywordtype">int</span> blockSize);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">void</span> encode(Mat &amp;previousFrame, Mat &amp;currentFrame);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;};</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="classInterDecoder.html">   78</a></span>&#160;<span class="keyword">class </span><a class="code" href="classInterDecoder.html">InterDecoder</a></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">int</span> blockSize; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">int</span> searchArea; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">int</span> shift; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <a class="code" href="classGolombDecoder.html">GolombDecoder</a> &amp;<a class="code" href="classGolombDecoder.html">GolombDecoder</a>; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="classInterDecoder.html">InterDecoder</a>(<span class="keyword">class</span> <a class="code" href="classGolombDecoder.html">GolombDecoder</a> &amp;<a class="code" href="classGolombDecoder.html">GolombDecoder</a>, <span class="keywordtype">int</span> blockSize, <span class="keywordtype">int</span> searchArea, <span class="keywordtype">int</span> shift = 0);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">void</span> setBlockSize(<span class="keywordtype">int</span> blockSize);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">void</span> encode(Mat &amp;previousFrame, Mat &amp;currentFrame);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;};</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="classInterDecoder.html">   76</a></span>&#160;<span class="keyword">class </span><a class="code" href="classInterDecoder.html">InterDecoder</a></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;{</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">int</span> blockSize; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">int</span> searchArea; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">int</span> shift; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="classGolombDecoder.html">GolombDecoder</a> &amp;golombDecoder; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="classInterDecoder.html">InterDecoder</a>(<span class="keyword">class</span> <a class="code" href="classGolombDecoder.html">GolombDecoder</a> &amp;<a class="code" href="classGolombDecoder.html">GolombDecoder</a>, <span class="keywordtype">int</span> blockSize, <span class="keywordtype">int</span> searchArea, <span class="keywordtype">int</span> shift = 0);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    </div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    ~<a class="code" href="classInterDecoder.html">InterDecoder</a>();</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    </div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordtype">void</span> decode(Mat &amp;previousFrame, Mat &amp;currentFrame);</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;};</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordtype">void</span> decode(Mat &amp;previousFrame, Mat &amp;currentFrame);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;};</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aGolomb_8hpp_html"><div class="ttname"><a href="Golomb_8hpp.html">Golomb.hpp</a></div><div class="ttdoc">Header file for the GolombEncoder class.</div></div>
 <div class="ttc" id="aclassGolombDecoder_html"><div class="ttname"><a href="classGolombDecoder.html">GolombDecoder</a></div><div class="ttdoc">Class used to decode numbers from a file based on Golomb codes.</div><div class="ttdef"><b>Definition:</b> Golomb.hpp:82</div></div>
 <div class="ttc" id="aclassGolombEncoder_html"><div class="ttname"><a href="classGolombEncoder.html">GolombEncoder</a></div><div class="ttdoc">Class used to encode numbers to a file using Golomb codes.</div><div class="ttdef"><b>Definition:</b> Golomb.hpp:23</div></div>
-<div class="ttc" id="aclassInterDecoder_html"><div class="ttname"><a href="classInterDecoder.html">InterDecoder</a></div><div class="ttdoc">Class for implementing inter-frame decoding.</div><div class="ttdef"><b>Definition:</b> interCoding.hpp:79</div></div>
-<div class="ttc" id="aclassInterEncoder_html"><div class="ttname"><a href="classInterEncoder.html">InterEncoder</a></div><div class="ttdoc">Class for implementing inter-frame coding.</div><div class="ttdef"><b>Definition:</b> interCoding.hpp:17</div></div>
+<div class="ttc" id="aclassInterDecoder_html"><div class="ttname"><a href="classInterDecoder.html">InterDecoder</a></div><div class="ttdoc">Class for implementing inter-frame decoding.</div><div class="ttdef"><b>Definition:</b> interCoding.hpp:77</div></div>
+<div class="ttc" id="aclassInterEncoder_html"><div class="ttname"><a href="classInterEncoder.html">InterEncoder</a></div><div class="ttdoc">Class for implementing inter-frame encoding.</div><div class="ttdef"><b>Definition:</b> interCoding.hpp:19</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

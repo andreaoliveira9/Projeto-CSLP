@@ -13,15 +13,18 @@ Class for implementing inter-\/frame decoding.
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classInterDecoder_aa8673dc565f27b80ae79573615c3825d}{Inter\+Decoder}} (class \mbox{\hyperlink{classGolombDecoder}{Golomb\+Decoder}} \&\mbox{\hyperlink{classGolombDecoder}{Golomb\+Decoder}}, int block\+Size, int search\+Area, int shift=0)
-\begin{DoxyCompactList}\small\item\em Construct a new Inter Decoder object. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{classInterDecoder}{Inter\+Decoder}} class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classInterDecoder_a2836be66c95bd48902151b4bdb513bc6}\label{classInterDecoder_a2836be66c95bd48902151b4bdb513bc6}} 
+\mbox{\hyperlink{classInterDecoder_a2836be66c95bd48902151b4bdb513bc6}{$\sim$\+Inter\+Decoder}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \mbox{\hyperlink{classInterDecoder}{Inter\+Decoder}} class. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classInterDecoder_abad028f9978c733a5090a8ed607ed862}{decode}} (Mat \&previous\+Frame, Mat \&current\+Frame)
-\begin{DoxyCompactList}\small\item\em Decode a frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Decode a frame using inter-\/frame decoding. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Class for implementing inter-\/frame decoding. 
 
-This class uses motion compensation techniques to efficiently decode video frames. 
+Utilizes motion compensation techniques to efficiently decode video frames by reconstructing frame content based on previous frames, thereby reducing temporal redundancy. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classInterDecoder_aa8673dc565f27b80ae79573615c3825d}\label{classInterDecoder_aa8673dc565f27b80ae79573615c3825d}} 
@@ -32,17 +35,17 @@ This class uses motion compensation techniques to efficiently decode video frame
 
 
 
-Construct a new Inter Decoder object. 
+Constructor for the \mbox{\hyperlink{classInterDecoder}{Inter\+Decoder}} class. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em golomb} & Golomb decoder for decoding \\
+{\em golomb\+Decoder} & Reference to a \mbox{\hyperlink{classGolombDecoder}{Golomb\+Decoder}} object for entropy decoding. \\
 \hline
-{\em block\+\_\+size} & Size of the blocks for decoding \\
+{\em block\+Size} & Size of the blocks used for motion compensation. \\
 \hline
-{\em block\+\_\+range} & Range of the blocks for decoding \\
+{\em search\+Area} & Size of the search area for motion compensation. \\
 \hline
-{\em shift} & Shift for decoding \\
+{\em shift} & Shift value used for transform coding (default is 0). \\
 \hline
 \end{DoxyParams}
 
@@ -56,18 +59,15 @@ Construct a new Inter Decoder object.
 
 
 
-Decode a frame. 
+Decode a frame using inter-\/frame decoding. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em previous\+Frame} & Previous frame \\
+{\em previous\+Frame} & The reference video frame from which the current frame will be predicted. \\
 \hline
-{\em current\+Frame} & Current frame \\
+{\em current\+Frame} & The current video frame to be decoded and reconstructed. \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-Result of the decoding 
-\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

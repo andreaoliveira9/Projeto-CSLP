@@ -69,7 +69,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Class for implementing intra encoding.  
+<p>Class for implementing intra-frame encoding.  
  <a href="classIntraEncoder.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="intraCoding_8hpp_source.html">intraCoding.hpp</a>&gt;</code></p>
@@ -77,19 +77,19 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a97268602d5adc5660759c67dcd4cdf21"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIntraEncoder.html#a97268602d5adc5660759c67dcd4cdf21">IntraEncoder</a> (<a class="el" href="classGolombEncoder.html">GolombEncoder</a> &amp;golombEncoder, int shift=0)</td></tr>
-<tr class="memdesc:a97268602d5adc5660759c67dcd4cdf21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <a class="el" href="classIntraEncoder.html" title="Class for implementing intra encoding.">IntraEncoder</a> class.  <a href="classIntraEncoder.html#a97268602d5adc5660759c67dcd4cdf21">More...</a><br /></td></tr>
+<tr class="memdesc:a97268602d5adc5660759c67dcd4cdf21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <a class="el" href="classIntraEncoder.html" title="Class for implementing intra-frame encoding.">IntraEncoder</a> class.  <a href="classIntraEncoder.html#a97268602d5adc5660759c67dcd4cdf21">More...</a><br /></td></tr>
 <tr class="separator:a97268602d5adc5660759c67dcd4cdf21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23bbfa750a99b76ee45eace988af7484"><td class="memItemLeft" align="right" valign="top"><a id="a23bbfa750a99b76ee45eace988af7484"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIntraEncoder.html#a23bbfa750a99b76ee45eace988af7484">~IntraEncoder</a> ()</td></tr>
-<tr class="memdesc:a23bbfa750a99b76ee45eace988af7484"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for the <a class="el" href="classIntraEncoder.html" title="Class for implementing intra encoding.">IntraEncoder</a> class. <br /></td></tr>
+<tr class="memdesc:a23bbfa750a99b76ee45eace988af7484"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for the <a class="el" href="classIntraEncoder.html" title="Class for implementing intra-frame encoding.">IntraEncoder</a> class. <br /></td></tr>
 <tr class="separator:a23bbfa750a99b76ee45eace988af7484"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7a074fd764022b416d58692f6271262"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIntraEncoder.html#af7a074fd764022b416d58692f6271262">encode</a> (Mat &amp;currentFrame)</td></tr>
-<tr class="memdesc:af7a074fd764022b416d58692f6271262"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes a frame using intra encoding and stores the result.  <a href="classIntraEncoder.html#af7a074fd764022b416d58692f6271262">More...</a><br /></td></tr>
+<tr class="memdesc:af7a074fd764022b416d58692f6271262"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encodes a video frame using intra-frame encoding.  <a href="classIntraEncoder.html#af7a074fd764022b416d58692f6271262">More...</a><br /></td></tr>
 <tr class="separator:af7a074fd764022b416d58692f6271262"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Class for implementing intra encoding. </p>
-<p>This class uses transform coding techniques to efficiently encode video frames. It supports efficient encoding of video frames by considering spatial redundancies. It also uses Golomb codes for entropy coding. </p>
+<div class="textblock"><p>Class for implementing intra-frame encoding. </p>
+<p>Encodes video frames individually using transform coding techniques, exploiting spatial redundancies within a frame and employing Golomb coding for entropy encoding. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a97268602d5adc5660759c67dcd4cdf21"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a97268602d5adc5660759c67dcd4cdf21">&#9670;&nbsp;</a></span>IntraEncoder()</h2>
@@ -117,7 +117,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructor for the <a class="el" href="classIntraEncoder.html" title="Class for implementing intra encoding.">IntraEncoder</a> class. </p>
+<p>Constructor for the <a class="el" href="classIntraEncoder.html" title="Class for implementing intra-frame encoding.">IntraEncoder</a> class. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">golombEncoder</td><td>Reference to a <a class="el" href="classGolombEncoder.html" title="Class used to encode numbers to a file using Golomb codes.">GolombEncoder</a> object for entropy coding. </td></tr>
@@ -145,13 +145,10 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Encodes a frame using intra encoding and stores the result. </p>
-<p>This method applies intra encoding to a video frame and stores the results in a bit stream. It utilizes the parameter m for the intra encoding process.</p>
+<p>Encodes a video frame using intra-frame encoding. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">frame</td><td>Video frame to be encoded. </td></tr>
-    <tr><td class="paramname">m</td><td>Parameter for the Golomb enocde. </td></tr>
-    <tr><td class="paramname">bs</td><td>Pointer to the bit stream where the encoded data will be stored. </td></tr>
+    <tr><td class="paramname">currentFrame</td><td>The video frame to be encoded. </td></tr>
   </table>
   </dd>
 </dl>

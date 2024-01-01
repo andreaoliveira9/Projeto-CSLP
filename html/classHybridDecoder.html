@@ -69,7 +69,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Class for implementing hybrid video decoding.  
+<p>Decodes video that was encoded using hybrid coding techniques.  
  <a href="classHybridDecoder.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="HybridCoding_8hpp_source.html">HybridCoding.hpp</a>&gt;</code></p>
@@ -77,15 +77,19 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aaae189e3626fd7f3b1cd53ac50c7cfa5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHybridDecoder.html#aaae189e3626fd7f3b1cd53ac50c7cfa5">HybridDecoder</a> (string inputFile)</td></tr>
-<tr class="memdesc:aaae189e3626fd7f3b1cd53ac50c7cfa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a HybridCoding object.  <a href="classHybridDecoder.html#aaae189e3626fd7f3b1cd53ac50c7cfa5">More...</a><br /></td></tr>
+<tr class="memdesc:aaae189e3626fd7f3b1cd53ac50c7cfa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="classHybridDecoder.html" title="Decodes video that was encoded using hybrid coding techniques.">HybridDecoder</a>.  <a href="classHybridDecoder.html#aaae189e3626fd7f3b1cd53ac50c7cfa5">More...</a><br /></td></tr>
 <tr class="separator:aaae189e3626fd7f3b1cd53ac50c7cfa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c31e5c9e952d05732b2afbe0900cc55"><td class="memItemLeft" align="right" valign="top"><a id="a8c31e5c9e952d05732b2afbe0900cc55"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHybridDecoder.html#a8c31e5c9e952d05732b2afbe0900cc55">~HybridDecoder</a> ()</td></tr>
+<tr class="memdesc:a8c31e5c9e952d05732b2afbe0900cc55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for <a class="el" href="classHybridDecoder.html" title="Decodes video that was encoded using hybrid coding techniques.">HybridDecoder</a>. <br /></td></tr>
+<tr class="separator:a8c31e5c9e952d05732b2afbe0900cc55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68214c1bec741b9260026efea39fc9d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHybridDecoder.html#a68214c1bec741b9260026efea39fc9d2">decode</a> (string outputFile)</td></tr>
-<tr class="memdesc:a68214c1bec741b9260026efea39fc9d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decodes an encoded frame.  <a href="classHybridDecoder.html#a68214c1bec741b9260026efea39fc9d2">More...</a><br /></td></tr>
+<tr class="memdesc:a68214c1bec741b9260026efea39fc9d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decodes an encoded video.  <a href="classHybridDecoder.html#a68214c1bec741b9260026efea39fc9d2">More...</a><br /></td></tr>
 <tr class="separator:a68214c1bec741b9260026efea39fc9d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Class for implementing hybrid video decoding. </p>
-<p>The <a class="el" href="classHybridDecoder.html" title="Class for implementing hybrid video decoding.">HybridDecoder</a> class handles the decoding of video that was encoded using the <a class="el" href="classHybridEncoder.html" title="Class for implementing hybrid video coding.">HybridEncoder</a> class. It uses motion-compensated predictive coding and transform coding to reconstruct video frames from encoded data. </p>
+<div class="textblock"><p>Decodes video that was encoded using hybrid coding techniques. </p>
+<p>The <a class="el" href="classHybridDecoder.html" title="Decodes video that was encoded using hybrid coding techniques.">HybridDecoder</a> class is responsible for decoding video that was encoded by the <a class="el" href="classHybridEncoder.html" title="Encodes video using hybrid coding techniques.">HybridEncoder</a> class. It uses motion-compensated predictive coding and transform coding to reconstruct the original video frames. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aaae189e3626fd7f3b1cd53ac50c7cfa5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaae189e3626fd7f3b1cd53ac50c7cfa5">&#9670;&nbsp;</a></span>HybridDecoder()</h2>
@@ -103,15 +107,11 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructs a HybridCoding object. </p>
-<p>Initialises the hybrid coding system with parameters for video encoding and decoding.</p>
+<p>Constructor for <a class="el" href="classHybridDecoder.html" title="Decodes video that was encoded using hybrid coding techniques.">HybridDecoder</a>. </p>
+<p>Initializes the hybrid decoder with the necessary parameters for video decoding.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">bitStream</td><td>Pointer to the <a class="el" href="classBitStream.html" title="Class that performs operations with bits.">BitStream</a> object for reading or writing encoded data. </td></tr>
-    <tr><td class="paramname">blockSize</td><td>Size of the block for motion estimation and compensation. </td></tr>
-    <tr><td class="paramname">searchArea</td><td>Area around the block where motion is estimated. </td></tr>
-    <tr><td class="paramname">periodicity</td><td>Interval intra and inter encoding. </td></tr>
-    <tr><td class="paramname">m</td><td>Parameter for the Golomb code. </td></tr>
+    <tr><td class="paramname">inputFile</td><td>The path to the encoded input video file. </td></tr>
   </table>
   </dd>
 </dl>
@@ -135,17 +135,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Decodes an encoded frame. </p>
-<p>Reconstructs a video frame from the encoded data using the previous frame as a reference, alternately employing inter and intra coding based on the initial bit.</p>
+<p>Decodes an encoded video. </p>
+<p>Reconstructs the video frames from the encoded data, using the previous frame as a reference. It alternates between inter and intra coding methods during the decoding process.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">previousFrame</td><td>The previous frame used for reference in decoding. </td></tr>
-    <tr><td class="paramname">frameHeight</td><td>Height of the frame to be decoded. </td></tr>
-    <tr><td class="paramname">frameWidth</td><td>Width of the frame to be decoded. </td></tr>
+    <tr><td class="paramname">outputFile</td><td>The path to the output file where the decoded video will be saved. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Mat The decoded video frame. </dd></dl>
 
 </div>
 </div>

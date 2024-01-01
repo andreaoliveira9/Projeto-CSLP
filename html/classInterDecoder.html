@@ -77,15 +77,19 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aa8673dc565f27b80ae79573615c3825d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInterDecoder.html#aa8673dc565f27b80ae79573615c3825d">InterDecoder</a> (class <a class="el" href="classGolombDecoder.html">GolombDecoder</a> &amp;<a class="el" href="classGolombDecoder.html">GolombDecoder</a>, int blockSize, int searchArea, int shift=0)</td></tr>
-<tr class="memdesc:aa8673dc565f27b80ae79573615c3825d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new Inter Decoder object.  <a href="classInterDecoder.html#aa8673dc565f27b80ae79573615c3825d">More...</a><br /></td></tr>
+<tr class="memdesc:aa8673dc565f27b80ae79573615c3825d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <a class="el" href="classInterDecoder.html" title="Class for implementing inter-frame decoding.">InterDecoder</a> class.  <a href="classInterDecoder.html#aa8673dc565f27b80ae79573615c3825d">More...</a><br /></td></tr>
 <tr class="separator:aa8673dc565f27b80ae79573615c3825d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2836be66c95bd48902151b4bdb513bc6"><td class="memItemLeft" align="right" valign="top"><a id="a2836be66c95bd48902151b4bdb513bc6"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInterDecoder.html#a2836be66c95bd48902151b4bdb513bc6">~InterDecoder</a> ()</td></tr>
+<tr class="memdesc:a2836be66c95bd48902151b4bdb513bc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for the <a class="el" href="classInterDecoder.html" title="Class for implementing inter-frame decoding.">InterDecoder</a> class. <br /></td></tr>
+<tr class="separator:a2836be66c95bd48902151b4bdb513bc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abad028f9978c733a5090a8ed607ed862"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInterDecoder.html#abad028f9978c733a5090a8ed607ed862">decode</a> (Mat &amp;previousFrame, Mat &amp;currentFrame)</td></tr>
-<tr class="memdesc:abad028f9978c733a5090a8ed607ed862"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decode a frame.  <a href="classInterDecoder.html#abad028f9978c733a5090a8ed607ed862">More...</a><br /></td></tr>
+<tr class="memdesc:abad028f9978c733a5090a8ed607ed862"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decode a frame using inter-frame decoding.  <a href="classInterDecoder.html#abad028f9978c733a5090a8ed607ed862">More...</a><br /></td></tr>
 <tr class="separator:abad028f9978c733a5090a8ed607ed862"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for implementing inter-frame decoding. </p>
-<p>This class uses motion compensation techniques to efficiently decode video frames. </p>
+<p>Utilizes motion compensation techniques to efficiently decode video frames by reconstructing frame content based on previous frames, thereby reducing temporal redundancy. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aa8673dc565f27b80ae79573615c3825d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa8673dc565f27b80ae79573615c3825d">&#9670;&nbsp;</a></span>InterDecoder()</h2>
@@ -125,13 +129,13 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Construct a new Inter Decoder object. </p>
+<p>Constructor for the <a class="el" href="classInterDecoder.html" title="Class for implementing inter-frame decoding.">InterDecoder</a> class. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">golomb</td><td>Golomb decoder for decoding </td></tr>
-    <tr><td class="paramname">block_size</td><td>Size of the blocks for decoding </td></tr>
-    <tr><td class="paramname">block_range</td><td>Range of the blocks for decoding </td></tr>
-    <tr><td class="paramname">shift</td><td>Shift for decoding </td></tr>
+    <tr><td class="paramname">golombDecoder</td><td>Reference to a <a class="el" href="classGolombDecoder.html" title="Class used to decode numbers from a file based on Golomb codes.">GolombDecoder</a> object for entropy decoding. </td></tr>
+    <tr><td class="paramname">blockSize</td><td>Size of the blocks used for motion compensation. </td></tr>
+    <tr><td class="paramname">searchArea</td><td>Size of the search area for motion compensation. </td></tr>
+    <tr><td class="paramname">shift</td><td>Shift value used for transform coding (default is 0). </td></tr>
   </table>
   </dd>
 </dl>
@@ -165,15 +169,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Decode a frame. </p>
+<p>Decode a frame using inter-frame decoding. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">previousFrame</td><td>Previous frame </td></tr>
-    <tr><td class="paramname">currentFrame</td><td>Current frame </td></tr>
+    <tr><td class="paramname">previousFrame</td><td>The reference video frame from which the current frame will be predicted. </td></tr>
+    <tr><td class="paramname">currentFrame</td><td>The current video frame to be decoded and reconstructed. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Result of the decoding </dd></dl>
 
 </div>
 </div>

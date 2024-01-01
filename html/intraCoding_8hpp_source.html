@@ -85,34 +85,34 @@ $(function() {
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="classGolombEncoder.html">GolombEncoder</a> &amp;golombEncoder; </div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;  <a class="code" href="classIntraEncoder.html">IntraEncoder</a>(<a class="code" href="classGolombEncoder.html">GolombEncoder</a> &amp;golombEncoder, <span class="keywordtype">int</span> shift = 0);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  ~<a class="code" href="classIntraEncoder.html">IntraEncoder</a>();</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  <span class="keywordtype">void</span> encode(Mat &amp;currentFrame);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;};</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classIntraDecoder.html">   60</a></span>&#160;<span class="keyword">class </span><a class="code" href="classIntraDecoder.html">IntraDecoder</a> {</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">int</span> shift; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="classGolombDecoder.html">GolombDecoder</a> &amp;golombDecoder; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  <a class="code" href="classIntraEncoder.html">IntraEncoder</a>(<a class="code" href="classGolombEncoder.html">GolombEncoder</a> &amp;golombEncoder, <span class="keywordtype">int</span> shift = 0);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;  </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  ~<a class="code" href="classIntraEncoder.html">IntraEncoder</a>();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <span class="keywordtype">void</span> encode(Mat &amp;currentFrame);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;};</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classIntraDecoder.html">   52</a></span>&#160;<span class="keyword">class </span><a class="code" href="classIntraDecoder.html">IntraDecoder</a> {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">int</span> shift; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="classGolombDecoder.html">GolombDecoder</a> &amp;golombDecoder; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  <a class="code" href="classIntraDecoder.html">IntraDecoder</a>(<a class="code" href="classGolombDecoder.html">GolombDecoder</a> &amp;golombDecoder, <span class="keywordtype">int</span> shift = 0);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  </div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  <a class="code" href="classIntraDecoder.html">IntraDecoder</a>(<a class="code" href="classGolombDecoder.html">GolombDecoder</a> &amp;golombDecoder, <span class="keywordtype">int</span> shift = 0);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;  ~<a class="code" href="classIntraDecoder.html">IntraDecoder</a>();</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  <span class="keywordtype">void</span> decode(Mat &amp;currentFrame);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;};</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#endif </span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  ~<a class="code" href="classIntraDecoder.html">IntraDecoder</a>();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  <span class="keywordtype">void</span> decode(Mat &amp;currentFrame);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;};</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#endif </span></div>
 <div class="ttc" id="aGolomb_8hpp_html"><div class="ttname"><a href="Golomb_8hpp.html">Golomb.hpp</a></div><div class="ttdoc">Header file for the GolombEncoder class.</div></div>
 <div class="ttc" id="aclassGolombDecoder_html"><div class="ttname"><a href="classGolombDecoder.html">GolombDecoder</a></div><div class="ttdoc">Class used to decode numbers from a file based on Golomb codes.</div><div class="ttdef"><b>Definition:</b> Golomb.hpp:82</div></div>
 <div class="ttc" id="aclassGolombEncoder_html"><div class="ttname"><a href="classGolombEncoder.html">GolombEncoder</a></div><div class="ttdoc">Class used to encode numbers to a file using Golomb codes.</div><div class="ttdef"><b>Definition:</b> Golomb.hpp:23</div></div>
-<div class="ttc" id="aclassIntraDecoder_html"><div class="ttname"><a href="classIntraDecoder.html">IntraDecoder</a></div><div class="ttdoc">Class for implementing intra decoding.</div><div class="ttdef"><b>Definition:</b> intraCoding.hpp:60</div></div>
-<div class="ttc" id="aclassIntraEncoder_html"><div class="ttname"><a href="classIntraEncoder.html">IntraEncoder</a></div><div class="ttdoc">Class for implementing intra encoding.</div><div class="ttdef"><b>Definition:</b> intraCoding.hpp:19</div></div>
+<div class="ttc" id="aclassIntraDecoder_html"><div class="ttname"><a href="classIntraDecoder.html">IntraDecoder</a></div><div class="ttdoc">Class for implementing intra-frame decoding.</div><div class="ttdef"><b>Definition:</b> intraCoding.hpp:52</div></div>
+<div class="ttc" id="aclassIntraEncoder_html"><div class="ttname"><a href="classIntraEncoder.html">IntraEncoder</a></div><div class="ttdoc">Class for implementing intra-frame encoding.</div><div class="ttdef"><b>Definition:</b> intraCoding.hpp:19</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
