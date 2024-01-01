@@ -11,23 +11,25 @@ using namespace cv;
 using namespace std;
 
 /**
- * @class HybridCoding
- * @brief Class for implementing hybrid video coding and decoding.
- *
- * This class uses a combination of motion-compensated predictive coding 
- * and transform coding to efficiently encode and decode video frames.
+ * @class HybridEncoder
+ * @brief Class for implementing hybrid video coding.
+ * 
+ * The HybridEncoder class is designed to encode video using a combination of 
+ * motion-compensated predictive coding and transform coding techniques. It 
+ * supports efficient encoding of video frames by considering spatial and 
+ * temporal redundancies.
  */
 class HybridEncoder {
 private:
-    VideoCapture video;
-    int format;
-    int videoWidth;
-    int videoHeight;
-    int frameNumber;
-    int periodicity;
-    int blockSize;
-    int searchArea;
-    int shift;
+    VideoCapture video; ///< Object for capturing video from a file.
+    int format; ///< Format of the video file (e.g., CV_FOURCC('M','J','P','G') for MJPEG).
+    int videoWidth; ///< Width of the video frames.
+    int videoHeight; ///< Height of the video frames.
+    int frameNumber; ///< Current frame number being processed.
+    int periodicity; ///< Periodicity of I-frames in the video.
+    int blockSize; ///< Size of the blocks used for motion estimation.
+    int searchArea; ///< Size of the search area for motion estimation.
+    int shift; ///< Shift value used for transform coding.
 
 public:
     /**
@@ -59,15 +61,16 @@ public:
 };
 
 /**
- * @class HybridCoding
- * @brief Class for implementing hybrid video coding and decoding.
+ * @class HybridDecoder
+ * @brief Class for implementing hybrid video decoding.
  *
- * This class uses a combination of motion-compensated predictive coding 
- * and transform coding to efficiently encode and decode video frames.
+ * The HybridDecoder class handles the decoding of video that was encoded using
+ * the HybridEncoder class. It uses motion-compensated predictive coding and 
+ * transform coding to reconstruct video frames from encoded data.
  */
 class HybridDecoder {
 private:
-    string inputFile;
+    string inputFile; ///< Path to the input file.
 
 public:
     /**

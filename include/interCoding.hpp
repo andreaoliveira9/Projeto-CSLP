@@ -8,17 +8,33 @@
 using namespace cv;
 using namespace std;
 
+/** @class InterEncoder
+ *  @brief Class for implementing inter-frame coding.
+ *
+ *  This class uses motion estimation and compensation techniques to efficiently encode video frames.
+ */
 class InterEncoder
 {
 private:
-    int blockSize;
-    int searchArea;
-    int shift;
-    GolombEncoder &GolombEncoder; 
+    int blockSize; ///< Size of the blocks used for motion estimation.
+    int searchArea; ///< Size of the search area for motion estimation.
+    int shift; ///< Shift value used for transform coding.
+    GolombEncoder &GolombEncoder; ///< Reference to a GolombEncoder object for entropy coding.
 
 public:
+    /** @fn InterEncoder
+     *  @brief Constructor for the InterEncoder class.
+     *
+     *  @param GolombEncoder Reference to a GolombEncoder object for entropy coding.
+     *  @param blockSize Size of the blocks used for motion estimation.
+     *  @param searchArea Size of the search area for motion estimation.
+     *  @param shift Shift value used for transform coding (default is 0).
+     */
     InterEncoder(class GolombEncoder &GolombEncoder, int blockSize, int searchArea, int shift = 0);
 
+    /** @fn ~InterEncoder
+     *  @brief Destructor for the InterEncoder class.
+     */
     ~InterEncoder();
 
     /**
@@ -52,13 +68,20 @@ public:
     void encode(Mat &previousFrame, Mat &currentFrame);
 };
 
+
+/**
+ * @class InterDecoder
+ * @brief Class for implementing inter-frame decoding.
+ *
+ * This class uses motion compensation techniques to efficiently decode video frames.
+ */
 class InterDecoder
 {
 private:
-    int blockSize;       
-    int searchArea;       
-    int shift;             
-    GolombDecoder &GolombDecoder;
+    int blockSize; ///< Size of the blocks used for motion estimation.     
+    int searchArea; ///< Size of the search area for motion estimation.
+    int shift; ///< Shift value used for transform coding.             
+    GolombDecoder &GolombDecoder; ///< Reference to a GolombDecoder object for entropy decoding.
 
 public:
     /**

@@ -1,0 +1,76 @@
+\hypertarget{classIntraEncoder}{}\doxysection{Intra\+Encoder Class Reference}
+\label{classIntraEncoder}\index{IntraEncoder@{IntraEncoder}}
+
+
+Class for implementing intra encoding.  
+
+
+
+
+{\ttfamily \#include $<$intra\+Coding.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classIntraEncoder_a97268602d5adc5660759c67dcd4cdf21}{Intra\+Encoder}} (\mbox{\hyperlink{classGolombEncoder}{Golomb\+Encoder}} \&golomb\+Encoder, int shift=0)
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{classIntraEncoder}{Intra\+Encoder}} class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classIntraEncoder_a23bbfa750a99b76ee45eace988af7484}\label{classIntraEncoder_a23bbfa750a99b76ee45eace988af7484}} 
+\mbox{\hyperlink{classIntraEncoder_a23bbfa750a99b76ee45eace988af7484}{$\sim$\+Intra\+Encoder}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \mbox{\hyperlink{classIntraEncoder}{Intra\+Encoder}} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classIntraEncoder_af7a074fd764022b416d58692f6271262}{encode}} (Mat \&current\+Frame)
+\begin{DoxyCompactList}\small\item\em Encodes a frame using intra encoding and stores the result. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for implementing intra encoding. 
+
+This class uses transform coding techniques to efficiently encode video frames. It supports efficient encoding of video frames by considering spatial redundancies. It also uses Golomb codes for entropy coding. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classIntraEncoder_a97268602d5adc5660759c67dcd4cdf21}\label{classIntraEncoder_a97268602d5adc5660759c67dcd4cdf21}} 
+\index{IntraEncoder@{IntraEncoder}!IntraEncoder@{IntraEncoder}}
+\index{IntraEncoder@{IntraEncoder}!IntraEncoder@{IntraEncoder}}
+\doxysubsubsection{\texorpdfstring{IntraEncoder()}{IntraEncoder()}}
+{\footnotesize\ttfamily Intra\+Encoder\+::\+Intra\+Encoder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGolombEncoder}{Golomb\+Encoder}} \&}]{golomb\+Encoder,  }\item[{int}]{shift = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Constructor for the \mbox{\hyperlink{classIntraEncoder}{Intra\+Encoder}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em golomb\+Encoder} & Reference to a \mbox{\hyperlink{classGolombEncoder}{Golomb\+Encoder}} object for entropy coding. \\
+\hline
+{\em shift} & Shift value used for transform coding (default is 0). \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classIntraEncoder_af7a074fd764022b416d58692f6271262}\label{classIntraEncoder_af7a074fd764022b416d58692f6271262}} 
+\index{IntraEncoder@{IntraEncoder}!encode@{encode}}
+\index{encode@{encode}!IntraEncoder@{IntraEncoder}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily void Intra\+Encoder\+::encode (\begin{DoxyParamCaption}\item[{Mat \&}]{current\+Frame }\end{DoxyParamCaption})}
+
+
+
+Encodes a frame using intra encoding and stores the result. 
+
+This method applies intra encoding to a video frame and stores the results in a bit stream. It utilizes the parameter m for the intra encoding process.
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame} & Video frame to be encoded. \\
+\hline
+{\em m} & Parameter for the Golomb enocde. \\
+\hline
+{\em bs} & Pointer to the bit stream where the encoded data will be stored. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/intra\+Coding.\+hpp\item 
+src/intra\+Coding.\+cpp\end{DoxyCompactItemize}

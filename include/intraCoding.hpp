@@ -9,20 +9,30 @@ using namespace cv;
 using namespace std;
 
 /**
- * @class intraCoding
- * @brief Class for implementing intra encoding and decoding.
+ * @class IntraEncoder
+ * @brief Class for implementing intra encoding.
  *
- * This class utilises methods of intra encoding and decoding,
- * which are common techniques in image and video compression.
+ * This class uses transform coding techniques to efficiently encode video frames.
+ * It supports efficient encoding of video frames by considering spatial redundancies.
+ * It also uses Golomb codes for entropy coding.
  */
 class IntraEncoder {
 private:
-    int shift;
-    GolombEncoder &golombEncoder;
+    int shift; ///< Shift value used for transform coding.
+    GolombEncoder &golombEncoder; ///< Reference to a GolombEncoder object for entropy coding.
 
 public:
+    /** @fn IntraEncoder
+     *  @brief Constructor for the IntraEncoder class.
+     *
+     *  @param golombEncoder Reference to a GolombEncoder object for entropy coding.
+     *  @param shift Shift value used for transform coding (default is 0).
+     */
   IntraEncoder(GolombEncoder &golombEncoder, int shift = 0);
   
+    /** @fn ~IntraEncoder
+     *  @brief Destructor for the IntraEncoder class.
+     */
   ~IntraEncoder();
 
   /**
@@ -40,20 +50,32 @@ public:
 };
 
 /**
- * @class intraCoding
- * @brief Class for implementing intra encoding and decoding.
+ * @class IntraDecoder
+ * @brief Class for implementing intra decoding.
  *
- * This class utilises methods of intra encoding and decoding,
- * which are common techniques in image and video compression.
+ * This class uses transform coding techniques to efficiently decode video frames.
+ * It supports efficient decoding of video frames by considering spatial redundancies.
+ * It also uses Golomb codes for entropy coding.
  */
 class IntraDecoder {
 private:
-    int shift;
-    GolombDecoder &golombDecoder;
+    int shift; ///< Shift value used for transform coding.
+    GolombDecoder &golombDecoder; ///< Reference to a GolombDecoder object for entropy coding.
 
 public:
+
+    /** @fn IntraDecoder
+     *  @brief Constructor for the IntraDecoder class.
+     *
+     *  @param golombDecoder Reference to a GolombDecoder object for entropy coding.
+     *  @param shift Shift value used for transform coding (default is 0).
+     */
   IntraDecoder(GolombDecoder &golombDecoder, int shift = 0);
   
+
+    /** @fn ~IntraDecoder
+     *  @brief Destructor for the IntraDecoder class.
+     */
   ~IntraDecoder();
 
     /**

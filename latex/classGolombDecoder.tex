@@ -1,0 +1,95 @@
+\hypertarget{classGolombDecoder}{}\doxysection{Golomb\+Decoder Class Reference}
+\label{classGolombDecoder}\index{GolombDecoder@{GolombDecoder}}
+
+
+Class used to decode numbers from a file based on Golomb codes.  
+
+
+
+
+{\ttfamily \#include $<$Golomb.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGolombDecoder_a466d8809b0c484863f126e43e2aca921}{Golomb\+Decoder}} (string file\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Constructor for \mbox{\hyperlink{classGolombDecoder}{Golomb\+Decoder}} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGolombDecoder_a0618621e7b2eea7e98d31f3af43e320f}{set\+\_\+m}} (int m)
+\begin{DoxyCompactList}\small\item\em Set method for property m. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGolombDecoder_abcef9a681449ccf297658ee1ba8119da}{get\+\_\+m}} ()
+\begin{DoxyCompactList}\small\item\em Get method for property m. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGolombDecoder_ab937881489372a65b4bdea9740364d5e}{decode}} ()
+\begin{DoxyCompactList}\small\item\em Method used to decode one number from the chosen file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class used to decode numbers from a file based on Golomb codes. 
+
+Given a file path, reads the first byte which returns the value m used during encoding. Every call to method decode returns a decode int. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classGolombDecoder_a466d8809b0c484863f126e43e2aca921}\label{classGolombDecoder_a466d8809b0c484863f126e43e2aca921}} 
+\index{GolombDecoder@{GolombDecoder}!GolombDecoder@{GolombDecoder}}
+\index{GolombDecoder@{GolombDecoder}!GolombDecoder@{GolombDecoder}}
+\doxysubsubsection{\texorpdfstring{GolombDecoder()}{GolombDecoder()}}
+{\footnotesize\ttfamily Golomb\+Decoder\+::\+Golomb\+Decoder (\begin{DoxyParamCaption}\item[{string}]{file\+\_\+path }\end{DoxyParamCaption})}
+
+
+
+Constructor for \mbox{\hyperlink{classGolombDecoder}{Golomb\+Decoder}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+path} & String containing the path to the file with encoded data. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGolombDecoder_ab937881489372a65b4bdea9740364d5e}\label{classGolombDecoder_ab937881489372a65b4bdea9740364d5e}} 
+\index{GolombDecoder@{GolombDecoder}!decode@{decode}}
+\index{decode@{decode}!GolombDecoder@{GolombDecoder}}
+\doxysubsubsection{\texorpdfstring{decode()}{decode()}}
+{\footnotesize\ttfamily int Golomb\+Decoder\+::decode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Method used to decode one number from the chosen file. 
+
+\begin{DoxyReturn}{Returns}
+Decoded integer. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGolombDecoder_abcef9a681449ccf297658ee1ba8119da}\label{classGolombDecoder_abcef9a681449ccf297658ee1ba8119da}} 
+\index{GolombDecoder@{GolombDecoder}!get\_m@{get\_m}}
+\index{get\_m@{get\_m}!GolombDecoder@{GolombDecoder}}
+\doxysubsubsection{\texorpdfstring{get\_m()}{get\_m()}}
+{\footnotesize\ttfamily Golomb\+Decoder\+::get\+\_\+m (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get method for property m. 
+
+\begin{DoxyReturn}{Returns}
+Integer which represents the parameter of Golomb codes. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGolombDecoder_a0618621e7b2eea7e98d31f3af43e320f}\label{classGolombDecoder_a0618621e7b2eea7e98d31f3af43e320f}} 
+\index{GolombDecoder@{GolombDecoder}!set\_m@{set\_m}}
+\index{set\_m@{set\_m}!GolombDecoder@{GolombDecoder}}
+\doxysubsubsection{\texorpdfstring{set\_m()}{set\_m()}}
+{\footnotesize\ttfamily Golomb\+Decoder\+::set\+\_\+m (\begin{DoxyParamCaption}\item[{int}]{m }\end{DoxyParamCaption})}
+
+
+
+Set method for property m. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Golomb codes parameter that will be set. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{Golomb_8hpp}{Golomb.\+hpp}}\item 
+src/Golomb.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,84 @@
+\hypertarget{classHybridDecoder}{}\doxysection{Hybrid\+Decoder Class Reference}
+\label{classHybridDecoder}\index{HybridDecoder@{HybridDecoder}}
+
+
+Class for implementing hybrid video decoding.  
+
+
+
+
+{\ttfamily \#include $<$Hybrid\+Coding.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classHybridDecoder_aaae189e3626fd7f3b1cd53ac50c7cfa5}{Hybrid\+Decoder}} (string input\+File)
+\begin{DoxyCompactList}\small\item\em Constructs a Hybrid\+Coding object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHybridDecoder_a68214c1bec741b9260026efea39fc9d2}{decode}} (string output\+File)
+\begin{DoxyCompactList}\small\item\em Decodes an encoded frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for implementing hybrid video decoding. 
+
+The \mbox{\hyperlink{classHybridDecoder}{Hybrid\+Decoder}} class handles the decoding of video that was encoded using the \mbox{\hyperlink{classHybridEncoder}{Hybrid\+Encoder}} class. It uses motion-\/compensated predictive coding and transform coding to reconstruct video frames from encoded data. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classHybridDecoder_aaae189e3626fd7f3b1cd53ac50c7cfa5}\label{classHybridDecoder_aaae189e3626fd7f3b1cd53ac50c7cfa5}} 
+\index{HybridDecoder@{HybridDecoder}!HybridDecoder@{HybridDecoder}}
+\index{HybridDecoder@{HybridDecoder}!HybridDecoder@{HybridDecoder}}
+\doxysubsubsection{\texorpdfstring{HybridDecoder()}{HybridDecoder()}}
+{\footnotesize\ttfamily Hybrid\+Decoder\+::\+Hybrid\+Decoder (\begin{DoxyParamCaption}\item[{string}]{input\+File }\end{DoxyParamCaption})}
+
+
+
+Constructs a Hybrid\+Coding object. 
+
+Initialises the hybrid coding system with parameters for video encoding and decoding.
+
+
+\begin{DoxyParams}{Parameters}
+{\em bit\+Stream} & Pointer to the \mbox{\hyperlink{classBitStream}{Bit\+Stream}} object for reading or writing encoded data. \\
+\hline
+{\em block\+Size} & Size of the block for motion estimation and compensation. \\
+\hline
+{\em search\+Area} & Area around the block where motion is estimated. \\
+\hline
+{\em periodicity} & Interval intra and inter encoding. \\
+\hline
+{\em m} & Parameter for the Golomb code. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classHybridDecoder_a68214c1bec741b9260026efea39fc9d2}\label{classHybridDecoder_a68214c1bec741b9260026efea39fc9d2}} 
+\index{HybridDecoder@{HybridDecoder}!decode@{decode}}
+\index{decode@{decode}!HybridDecoder@{HybridDecoder}}
+\doxysubsubsection{\texorpdfstring{decode()}{decode()}}
+{\footnotesize\ttfamily void Hybrid\+Decoder\+::decode (\begin{DoxyParamCaption}\item[{string}]{output\+File }\end{DoxyParamCaption})}
+
+
+
+Decodes an encoded frame. 
+
+Reconstructs a video frame from the encoded data using the previous frame as a reference, alternately employing inter and intra coding based on the initial bit.
+
+
+\begin{DoxyParams}{Parameters}
+{\em previous\+Frame} & The previous frame used for reference in decoding. \\
+\hline
+{\em frame\+Height} & Height of the frame to be decoded. \\
+\hline
+{\em frame\+Width} & Width of the frame to be decoded. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Mat The decoded video frame. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/Hybrid\+Coding.\+hpp\item 
+src/Hybrid\+Coding.\+cpp\end{DoxyCompactItemize}

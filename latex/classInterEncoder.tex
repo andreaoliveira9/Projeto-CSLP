@@ -1,0 +1,126 @@
+\hypertarget{classInterEncoder}{}\doxysection{Inter\+Encoder Class Reference}
+\label{classInterEncoder}\index{InterEncoder@{InterEncoder}}
+
+
+Class for implementing inter-\/frame coding.  
+
+
+
+
+{\ttfamily \#include $<$inter\+Coding.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classInterEncoder_aeacc2d2588bc70716e72d94f14930670}{Inter\+Encoder}} (class \mbox{\hyperlink{classGolombEncoder}{Golomb\+Encoder}} \&\mbox{\hyperlink{classGolombEncoder}{Golomb\+Encoder}}, int block\+Size, int search\+Area, int shift=0)
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{classInterEncoder}{Inter\+Encoder}} class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classInterEncoder_ac83d4d98cfd08cd6d5596efa52358af7}\label{classInterEncoder_ac83d4d98cfd08cd6d5596efa52358af7}} 
+\mbox{\hyperlink{classInterEncoder_ac83d4d98cfd08cd6d5596efa52358af7}{$\sim$\+Inter\+Encoder}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \mbox{\hyperlink{classInterEncoder}{Inter\+Encoder}} class. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classInterEncoder_ab4f66f41f7ad47e7de3df4fae5c6d369}{get\+Block\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Get the block size. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classInterEncoder_a16af093187843352ca4e2060338a46ca}{get\+Search\+Area}} () const
+\begin{DoxyCompactList}\small\item\em Get the block range. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInterEncoder_a850b7928467280091e4c271c7db494b0}{set\+Block\+Size}} (int block\+Size)
+\begin{DoxyCompactList}\small\item\em Set the block size. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInterEncoder_ae7b4f3cd3666e9a579b1ac1dfaa66cf6}{encode}} (Mat \&previous\+Frame, Mat \&current\+Frame)
+\begin{DoxyCompactList}\small\item\em Encode a frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for implementing inter-\/frame coding. 
+
+This class uses motion estimation and compensation techniques to efficiently encode video frames. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classInterEncoder_aeacc2d2588bc70716e72d94f14930670}\label{classInterEncoder_aeacc2d2588bc70716e72d94f14930670}} 
+\index{InterEncoder@{InterEncoder}!InterEncoder@{InterEncoder}}
+\index{InterEncoder@{InterEncoder}!InterEncoder@{InterEncoder}}
+\doxysubsubsection{\texorpdfstring{InterEncoder()}{InterEncoder()}}
+{\footnotesize\ttfamily Inter\+Encoder\+::\+Inter\+Encoder (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{classGolombEncoder}{Golomb\+Encoder}} \&}]{Golomb\+Encoder,  }\item[{int}]{block\+Size,  }\item[{int}]{search\+Area,  }\item[{int}]{shift = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Constructor for the \mbox{\hyperlink{classInterEncoder}{Inter\+Encoder}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{classGolombEncoder}{Golomb\+Encoder}}} & Reference to a \mbox{\hyperlink{classGolombEncoder}{Golomb\+Encoder}} object for entropy coding. \\
+\hline
+{\em block\+Size} & Size of the blocks used for motion estimation. \\
+\hline
+{\em search\+Area} & Size of the search area for motion estimation. \\
+\hline
+{\em shift} & Shift value used for transform coding (default is 0). \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classInterEncoder_ae7b4f3cd3666e9a579b1ac1dfaa66cf6}\label{classInterEncoder_ae7b4f3cd3666e9a579b1ac1dfaa66cf6}} 
+\index{InterEncoder@{InterEncoder}!encode@{encode}}
+\index{encode@{encode}!InterEncoder@{InterEncoder}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily void Inter\+Encoder\+::encode (\begin{DoxyParamCaption}\item[{Mat \&}]{previous\+Frame,  }\item[{Mat \&}]{current\+Frame }\end{DoxyParamCaption})}
+
+
+
+Encode a frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em old\+\_\+frame} & Previous frame \\
+\hline
+{\em new\+\_\+frame} & Current frame \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result of the encoding 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInterEncoder_ab4f66f41f7ad47e7de3df4fae5c6d369}\label{classInterEncoder_ab4f66f41f7ad47e7de3df4fae5c6d369}} 
+\index{InterEncoder@{InterEncoder}!getBlockSize@{getBlockSize}}
+\index{getBlockSize@{getBlockSize}!InterEncoder@{InterEncoder}}
+\doxysubsubsection{\texorpdfstring{getBlockSize()}{getBlockSize()}}
+{\footnotesize\ttfamily int Inter\+Encoder\+::get\+Block\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the block size. 
+
+\begin{DoxyReturn}{Returns}
+Block size 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInterEncoder_a16af093187843352ca4e2060338a46ca}\label{classInterEncoder_a16af093187843352ca4e2060338a46ca}} 
+\index{InterEncoder@{InterEncoder}!getSearchArea@{getSearchArea}}
+\index{getSearchArea@{getSearchArea}!InterEncoder@{InterEncoder}}
+\doxysubsubsection{\texorpdfstring{getSearchArea()}{getSearchArea()}}
+{\footnotesize\ttfamily int Inter\+Encoder\+::get\+Search\+Area (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the block range. 
+
+\begin{DoxyReturn}{Returns}
+Block range 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInterEncoder_a850b7928467280091e4c271c7db494b0}\label{classInterEncoder_a850b7928467280091e4c271c7db494b0}} 
+\index{InterEncoder@{InterEncoder}!setBlockSize@{setBlockSize}}
+\index{setBlockSize@{setBlockSize}!InterEncoder@{InterEncoder}}
+\doxysubsubsection{\texorpdfstring{setBlockSize()}{setBlockSize()}}
+{\footnotesize\ttfamily void Inter\+Encoder\+::set\+Block\+Size (\begin{DoxyParamCaption}\item[{int}]{block\+Size }\end{DoxyParamCaption})}
+
+
+
+Set the block size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em block\+\_\+size} & New block size \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/inter\+Coding.\+hpp\item 
+src/inter\+Coding.\+cpp\end{DoxyCompactItemize}
