@@ -9,16 +9,6 @@ InterEncoder::~InterEncoder()
 {
 }
 
-int InterEncoder::getBlockSize() const
-{
-    return this->blockSize;
-}
-
-int InterEncoder::getSearchArea() const
-{
-    return this->searchArea;
-}
-
 void InterEncoder::setBlockSize(int blockSize)
 {
     this->blockSize = blockSize;
@@ -39,9 +29,7 @@ void InterEncoder::encode(Mat &previousFrame, Mat &currentFrame)
     Mat nearestBlock;
     Mat auxiliarFrame;
     Mat currentBlock;
-    Mat possibleBlock;
 
-    int currentSum = 0;
     int count = 0;
     int max_x = currentFrame.cols - this->blockSize;
     int max_y = currentFrame.rows - this->blockSize;
@@ -83,36 +71,8 @@ void InterEncoder::encode(Mat &previousFrame, Mat &currentFrame)
                 endCol = max_x;
             }
 
-            // Iterate through previous frame's blocks
-            for (int i = startRow; i <= endRow; i++) {
-                for (int j = startCol; j <= endCol; j++) {
-                    possibleBlock = Mat(previousFrame, Rect(j, i, this->blockSize, this->blockSize));
-
-                    if (channelsNumber == 1) {
-                        subtract(currentBlock, possibleBlock, blocksDifferences, noArray(), CV_16SC1);
-                    } else if (channelsNumber == 3) {
-                        subtract(currentBlock, possibleBlock, blocksDifferences, noArray(), CV_16SC3);
-                    }
-
-                    currentSum = sum(sum(abs(blocksDifferences)))[0];
-
-                    if (currentSum < lastSum)
-                    {
-                        d_x = j;
-                        d_y = i;
-                        blocksDifferences.copyTo(nearestBlock);
-                        lastSum = currentSum;
-                        // If the difference between blocks is 0, no need to keep searching.
-                        if (lastSum < 1000) {
-                            break;
-                        }
-                    }
-                }
-                // If the difference between blocks is 0, no need to keep searching.
-                if (lastSum < 1000) {
-                    break;
-                }
-            }
+            findNearestBlock(previousFrame, currentBlock, startRow, startCol, endRow, endCol, d_x, d_y, lastSum, blocksDifferences, nearestBlock, channelsNumber);
+            
             // Store blocks coordinates.
             locations[count++] = d_x;
             locations[count++] = d_y;
@@ -134,16 +94,14 @@ void InterEncoder::encode(Mat &previousFrame, Mat &currentFrame)
     }
 
     count = 0;
-
-    for (int row = 0; row <= max_y; row += this->blockSize)
-        for (int col = 0; col <= max_x; col += this->blockSize)
-        {
+    
+    for (int row = 0; row <= max_y; row += this->blockSize) {
+        for (int col = 0; col <= max_x; col += this->blockSize) {
             GolombEncoder.encode(locations[count++]);
             GolombEncoder.encode(locations[count++]);
-            for (int i = row; i < row + this->blockSize; i++)
-                for (int j = col; j < col + this->blockSize; j++)
-                    for (int channel = 0; channel < channelsNumber; channel++)
-                    {
+            for (int i = row; i < row + this->blockSize; i++) {
+                for (int j = col; j < col + this->blockSize; j++) {
+                    for (int channel = 0; channel < channelsNumber; channel++) {
                         error = auxiliarFrame.ptr<short>(i, j)[channel];
 
                         if (error < 0) {
@@ -162,7 +120,46 @@ void InterEncoder::encode(Mat &previousFrame, Mat &currentFrame)
 
                         currentFrame.ptr<uchar>(i, j)[channel] = error + previousFrame.ptr<uchar>(i, j)[channel];
                     }
+                }
+            }
         }
+    }
+}
+
+void InterEncoder::findNearestBlock(Mat &previousFrame, Mat &currentBlock, int startRow, int startCol, int endRow, int endCol, int &d_x, int &d_y, int &lastSum, Mat &blocksDifferences, Mat &nearestBlock, int channelsNumber)
+{
+    int currentSum;
+    Mat possibleBlock;
+
+    for (int i = startRow; i <= endRow; i++) {
+        for (int j = startCol; j <= endCol; j++) {
+            possibleBlock = Mat(previousFrame, Rect(j, i, this->blockSize, this->blockSize));
+
+            if (channelsNumber == 1) {
+                subtract(currentBlock, possibleBlock, blocksDifferences, noArray(), CV_16SC1);
+            } else if (channelsNumber == 3) {
+                subtract(currentBlock, possibleBlock, blocksDifferences, noArray(), CV_16SC3);
+            }
+
+            currentSum = sum(sum(abs(blocksDifferences)))[0];
+
+            if (currentSum < lastSum)
+            {
+                d_x = j;
+                d_y = i;
+                blocksDifferences.copyTo(nearestBlock);
+                lastSum = currentSum;
+                // If the difference between blocks is 0, no need to keep searching.
+                if (lastSum < 1000) {
+                    break;
+                }
+            }
+        }
+        // If the difference between blocks is 0, no need to keep searching.
+        if (lastSum < 1000) {
+            break;
+        }
+    }
 }
 
 InterDecoder::InterDecoder(class GolombDecoder &GolombDecoder, int blockSize, int searchArea, int shift) : GolombDecoder(GolombDecoder), blockSize(blockSize), searchArea(searchArea), shift(shift)

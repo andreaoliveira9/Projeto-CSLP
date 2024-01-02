@@ -21,7 +21,7 @@ private:
     int blockSize; ///< Size of the blocks used for motion estimation.
     int searchArea; ///< Size of the search area for motion estimation.
     int shift; ///< Shift value used for transform coding.
-    GolombEncoder &golombEncoder; ///< Reference to a GolombEncoder object for entropy coding.
+    GolombEncoder &GolombEncoder; ///< Reference to a GolombEncoder object for entropy coding.
 
 public:
     /**
@@ -39,19 +39,6 @@ public:
     ~InterEncoder();
 
     /**
-     * @brief Get the size of the blocks used for motion estimation.
-     * @return Size of the blocks.
-     */
-
-    int getBlockSize() const;
-
-    /**
-     * @brief Get the size of the search area for motion estimation.
-     * @return Size of the search area.
-     */
-    int getSearchArea() const;
-
-    /**
      * @brief Set the size of the blocks used for motion estimation.
      * @param blockSize New size of the blocks.
      */
@@ -63,6 +50,8 @@ public:
      * @param currentFrame The current video frame to be encoded.
      */
     void encode(Mat &previousFrame, Mat &currentFrame);
+
+    void findNearestBlock(Mat &previousFrame, Mat &currentBlock, int startRow, int startCol, int endRow, int endCol, int &d_x, int &d_y, int &lastSum, Mat &blocksDifferences, Mat &nearestBlock, int channelsNumber);
 };
 
 
@@ -79,7 +68,7 @@ private:
     int blockSize; ///< Size of the blocks used for motion estimation.     
     int searchArea; ///< Size of the search area for motion estimation.
     int shift; ///< Shift value used for transform coding.             
-    GolombDecoder &golombDecoder; ///< Reference to a GolombDecoder object for entropy decoding.
+    GolombDecoder &GolombDecoder; ///< Reference to a GolombDecoder object for entropy decoding.
 
 public:
     /**

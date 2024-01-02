@@ -106,7 +106,7 @@ int GolombDecoder::decode()
     q = 0;
 
     if (bitStream.getEOF())
-        return NULL;
+        return 0;
 
     signal = bitStream.readBit() & 1;
 
