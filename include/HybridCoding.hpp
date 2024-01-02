@@ -20,15 +20,26 @@ using namespace std;
  */
 class HybridEncoder {
 private:
-    VideoCapture video; ///< Object for capturing video from a file.
-    int format; ///< Format of the video file (e.g., CV_FOURCC('M','J','P','G') for MJPEG).
-    int videoWidth; ///< Width of the video frames.
-    int videoHeight; ///< Height of the video frames.
-    int frameNumber; ///< Current frame number being processed.
-    int periodicity; ///< Periodicity of I-frames in the video.
-    int blockSize; ///< Size of the blocks used for motion estimation.
-    int searchArea; ///< Size of the search area for motion estimation.
-    int shift; ///< Shift value used for transform coding.
+    VideoCapture video; 
+    int format; 
+    int videoWidth; 
+    int videoHeight; 
+    int frameNumber; 
+    int periodicity; 
+    int blockSize; 
+    int searchArea; 
+    int shift; 
+
+    /**
+     * @brief Sets the best block size for motion estimation.
+     * 
+     * Sets the best block size for motion estimation, based on the current frame and the previous frame.
+     * 
+     * @param currentFrame The current frame being processed.
+     * @param GolombEncoder The Golomb encoder used for encoding the video.
+     * @param interEncoder The inter encoder used for encoding the video.
+     */
+    void setBestBlockSize(Mat &currentFrame, GolombEncoder &GolombEncoder, InterEncoder &interEncoder);
 
 public:
     /**
@@ -69,7 +80,7 @@ public:
  */
 class HybridDecoder {
 private:
-    string inputFile; ///< Path to the encoded input file.
+    string inputFile; 
 
 public:
     /**

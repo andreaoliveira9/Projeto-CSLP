@@ -61,33 +61,7 @@ void HybridEncoder::encode(string outputFile) {
                 currentFrame = converter.rgb_to_yuv444(currentFrame);
 
                 if (count == 0) {
-                    int a = currentFrame.cols;
-                    int b = currentFrame.rows;
-                    if (a != b) {
-                        int gcd = -1;
-                        while (b != 0)
-                        {
-                            a %= b;
-                            if (a == 0)
-                                gcd = b;
-                            break;
-                            b %= a;
-                        }
-                        if (gcd == -1)
-                            gcd = a;
-                        if (gcd == a || gcd == b)
-                            gcd = 16;
-                        this->blockSize = gcd;
-                        interEncoder.setBlockSize(gcd);
-                        GolombEncoder.encode(gcd);
-                    } else {
-                        this->blockSize = 16;
-                        interEncoder.setBlockSize(16);
-                        GolombEncoder.encode(16);
-                    }
-
-                    GolombEncoder.encode(currentFrame.cols);
-                    GolombEncoder.encode(currentFrame.rows);
+                    setBestBlockSize(currentFrame, GolombEncoder, interEncoder);
                 }
 
                 if (count % periodicity == 0) {
@@ -110,35 +84,7 @@ void HybridEncoder::encode(string outputFile) {
                 currentFrame = converter.rgb_to_yuv422(currentFrame);
 
                 if (count == 0) {
-                    int a = currentFrame.cols;
-                    int b = currentFrame.rows;
-                    if (a != b) {
-                        int gcd = -1;
-                        while (b != 0) {
-                            a %= b;
-                            if (a == 0) {
-                                gcd = b;
-                            }
-                            break;
-                            b %= a;
-                        }
-                        if (gcd == -1) {
-                            gcd = a;
-                        }
-                        if (gcd == a || gcd == b) {
-                            gcd = 16;
-                        }
-                        this->blockSize = gcd;
-                        interEncoder.setBlockSize(gcd);
-                        GolombEncoder.encode(gcd);
-                    } else {
-                        this->blockSize = 16;
-                        interEncoder.setBlockSize(16);
-                        GolombEncoder.encode(16);
-                    }
-
-                    GolombEncoder.encode(currentFrame.cols);
-                    GolombEncoder.encode(currentFrame.rows);
+                    setBestBlockSize(currentFrame, GolombEncoder, interEncoder);
                 }
 
                 if (count % periodicity == 0) {
@@ -161,35 +107,7 @@ void HybridEncoder::encode(string outputFile) {
                 currentFrame = converter.rgb_to_yuv420(currentFrame);
 
                 if (count == 0) {
-                    int a = currentFrame.cols;
-                    int b = currentFrame.rows;
-                    if (a != b) {
-                        int gcd = -1;
-                        while (b != 0) {
-                            a %= b;
-                            if (a == 0) {
-                                gcd = b;
-                            }
-                            break;
-                            b %= a;
-                        }
-                        if (gcd == -1) {
-                            gcd = a;
-                        }
-                        if (gcd == a || gcd == b) {
-                            gcd = 16;
-                        }
-                        this->blockSize = gcd;
-                        interEncoder.setBlockSize(gcd);
-                        GolombEncoder.encode(gcd);
-                    } else {
-                        this->blockSize = 16;
-                        interEncoder.setBlockSize(16);
-                        GolombEncoder.encode(16);
-                    }
-
-                    GolombEncoder.encode(currentFrame.cols);
-                    GolombEncoder.encode(currentFrame.rows);
+                    setBestBlockSize(currentFrame, GolombEncoder, interEncoder);
                 }
 
                 if (count % periodicity == 0) {
@@ -206,6 +124,38 @@ void HybridEncoder::encode(string outputFile) {
 
     GolombEncoder.finishEncoding();
 };
+
+void HybridEncoder::setBestBlockSize(Mat &currentFrame, GolombEncoder &GolombEncoder, InterEncoder &interEncoder) {
+    int a = currentFrame.cols;
+    int b = currentFrame.rows;
+    if (a != b) {
+        int gcd = -1;
+        while (b != 0) {
+            a %= b;
+            if (a == 0) {
+                gcd = b;
+            }
+            break;
+            b %= a;
+        }
+        if (gcd == -1) {
+            gcd = a;
+        }
+        if (gcd == a || gcd == b) {
+            gcd = 16;
+        }
+        this->blockSize = gcd;
+        interEncoder.setBlockSize(gcd);
+        GolombEncoder.encode(gcd);
+    } else {
+        this->blockSize = 16;
+        interEncoder.setBlockSize(16);
+        GolombEncoder.encode(16);
+    }
+
+    GolombEncoder.encode(currentFrame.cols);
+    GolombEncoder.encode(currentFrame.rows);
+}
 
 HybridDecoder::HybridDecoder(string inputFile) {
     this->inputFile = inputFile;

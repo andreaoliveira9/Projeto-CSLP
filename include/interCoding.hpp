@@ -18,10 +18,10 @@ using namespace std;
 class InterEncoder
 {
 private:
-    int blockSize; ///< Size of the blocks used for motion estimation.
-    int searchArea; ///< Size of the search area for motion estimation.
-    int shift; ///< Shift value used for transform coding.
-    GolombEncoder &GolombEncoder; ///< Reference to a GolombEncoder object for entropy coding.
+    int blockSize;
+    int searchArea; 
+    int shift; 
+    GolombEncoder &GolombEncoder; 
 
     /**
      * @brief Find the block in the previous frame that is most similar to the current block.
@@ -93,10 +93,10 @@ public:
 class InterDecoder
 {
 private:
-    int blockSize; ///< Size of the blocks used for motion estimation.     
-    int searchArea; ///< Size of the search area for motion estimation.
-    int shift; ///< Shift value used for transform coding.             
-    GolombDecoder &GolombDecoder; ///< Reference to a GolombDecoder object for entropy decoding.
+    int blockSize;  
+    int searchArea;
+    int shift;           
+    GolombDecoder &GolombDecoder; 
 
 public:
     /**

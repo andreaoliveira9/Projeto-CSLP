@@ -18,8 +18,8 @@ using namespace std;
  */
 class IntraEncoder {
 private:
-    int shift; ///< Shift value used for transform coding.
-    GolombEncoder &golombEncoder; ///< Reference to a GolombEncoder object for entropy coding.
+    int shift; 
+    GolombEncoder &golombEncoder; 
 
 public:
   /**
@@ -51,8 +51,8 @@ public:
  */
 class IntraDecoder {
 private:
-    int shift; ///< Shift value used for transform coding.
-    GolombDecoder &golombDecoder; ///< Reference to a GolombDecoder object for entropy decoding.
+    int shift; 
+    GolombDecoder &golombDecoder; 
 
 public:
 
