@@ -23,6 +23,36 @@ private:
     int shift; ///< Shift value used for transform coding.
     GolombEncoder &GolombEncoder; ///< Reference to a GolombEncoder object for entropy coding.
 
+    /**
+     * @brief Find the block in the previous frame that is most similar to the current block.
+     * @param previousFrame The previous video frame for reference.
+     * @param currentBlock The current block to be encoded.
+     * @param startRow The starting row of the search area.
+     * @param startCol The starting column of the search area.
+     * @param endRow The ending row of the search area.
+     * @param endCol The ending column of the search area.
+     * @param d_x The horizontal displacement of the block in the previous frame.
+     * @param d_y The vertical displacement of the block in the previous frame.
+     * @param lastSum The sum of the absolute differences of the previous block and the current block.
+     * @param blocksDifferences Matrix containing the absolute differences of the previous block and the current block.
+     * @param fewestDifferences Matrix containing the absolute differences of the previous block and the current block with the fewest differences.
+     * @param channelsNumber Number of channels of the video.
+    */
+    void findNearestBlock(Mat &previousFrame, Mat &currentBlock, int startRow, int startCol, int endRow, int endCol, int &d_x, int &d_y, int &lastSum, Mat &blocksDifferences, Mat &fewestDifferences, int channelsNumber);
+
+    /**
+     * @brief Encode the motion vectors of the current frame.
+     * @param previousFrame The previous video frame for reference.
+     * @param currentFrame The current video frame to be encoded.
+     * @param auxiliarFrame An auxiliar frame used for motion compensation.
+     * @param row The starting row of the current block.
+     * @param col The starting column of the current block.
+     * @param channelsNumber Number of channels of the video.
+     * @param count Number of motion vectors encoded.
+     * @param vectorCoordinates Vector containing the coordinates of the motion vectors encoded.
+     */
+    void encodeAndApplyMotionCompenstation(Mat &previousFrame, Mat &currentFrame, Mat &auxiliarFrame, int row, int col, int channelsNumber, int &count, vector<int> &vectorCoordinates);
+
 public:
     /**
      * @brief Constructor for the InterEncoder class.
@@ -50,8 +80,6 @@ public:
      * @param currentFrame The current video frame to be encoded.
      */
     void encode(Mat &previousFrame, Mat &currentFrame);
-
-    void findNearestBlock(Mat &previousFrame, Mat &currentBlock, int startRow, int startCol, int endRow, int endCol, int &d_x, int &d_y, int &lastSum, Mat &blocksDifferences, Mat &nearestBlock, int channelsNumber);
 };
 
 

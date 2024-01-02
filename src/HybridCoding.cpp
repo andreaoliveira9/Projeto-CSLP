@@ -3,15 +3,10 @@
 #include <iostream>
 
 HybridEncoder::HybridEncoder(string inputFile, int periodicity, int searchArea, int shift) : periodicity(periodicity), searchArea(searchArea), shift(shift) {
-    // read file header
     ifstream file(inputFile, ios::binary);
-
-    // Read the file header
 
     string fileHeader;
     getline(file, fileHeader);
-
-    // split the file header into tokens
 
     istringstream iss(fileHeader);
 
@@ -27,7 +22,6 @@ HybridEncoder::HybridEncoder(string inputFile, int periodicity, int searchArea, 
         format = 2;
     }
 
-    // open the video file
     video = VideoCapture(inputFile);
 
     videoWidth = video.get(CAP_PROP_FRAME_WIDTH);

@@ -50,20 +50,12 @@ void IntraEncoder::encode(Mat &currentFrame) {
                 }
 
                 error = frame.ptr<uchar>(row, col)[channel] - predictedValue;
+                
+                error < 0 ? error = -1 * (abs(error) >> this->shift) : error >>= this->shift;
 
-                if (error < 0) {
-                    error = -1 * (abs(error) >> this->shift);
-                } else {
-                    error >>= this->shift;
-                }
-                // Store Error = estimate - real value.
                 errorMatrix.ptr<short>(row - 1, col - 1)[channel] = error;
 
-                if (error < 0) {
-                    error = -1 * (abs(error) << this->shift);
-                } else {
-                    error <<= this->shift;
-                }
+                error < 0 ? error = -1 * (abs(error) << this->shift) : error <<= this->shift;
 
                 frame.ptr<uchar>(row, col)[channel] = (unsigned char)predictedValue + error;
             }
@@ -128,11 +120,7 @@ void IntraDecoder::decode(Mat &currentFrame) {
 
                 error = golombDecoder.decode();                
 
-                if (error < 0) {
-                    error = -1 * (abs(error) << this->shift);
-                } else {
-                    error <<= this->shift;
-                }
+                error < 0 ? error = -1 * (abs(error) >> this->shift) : error >>= this->shift;
 
                 if (c <= min(a, b)) {
                     predictedValue = max(a, b);
