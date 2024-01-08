@@ -46,80 +46,46 @@ void HybridEncoder::encode(string outputFile) {
     GolombEncoder.encode(format);
     GolombEncoder.encode(searchArea);
     GolombEncoder.encode(shift);
-    GolombEncoder.encode(periodicity);
     GolombEncoder.encode(frameNumber);
 
     int count = 0;
-    switch (format) {
-        case 0: 
-        {
-            while (true) {
-                video >> currentFrame;
-                if (currentFrame.empty()) {
-                    break;
-                };
+    while (true) {
+        video >> currentFrame;
+        if (currentFrame.empty()) {
+            break;
+        };
+
+        switch(format) {
+            case 0:
+            {
                 currentFrame = converter.rgb_to_yuv444(currentFrame);
-
-                if (count == 0) {
-                    setBestBlockSize(currentFrame, GolombEncoder, interEncoder);
-                }
-
-                if (count % periodicity == 0) {
-                    currentFrame.copyTo(previousFrame);
-                    intraEncoder.encode(currentFrame);
-                } else {
-                    interEncoder.encode(previousFrame, currentFrame);
-                }
-                count++;
+                break;
             }
-            break;
-        }
-        case 1: 
-        {
-            while (true) {
-                video >> currentFrame;
-                if (currentFrame.empty()) {
-                    break;
-                };
+            case 1:
+            {
                 currentFrame = converter.rgb_to_yuv422(currentFrame);
-
-                if (count == 0) {
-                    setBestBlockSize(currentFrame, GolombEncoder, interEncoder);
-                }
-
-                if (count % periodicity == 0) {
-                    currentFrame.copyTo(previousFrame);
-                    intraEncoder.encode(currentFrame);
-                } else {
-                    interEncoder.encode(previousFrame, currentFrame);
-                }
-                count++;
+                break;
             }
-            break;
-        }
-        case 2:
-        {
-            while (true) {
-                video >> currentFrame;
-                if (currentFrame.empty()) {
-                    break;
-                };
+            case 2:
+            {
                 currentFrame = converter.rgb_to_yuv420(currentFrame);
-
-                if (count == 0) {
-                    setBestBlockSize(currentFrame, GolombEncoder, interEncoder);
-                }
-
-                if (count % periodicity == 0) {
-                    currentFrame.copyTo(previousFrame);
-                    intraEncoder.encode(currentFrame);
-                } else {
-                    interEncoder.encode(previousFrame, currentFrame);
-                }
-                count++;
+                break;
             }
-            break;
         }
+
+        if (count == 0) {
+            setBestBlockSize(currentFrame, GolombEncoder, interEncoder);
+        }
+
+        if (count % periodicity == 0) {
+            GolombEncoder.encode(0);
+            currentFrame.copyTo(previousFrame);
+            intraEncoder.encode(currentFrame);
+        } else {
+            GolombEncoder.encode(1);
+            interEncoder.encode(previousFrame, currentFrame);
+        }
+        count++;
     }
 
     GolombEncoder.finishEncoding();
@@ -170,7 +136,6 @@ void HybridDecoder::decode(string outputFile) {
     int format = GolombDecoder.decode();
     int searchArea = GolombDecoder.decode();
     int shift = GolombDecoder.decode();
-    int periodicity = GolombDecoder.decode();
     int frameNumber = GolombDecoder.decode();
     int blockSize = GolombDecoder.decode();
     int width = GolombDecoder.decode();
@@ -183,63 +148,54 @@ void HybridDecoder::decode(string outputFile) {
     Mat previousFrame;
 
     int count = 0;
-    switch (format) {
-        case 0:
-        {
-            while (count < frameNumber) {
+    while (count < frameNumber) {
+        switch (format) {
+            case 0:
+            {
                 currentFrame = Mat::zeros(height, width, CV_8UC3);
+                break;
+            }
+            case 1:
+            {
+                currentFrame = Mat::zeros(height, width, CV_8UC1);
+                break;
+            }
+            case 2:
+            {
+                currentFrame = Mat::zeros(height, width, CV_8UC1);
+                break;
+            }
+        }
+        
 
-                if (count % periodicity == 0) {
-                    intraDecoder.decode(currentFrame);
-                    currentFrame.copyTo(previousFrame);
-                } else {
-                    interDecoder.decode(previousFrame, currentFrame);
-                }
+        if (GolombDecoder.decode() == 0) {
+            intraDecoder.decode(currentFrame);
+            currentFrame.copyTo(previousFrame);
+        } else {
+            interDecoder.decode(previousFrame, currentFrame);
+        }
 
+        switch (format) {
+            case 0:
+            {
                 imshow("Image", converter.yuv444_to_rgb(currentFrame));
-                if (waitKey(10) == 27) {
-                    destroyAllWindows();
-                }; 
-                count++;
+                break;
             }
-        }
-        case 1:
-        {
-            while (count < frameNumber) {
-                currentFrame = Mat::zeros(height, width, CV_8UC1);
-
-                if (count % periodicity == 0) {
-                    intraDecoder.decode(currentFrame);
-                    currentFrame.copyTo(previousFrame);
-                } else {
-                    interDecoder.decode(previousFrame, currentFrame);
-                }
-
+            case 1:
+            {
                 imshow("Image", converter.yuv422_to_rgb(currentFrame));
-                if (waitKey(10) == 27) {
-                    destroyAllWindows();
-                }; 
-                count++;
+                break;
             }
-        }
-        case 2:
-        {
-            while (count < frameNumber) {
-                currentFrame = Mat::zeros(height, width, CV_8UC1);
-
-                if (count % periodicity == 0) {
-                    intraDecoder.decode(currentFrame);
-                    currentFrame.copyTo(previousFrame);
-                } else {
-                    interDecoder.decode(previousFrame, currentFrame);
-                }
-
+            case 2:
+            {
                 imshow("Image", converter.yuv420_to_rgb(currentFrame));
-                if (waitKey(10) == 27) {
-                    destroyAllWindows();
-                }; 
-                count++;
+                break;
             }
         }
+
+        if (waitKey(10) == 27) {
+            destroyAllWindows();
+        }; 
+        count++;
     }
 };

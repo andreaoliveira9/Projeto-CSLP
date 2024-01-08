@@ -1,6 +1,4 @@
 #include "interCoding.hpp"
-#include <unistd.h>
-#include <iostream>
 
 InterEncoder::InterEncoder(class GolombEncoder &GolombEncoder, int blockSize, int searchArea, int shift) : GolombEncoder(GolombEncoder), blockSize(blockSize), searchArea(searchArea), shift(shift)
 {
@@ -34,7 +32,7 @@ void InterEncoder::encode(Mat &previousFrame, Mat &currentFrame)
     int max_x = currentFrame.cols - this->blockSize;
     int max_y = currentFrame.rows - this->blockSize;
     int channelsNumber = currentFrame.channels();
-    vector<int> vectorCoordinates;
+    queue<int> vectorCoordinates;
 
     if (channelsNumber == 3) {
         blocksDifferences = Mat::zeros(this->blockSize, this->blockSize, CV_16SC3);
@@ -72,8 +70,8 @@ void InterEncoder::encode(Mat &previousFrame, Mat &currentFrame)
 
             findNearestBlock(previousFrame, currentBlock, startRow, startCol, endRow, endCol, d_x, d_y, lastSum, blocksDifferences, fewestDifferences, channelsNumber);
             
-            vectorCoordinates.push_back(d_x);
-            vectorCoordinates.push_back(d_y);
+            vectorCoordinates.push(d_x);
+            vectorCoordinates.push(d_y);
 
             Rect rect(col, row, this->blockSize, this->blockSize);
             fewestDifferences.copyTo(auxiliarFrame(rect));
@@ -93,7 +91,7 @@ void InterEncoder::encode(Mat &previousFrame, Mat &currentFrame)
 
     for (int row = 0; row <= max_y; row += this->blockSize) {
         for (int col = 0; col <= max_x; col += this->blockSize) {
-            encodeAndApplyMotionCompenstation(previousFrame, currentFrame, auxiliarFrame, row, col, channelsNumber, count, vectorCoordinates);
+            encodeAndApplyMotionCompenstation(previousFrame, currentFrame, auxiliarFrame, row, col, channelsNumber, vectorCoordinates);
         }
     }
 }
@@ -134,11 +132,12 @@ void InterEncoder::findNearestBlock(Mat &previousFrame, Mat &currentBlock, int s
     }
 }
 
-void InterEncoder::encodeAndApplyMotionCompenstation(Mat &previousFrame, Mat &currentFrame, Mat &auxiliarFrame, int row, int col, int channelsNumber, int &count, vector<int> &vectorCoordinates) {
+void InterEncoder::encodeAndApplyMotionCompenstation(Mat &previousFrame, Mat &currentFrame, Mat &auxiliarFrame, int row, int col, int channelsNumber, queue<int> &vectorCoordinates) {
     int error;
-    int d_x = vectorCoordinates[count];
-    int d_y = vectorCoordinates[count + 1];
-
+    int d_x = vectorCoordinates.front();
+    vectorCoordinates.pop();
+    int d_y = vectorCoordinates.front();
+    vectorCoordinates.pop();
     GolombEncoder.encode(d_x);
     GolombEncoder.encode(d_y);
 
@@ -147,18 +146,12 @@ void InterEncoder::encodeAndApplyMotionCompenstation(Mat &previousFrame, Mat &cu
             for (int channel = 0; channel < channelsNumber; channel++) {
                 error = auxiliarFrame.ptr<short>(i, j)[channel];
 
-                error < 0 ? error = -1 * (abs(error) >> this->shift) : error >>= this->shift;
-
-                GolombEncoder.encode(error);
-
-                error < 0 ? error = -1 * (abs(error) << this->shift) : error <<= this->shift;
-
                 currentFrame.ptr<uchar>(i, j)[channel] = error + previousFrame.ptr<uchar>(i, j)[channel];
+
+                GolombEncoder.encode(error < 0 ? error = -1 * (abs(error) >> this->shift) : error >>= this->shift);
             }
         }
     }
-
-    count += 2;
 }
 
 InterDecoder::InterDecoder(class GolombDecoder &GolombDecoder, int blockSize, int searchArea, int shift) : GolombDecoder(GolombDecoder), blockSize(blockSize), searchArea(searchArea), shift(shift)

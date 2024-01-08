@@ -2,6 +2,8 @@
 #define _INTER_CODING_H
 
 #include <iostream>
+#include <unistd.h>
+#include <queue>
 #include "opencv2/opencv.hpp"
 #include "Golomb.hpp"
 
@@ -51,7 +53,7 @@ private:
      * @param count Number of motion vectors encoded.
      * @param vectorCoordinates Vector containing the coordinates of the motion vectors encoded.
      */
-    void encodeAndApplyMotionCompenstation(Mat &previousFrame, Mat &currentFrame, Mat &auxiliarFrame, int row, int col, int channelsNumber, int &count, vector<int> &vectorCoordinates);
+    void encodeAndApplyMotionCompenstation(Mat &previousFrame, Mat &currentFrame, Mat &auxiliarFrame, int row, int col, int channelsNumber, std::queue<int> &vectorCoordinates);
 
 public:
     /**
