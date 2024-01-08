@@ -120,7 +120,7 @@ void IntraDecoder::decode(Mat &currentFrame) {
 
                 error = golombDecoder.decode();                
 
-                error < 0 ? error = -1 * (abs(error) >> this->shift) : error >>= this->shift;
+                error < 0 ? error = -1 * (abs(error) << this->shift) : error <<= this->shift;
 
                 if (c <= min(a, b)) {
                     predictedValue = max(a, b);
