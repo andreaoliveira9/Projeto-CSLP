@@ -46,7 +46,7 @@ int main(int argc, char const *argv[])
 
             string output = output_dir + files[i] + "_lossy_level_" + to_string(quantization) + "_test_" + to_string(j) + ".bin";
 
-            HybridEncoder encoder(input, periodicity, block_range, blockSize, quantization, quantization, quantization);
+            HybridEncoder encoder(input, periodicity, block_range, quantization, quantization, quantization);
 
             encoder.encode(output);
 

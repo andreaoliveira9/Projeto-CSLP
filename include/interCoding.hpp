@@ -69,6 +69,7 @@ public:
      */
     ~InterEncoder();
     
+    void setBlockSize(int blockSize);
     /**
      * @brief Encode a frame using inter-frame coding.
      * @param previousFrame The previous video frame for reference.

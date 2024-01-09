@@ -8,7 +8,7 @@ int main(int argc, char const *argv[])
     string static_videos = "static/videos/";
 
     // files.push_back("ducks_take_off_420_720p50.y4m");
-    // files.push_back("park_joy_420_720p50.y4m");
+    // files.push_back("park_joy_444_720p50.y4m");
     files.push_back("akiyo_qcif.y4m");
 
     string dir = "build/Deliverable_5/encode_output_hybrid/";
@@ -33,7 +33,7 @@ int main(int argc, char const *argv[])
             cout << "Encoding " << files[i] << " with block range " << block_range << endl;
             string output = dir + files[i] + "/" + files[i] + "_block_range_" + to_string(block_range) + ".bin";
 
-            HybridEncoder encoder(input, periodicity, block_range, blockSize);
+            HybridEncoder encoder(input, periodicity, block_range);
 
             encoder.encode(output);
             auto end_full = chrono::high_resolution_clock::now(); // end timer
