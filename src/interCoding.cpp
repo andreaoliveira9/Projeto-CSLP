@@ -1,6 +1,6 @@
 #include "interCoding.hpp"
 
-InterEncoder::InterEncoder(class GolombEncoder &GolombEncoder, int blockSize, int searchArea, int shift) : GolombEncoder(GolombEncoder), blockSize(blockSize), searchArea(searchArea), shift(shift)
+InterEncoder::InterEncoder(class GolombEncoder &GolombEncoder, int blockSize, int searchArea, int quantization1, int quantization2, int quantization3): GolombEncoder(GolombEncoder), blockSize(blockSize), searchArea(searchArea), quantization1(quantization1), quantization2(quantization2), quantization3(quantization3)
 {
 }
 
@@ -146,15 +146,20 @@ void InterEncoder::encodeAndApplyMotionCompenstation(Mat &previousFrame, Mat &cu
             for (int channel = 0; channel < channelsNumber; channel++) {
                 error = auxiliarFrame.ptr<short>(i, j)[channel];
 
-                currentFrame.ptr<uchar>(i, j)[channel] = error + previousFrame.ptr<uchar>(i, j)[channel];
+                int quantizationLevel = (channel == 0) ? quantization1 : ((channel == 1) ? quantization2 : quantization3);
 
-                GolombEncoder.encode(error < 0 ? error = -1 * (abs(error) >> this->shift) : error >>= this->shift);
+                int steps = 256 / quantizationLevel;
+                int quantizedError = floor(error/steps) * steps;
+
+                currentFrame.ptr<uchar>(i, j)[channel] = quantizedError + previousFrame.ptr<uchar>(i, j)[channel];
+
+                GolombEncoder.encode(quantizedError);
             }
         }
     }
 }
 
-InterDecoder::InterDecoder(class GolombDecoder &GolombDecoder, int blockSize, int searchArea, int shift) : GolombDecoder(GolombDecoder), blockSize(blockSize), searchArea(searchArea), shift(shift)
+InterDecoder::InterDecoder(class GolombDecoder &GolombDecoder, int blockSize, int searchArea) : GolombDecoder(GolombDecoder), blockSize(blockSize), searchArea(searchArea)
 {
 }
 
@@ -168,7 +173,7 @@ void InterDecoder::decode(Mat &previousFrame, Mat &currentFrame)
     int max_y = currentFrame.rows - this->blockSize;
     int d_x;
     int d_y;
-    int error;
+    int quantizedError;
 
     GolombDecoder.set_m(GolombDecoder.decode());
 
@@ -182,11 +187,9 @@ void InterDecoder::decode(Mat &previousFrame, Mat &currentFrame)
                 for (int j = col; j < col + this->blockSize; j++) {
                     for (int channel = 0; channel < currentFrame.channels(); channel++)
                     {
-                        error = GolombDecoder.decode();
+                        quantizedError = GolombDecoder.decode();
 
-                        error < 0 ? error = -1 * (abs(error) << this->shift) : error <<= this->shift;
-
-                        currentFrame.ptr<uchar>(i, j)[channel] = previousFrame.ptr<uchar>(d_y + i - row, d_x + j - col)[channel] + error;
+                        currentFrame.ptr<uchar>(i, j)[channel] = previousFrame.ptr<uchar>(d_y + i - row, d_x + j - col)[channel] + quantizedError;
                     }
                 }
             }

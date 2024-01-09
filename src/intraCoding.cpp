@@ -1,7 +1,12 @@
 #include "intraCoding.hpp"
-#include <unistd.h>
+#include <cmath>
+#include <iostream>
 
-IntraEncoder::IntraEncoder(GolombEncoder &golombEncoder, int shift) : golombEncoder(golombEncoder), shift(shift)
+using namespace std;
+using namespace cv;
+
+IntraEncoder::IntraEncoder(GolombEncoder &golombEncoder, int quantization1, int quantization2, int quantization3)
+    : golombEncoder(golombEncoder), quantization1(quantization1), quantization2(quantization2), quantization3(quantization3)
 {
 }
 
@@ -9,13 +14,17 @@ IntraEncoder::~IntraEncoder()
 {
 }
 
-void IntraEncoder::encode(Mat &currentFrame) {
+void IntraEncoder::encode(Mat &currentFrame)
+{
     int a;
     int b;
     int c;
     int error;
     int predictedValue;
     int mGolombParameter;
+    int quantizationLevel;
+    int steps;
+    int quantizedError;
     Mat frame, errorMatrix;
 
     int channelsNumber = currentFrame.channels();
@@ -33,10 +42,12 @@ void IntraEncoder::encode(Mat &currentFrame) {
         exit(1);
     }
 
-    
-    for (int row = 1; row < frame.rows; row++) {
-        for (int col = 1; col < frame.cols; col++) {
-            for (int channel = 0; channel < channelsNumber; channel++) {
+    for (int row = 1; row < frame.rows; row++)
+    {
+        for (int col = 1; col < frame.cols; col++)
+        {
+            for (int channel = 0; channel < channelsNumber; channel++)
+            {
                 a = frame.ptr<uchar>(row, col - 1)[channel];
                 b = frame.ptr<uchar>(row - 1, col)[channel];
                 c = frame.ptr<uchar>(row - 1, col - 1)[channel];
@@ -50,14 +61,15 @@ void IntraEncoder::encode(Mat &currentFrame) {
                 }
 
                 error = frame.ptr<uchar>(row, col)[channel] - predictedValue;
-                
-                error < 0 ? error = -1 * (abs(error) >> this->shift) : error >>= this->shift;
 
-                errorMatrix.ptr<short>(row - 1, col - 1)[channel] = error;
+                quantizationLevel = (channel == 0) ? quantization1 : ((channel == 1) ? quantization2 : quantization3);
 
-                error < 0 ? error = -1 * (abs(error) << this->shift) : error <<= this->shift;
+                steps = 256 / quantizationLevel;
+                quantizedError = floor(error/steps) * steps;
 
-                frame.ptr<uchar>(row, col)[channel] = (unsigned char)predictedValue + error;
+                errorMatrix.ptr<short>(row - 1, col - 1)[channel] = quantizedError;
+
+                frame.ptr<uchar>(row, col)[channel] = (unsigned char)predictedValue + quantizedError;
             }
         }
     }
@@ -70,7 +82,6 @@ void IntraEncoder::encode(Mat &currentFrame) {
         golombEncoder.set_m(mGolombParameter);
     }
 
-    
     for (int row = 0; row < errorMatrix.rows; row++) {
         for (int col = 0; col < errorMatrix.cols; col++) {
             for (int channel = 0; channel < channelsNumber; channel++) {
@@ -80,7 +91,8 @@ void IntraEncoder::encode(Mat &currentFrame) {
     }
 }
 
-IntraDecoder::IntraDecoder(GolombDecoder &golombDecoder, int shift) : golombDecoder(golombDecoder), shift(shift)
+IntraDecoder::IntraDecoder(GolombDecoder &golombDecoder)
+    : golombDecoder(golombDecoder)
 {
 }
 
@@ -88,12 +100,14 @@ IntraDecoder::~IntraDecoder()
 {
 }
 
-void IntraDecoder::decode(Mat &currentFrame) {
+void IntraDecoder::decode(Mat &currentFrame)
+{
     int a;
     int b;
     int c;
     int error;
     int predictedValue;
+    int quantizedError;
 
     int channelsNumber = currentFrame.channels();
 
@@ -110,17 +124,12 @@ void IntraDecoder::decode(Mat &currentFrame) {
         golombDecoder.set_m(optimalM);
     }
 
-    
     for (int row = 1; row < currentFrame.rows; row++) {
         for (int col = 1; col < currentFrame.cols; col++) {
             for (int channel = 0; channel < channelsNumber; channel++) {
                 a = currentFrame.ptr<uchar>(row, col - 1)[channel];
                 b = currentFrame.ptr<uchar>(row - 1, col)[channel];
                 c = currentFrame.ptr<uchar>(row - 1, col - 1)[channel];
-
-                error = golombDecoder.decode();                
-
-                error < 0 ? error = -1 * (abs(error) << this->shift) : error <<= this->shift;
 
                 if (c <= min(a, b)) {
                     predictedValue = max(a, b);
@@ -130,7 +139,9 @@ void IntraDecoder::decode(Mat &currentFrame) {
                     predictedValue = a + b - c;
                 }
 
-                currentFrame.ptr<uchar>(row, col)[channel] = (unsigned char)predictedValue + error;
+                quantizedError = golombDecoder.decode();
+
+                currentFrame.ptr<uchar>(row, col)[channel] = (unsigned char)predictedValue + quantizedError;
             }
         }
     }

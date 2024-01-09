@@ -2,7 +2,7 @@
 #include <chrono>
 #include <iostream>
 
-HybridEncoder::HybridEncoder(string inputFile, int periodicity, int searchArea, int shift) : periodicity(periodicity), searchArea(searchArea), shift(shift) {
+HybridEncoder::HybridEncoder(string inputFile, int periodicity, int searchArea, int quantization1, int quantization2, int quantization3): periodicity(periodicity), searchArea(searchArea), quantization1(quantization1), quantization2(quantization2), quantization3(quantization3) {
     ifstream file(inputFile, ios::binary);
 
     string fileHeader;
@@ -37,15 +37,14 @@ void HybridEncoder::encode(string outputFile) {
     Converter converter;
     GolombEncoder GolombEncoder(outputFile);
 
-    IntraEncoder intraEncoder(GolombEncoder, shift);
-    InterEncoder interEncoder(GolombEncoder, blockSize, searchArea, shift);
+    IntraEncoder intraEncoder(GolombEncoder, quantization1, quantization2, quantization3);
+    InterEncoder interEncoder(GolombEncoder, blockSize, searchArea, quantization1, quantization2, quantization3);
 
     Mat currentFrame;
     Mat previousFrame;
 
     GolombEncoder.encode(format);
     GolombEncoder.encode(searchArea);
-    GolombEncoder.encode(shift);
     GolombEncoder.encode(frameNumber);
 
     int count = 0;
@@ -135,14 +134,13 @@ void HybridDecoder::decode(string outputFile) {
 
     int format = GolombDecoder.decode();
     int searchArea = GolombDecoder.decode();
-    int shift = GolombDecoder.decode();
     int frameNumber = GolombDecoder.decode();
     int blockSize = GolombDecoder.decode();
     int width = GolombDecoder.decode();
     int height = GolombDecoder.decode();
 
-    IntraDecoder intraDecoder(GolombDecoder, shift);
-    InterDecoder interDecoder(GolombDecoder, blockSize, searchArea, shift);
+    IntraDecoder intraDecoder(GolombDecoder);
+    InterDecoder interDecoder(GolombDecoder, blockSize, searchArea);
 
     Mat currentFrame;
     Mat previousFrame;

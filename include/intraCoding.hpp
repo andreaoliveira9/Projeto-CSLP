@@ -18,7 +18,9 @@ using namespace std;
  */
 class IntraEncoder {
 private:
-    int shift; 
+    int quantization1;
+    int quantization2;
+    int quantization3;
     GolombEncoder &golombEncoder; 
 
 public:
@@ -27,7 +29,7 @@ public:
     * @param golombEncoder Reference to a GolombEncoder object for entropy coding.
     * @param shift Shift value used for transform coding (default is 0).
     */
-  IntraEncoder(GolombEncoder &golombEncoder, int shift = 0);
+  IntraEncoder(GolombEncoder &golombEncoder, int quantization1 = 255, int quantization2 = 255, int quantization3 = 255);
   
   /**
    * @brief Destructor for the IntraEncoder class.
@@ -51,7 +53,6 @@ public:
  */
 class IntraDecoder {
 private:
-    int shift; 
     GolombDecoder &golombDecoder; 
 
 public:
@@ -61,7 +62,7 @@ public:
      * @param golombDecoder Reference to a GolombDecoder object for entropy decoding.
      * @param shift Shift value used for transform coding (default is 0).
      */
-  IntraDecoder(GolombDecoder &golombDecoder, int shift = 0);
+  IntraDecoder(GolombDecoder &golombDecoder);
   
 
     /**

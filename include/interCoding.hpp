@@ -22,7 +22,9 @@ class InterEncoder
 private:
     int blockSize;
     int searchArea; 
-    int shift; 
+    int quantization1;
+    int quantization2;
+    int quantization3;
     GolombEncoder &GolombEncoder; 
 
     /**
@@ -63,7 +65,7 @@ public:
      * @param searchArea Size of the search area for motion estimation.
      * @param shift Shift value used for transform coding (default is 0).
      */
-    InterEncoder(class GolombEncoder &GolombEncoder, int blockSize, int searchArea, int shift = 0);
+    InterEncoder(class GolombEncoder &GolombEncoder, int blockSize, int searchArea, int quantization1 = 255, int quantization2 = 255, int quantization3 = 255);
 
     /**
      * @brief Destructor for the InterEncoder class.
@@ -96,8 +98,7 @@ class InterDecoder
 {
 private:
     int blockSize;  
-    int searchArea;
-    int shift;           
+    int searchArea;    
     GolombDecoder &GolombDecoder; 
 
 public:
@@ -108,7 +109,7 @@ public:
      * @param searchArea Size of the search area for motion compensation.
      * @param shift Shift value used for transform coding (default is 0).
      */
-    InterDecoder(class GolombDecoder &GolombDecoder, int blockSize, int searchArea, int shift = 0);
+    InterDecoder(class GolombDecoder &GolombDecoder, int blockSize, int searchArea);
     
     /**
      * @brief Destructor for the InterDecoder class.

@@ -28,7 +28,9 @@ private:
     int periodicity; 
     int blockSize; 
     int searchArea; 
-    int shift; 
+    int quantization1;
+    int quantization2;
+    int quantization3;
 
     /**
      * @brief Sets the best block size for motion estimation.
@@ -52,7 +54,7 @@ public:
      * @param searchArea The size of the area around the block where motion is estimated.
      * @param shift The shift value used for transform coding.
      */
-    HybridEncoder(string inputFile, int periodicity = 20, int searchArea = 4, int shift = 0);
+    HybridEncoder(string inputFile, int periodicity = 20, int searchArea = 4, int quantization1 = 255, int quantization2 = 255, int quantization3 = 255);
 
     /**
      * @brief Destructor for HybridEncoder.
