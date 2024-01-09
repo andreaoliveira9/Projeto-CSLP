@@ -62,14 +62,21 @@ void IntraEncoder::encode(Mat &currentFrame, int quantization1, int quantization
 
                 error = frame.ptr<uchar>(row, col)[channel] - predictedValue;
 
-                quantizationLevel = (channel == 0) ? quantization1 : ((channel == 1) ? quantization2 : quantization3);
+                if (quantization1 == 255 && quantization2 == 255 && quantization3 == 255) {
+                    errorMatrix.ptr<short>(row - 1, col - 1)[channel] = error;
 
-                steps = 256 / quantizationLevel;
-                quantizedError = floor(error/steps) * steps;
+                    frame.ptr<uchar>(row, col)[channel] = (unsigned char)predictedValue + error;
+                } else {
+                    quantizationLevel = (channel == 0) ? quantization1 : ((channel == 1) ? quantization2 : quantization3);
 
-                errorMatrix.ptr<short>(row - 1, col - 1)[channel] = quantizedError;
+                    steps = 256 / quantizationLevel;
+                    quantizedError = floor(error/steps) * steps;
 
-                frame.ptr<uchar>(row, col)[channel] = (unsigned char)predictedValue + quantizedError;
+                    errorMatrix.ptr<short>(row - 1, col - 1)[channel] = quantizedError;
+
+                    frame.ptr<uchar>(row, col)[channel] = (unsigned char)predictedValue + quantizedError;
+                }
+                
             }
         }
     }

@@ -16,9 +16,9 @@ int main(int argc, char const *argv[])
     system(command.c_str());
 
     int block_range = 3;
-    int quantization1 = 100;
-    int quantization2 = 100;
-    int quantization3 = 100;
+    int quantization1 = 50;
+    int quantization2 = 50;
+    int quantization3 = 50;
     for (int i = 0; i < files.size(); i++)
     {
         double original_file_size = 0.0;
