@@ -1,4 +1,7 @@
 #include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <chrono>
 #include "opencv2/opencv.hpp"
 #include "HybridCoding.hpp"
 
@@ -16,9 +19,10 @@ int main(int argc, char const *argv[])
     system(command.c_str());
 
     int block_range = 3;
-    int quantization1 = 50;
-    int quantization2 = 50;
-    int quantization3 = 50;
+
+    // Quantization parameters for testing
+    int quantization_values[] = {50, 25, 100};
+
     for (int i = 0; i < files.size(); i++)
     {
         double original_file_size = 0.0;
@@ -27,39 +31,43 @@ int main(int argc, char const *argv[])
         ifstream file(input, ifstream::ate | ifstream::binary);
         original_file_size = file.tellg();
 
-        string command = "mkdir -p " + dir + files[i];
+        string output_dir = dir + files[i] + "/";
+        command = "mkdir -p " + output_dir;
         system(command.c_str());
-        auto start_full = chrono::high_resolution_clock::now(); // start timer
-        
-          cout << "Encoding " << files[i] << " with block range " << block_range <<  endl;
-          string output = dir + files[i] + "/" + files[i] + "_lossy_level_" + to_string(quantization1) + ".bin";
 
-          HybridEncoder encoder(input, 20, block_range, quantization1, quantization2, quantization3);
+        for (int j = 0; j < sizeof(quantization_values) / sizeof(quantization_values[0]); j++)
+        {
+            int quantization = quantization_values[j];
 
-          encoder.encode(output);
-          auto end_full = chrono::high_resolution_clock::now(); // end timer
-          double time_taken_full = chrono::duration_cast<chrono::nanoseconds>(end_full - start_full).count();
+            auto start_full = chrono::high_resolution_clock::now(); // start timer
+            cout << "Encoding " << files[i] << " with block range " << block_range << " and quantization " << quantization << endl;
 
-          time_taken_full *= 1e-9;
+            string output = output_dir + files[i] + "_lossy_level_" + to_string(quantization) + "_test_" + to_string(j) + ".bin";
 
-          double encoded_file_size = 0.0;
+            HybridEncoder encoder(input, 20, block_range, quantization, quantization, quantization);
 
-          ifstream in(output, ifstream::ate | ifstream::binary);
-          encoded_file_size = in.tellg();
+            encoder.encode(output);
 
-          cout << left << setw(20) << "Time Taken"
-              //  << setw(20) << "Average Time"
-              << setw(40) << "Original File Size (MB)"
-              << setw(40) << "Encoded File Size (MB)"
-              << setw(40) << "Compression Rate (%)" << endl;
+            auto end_full = chrono::high_resolution_clock::now(); // end timer
+            double time_taken_full = chrono::duration_cast<chrono::nanoseconds>(end_full - start_full).count();
+            time_taken_full *= 1e-9;
 
-          cout << left << setw(20) << time_taken_full
-              //  << setw(20) << average_time
-              << setw(40) << original_file_size / 1000000
-              << setw(40) << encoded_file_size / 1000000 
-              << setw(40) << (original_file_size - encoded_file_size) / original_file_size * 100 << endl;
-      
+            double encoded_file_size = 0.0;
+
+            ifstream in(output, ifstream::ate | ifstream::binary);
+            encoded_file_size = in.tellg();
+
+            cout << left << setw(20) << "Time Taken"
+                 << setw(40) << "Original File Size (MB)"
+                 << setw(40) << "Encoded File Size (MB)"
+                 << setw(40) << "Compression Rate (%)" << endl;
+
+            cout << left << setw(20) << time_taken_full
+                 << setw(40) << original_file_size / 1000000
+                 << setw(40) << encoded_file_size / 1000000
+                 << setw(40) << (original_file_size - encoded_file_size) / original_file_size * 100 << endl;
+        }
     }
-    
+
     return 0;
 }
