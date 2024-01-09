@@ -128,15 +128,15 @@ void InterEncoder::findNearestBlock(Mat &previousFrame, Mat &currentBlock, int s
 }
 
 void InterEncoder::encodeAndApplyMotionCompenstation(Mat &previousFrame, Mat &currentFrame, Mat &auxiliarFrame, int row, int col, int channelsNumber, queue<int> &vectorCoordinates, int quantization1, int quantization2, int quantization3, int &totalSignal, int &totalNoise) {
-    int error;
-    int d_x = vectorCoordinates.front();
+    short error;
+    short d_x = vectorCoordinates.front();
     vectorCoordinates.pop();
-    int d_y = vectorCoordinates.front();
+    short d_y = vectorCoordinates.front();
     vectorCoordinates.pop();
     GolombEncoder.encode(d_x);
     GolombEncoder.encode(d_y);
 
-    int quantizedError;
+    short quantizedError;
     int steps;
     int quantizationLevel;
 

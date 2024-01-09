@@ -20,12 +20,12 @@ void IntraEncoder::encode(Mat &currentFrame, int quantization1, int quantization
     int a;
     int b;
     int c;
-    int error;
+    short error;
     int predictedValue;
     int mGolombParameter;
     int quantizationLevel;
     int steps;
-    int quantizedError;
+    short quantizedError;
     Mat frame, errorMatrix;
 
     int channelsNumber = currentFrame.channels();
