@@ -141,15 +141,19 @@ void InterEncoder::encodeAndApplyMotionCompenstation(Mat &previousFrame, Mat &cu
     GolombEncoder.encode(d_x);
     GolombEncoder.encode(d_y);
 
+    int quantizedError;
+    int steps;
+    int quantizationLevel;
+
     for (int i = row; i < row + this->blockSize; i++) {
         for (int j = col; j < col + this->blockSize; j++) {
             for (int channel = 0; channel < channelsNumber; channel++) {
                 error = auxiliarFrame.ptr<short>(i, j)[channel];
 
-                int quantizationLevel = (channel == 0) ? quantization1 : ((channel == 1) ? quantization2 : quantization3);
+                quantizationLevel = (channel == 0) ? quantization1 : ((channel == 1) ? quantization2 : quantization3);
 
-                int steps = 256 / quantizationLevel;
-                int quantizedError = floor(error/steps) * steps;
+                steps = 256 / quantizationLevel;
+                quantizedError = floor(error/steps) * steps;
 
                 currentFrame.ptr<uchar>(i, j)[channel] = quantizedError + previousFrame.ptr<uchar>(i, j)[channel];
 
