@@ -31,6 +31,8 @@ private:
     /** Value b of Golomb codes ( log2(m) ). */
     int b;
 
+    long double bitstreamSize;
+
 public:
     /**	@brief Constructor for GolombEncoder class.
      *
@@ -60,6 +62,9 @@ public:
      *	@return Integer representing the optimal m for Golomb encoding.
      *
      */
+
+    long double getBitstreamSize() const;
+
     int optimal_m(Mat &frame);
 
     /** @brief Method used to encoded a signed int.

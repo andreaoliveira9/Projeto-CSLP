@@ -14,7 +14,8 @@ IntraEncoder::~IntraEncoder()
 {
 }
 
-void IntraEncoder::encode(Mat &currentFrame, int quantization1, int quantization2, int quantization3)
+void IntraEncoder::encode(Mat &currentFrame, int quantization1, int quantization2, int quantization3, int &totalSignal, int &totalNoise)
+
 {
     int a;
     int b;
@@ -76,7 +77,9 @@ void IntraEncoder::encode(Mat &currentFrame, int quantization1, int quantization
 
                     frame.ptr<uchar>(row, col)[channel] = (unsigned char)predictedValue + quantizedError;
                 }
-                
+
+                totalSignal += abs(error);
+                totalNoise += abs(error - quantizedError);
             }
         }
     }

@@ -13,7 +13,7 @@ void InterEncoder::setBlockSize(int blockSize)
     this->blockSize = blockSize;
 }
 
-void InterEncoder::encode(Mat &previousFrame, Mat &currentFrame, int quantization1, int quantization2, int quantization3)
+void InterEncoder::encode(Mat &previousFrame, Mat &currentFrame, int quantization1, int quantization2, int quantization3, int &totalSignal, int &totalNoise)
 {
     int lastSum;
     int mGolombParameter;
@@ -91,7 +91,7 @@ void InterEncoder::encode(Mat &previousFrame, Mat &currentFrame, int quantizatio
 
     for (int row = 0; row <= max_y; row += this->blockSize) {
         for (int col = 0; col <= max_x; col += this->blockSize) {
-            encodeAndApplyMotionCompenstation(previousFrame, currentFrame, auxiliarFrame, row, col, channelsNumber, vectorCoordinates, quantization1, quantization2, quantization3);
+            encodeAndApplyMotionCompenstation(previousFrame, currentFrame, auxiliarFrame, row, col, channelsNumber, vectorCoordinates, quantization1, quantization2, quantization3, totalSignal, totalNoise);
         }
     }
 }
@@ -132,7 +132,7 @@ void InterEncoder::findNearestBlock(Mat &previousFrame, Mat &currentBlock, int s
     }
 }
 
-void InterEncoder::encodeAndApplyMotionCompenstation(Mat &previousFrame, Mat &currentFrame, Mat &auxiliarFrame, int row, int col, int channelsNumber, queue<int> &vectorCoordinates, int quantization1, int quantization2, int quantization3) {
+void InterEncoder::encodeAndApplyMotionCompenstation(Mat &previousFrame, Mat &currentFrame, Mat &auxiliarFrame, int row, int col, int channelsNumber, queue<int> &vectorCoordinates, int quantization1, int quantization2, int quantization3, int &totalSignal, int &totalNoise) {
     int error;
     int d_x = vectorCoordinates.front();
     vectorCoordinates.pop();
@@ -164,6 +164,9 @@ void InterEncoder::encodeAndApplyMotionCompenstation(Mat &previousFrame, Mat &cu
 
                     GolombEncoder.encode(quantizedError);
                 }
+
+                totalSignal += abs(error);
+                totalNoise += abs(error - quantizedError);
             }
         }
     }

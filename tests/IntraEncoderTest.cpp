@@ -83,6 +83,8 @@ int main(int argc, char const *argv[])
         encoder.encode(num_frames);
 
         int count = 0;
+        int totalSignal = 0;
+        int totalNoise = 0;
         auto start_full = chrono::high_resolution_clock::now(); 
         switch (format)
         {
@@ -104,7 +106,7 @@ int main(int argc, char const *argv[])
                     encoder.encode(frame.rows);
                 }
 
-                intra_encoder.encode(frame);
+                intra_encoder.encode(frame, 255, 255, 255, totalSignal, totalNoise);
                 count++;
             }
         }
@@ -126,7 +128,7 @@ int main(int argc, char const *argv[])
                     encoder.encode(frame.rows);
                 }
 
-                intra_encoder.encode(frame);
+                intra_encoder.encode(frame, 255, 255, 255, totalSignal, totalNoise);
                 count++;
             }
         }
@@ -148,7 +150,7 @@ int main(int argc, char const *argv[])
                     encoder.encode(frame.rows);
                 }
 
-                intra_encoder.encode(frame);
+                intra_encoder.encode(frame, 255, 255, 255, totalSignal, totalNoise);
                 count++;
             }
         }

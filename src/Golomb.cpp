@@ -7,6 +7,7 @@ GolombEncoder::GolombEncoder(string file_path)
 {
     bitStream.setToWrite(file_path);
     this->set_m(3);
+    this->bitstreamSize = 0;
 }
 
 void GolombEncoder::set_m(int m)
@@ -22,6 +23,11 @@ void GolombEncoder::set_m(int m)
 int GolombEncoder::get_m()
 {
     return mEnc;
+}
+
+long double GolombEncoder::getBitstreamSize() const
+{
+    return bitstreamSize;
 }
 
 int GolombEncoder::optimal_m(Mat &frame)
@@ -44,10 +50,13 @@ void GolombEncoder::encode(int num)
 {
     int q, r;
 
-    if (num < 0)
+    if (num < 0) {
         bitStream.writeBit(1);
-    else
+        this->bitstreamSize++; 
+    } else {
         bitStream.writeBit(0);
+        this->bitstreamSize++; 
+    }
 
     num = abs(num);
 
@@ -56,17 +65,24 @@ void GolombEncoder::encode(int num)
     r = num % mEnc;
     // cout << "r = " << num << " % " << m << " = " << r << "\n";
 
-    for (int i = 0; i < q; i++)
+    for (int i = 0; i < q; i++) {
         bitStream.writeBit(1);
+        this->bitstreamSize++; 
+    }
 
     bitStream.writeBit(0);
+    this->bitstreamSize++;
 
-    if (mEnc % 2 == 0)
+    if (mEnc % 2 == 0) {
         bitStream.writeNBits(r, b);
-    else if (r < pow(2, b + 1) - mEnc)
+        this->bitstreamSize += b;
+    } else if (r < pow(2, b + 1) - mEnc) {
         bitStream.writeNBits(r, b);
-    else
+        this->bitstreamSize += b;
+    } else {
         bitStream.writeNBits(r + pow(2, b + 1) - mEnc, b + 1);
+        this->bitstreamSize += (b + 1);
+    }
 }
 
 void GolombEncoder::finishEncoding()
@@ -141,3 +157,4 @@ int GolombDecoder::decode()
             return -1 * num;
     }
 }
+

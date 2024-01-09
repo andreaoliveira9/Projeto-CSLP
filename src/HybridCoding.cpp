@@ -47,6 +47,11 @@ void HybridEncoder::encode(string outputFile) {
     GolombEncoder.encode(searchArea);
     GolombEncoder.encode(frameNumber);
 
+    int totalSignal = 0;
+    int totalNoise = 0;
+
+    int numberOfPixelsPerFrame = videoWidth * videoHeight;
+
     int count = 0;
     while (true) {
         video >> currentFrame;
@@ -79,13 +84,16 @@ void HybridEncoder::encode(string outputFile) {
         if (count % periodicity == 0) {
             GolombEncoder.encode(0);
             currentFrame.copyTo(previousFrame);
-            intraEncoder.encode(currentFrame, quantization1, quantization2, quantization3);
+            intraEncoder.encode(currentFrame, quantization1, quantization2, quantization3, totalSignal, totalNoise);
         } else {
             GolombEncoder.encode(1);
-            interEncoder.encode(previousFrame, currentFrame, quantization1, quantization2, quantization3);
+            interEncoder.encode(previousFrame, currentFrame, quantization1, quantization2, quantization3, totalSignal, totalNoise);
         }
         count++;
     }
+
+    cout << "SNR: " << (double)totalSignal / (double)totalNoise << endl;
+    cout << "BPP: " << GolombEncoder.getBitstreamSize() / ((double)numberOfPixelsPerFrame * frameNumber * 3) << endl;
 
     GolombEncoder.finishEncoding();
 };

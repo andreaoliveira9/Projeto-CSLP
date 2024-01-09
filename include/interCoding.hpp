@@ -52,7 +52,7 @@ private:
      * @param count Number of motion vectors encoded.
      * @param vectorCoordinates Vector containing the coordinates of the motion vectors encoded.
      */
-    void encodeAndApplyMotionCompenstation(Mat &previousFrame, Mat &currentFrame, Mat &auxiliarFrame, int row, int col, int channelsNumber, std::queue<int> &vectorCoordinates, int quantization1, int quantization2, int quantization3);
+    void encodeAndApplyMotionCompenstation(Mat &previousFrame, Mat &currentFrame, Mat &auxiliarFrame, int row, int col, int channelsNumber, std::queue<int> &vectorCoordinates, int quantization1, int quantization2, int quantization3, int &totalSignal, int &totalNoise);
 
 public:
     /**
@@ -80,7 +80,7 @@ public:
      * @param previousFrame The previous video frame for reference.
      * @param currentFrame The current video frame to be encoded.
      */
-    void encode(Mat &previousFrame, Mat &currentFrame, int quantization1, int quantization2, int quantization3);
+    void encode(Mat &previousFrame, Mat &currentFrame, int quantization1, int quantization2, int quantization3, int &totalSignal, int &totalNoise);
 };
 
 
