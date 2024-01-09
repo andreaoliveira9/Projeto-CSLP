@@ -15,6 +15,8 @@ int main(int argc, char const *argv[])
     string command = "mkdir -p " + dir;
     system(command.c_str());
 
+    int periodicity = 3;
+    int blockSize = 16;
     for (int i = 0; i < files.size(); i++)
     {
         double original_file_size = 0.0;
@@ -31,7 +33,7 @@ int main(int argc, char const *argv[])
             cout << "Encoding " << files[i] << " with block range " << block_range << endl;
             string output = dir + files[i] + "/" + files[i] + "_block_range_" + to_string(block_range) + ".bin";
 
-            HybridEncoder encoder(input, 20, block_range);
+            HybridEncoder encoder(input, periodicity, block_range, blockSize);
 
             encoder.encode(output);
             auto end_full = chrono::high_resolution_clock::now(); // end timer

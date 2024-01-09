@@ -8,11 +8,6 @@ InterEncoder::~InterEncoder()
 {
 }
 
-void InterEncoder::setBlockSize(int blockSize)
-{
-    this->blockSize = blockSize;
-}
-
 void InterEncoder::encode(Mat &previousFrame, Mat &currentFrame, int quantization1, int quantization2, int quantization3, int &totalSignal, int &totalNoise)
 {
     int lastSum;

@@ -68,13 +68,7 @@ public:
      * @brief Destructor for the InterEncoder class.
      */
     ~InterEncoder();
-
-    /**
-     * @brief Set the size of the blocks used for motion estimation.
-     * @param blockSize New size of the blocks.
-     */
-    void setBlockSize(int blockSize);
-
+    
     /**
      * @brief Encode a frame using inter-frame coding.
      * @param previousFrame The previous video frame for reference.

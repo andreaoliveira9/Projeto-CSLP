@@ -2,7 +2,7 @@
 #include <chrono>
 #include <iostream>
 
-HybridEncoder::HybridEncoder(string inputFile, int periodicity, int searchArea, int quantization1, int quantization2, int quantization3): periodicity(periodicity), searchArea(searchArea), quantization1(quantization1), quantization2(quantization2), quantization3(quantization3) {
+HybridEncoder::HybridEncoder(string inputFile, int periodicity, int searchArea, int blockSize, int quantization1, int quantization2, int quantization3): periodicity(periodicity), searchArea(searchArea), blockSize(blockSize), quantization1(quantization1), quantization2(quantization2), quantization3(quantization3) {
     ifstream file(inputFile, ios::binary);
 
     string fileHeader;
@@ -45,6 +45,7 @@ void HybridEncoder::encode(string outputFile) {
 
     GolombEncoder.encode(format);
     GolombEncoder.encode(searchArea);
+    GolombEncoder.encode(blockSize);
     GolombEncoder.encode(frameNumber);
 
     int totalSignal = 0;
@@ -77,10 +78,6 @@ void HybridEncoder::encode(string outputFile) {
             }
         }
 
-        if (count == 0) {
-            setBestBlockSize(currentFrame, GolombEncoder, interEncoder);
-        }
-
         if (count % periodicity == 0) {
             GolombEncoder.encode(0);
             currentFrame.copyTo(previousFrame);
@@ -98,40 +95,7 @@ void HybridEncoder::encode(string outputFile) {
     GolombEncoder.finishEncoding();
 };
 
-void HybridEncoder::setBestBlockSize(Mat &currentFrame, GolombEncoder &GolombEncoder, InterEncoder &interEncoder) {
-    int a = currentFrame.cols;
-    int b = currentFrame.rows;
-    if (a != b) {
-        int gcd = -1;
-        while (b != 0) {
-            a %= b;
-            if (a == 0) {
-                gcd = b;
-            }
-            break;
-            b %= a;
-        }
-        if (gcd == -1) {
-            gcd = a;
-        }
-        if (gcd == a || gcd == b) {
-            gcd = 16;
-        }
-        this->blockSize = gcd;
-        interEncoder.setBlockSize(gcd);
-        GolombEncoder.encode(gcd);
-    } else {
-        this->blockSize = 16;
-        interEncoder.setBlockSize(16);
-        GolombEncoder.encode(16);
-    }
-
-    GolombEncoder.encode(currentFrame.cols);
-    GolombEncoder.encode(currentFrame.rows);
-}
-
-HybridDecoder::HybridDecoder(string inputFile) {
-    this->inputFile = inputFile;
+HybridDecoder::HybridDecoder(string inputFile) : inputFile(inputFile) {
 };
 
 HybridDecoder::~HybridDecoder() {};
@@ -142,8 +106,8 @@ void HybridDecoder::decode(string outputFile) {
 
     int format = GolombDecoder.decode();
     int searchArea = GolombDecoder.decode();
-    int frameNumber = GolombDecoder.decode();
     int blockSize = GolombDecoder.decode();
+    int frameNumber = GolombDecoder.decode();
     int width = GolombDecoder.decode();
     int height = GolombDecoder.decode();
 

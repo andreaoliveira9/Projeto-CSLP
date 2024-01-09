@@ -26,22 +26,11 @@ private:
     int videoHeight; 
     int frameNumber; 
     int periodicity; 
-    int blockSize; 
+    int blockSize;
     int searchArea; 
     int quantization1;
     int quantization2;
     int quantization3;
-
-    /**
-     * @brief Sets the best block size for motion estimation.
-     * 
-     * Sets the best block size for motion estimation, based on the current frame and the previous frame.
-     * 
-     * @param currentFrame The current frame being processed.
-     * @param GolombEncoder The Golomb encoder used for encoding the video.
-     * @param interEncoder The inter encoder used for encoding the video.
-     */
-    void setBestBlockSize(Mat &currentFrame, GolombEncoder &GolombEncoder, InterEncoder &interEncoder);
 
 public:
     /**
@@ -54,7 +43,7 @@ public:
      * @param searchArea The size of the area around the block where motion is estimated.
      * @param shift The shift value used for transform coding.
      */
-    HybridEncoder(string inputFile, int periodicity = 20, int searchArea = 4, int quantization1 = 255, int quantization2 = 255, int quantization3 = 255);
+    HybridEncoder(string inputFile, int periodicity, int searchArea, int blockSize, int quantization1 = 255, int quantization2 = 255, int quantization3 = 255);
 
     /**
      * @brief Destructor for HybridEncoder.

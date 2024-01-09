@@ -13,7 +13,7 @@ int main(int argc, char const *argv[])
     string output;
 
     cin >> output;
-
+    
     HybridDecoder decoder(input);
 
     auto start = chrono::high_resolution_clock::now();

@@ -22,7 +22,9 @@ int main(int argc, char const *argv[])
 
     // Quantization parameters for testing
     int quantization_values[] = {50, 25, 100};
-
+    int periodicity = 3;
+    int blockSize = 8;
+    
     for (int i = 0; i < files.size(); i++)
     {
         double original_file_size = 0.0;
@@ -44,7 +46,7 @@ int main(int argc, char const *argv[])
 
             string output = output_dir + files[i] + "_lossy_level_" + to_string(quantization) + "_test_" + to_string(j) + ".bin";
 
-            HybridEncoder encoder(input, 20, block_range, quantization, quantization, quantization);
+            HybridEncoder encoder(input, periodicity, block_range, blockSize, quantization, quantization, quantization);
 
             encoder.encode(output);
 
