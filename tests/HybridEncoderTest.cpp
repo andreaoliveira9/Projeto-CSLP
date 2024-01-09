@@ -45,14 +45,16 @@ int main(int argc, char const *argv[])
             encoded_file_size = in.tellg();
 
             cout << left << setw(20) << "Time Taken"
-                 //  << setw(20) << "Average Time"
-                 << setw(40) << "Original File Size (MB)"
-                 << setw(40) << "Encoded File Size (MB)" << endl;
+              //  << setw(20) << "Average Time"
+              << setw(40) << "Original File Size (MB)"
+              << setw(40) << "Encoded File Size (MB)"
+              << setw(40) << "Compression Rate (%)" << endl;
 
-            cout << left << setw(20) << time_taken_full
-                 //  << setw(20) << average_time
-                 << setw(40) << original_file_size / 1000000
-                 << setw(40) << encoded_file_size / 1000000 << endl;
+          cout << left << setw(20) << time_taken_full
+              //  << setw(20) << average_time
+              << setw(40) << original_file_size / 1000000
+              << setw(40) << encoded_file_size / 1000000 
+              << setw(40) << (original_file_size - encoded_file_size) / original_file_size * 100 << endl;
         }
     }
     return 0;
