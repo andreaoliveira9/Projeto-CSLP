@@ -38,7 +38,8 @@ int main(int argc, char const *argv[])
             if (waitKey(10) == 27)
             {
                 destroyAllWindows();
-            }; // Wait for a keystroke in the window
+            }; 
+            n_frames--;
         }
         break;
     }
@@ -53,7 +54,8 @@ int main(int argc, char const *argv[])
             if (waitKey(10) == 27)
             {
                 destroyAllWindows();
-            }; // Wait for a keystroke in the window
+            }; 
+            n_frames--;
         }
         break;
     }
@@ -68,7 +70,8 @@ int main(int argc, char const *argv[])
             if (waitKey(10) == 27)
             {
                 destroyAllWindows();
-            }; // Wait for a keystroke in the window
+            }; 
+            n_frames--;
         }
         break;
     }
