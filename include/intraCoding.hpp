@@ -18,9 +18,6 @@ using namespace std;
  */
 class IntraEncoder {
 private:
-    int quantization1;
-    int quantization2;
-    int quantization3;
     GolombEncoder &golombEncoder; 
 
 public:
@@ -29,7 +26,7 @@ public:
     * @param golombEncoder Reference to a GolombEncoder object for entropy coding.
     * @param shift Shift value used for transform coding (default is 0).
     */
-  IntraEncoder(GolombEncoder &golombEncoder, int quantization1 = 255, int quantization2 = 255, int quantization3 = 255);
+  IntraEncoder(GolombEncoder &golombEncoder);
   
   /**
    * @brief Destructor for the IntraEncoder class.
@@ -40,7 +37,7 @@ public:
    * @brief Encodes a video frame using intra-frame encoding.
    * @param currentFrame The video frame to be encoded.
    */
-  void encode(Mat &currentFrame);
+  void encode(Mat &currentFrame, int quantization1, int quantization2, int quantization3);
 };
 
 /**

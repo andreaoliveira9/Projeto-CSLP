@@ -37,8 +37,8 @@ void HybridEncoder::encode(string outputFile) {
     Converter converter;
     GolombEncoder GolombEncoder(outputFile);
 
-    IntraEncoder intraEncoder(GolombEncoder, quantization1, quantization2, quantization3);
-    InterEncoder interEncoder(GolombEncoder, blockSize, searchArea, quantization1, quantization2, quantization3);
+    IntraEncoder intraEncoder(GolombEncoder);
+    InterEncoder interEncoder(GolombEncoder, blockSize, searchArea);
 
     Mat currentFrame;
     Mat previousFrame;
@@ -79,10 +79,10 @@ void HybridEncoder::encode(string outputFile) {
         if (count % periodicity == 0) {
             GolombEncoder.encode(0);
             currentFrame.copyTo(previousFrame);
-            intraEncoder.encode(currentFrame);
+            intraEncoder.encode(currentFrame, quantization1, quantization2, quantization3);
         } else {
             GolombEncoder.encode(1);
-            interEncoder.encode(previousFrame, currentFrame);
+            interEncoder.encode(previousFrame, currentFrame, quantization1, quantization2, quantization3);
         }
         count++;
     }

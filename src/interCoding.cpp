@@ -1,6 +1,6 @@
 #include "interCoding.hpp"
 
-InterEncoder::InterEncoder(class GolombEncoder &GolombEncoder, int blockSize, int searchArea, int quantization1, int quantization2, int quantization3): GolombEncoder(GolombEncoder), blockSize(blockSize), searchArea(searchArea), quantization1(quantization1), quantization2(quantization2), quantization3(quantization3)
+InterEncoder::InterEncoder(class GolombEncoder &GolombEncoder, int blockSize, int searchArea): GolombEncoder(GolombEncoder), blockSize(blockSize), searchArea(searchArea)
 {
 }
 
@@ -13,7 +13,7 @@ void InterEncoder::setBlockSize(int blockSize)
     this->blockSize = blockSize;
 }
 
-void InterEncoder::encode(Mat &previousFrame, Mat &currentFrame)
+void InterEncoder::encode(Mat &previousFrame, Mat &currentFrame, int quantization1, int quantization2, int quantization3)
 {
     int lastSum;
     int mGolombParameter;
@@ -91,7 +91,7 @@ void InterEncoder::encode(Mat &previousFrame, Mat &currentFrame)
 
     for (int row = 0; row <= max_y; row += this->blockSize) {
         for (int col = 0; col <= max_x; col += this->blockSize) {
-            encodeAndApplyMotionCompenstation(previousFrame, currentFrame, auxiliarFrame, row, col, channelsNumber, vectorCoordinates);
+            encodeAndApplyMotionCompenstation(previousFrame, currentFrame, auxiliarFrame, row, col, channelsNumber, vectorCoordinates, quantization1, quantization2, quantization3);
         }
     }
 }
@@ -132,7 +132,7 @@ void InterEncoder::findNearestBlock(Mat &previousFrame, Mat &currentBlock, int s
     }
 }
 
-void InterEncoder::encodeAndApplyMotionCompenstation(Mat &previousFrame, Mat &currentFrame, Mat &auxiliarFrame, int row, int col, int channelsNumber, queue<int> &vectorCoordinates) {
+void InterEncoder::encodeAndApplyMotionCompenstation(Mat &previousFrame, Mat &currentFrame, Mat &auxiliarFrame, int row, int col, int channelsNumber, queue<int> &vectorCoordinates, int quantization1, int quantization2, int quantization3) {
     int error;
     int d_x = vectorCoordinates.front();
     vectorCoordinates.pop();

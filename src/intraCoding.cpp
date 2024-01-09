@@ -5,8 +5,8 @@
 using namespace std;
 using namespace cv;
 
-IntraEncoder::IntraEncoder(GolombEncoder &golombEncoder, int quantization1, int quantization2, int quantization3)
-    : golombEncoder(golombEncoder), quantization1(quantization1), quantization2(quantization2), quantization3(quantization3)
+IntraEncoder::IntraEncoder(GolombEncoder &golombEncoder)
+    : golombEncoder(golombEncoder)
 {
 }
 
@@ -14,7 +14,7 @@ IntraEncoder::~IntraEncoder()
 {
 }
 
-void IntraEncoder::encode(Mat &currentFrame)
+void IntraEncoder::encode(Mat &currentFrame, int quantization1, int quantization2, int quantization3)
 {
     int a;
     int b;

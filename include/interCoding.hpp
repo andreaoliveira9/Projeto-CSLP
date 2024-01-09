@@ -21,10 +21,7 @@ class InterEncoder
 {
 private:
     int blockSize;
-    int searchArea; 
-    int quantization1;
-    int quantization2;
-    int quantization3;
+    int searchArea;
     GolombEncoder &GolombEncoder; 
 
     /**
@@ -55,7 +52,7 @@ private:
      * @param count Number of motion vectors encoded.
      * @param vectorCoordinates Vector containing the coordinates of the motion vectors encoded.
      */
-    void encodeAndApplyMotionCompenstation(Mat &previousFrame, Mat &currentFrame, Mat &auxiliarFrame, int row, int col, int channelsNumber, std::queue<int> &vectorCoordinates);
+    void encodeAndApplyMotionCompenstation(Mat &previousFrame, Mat &currentFrame, Mat &auxiliarFrame, int row, int col, int channelsNumber, std::queue<int> &vectorCoordinates, int quantization1, int quantization2, int quantization3);
 
 public:
     /**
@@ -65,7 +62,7 @@ public:
      * @param searchArea Size of the search area for motion estimation.
      * @param shift Shift value used for transform coding (default is 0).
      */
-    InterEncoder(class GolombEncoder &GolombEncoder, int blockSize, int searchArea, int quantization1 = 255, int quantization2 = 255, int quantization3 = 255);
+    InterEncoder(class GolombEncoder &GolombEncoder, int blockSize, int searchArea);
 
     /**
      * @brief Destructor for the InterEncoder class.
@@ -83,7 +80,7 @@ public:
      * @param previousFrame The previous video frame for reference.
      * @param currentFrame The current video frame to be encoded.
      */
-    void encode(Mat &previousFrame, Mat &currentFrame);
+    void encode(Mat &previousFrame, Mat &currentFrame, int quantization1, int quantization2, int quantization3);
 };
 
 
