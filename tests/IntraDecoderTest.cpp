@@ -17,20 +17,13 @@ int main(int argc, char const *argv[])
     GolombDecoder decoder(input);
 
     int format = decoder.decode();
-    int shift = decoder.decode();
     int n_frames = decoder.decode();
     int width = decoder.decode();
     int height = decoder.decode();
 
-    cout << "Format: " << format << endl;
-    cout << "Shift: " << shift << endl;
-    cout << "Number of frames: " << n_frames << endl;
-    cout << "Width: " << width << endl;
-    cout << "Height: " << height << endl;
-
     Mat frame;
 
-    IntraDecoder intra_decoder(decoder, shift);
+    IntraDecoder intra_decoder(decoder);
 
     switch (format)
     {
@@ -46,8 +39,6 @@ int main(int argc, char const *argv[])
             {
                 destroyAllWindows();
             }; // Wait for a keystroke in the window
-
-            cout << "Decoded frame " << n_frames-- << endl;
         }
         break;
     }
@@ -63,8 +54,6 @@ int main(int argc, char const *argv[])
             {
                 destroyAllWindows();
             }; // Wait for a keystroke in the window
-
-            cout << "Decoded frame " << n_frames-- << endl;
         }
         break;
     }
@@ -80,8 +69,6 @@ int main(int argc, char const *argv[])
             {
                 destroyAllWindows();
             }; // Wait for a keystroke in the window
-
-            cout << "Decoded frame " << n_frames-- << endl;
         }
         break;
     }

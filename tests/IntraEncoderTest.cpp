@@ -12,13 +12,10 @@ int main(int argc, char const *argv[])
 {
     vector<string> files;
     string static_videos = "static/videos/";
-    files.push_back("park_joy_420_720p50.y4m");
+    files.push_back("akiyo_qcif.y4m");
 
     // create directory for output
-    string dir = "batch_output/";
-    string command = "mkdir -p " + dir;
-    system(command.c_str());
-
+    string dir = "build/Deliverable_4/encode_output_intra/";
     Converter conv;
 
 
@@ -64,11 +61,9 @@ int main(int argc, char const *argv[])
             format = 2;
         }
 
-        cout << "Format: " << format << endl;
-
         string command = "mkdir -p " + dir + files[i];
         system(command.c_str());
-        string output = dir + files[i] +  ".bin";
+        string output = dir + files[i] + "/" + files[i] + ".bin";
 
         VideoCapture cap(input);
 
@@ -77,14 +72,13 @@ int main(int argc, char const *argv[])
             cout << "Error opening video stream or file" << endl;
             return -1;
         }
-        int shift = 0;
+
         GolombEncoder encoder(output);
-        IntraEncoder intra_encoder(encoder, shift);
+        IntraEncoder intra_encoder(encoder);
 
         Mat frame;
 
         encoder.encode(format);
-        encoder.encode(shift);
         int num_frames = cap.get(CAP_PROP_FRAME_COUNT);
         encoder.encode(num_frames);
 

@@ -37,7 +37,7 @@ public:
    * @brief Encodes a video frame using intra-frame encoding.
    * @param currentFrame The video frame to be encoded.
    */
-  void encode(Mat &currentFrame, int quantization1, int quantization2, int quantization3);
+  void encode(Mat &currentFrame, int quantization1 = 255, int quantization2 = 255, int quantization3 = 255);
 };
 
 /**
