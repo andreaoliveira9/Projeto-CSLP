@@ -2,25 +2,8 @@
 #include <chrono>
 #include <iostream>
 
-HybridEncoder::HybridEncoder(string inputFile, int periodicity, int searchArea, int quantization1, int quantization2, int quantization3): inputFile(inputFile), periodicity(periodicity), searchArea(searchArea), quantization1(quantization1), quantization2(quantization2), quantization3(quantization3) {
-    ifstream file(inputFile, ios::binary);
-
-    string fileHeader;
-    getline(file, fileHeader);
-
-    istringstream iss(fileHeader);
-
-    vector<string> tokens{istream_iterator<string>{iss}, istream_iterator<string>{}};
-
-    if (tokens.size() > 6) {
-        if (tokens[6].compare("C444") == 0) {
-            format = 0;
-        } else if (tokens[6].compare("C422") == 0) {
-            format = 1;
-        }
-    } else {
-        format = 2;
-    }
+HybridEncoder::HybridEncoder(string inputFile, int periodicity, int searchArea, int quantization1, int quantization2, int quantization3): video(inputFile), periodicity(periodicity), searchArea(searchArea), quantization1(quantization1), quantization2(quantization2), quantization3(quantization3) {
+    this->frameNumber = video.get_n_frames();
 };
 
 HybridEncoder::~HybridEncoder() {
@@ -28,7 +11,6 @@ HybridEncoder::~HybridEncoder() {
 
 
 void HybridEncoder::encode(string outputFile) {
-    YUVReader video(this->inputFile);
     Converter converter;
     GolombEncoder GolombEncoder(outputFile);
 
@@ -37,10 +19,7 @@ void HybridEncoder::encode(string outputFile) {
 
     Mat currentFrame;
     Mat previousFrame;
-
-    int frameNumber = video.get_n_frames();
     
-    GolombEncoder.encode(format);
     GolombEncoder.encode(searchArea);
     GolombEncoder.encode(frameNumber);
 
@@ -56,6 +35,8 @@ void HybridEncoder::encode(string outputFile) {
         };
 
         if (count == 0) {
+            GolombEncoder.encode(currentFrame.cols);
+            GolombEncoder.encode(currentFrame.rows);
             setBestBlockSize(currentFrame, GolombEncoder, interEncoder);
         }
 
@@ -103,9 +84,6 @@ void HybridEncoder::setBestBlockSize(Mat &currentFrame, GolombEncoder &GolombEnc
         interEncoder.setBlockSize(16);
         GolombEncoder.encode(16);
     }
-
-    GolombEncoder.encode(currentFrame.cols);
-    GolombEncoder.encode(currentFrame.rows);
 }
 
 HybridDecoder::HybridDecoder(string inputFile) {
@@ -118,13 +96,12 @@ void HybridDecoder::decode(string outputFile) {
     Converter converter;
     GolombDecoder GolombDecoder(this->inputFile);
 
-    int format = GolombDecoder.decode();
     int searchArea = GolombDecoder.decode();
     int frameNumber = GolombDecoder.decode();
-    int blockSize = GolombDecoder.decode();
     int width = GolombDecoder.decode();
     int height = GolombDecoder.decode();
-
+    int blockSize = GolombDecoder.decode();
+    
     IntraDecoder intraDecoder(GolombDecoder);
     InterDecoder interDecoder(GolombDecoder, blockSize, searchArea);
 
@@ -139,24 +116,7 @@ void HybridDecoder::decode(string outputFile) {
 
     int count = 0;
     while (count < frameNumber) {
-        switch (format) {
-            case 0:
-            {
-                currentFrame = Mat::zeros(height, width, CV_8UC3);
-                break;
-            }
-            case 1:
-            {
-                currentFrame = Mat::zeros(height, width, CV_8UC1);
-                break;
-            }
-            case 2:
-            {
-                currentFrame = Mat::zeros(height, width, CV_8UC1);
-                break;
-            }
-        }
-        
+        currentFrame = Mat::zeros(height, width, CV_8UC3);
 
         if (GolombDecoder.decode() == 0) {
             intraDecoder.decode(currentFrame);
@@ -168,23 +128,7 @@ void HybridDecoder::decode(string outputFile) {
         // Escreva o frame atual no arquivo Y4M
         y4mFile.write(reinterpret_cast<const char*>(currentFrame.data), width * height * 3);
 
-        switch (format) {
-            case 0:
-            {
-                imshow("Image", converter.yuv444_to_rgb(currentFrame));
-                break;
-            }
-            case 1:
-            {
-                imshow("Image", converter.yuv422_to_rgb(currentFrame));
-                break;
-            }
-            case 2:
-            {
-                imshow("Image", converter.yuv420_to_rgb(currentFrame));
-                break;
-            }
-        }
+        imshow("Image", converter.yuv444_to_rgb(currentFrame));
 
         if (waitKey(10) == 27) {
             destroyAllWindows();

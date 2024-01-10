@@ -100,11 +100,6 @@ Mat YUVReader::get_nextFrame()
     return frame;
 }
 
-string YUVReader::get_file_header()
-{
-    return this->file_header;
-}
-
 bool YUVReader::nextFrame_exists()
 {
     return this->read_frames < this->n_frames;

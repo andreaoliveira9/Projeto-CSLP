@@ -21,7 +21,7 @@ using namespace std;
  */
 class HybridEncoder {
 private:
-    string inputFile;
+    YUVReader video;
     int format; 
     int videoWidth; 
     int videoHeight; 

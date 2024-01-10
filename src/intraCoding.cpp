@@ -30,18 +30,9 @@ void IntraEncoder::encode(Mat &currentFrame, int quantization1, int quantization
 
     int channelsNumber = currentFrame.channels();
 
-    if (channelsNumber == 3) {
-        hconcat(Mat::zeros(currentFrame.rows, 1, CV_8UC3), currentFrame, frame);
-        vconcat(Mat::zeros(1, currentFrame.cols + 1, CV_8UC3), frame, frame);
-        errorMatrix = Mat::zeros(currentFrame.rows, currentFrame.cols, CV_16SC3);
-    } else if (channelsNumber == 1) {
-        hconcat(Mat::zeros(currentFrame.rows, 1, CV_8UC1), currentFrame, frame);
-        vconcat(Mat::zeros(1, currentFrame.cols + 1, CV_8UC1), frame, frame);
-        errorMatrix = Mat::zeros(currentFrame.rows, currentFrame.cols, CV_16SC1);
-    } else {
-        cout << "Error: Invalid number of channels" << endl;
-        exit(1);
-    }
+    hconcat(Mat::zeros(currentFrame.rows, 1, CV_8UC3), currentFrame, frame);
+    vconcat(Mat::zeros(1, currentFrame.cols + 1, CV_8UC3), frame, frame);
+    errorMatrix = Mat::zeros(currentFrame.rows, currentFrame.cols, CV_16SC3);
 
     for (int row = 1; row < frame.rows; row++)
     {
@@ -121,13 +112,9 @@ void IntraDecoder::decode(Mat &currentFrame)
 
     int channelsNumber = currentFrame.channels();
 
-    if (channelsNumber == 3) {
-        hconcat(Mat::zeros(currentFrame.rows, 1, CV_8UC3), currentFrame, currentFrame);
-        vconcat(Mat::zeros(1, currentFrame.cols, CV_8UC3), currentFrame, currentFrame);
-    } else if (channelsNumber == 1) {
-        hconcat(Mat::zeros(currentFrame.rows, 1, CV_8UC1), currentFrame, currentFrame);
-        vconcat(Mat::zeros(1, currentFrame.cols, CV_8UC1), currentFrame, currentFrame);
-    }
+    hconcat(Mat::zeros(currentFrame.rows, 1, CV_8UC3), currentFrame, currentFrame);
+    vconcat(Mat::zeros(1, currentFrame.cols, CV_8UC3), currentFrame, currentFrame);
+    
     int optimalM = golombDecoder.decode();
 
     if (optimalM != 0) {

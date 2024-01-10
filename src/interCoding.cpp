@@ -34,13 +34,8 @@ void InterEncoder::encode(Mat &previousFrame, Mat &currentFrame, int quantizatio
     int channelsNumber = currentFrame.channels();
     queue<int> vectorCoordinates;
 
-    if (channelsNumber == 3) {
-        blocksDifferences = Mat::zeros(this->blockSize, this->blockSize, CV_16SC3);
-        auxiliarFrame = Mat::zeros(currentFrame.rows, currentFrame.cols, CV_16SC3);
-    } else if (channelsNumber == 1) {
-        blocksDifferences = Mat::zeros(this->blockSize, this->blockSize, CV_16SC1);
-        auxiliarFrame = Mat::zeros(currentFrame.rows, currentFrame.cols, CV_16SC1);
-    }
+    blocksDifferences = Mat::zeros(this->blockSize, this->blockSize, CV_16SC3);
+    auxiliarFrame = Mat::zeros(currentFrame.rows, currentFrame.cols, CV_16SC3);
 
     for (int row = 0; row <= max_y; row += this->blockSize)
     {
