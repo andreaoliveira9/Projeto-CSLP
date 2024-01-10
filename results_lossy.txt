@@ -1,0 +1,108 @@
+Encoding ducks_take_off_444_720p50.y4m with search area 3 and quantization 2
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+264.868             0.529736                                5.06027                                 0.952624                                1382.4                                  874.415                                 36.7468
+Encoding ducks_take_off_444_720p50.y4m with search area 3 and quantization 25
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+278.122             0.556245                                5.55057                                 2.13435                                 1382.4                                  959.138                                 30.618
+Encoding ducks_take_off_444_720p50.y4m with search area 3 and quantization 50
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+285.131             0.570261                                5.63869                                 -0.649664                               1382.4                                  974.365                                 29.5166
+Encoding ducks_take_off_444_720p50.y4m with search area 3 and quantization 100
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+294.414             0.588829                                5.77767                                 1.54314                                 1382.4                                  998.382                                 27.7793
+Encoding ducks_take_off_444_720p50.y4m with search area 4 and quantization 2
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+351.042             0.702084                                5.05095                                 0.961077                                1382.4                                  872.803                                 36.8633
+Encoding ducks_take_off_444_720p50.y4m with search area 4 and quantization 25
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+367.3               0.7346                                  5.54217                                 2.05857                                 1382.4                                  957.687                                 30.723
+Encoding ducks_take_off_444_720p50.y4m with search area 4 and quantization 50
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+371.881             0.743762                                5.63033                                 -0.617183                               1382.4                                  972.921                                 29.621
+Encoding ducks_take_off_444_720p50.y4m with search area 4 and quantization 100
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+382.352             0.764704                                5.76986                                 1.46182                                 1382.4                                  997.031                                 27.877
+Encoding ducks_take_off_444_720p50.y4m with search area 5 and quantization 2
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+460.678             0.921356                                5.04897                                 0.966558                                1382.4                                  872.461                                 36.8881
+Encoding ducks_take_off_444_720p50.y4m with search area 5 and quantization 25
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+473.364             0.946727                                5.53941                                 2.0106                                  1382.4                                  957.211                                 30.7575
+Encoding ducks_take_off_444_720p50.y4m with search area 5 and quantization 50
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+482.821             0.965642                                5.62752                                 -0.597129                               1382.4                                  972.435                                 29.6562
+Encoding ducks_take_off_444_720p50.y4m with search area 5 and quantization 100
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+495.832             0.991663                                5.76705                                 1.41153                                 1382.4                                  996.546                                 27.912
+Encoding park_joy_444_720p50.y4m with search area 3 and quantization 2
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+268.072             0.536143                                5.1596                                  -0.129981                               1382.4                                  891.579                                 35.5051
+Encoding park_joy_444_720p50.y4m with search area 3 and quantization 25
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+285.031             0.570061                                5.82                                    -3.75145                                1382.4                                  1005.7                                  27.2502
+Encoding park_joy_444_720p50.y4m with search area 3 and quantization 50
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+289.686             0.579373                                5.87224                                 0.719814                                1382.4                                  1014.72                                 26.5972
+Encoding park_joy_444_720p50.y4m with search area 3 and quantization 100
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+293.852             0.587703                                5.94701                                 -2.00266                                1382.4                                  1027.64                                 25.6626
+Encoding park_joy_444_720p50.y4m with search area 4 and quantization 2
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+350.667             0.701334                                5.09031                                 0.704126                                1382.4                                  879.606                                 36.3713
+Encoding park_joy_444_720p50.y4m with search area 4 and quantization 25
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+380.316             0.760632                                5.74953                                 -7.94403                                1382.4                                  993.519                                 28.131
+Encoding park_joy_444_720p50.y4m with search area 4 and quantization 50
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+372.381             0.744763                                5.80166                                 1.10282                                 1382.4                                  1002.53                                 27.4794
+Encoding park_joy_444_720p50.y4m with search area 4 and quantization 100
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+383.168             0.766337                                5.87794                                 -3.02402                                1382.4                                  1015.71                                 26.5259
+Encoding park_joy_444_720p50.y4m with search area 5 and quantization 2
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+460.542             0.921085                                5.0441                                  0.847127                                1382.4                                  871.62                                  36.9489
+Encoding park_joy_444_720p50.y4m with search area 5 and quantization 25
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+474.581             0.949161                                5.69812                                 11.7471                                 1382.4                                  984.635                                 28.7737
+Encoding park_joy_444_720p50.y4m with search area 5 and quantization 50
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+481.904             0.963808                                5.75061                                 -0.929361                               1382.4                                  993.706                                 28.1175
+Encoding park_joy_444_720p50.y4m with search area 5 and quantization 100
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+494.345             0.988689                                5.82732                                 2.34912                                 1382.4                                  1006.96                                 27.1586
+Encoding in_to_tree_444_720p50.y4m with search area 3 and quantization 2
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+252.453             0.504906                                4.44508                                 0.990771                                1382.4                                  768.11                                  44.4366
+Encoding in_to_tree_444_720p50.y4m with search area 3 and quantization 25
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+257.134             0.514268                                4.72773                                 -12.6153                                1382.4                                  816.952                                 40.9035
+Encoding in_to_tree_444_720p50.y4m with search area 3 and quantization 50
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+268.197             0.536394                                4.93977                                 -0.810684                               1382.4                                  853.593                                 38.253
+Encoding in_to_tree_444_720p50.y4m with search area 3 and quantization 100
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+283.697             0.567395                                5.06099                                 2.10525                                 1382.4                                  874.54                                  36.7377
+Encoding in_to_tree_444_720p50.y4m with search area 4 and quantization 2
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+336.214             0.672429                                4.364                                   0.996282                                1382.4                                  754.1                                   45.4501
+Encoding in_to_tree_444_720p50.y4m with search area 4 and quantization 25
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+348.471             0.696943                                4.63284                                 -6.38678                                1382.4                                  800.554                                 42.0897
+Encoding in_to_tree_444_720p50.y4m with search area 4 and quantization 50
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+361.519             0.723037                                4.86019                                 -0.625662                               1382.4                                  839.84                                  39.2478
+Encoding in_to_tree_444_720p50.y4m with search area 4 and quantization 100
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+389.513             0.779026                                4.9863                                  1.61259                                 1382.4                                  861.632                                 37.6714
+Encoding in_to_tree_444_720p50.y4m with search area 5 and quantization 2
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+455.524             0.911049                                4.29304                                 0.998322                                1382.4                                  741.837                                 46.3371
+Encoding in_to_tree_444_720p50.y4m with search area 5 and quantization 25
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+461.354             0.922708                                4.55246                                 -4.10104                                1382.4                                  786.665                                 43.0944
+Encoding in_to_tree_444_720p50.y4m with search area 5 and quantization 50
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+487.088             0.974175                                4.79329                                 -0.490689                               1382.4                                  828.28                                  40.084
+Encoding in_to_tree_444_720p50.y4m with search area 5 and quantization 100
+Time Taken(s)       Average Time Per Frame (s)              Bits Per Pixel (bpp)                    Signal to Noise Ratio (snr)             Original File Size (MB)                 Encoded File Size (MB)                  Compression Rate (%)
+481.905             0.963809                                4.92419                                 1.24821                                 1382.4                                  850.901                                 38.4477
