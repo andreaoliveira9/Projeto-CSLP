@@ -54,9 +54,11 @@ public:
      * Initializes the hybrid encoder with the necessary parameters for video encoding.
      * 
      * @param inputFile The path to the input video file.
-     * @param periodicity The frequency of I-frames in the video sequence.
-     * @param searchArea The size of the area around the block where motion is estimated.
-     * @param shift The shift value used for transform coding.
+     * @param periodicity The number of frames between two consecutive intra-coded frames.
+     * @param searchArea The size of the search area for motion estimation.
+     * @param quantization1 The quantization level for the first channel.
+     * @param quantization2 The quantization level for the second channel.
+     * @param quantization3 The quantization level for the third channel.
      */
     HybridEncoder(string inputFile, int periodicity = 20, int searchArea = 4, int quantization1 = 255, int quantization2 = 255, int quantization3 = 255);
 

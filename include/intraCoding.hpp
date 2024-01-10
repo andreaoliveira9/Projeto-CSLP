@@ -24,7 +24,6 @@ public:
   /**
     * @brief Constructor for the IntraEncoder class.
     * @param golombEncoder Reference to a GolombEncoder object for entropy coding.
-    * @param shift Shift value used for transform coding (default is 0).
     */
   IntraEncoder(GolombEncoder &golombEncoder);
   
@@ -36,6 +35,11 @@ public:
   /**
    * @brief Encodes a video frame using intra-frame encoding.
    * @param currentFrame The video frame to be encoded.
+   * @param quantization1 The quantization level for the first channel.
+   * @param quantization2 The quantization level for the second channel.
+   * @param quantization3 The quantization level for the third channel.
+   * @param totalSignal Total signal of the video.
+   * @param totalNoise Total noise of the video.
    */
   void encode(Mat &currentFrame, int quantization1, int quantization2, int quantization3, int &totalSignal, int &totalNoise);
 
@@ -59,7 +63,6 @@ public:
     /**
      * @brief Constructor for the IntraDecoder class.
      * @param golombDecoder Reference to a GolombDecoder object for entropy decoding.
-     * @param shift Shift value used for transform coding (default is 0).
      */
   IntraDecoder(GolombDecoder &golombDecoder);
   

@@ -49,8 +49,12 @@ private:
      * @param row The starting row of the current block.
      * @param col The starting column of the current block.
      * @param channelsNumber Number of channels of the video.
-     * @param count Number of motion vectors encoded.
      * @param vectorCoordinates Vector containing the coordinates of the motion vectors encoded.
+     * @param quantization1 The quantization level for the first channel.
+     * @param quantization2 The quantization level for the second channel.
+     * @param quantization3 The quantization level for the third channel.
+     * @param totalSignal Total signal of the video.
+     * @param totalNoise Total noise of the video.
      */
     void encodeAndApplyMotionCompenstation(Mat &previousFrame, Mat &currentFrame, Mat &auxiliarFrame, int row, int col, int channelsNumber, std::queue<int> &vectorCoordinates, int quantization1, int quantization2, int quantization3, int &totalSignal, int &totalNoise);
 
@@ -60,7 +64,6 @@ public:
      * @param golombEncoder Reference to a GolombEncoder object for entropy coding.
      * @param blockSize Size of the blocks used for motion estimation.
      * @param searchArea Size of the search area for motion estimation.
-     * @param shift Shift value used for transform coding (default is 0).
      */
     InterEncoder(class GolombEncoder &GolombEncoder, int blockSize, int searchArea);
 
@@ -74,6 +77,11 @@ public:
      * @brief Encode a frame using inter-frame coding.
      * @param previousFrame The previous video frame for reference.
      * @param currentFrame The current video frame to be encoded.
+     * @param quantization1 The quantization level for the first channel.
+     * @param quantization2 The quantization level for the second channel.
+     * @param quantization3 The quantization level for the third channel.
+     * @param totalSignal Total signal of the video.
+     * @param totalNoise Total noise of the video.
      */
     void encode(Mat &previousFrame, Mat &currentFrame, int quantization1, int quantization2, int quantization3, int &totalSignal, int &totalNoise);
 };
@@ -99,7 +107,6 @@ public:
      * @param golombDecoder Reference to a GolombDecoder object for entropy decoding.
      * @param blockSize Size of the blocks used for motion compensation.
      * @param searchArea Size of the search area for motion compensation.
-     * @param shift Shift value used for transform coding (default is 0).
      */
     InterDecoder(class GolombDecoder &GolombDecoder, int blockSize, int searchArea);
     
