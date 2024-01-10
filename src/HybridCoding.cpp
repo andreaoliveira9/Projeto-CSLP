@@ -131,6 +131,12 @@ void HybridDecoder::decode(string outputFile) {
     Mat currentFrame;
     Mat previousFrame;
 
+    // Abra o arquivo Y4M para gravação
+    std::ofstream y4mFile(outputFile, std::ios::binary);
+    
+    // Escreva o cabeçalho Y4M para YUV444
+    y4mFile << "YUV4MPEG2 W" << width << " H" << height << " F30:1 Ip A0:0 C444" << std::endl;
+
     int count = 0;
     while (count < frameNumber) {
         switch (format) {
@@ -159,6 +165,9 @@ void HybridDecoder::decode(string outputFile) {
             interDecoder.decode(previousFrame, currentFrame);
         }
 
+        // Escreva o frame atual no arquivo Y4M
+        y4mFile.write(reinterpret_cast<const char*>(currentFrame.data), width * height * 3);
+
         switch (format) {
             case 0:
             {
@@ -180,6 +189,10 @@ void HybridDecoder::decode(string outputFile) {
         if (waitKey(10) == 27) {
             destroyAllWindows();
         }; 
+
         count++;
     }
+
+    // Feche o arquivo Y4M
+    y4mFile.close();
 };
