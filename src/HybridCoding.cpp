@@ -23,6 +23,14 @@ int HybridEncoder::getFrameNumber() {
     return this->frameNumber;
 };
 
+double HybridEncoder::getSignalToNoiseRatio() {
+    return this->signalToNoiseRatio;
+};
+
+double HybridEncoder::getBitsPerPixel() {
+    return this->bitsPerPixel;
+};
+
 void HybridEncoder::encode(string outputFile) {
     Converter converter;
     GolombEncoder GolombEncoder(outputFile);
@@ -64,8 +72,8 @@ void HybridEncoder::encode(string outputFile) {
         count++;
     }
 
-    cout << "SNR: " << (double)totalSignal / (double)totalNoise << endl;
-    cout << "BPP: " << GolombEncoder.getBitstreamSize() / ((double)numberOfPixelsPerFrame * frameNumber * 3) << endl;
+    this->signalToNoiseRatio = (double)totalSignal / (double)totalNoise;
+    this->bitsPerPixel = GolombEncoder.getBitstreamSize() / ((double)numberOfPixelsPerFrame * frameNumber * 3);
 
     GolombEncoder.finishEncoding();
 };

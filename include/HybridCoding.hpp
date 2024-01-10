@@ -33,6 +33,8 @@ private:
     int quantization2;
     int quantization3;
     double timeToCreateReader;
+    double signalToNoiseRatio;
+    double bitsPerPixel;
 
     /**
      * @brief Sets the best block size for motion estimation.
@@ -77,6 +79,20 @@ public:
      * @return The time taken to create the YUV reader.
      */
     double getTimeToCreateReader();
+
+    /**
+     * @brief Gets the signal-to-noise ratio of the encoded video.
+     * 
+     * @return The signal-to-noise ratio of the encoded video.
+     */
+    double getSignalToNoiseRatio();
+
+    /**
+     * @brief Gets the bits per pixel of the encoded video.
+     * 
+     * @return The bits per pixel of the encoded video.
+     */
+    double getBitsPerPixel();
 
     /**
      * @brief Encodes a video using hybrid coding.

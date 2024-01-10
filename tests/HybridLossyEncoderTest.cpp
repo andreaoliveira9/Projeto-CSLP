@@ -62,16 +62,20 @@ int main(int argc, char const *argv[])
                 ifstream in(output, ifstream::ate | ifstream::binary);
                 encoded_file_size = in.tellg();
 
-                cout << left << setw(20) << "Time Taken"
+                cout << left << setw(20) << "Time Taken(s)"
                     << setw(40) << "Average Time Per Frame (s)"
+                    << setw(40) << "Bits Per Pixel (bpp)"
+                    << setw(40) << "Signal to Noise Ratio (snr)"
                     << setw(40) << "Original File Size (MB)"
                     << setw(40) << "Encoded File Size (MB)"
                     << setw(40) << "Compression Rate (%)" << endl;
 
                 cout << left << setw(20) << time_taken_full
                     << setw(40) << average_time
+                    << setw(40) << encoder.getBitsPerPixel()
+                    << setw(40) << encoder.getSignalToNoiseRatio()
                     << setw(40) << original_file_size / 1000000
-                    << setw(40) << encoded_file_size / 1000000
+                    << setw(40) << encoded_file_size / 1000000 
                     << setw(40) << (original_file_size - encoded_file_size) / original_file_size * 100 << endl;
             }
         }
