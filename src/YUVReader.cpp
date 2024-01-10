@@ -37,6 +37,7 @@ YUVReader::YUVReader(string filename)
     string line;
     string search = "FRAME";
     streampos oldpos = file.tellg(); // stores the position
+
     while (getline(file, line))
     {
         if (line.find(search) != string::npos)
@@ -44,6 +45,7 @@ YUVReader::YUVReader(string filename)
             count++;
         }
     }
+    
     file.clear();               // clear fail and eof bits
     file.seekg(oldpos); // get back to the position
     this->n_frames = count;

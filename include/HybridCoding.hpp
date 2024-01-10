@@ -32,6 +32,7 @@ private:
     int quantization1;
     int quantization2;
     int quantization3;
+    double timeToCreateReader;
 
     /**
      * @brief Sets the best block size for motion estimation.
@@ -64,6 +65,20 @@ public:
     ~HybridEncoder();
 
     /**
+     * @brief Gets the number of frames in the video.
+     * 
+     * @return The number of frames in the video.
+     */
+    int getFrameNumber();
+
+    /**
+     * @brief Gets the time taken to create the YUV reader.
+     * 
+     * @return The time taken to create the YUV reader.
+     */
+    double getTimeToCreateReader();
+
+    /**
      * @brief Encodes a video using hybrid coding.
      * 
      * Encodes video by comparing each frame with a reference frame and storing the differences. 
@@ -72,6 +87,7 @@ public:
      * @param outputFile The path to the output file where the encoded data will be saved.
      */
     void encode(string outputFile);
+
 };
 
 /**

@@ -3,12 +3,25 @@
 #include <iostream>
 
 HybridEncoder::HybridEncoder(string inputFile, int periodicity, int searchArea, int quantization1, int quantization2, int quantization3): video(inputFile), periodicity(periodicity), searchArea(searchArea), quantization1(quantization1), quantization2(quantization2), quantization3(quantization3) {
+    auto start_full = chrono::high_resolution_clock::now();
     this->frameNumber = video.get_n_frames();
+    auto end_full = chrono::high_resolution_clock::now();
+    double time_taken_full = chrono::duration_cast<chrono::nanoseconds>(end_full - start_full).count();
+    time_taken_full *= 1e-9;
+
+    this->timeToCreateReader = time_taken_full;
 };
 
 HybridEncoder::~HybridEncoder() {
 };
 
+double HybridEncoder::getTimeToCreateReader() {
+    return this->timeToCreateReader; 
+};
+
+int HybridEncoder::getFrameNumber() {
+    return this->frameNumber;
+};
 
 void HybridEncoder::encode(string outputFile) {
     Converter converter;

@@ -41,19 +41,22 @@ int main(int argc, char const *argv[])
 
             time_taken_full *= 1e-9;
 
-            double encoded_file_size = 0.0;
+            double time_to_create_reader = encoder.getTimeToCreateReader();
+            time_taken_full -= time_to_create_reader;
 
+            double encoded_file_size = 0.0;
+            double average_time = time_taken_full / encoder.getFrameNumber();
             ifstream in(output, ifstream::ate | ifstream::binary);
             encoded_file_size = in.tellg();
 
-            cout << left << setw(20) << "Time Taken"
-              //  << setw(20) << "Average Time"
+            cout << left << setw(20) << "Time Taken(s)"
+              << setw(40) << "Average Time Per Frame (s)"
               << setw(40) << "Original File Size (MB)"
               << setw(40) << "Encoded File Size (MB)"
               << setw(40) << "Compression Rate (%)" << endl;
 
           cout << left << setw(20) << time_taken_full
-              //  << setw(20) << average_time
+              << setw(40) << average_time
               << setw(40) << original_file_size / 1000000
               << setw(40) << encoded_file_size / 1000000 
               << setw(40) << (original_file_size - encoded_file_size) / original_file_size * 100 << endl;
