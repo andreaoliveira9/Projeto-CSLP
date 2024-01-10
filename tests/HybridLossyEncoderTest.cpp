@@ -18,12 +18,9 @@ int main(int argc, char const *argv[])
     string command = "mkdir -p " + dir;
     system(command.c_str());
 
-    int block_range = 3;
-
     // Quantization parameters for testing
-    int quantization_values[] = {50, 25, 100};
-    int periodicity = 3;
-    int blockSize = 8;
+    int quantization_values[] = {2, 25, 50, 100};
+    int periodicity = 5;
     
     for (int i = 0; i < files.size(); i++)
     {
@@ -37,37 +34,45 @@ int main(int argc, char const *argv[])
         command = "mkdir -p " + output_dir;
         system(command.c_str());
 
-        for (int j = 0; j < sizeof(quantization_values) / sizeof(quantization_values[0]); j++)
-        {
-            int quantization = quantization_values[j];
+        for (int searchArea = 3; searchArea <= 5; searchArea++) {
+            for (int j = 0; j < sizeof(quantization_values) / sizeof(quantization_values[0]); j++)
+            {
+                int quantization = quantization_values[j];
 
-            auto start_full = chrono::high_resolution_clock::now(); // start timer
-            cout << "Encoding " << files[i] << " with block range " << block_range << " and quantization " << quantization << endl;
+                auto start_full = chrono::high_resolution_clock::now(); // start timer
+                cout << "Encoding " << files[i] << " with search area " << searchArea << " and quantization " << quantization << endl;
 
-            string output = output_dir + files[i] + "_lossy_level_" + to_string(quantization) + "_test_" + to_string(j) + ".bin";
+                string output = output_dir + files[i] + "_searchArea_" + to_string(searchArea) + "_quantization_" + to_string(quantization) + ".bin";
 
-            HybridEncoder encoder(input, periodicity, block_range, quantization, quantization, quantization);
+                HybridEncoder encoder(input, periodicity, searchArea, quantization, quantization, quantization);
 
-            encoder.encode(output);
+                encoder.encode(output);
 
-            auto end_full = chrono::high_resolution_clock::now(); // end timer
-            double time_taken_full = chrono::duration_cast<chrono::nanoseconds>(end_full - start_full).count();
-            time_taken_full *= 1e-9;
+                auto end_full = chrono::high_resolution_clock::now(); // end timer
+                double time_taken_full = chrono::duration_cast<chrono::nanoseconds>(end_full - start_full).count();
+                time_taken_full *= 1e-9;
 
-            double encoded_file_size = 0.0;
+                double time_to_create_reader = encoder.getTimeToCreateReader();
+                time_taken_full -= time_to_create_reader;
 
-            ifstream in(output, ifstream::ate | ifstream::binary);
-            encoded_file_size = in.tellg();
+                double encoded_file_size = 0.0;
+                double average_time = time_taken_full / encoder.getFrameNumber();
+                
+                ifstream in(output, ifstream::ate | ifstream::binary);
+                encoded_file_size = in.tellg();
 
-            cout << left << setw(20) << "Time Taken"
-                 << setw(40) << "Original File Size (MB)"
-                 << setw(40) << "Encoded File Size (MB)"
-                 << setw(40) << "Compression Rate (%)" << endl;
+                cout << left << setw(20) << "Time Taken"
+                    << setw(40) << "Average Time Per Frame (s)"
+                    << setw(40) << "Original File Size (MB)"
+                    << setw(40) << "Encoded File Size (MB)"
+                    << setw(40) << "Compression Rate (%)" << endl;
 
-            cout << left << setw(20) << time_taken_full
-                 << setw(40) << original_file_size / 1000000
-                 << setw(40) << encoded_file_size / 1000000
-                 << setw(40) << (original_file_size - encoded_file_size) / original_file_size * 100 << endl;
+                cout << left << setw(20) << time_taken_full
+                    << setw(40) << average_time
+                    << setw(40) << original_file_size / 1000000
+                    << setw(40) << encoded_file_size / 1000000
+                    << setw(40) << (original_file_size - encoded_file_size) / original_file_size * 100 << endl;
+            }
         }
     }
 
