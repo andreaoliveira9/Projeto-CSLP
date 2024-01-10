@@ -10,11 +10,12 @@ int main(int argc, char const *argv[])
     vector<string> files;
     string static_videos = "static/videos/";
 
-    // files.push_back("ducks_take_off_420_720p50.y4m");
-    // files.push_back("park_joy_420_720p50.y4m");
-    files.push_back("akiyo_qcif.y4m");
+    files.push_back("ducks_take_off_444_720p50.y4m");
+    files.push_back("park_joy_444_720p50.y4m");
+    files.push_back("in_to_tree_444_720p50.y4m");
+    files.push_back("old_town_cross_444_720p50.y4m");
 
-    string dir = "build/Deliverable_6/encode_output_hybrid/";
+    string dir = "build/Deliverable_6/encode_output_lossyHybrid/";
     string command = "mkdir -p " + dir;
     system(command.c_str());
 
@@ -57,7 +58,7 @@ int main(int argc, char const *argv[])
 
                 double encoded_file_size = 0.0;
                 double average_time = time_taken_full / encoder.getFrameNumber();
-                
+
                 ifstream in(output, ifstream::ate | ifstream::binary);
                 encoded_file_size = in.tellg();
 
