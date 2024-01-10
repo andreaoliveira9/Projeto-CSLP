@@ -5,6 +5,7 @@
 #include "Golomb.hpp"
 #include "intraCoding.hpp"
 #include "interCoding.hpp"
+#include "YUVReader.hpp"
 #include <vector>
 
 using namespace cv;
@@ -20,7 +21,8 @@ using namespace std;
  */
 class HybridEncoder {
 private:
-    VideoCapture video; 
+    VideoCapture video;
+    string inputFile;
     int format; 
     int videoWidth; 
     int videoHeight; 

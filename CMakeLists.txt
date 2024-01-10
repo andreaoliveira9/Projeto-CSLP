@@ -13,18 +13,18 @@ add_executable( IntraEncoderTest.out tests/IntraEncoderTest.cpp src/IntraCoding.
 target_link_libraries( IntraEncoderTest.out ${OpenCV_LIBS} )
 set_target_properties( IntraEncoderTest.out PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Deliverable_4")
 
-add_executable( HybridEncoderTest.out tests/HybridEncoderTest.cpp src/HybridCoding.cpp src/IntraCoding.cpp src/InterCoding.cpp src/Golomb.cpp src/BitStream.cpp src/Converter.cpp )
+add_executable( HybridEncoderTest.out tests/HybridEncoderTest.cpp src/HybridCoding.cpp src/IntraCoding.cpp src/InterCoding.cpp src/Golomb.cpp src/BitStream.cpp src/Converter.cpp src/YUVReader.cpp)
 target_link_libraries( HybridEncoderTest.out ${OpenCV_LIBS} )
 set_target_properties( HybridEncoderTest.out PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Deliverable_5")
 
-add_executable( HybridDecoderTest.out tests/HybridDecoderTest.cpp src/HybridCoding.cpp src/IntraCoding.cpp src/InterCoding.cpp src/Golomb.cpp src/BitStream.cpp src/Converter.cpp )
+add_executable( HybridDecoderTest.out tests/HybridDecoderTest.cpp src/HybridCoding.cpp src/IntraCoding.cpp src/InterCoding.cpp src/Golomb.cpp src/BitStream.cpp src/Converter.cpp src/YUVReader.cpp)
 target_link_libraries( HybridDecoderTest.out ${OpenCV_LIBS} )
 set_target_properties( HybridDecoderTest.out PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Deliverable_5")
 
-add_executable( HybridLossyEncoderTest.out tests/HybridLossyEncoderTest.cpp src/HybridCoding.cpp src/IntraCoding.cpp src/InterCoding.cpp src/Golomb.cpp src/BitStream.cpp src/Converter.cpp )
+add_executable( HybridLossyEncoderTest.out tests/HybridLossyEncoderTest.cpp src/HybridCoding.cpp src/IntraCoding.cpp src/InterCoding.cpp src/Golomb.cpp src/BitStream.cpp src/Converter.cpp src/YUVReader.cpp)
 target_link_libraries( HybridLossyEncoderTest.out ${OpenCV_LIBS} )
 set_target_properties( HybridLossyEncoderTest.out PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Deliverable_6")
 
-add_executable( HybridLossyDecoderTest.out tests/HybridLossyDecoderTest.cpp src/HybridCoding.cpp src/IntraCoding.cpp src/InterCoding.cpp src/Golomb.cpp src/BitStream.cpp src/Converter.cpp )
+add_executable( HybridLossyDecoderTest.out tests/HybridLossyDecoderTest.cpp src/HybridCoding.cpp src/IntraCoding.cpp src/InterCoding.cpp src/Golomb.cpp src/BitStream.cpp src/Converter.cpp src/YUVReader.cpp)
 target_link_libraries( HybridLossyDecoderTest.out ${OpenCV_LIBS} )
 set_target_properties( HybridLossyDecoderTest.out PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Deliverable_6")

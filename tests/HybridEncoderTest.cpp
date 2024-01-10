@@ -8,8 +8,8 @@ int main(int argc, char const *argv[])
     string static_videos = "static/videos/";
 
     // files.push_back("ducks_take_off_420_720p50.y4m");
-    // files.push_back("park_joy_444_720p50.y4m");
-    files.push_back("akiyo_qcif.y4m");
+    files.push_back("park_joy_444_720p50.y4m");
+    // files.push_back("akiyo_qcif.y4m");
 
     string dir = "build/Deliverable_5/encode_output_hybrid/";
     string command = "mkdir -p " + dir;

@@ -2,7 +2,7 @@
 #include <chrono>
 #include <iostream>
 
-HybridEncoder::HybridEncoder(string inputFile, int periodicity, int searchArea, int quantization1, int quantization2, int quantization3): periodicity(periodicity), searchArea(searchArea), quantization1(quantization1), quantization2(quantization2), quantization3(quantization3) {
+HybridEncoder::HybridEncoder(string inputFile, int periodicity, int searchArea, int quantization1, int quantization2, int quantization3): inputFile(inputFile), periodicity(periodicity), searchArea(searchArea), quantization1(quantization1), quantization2(quantization2), quantization3(quantization3) {
     ifstream file(inputFile, ios::binary);
 
     string fileHeader;
@@ -21,12 +21,6 @@ HybridEncoder::HybridEncoder(string inputFile, int periodicity, int searchArea, 
     } else {
         format = 2;
     }
-
-    video = VideoCapture(inputFile);
-
-    videoWidth = video.get(CAP_PROP_FRAME_WIDTH);
-    videoHeight = video.get(CAP_PROP_FRAME_HEIGHT);
-    frameNumber = video.get(CAP_PROP_FRAME_COUNT);
 };
 
 HybridEncoder::~HybridEncoder() {
@@ -34,6 +28,7 @@ HybridEncoder::~HybridEncoder() {
 
 
 void HybridEncoder::encode(string outputFile) {
+    YUVReader video(this->inputFile);
     Converter converter;
     GolombEncoder GolombEncoder(outputFile);
 
@@ -45,37 +40,18 @@ void HybridEncoder::encode(string outputFile) {
 
     GolombEncoder.encode(format);
     GolombEncoder.encode(searchArea);
-    GolombEncoder.encode(frameNumber);
+    GolombEncoder.encode(video.get_n_frames());
 
     int totalSignal = 0;
     int totalNoise = 0;
 
     int numberOfPixelsPerFrame = videoWidth * videoHeight;
-
     int count = 0;
-    while (true) {
-        video >> currentFrame;
+    while (video.nextFrame_exists()) {
+        currentFrame = video.get_nextFrame();
         if (currentFrame.empty()) {
             break;
         };
-
-        switch(format) {
-            case 0:
-            {
-                currentFrame = converter.rgb_to_yuv444(currentFrame);
-                break;
-            }
-            case 1:
-            {
-                currentFrame = converter.rgb_to_yuv422(currentFrame);
-                break;
-            }
-            case 2:
-            {
-                currentFrame = converter.rgb_to_yuv420(currentFrame);
-                break;
-            }
-        }
 
         if (count == 0) {
             setBestBlockSize(currentFrame, GolombEncoder, interEncoder);
