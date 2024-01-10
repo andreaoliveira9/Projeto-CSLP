@@ -27,7 +27,7 @@ public:
     /**
      * @brief Construct a new YUVReader object
      * 
-     * @param filename 
+     * @param filename File name of the YUV file
      */
     YUVReader(string filename);
 
@@ -40,35 +40,35 @@ public:
     /**
      * @brief Get the next frame object
      * 
-     * @return Mat 
+     * @return bool that indicates if the end of the file has been reached
      */
     bool end_of_file();
 
     /**
      * @brief Get the next frame object
      * 
-     * @return Mat 
+     * @return Mat that contains the next frame
      */
     Mat get_nextFrame();
 
     /**
      * @brief Get the next frame object
      * 
-     * @return Mat 
+     * @return bool that indicates if the next frame exists
      */
     bool nextFrame_exists();
 
     /**
      * @brief Get the next frame object
      * 
-     * @return Mat 
+     * @return int that indicates the number of frames in the file
      */
     int get_n_frames();
 
     /**
      * @brief Get the next frame object
      * 
-     * @return Mat 
+     * @return int that indicates size of the frame
      */
     int get_frame_size();
 };
