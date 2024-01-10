@@ -21,7 +21,6 @@ using namespace std;
  */
 class HybridEncoder {
 private:
-    VideoCapture video;
     string inputFile;
     int format; 
     int videoWidth; 

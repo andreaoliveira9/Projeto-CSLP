@@ -38,14 +38,16 @@ void HybridEncoder::encode(string outputFile) {
     Mat currentFrame;
     Mat previousFrame;
 
+    int frameNumber = video.get_n_frames();
+    
     GolombEncoder.encode(format);
     GolombEncoder.encode(searchArea);
-    GolombEncoder.encode(video.get_n_frames());
+    GolombEncoder.encode(frameNumber);
 
     int totalSignal = 0;
     int totalNoise = 0;
 
-    int numberOfPixelsPerFrame = videoWidth * videoHeight;
+    int numberOfPixelsPerFrame = video.get_frame_size();
     int count = 0;
     while (video.nextFrame_exists()) {
         currentFrame = video.get_nextFrame();

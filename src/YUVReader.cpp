@@ -109,3 +109,8 @@ bool YUVReader::nextFrame_exists()
 {
     return this->read_frames < this->n_frames;
 }
+
+int YUVReader::get_frame_size()
+{
+    return this->frame_size;
+}

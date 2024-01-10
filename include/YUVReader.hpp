@@ -32,5 +32,6 @@ public:
     string get_file_header();
     bool nextFrame_exists();
     int get_n_frames();
+    int get_frame_size();
 };
 #endif //YUVREADER_H
