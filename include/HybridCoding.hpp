@@ -1,7 +1,6 @@
 #ifndef _HYBRID_CODING_H
 #define _HYBRID_CODING_H
 
-#include "Converter.hpp"
 #include "Golomb.hpp"
 #include "intraCoding.hpp"
 #include "interCoding.hpp"
@@ -10,6 +9,8 @@
 
 using namespace cv;
 using namespace std;
+
+Mat yuv444_to_rgb(Mat &frame);
 
 /**
  * @class HybridEncoder
