@@ -12,13 +12,11 @@ using namespace std;
  * @class IntraEncoder
  * @brief Class for implementing intra-frame encoding.
  *
- * Encodes video frames individually using transform coding techniques, 
- * exploiting spatial redundancies within a frame and employing Golomb coding 
- * for entropy encoding.
+ * Encodes video frames individually using the non-linear predictor of JPEG-LS technique and Golomb coding for entropy coding.
  */
 class IntraEncoder {
 private:
-    GolombEncoder &golombEncoder; 
+    GolombEncoder &golombEncoder; ///< GolombEncoder object for entropy coding.
 
 public:
   /**
@@ -50,13 +48,12 @@ public:
  * @class IntraDecoder
  * @brief Class for implementing intra-frame decoding.
  *
- * Decodes video frames from their encoded state using transform coding techniques,
- * reconstructing the original frame by exploiting spatial redundancies and using 
+ * Decodes video frames from their encoded state using the non-linear predictor of JPEG-LS technique and using 
  * Golomb coding for entropy decoding.
  */
 class IntraDecoder {
 private:
-    GolombDecoder &golombDecoder; 
+    GolombDecoder &golombDecoder; ///< GolombDecoder object for entropy decoding.
 
 public:
 

@@ -15,14 +15,14 @@ using namespace std;
  * @brief Class for implementing inter-frame encoding.
  *
  * Utilizes motion estimation and compensation techniques to efficiently encode video frames
- * by predicting frame content based on previous frames, thereby reducing temporal redundancy.
+ * by predicting frame content based on previous frames.
  */
 class InterEncoder
 {
 private:
-    int blockSize;
-    int searchArea;
-    GolombEncoder &GolombEncoder; 
+    int blockSize; ///< Size of the blocks used for motion estimation.
+    int searchArea; ///< Size of the search area for motion estimation.
+    GolombEncoder &GolombEncoder; ///< GolombEncoder object for entropy coding.
 
     /**
      * @brief Find the block in the previous frame that is most similar to the current block.
@@ -49,7 +49,7 @@ private:
      * @param row The starting row of the current block.
      * @param col The starting column of the current block.
      * @param channelsNumber Number of channels of the video.
-     * @param vectorCoordinates Vector containing the coordinates of the motion vectors encoded.
+     * @param vectorCoordinates Queue containing the coordinates of the motion vectors encoded.
      * @param quantization1 The quantization level for the first channel.
      * @param quantization2 The quantization level for the second channel.
      * @param quantization3 The quantization level for the third channel.
@@ -92,14 +92,14 @@ public:
  * @brief Class for implementing inter-frame decoding.
  *
  * Utilizes motion compensation techniques to efficiently decode video frames
- * by reconstructing frame content based on previous frames, thereby reducing temporal redundancy.
+ * by reconstructing frame content based on previous frames.
  */
 class InterDecoder
 {
 private:
-    int blockSize;  
-    int searchArea;    
-    GolombDecoder &GolombDecoder; 
+    int blockSize; ///< Size of the blocks used for motion estimation.
+    int searchArea; ///< Size of the search area for motion estimation.
+    GolombDecoder &GolombDecoder; ///< GolombDecoder object for entropy decoding.
 
 public:
     /**

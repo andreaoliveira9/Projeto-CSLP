@@ -68,7 +68,7 @@ public:
 
     /**
      * @brief Get the size of each frame in the YUV file.
-     * @return Size of each frame in bytes.
+     * @return Size of each frame.
      */
     int getFrameSize();
 };

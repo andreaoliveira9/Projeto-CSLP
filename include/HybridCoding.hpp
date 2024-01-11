@@ -10,6 +10,12 @@
 using namespace cv;
 using namespace std;
 
+/**
+ * @brief Converts YUV444 format to RGB format.
+ * 
+ * @param frame Input frame in YUV444 format.
+ * @return Output frame in RGB format.
+ */
 Mat yuv444_to_rgb(Mat &frame);
 
 /**
@@ -17,25 +23,24 @@ Mat yuv444_to_rgb(Mat &frame);
  * @brief Encodes video using hybrid coding techniques.
  * 
  * The HybridEncoder class is designed to encode video using a combination of 
- * motion-compensated predictive coding (inter-coding) and transform coding (intra-coding). 
- * It supports efficient encoding by exploiting both spatial and temporal redundancies.
+ * motion-compensated predictive coding (inter-coding) and transform coding (intra-coding).
  */
 class HybridEncoder {
 private:
-    FramesReader video;
-    int format; 
-    int videoWidth; 
-    int videoHeight; 
-    int frameNumber; 
-    int periodicity; 
-    int blockSize; 
-    int searchArea; 
-    int quantization1;
-    int quantization2;
-    int quantization3;
-    double timeToCreateReader;
-    double signalToNoiseRatio;
-    double bitsPerPixel;
+    FramesReader video; ///< Object for reading video frames.
+    int format; ///< Format of the video.
+    int videoWidth; ///< Width of the video frames.
+    int videoHeight; ///< Height of the video frames.
+    int frameNumber; ///< Number of frames in the video.
+    int periodicity; ///< Number of frames between two consecutive intra-coded frames.
+    int blockSize; ///< Current block size for motion estimation.
+    int searchArea; ///< Size of the search area for motion estimation.
+    int quantization1; ///< Quantization level for the first channel.
+    int quantization2; ///< Quantization level for the second channel.
+    int quantization3; ///< Quantization level for the third channel.
+    double timeToCreateReader; ///< Time taken to create the YUV reader.
+    double signalToNoiseRatio; ///< Signal-to-noise ratio of the encoded video.
+    double bitsPerPixel; ///< Bits per pixel of the encoded video.
 
     /**
      * @brief Sets the best block size for motion estimation.
@@ -61,7 +66,7 @@ public:
      * @param quantization2 The quantization level for the second channel.
      * @param quantization3 The quantization level for the third channel.
      */
-    HybridEncoder(string inputFile, int periodicity = 20, int searchArea = 4, int quantization1 = 255, int quantization2 = 255, int quantization3 = 255);
+    HybridEncoder(string inputFile, int periodicity, int searchArea, int quantization1 = 255, int quantization2 = 255, int quantization3 = 255);
 
     /**
      * @brief Destructor for HybridEncoder.
@@ -101,7 +106,7 @@ public:
      * @brief Encodes a video using hybrid coding.
      * 
      * Encodes video by comparing each frame with a reference frame and storing the differences. 
-     * It alternates between intra and inter coding, depending on the frame position and periodicity.
+     * It alternates between intra and inter coding, depending on the periodicity.
      * 
      * @param outputFile The path to the output file where the encoded data will be saved.
      */
@@ -118,7 +123,7 @@ public:
  */
 class HybridDecoder {
 private:
-    string inputFile; 
+    string inputFile; ///< Path to the encoded input video file.
 
 public:
     /**
