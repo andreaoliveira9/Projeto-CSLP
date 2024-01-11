@@ -1,3 +1,147 @@
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/ducks_take_off_444_720p50.y4m/ducks_take_off_444_720p50.y4m_searchArea_3_quantization_2.bin
+Enter the name of the file to save to (absolute path): ducks_take_off_444_720p50.y4m_searchArea_3_quantization_2.y4m
+Decoding took 80763 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/ducks_take_off_444_720p50.y4m/ducks_take_off_444_720p50.y4m_searchArea_3_quantization_25.bin
+Enter the name of the file to save to (absolute path): ducks_take_off_444_720p50.y4m_searchArea_3_quantization_25.y4m
+Decoding took 91702 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/ducks_take_off_444_720p50.y4m/ducks_take_off_444_720p50.y4m_searchArea_3_quantization_50.bin
+Enter the name of the file to save to (absolute path): ducks_take_off_444_720p50.y4m_searchArea_3_quantization_50.y4m
+Decoding took 99064 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/ducks_take_off_444_720p50.y4m/ducks_take_off_444_720p50.y4m_searchArea_3_quantization_100.bin
+Enter the name of the file to save to (absolute path): ducks_take_off_444_720p50.y4m_searchArea_3_quantization_100.y4m
+Decoding took 109979 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/ducks_take_off_444_720p50.y4m/ducks_take_off_444_720p50.y4m_searchArea_4_quantization_2.bin
+Enter the name of the file to save to (absolute path): ducks_take_off_444_720p50.y4m_searchArea_4_quantization_2.y4m
+Decoding took 75754 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/ducks_take_off_444_720p50.y4m/ducks_take_off_444_720p50.y4m_searchArea_4_quantization_25.bin
+Enter the name of the file to save to (absolute path): ducks_take_off_444_720p50.y4m_searchArea_4_quantization_25.y4m
+Decoding took 91069 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/ducks_take_off_444_720p50.y4m/ducks_take_off_444_720p50.y4m_searchArea_4_quantization_50.bin
+Enter the name of the file to save to (absolute path): ducks_take_off_444_720p50.y4m_searchArea_4_quantization_50.y4m
+Decoding took 94097 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/ducks_take_off_444_720p50.y4m/ducks_take_off_444_720p50.y4m_searchArea_4_quantization_100.bin
+Enter the name of the file to save to (absolute path): ducks_take_off_444_720p50.y4m_searchArea_4_quantization_100.y4m
+Decoding took 95206 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/ducks_take_off_444_720p50.y4m/ducks_take_off_444_720p50.y4m_searchArea_5_quantization_2.bin
+Enter the name of the file to save to (absolute path): ducks_take_off_444_720p50.y4m_searchArea_5_quantization_2.y4m
+Decoding took 83780 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/ducks_take_off_444_720p50.y4m/ducks_take_off_444_720p50.y4m_searchArea_5_quantization_25.bin
+Enter the name of the file to save to (absolute path): ducks_take_off_444_720p50.y4m_searchArea_5_quantization_25.y4m
+Decoding took 88448 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/ducks_take_off_444_720p50.y4m/ducks_take_off_444_720p50.y4m_searchArea_5_quantization_50.bin
+Enter the name of the file to save to (absolute path): ducks_take_off_444_720p50.y4m_searchArea_5_quantization_50.y4m
+Decoding took 92435 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/ducks_take_off_444_720p50.y4m/ducks_take_off_444_720p50.y4m_searchArea_5_quantization_100.bin
+Enter the name of the file to save to (absolute path): ducks_take_off_444_720p50.y4m_searchArea_5_quantization_100.y4m
+Decoding took 100497 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/in_to_tree_444_720p50.y4m/in_to_tree_444_720p50.y4m_searchArea_3_quantization_2.bin
+Enter the name of the file to save to (absolute path): in_to_tree_444_720p50.y4m_searchArea_3_quantization_2.y4m
+Decoding took 69814 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/in_to_tree_444_720p50.y4m/in_to_tree_444_720p50.y4m_searchArea_3_quantization_25.bin
+Enter the name of the file to save to (absolute path): in_to_tree_444_720p50.y4m_searchArea_3_quantization_25.y4m
+Decoding took 77865 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/in_to_tree_444_720p50.y4m/in_to_tree_444_720p50.y4m_searchArea_3_quantization_50.bin
+Enter the name of the file to save to (absolute path): in_to_tree_444_720p50.y4m_searchArea_3_quantization_50.y4m
+Decoding took 88856 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/in_to_tree_444_720p50.y4m/in_to_tree_444_720p50.y4m_searchArea_3_quantization_100.bin
+Enter the name of the file to save to (absolute path): in_to_tree_444_720p50.y4m_searchArea_3_quantization_100.y4m
+Decoding took 90901 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/in_to_tree_444_720p50.y4m/in_to_tree_444_720p50.y4m_searchArea_4_quantization_2.bin
+Enter the name of the file to save to (absolute path): in_to_tree_444_720p50.y4m_searchArea_4_quantization_2.bin
+Decoding took 65566 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/in_to_tree_444_720p50.y4m/in_to_tree_444_720p50.y4m_searchArea_4_quantization_25.bin
+Enter the name of the file to save to (absolute path): in_to_tree_444_720p50.y4m_searchArea_4_quantization_25.bin
+Decoding took 74538 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/in_to_tree_444_720p50.y4m/in_to_tree_444_720p50.y4m_searchArea_4_quantization_50.bin
+Enter the name of the file to save to (absolute path): in_to_tree_444_720p50.y4m_searchArea_4_quantization_50.y4m
+Decoding took 84827 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/in_to_tree_444_720p50.y4m/in_to_tree_444_720p50.y4m_searchArea_4_quantization_100.bin
+Enter the name of the file to save to (absolute path): in_to_tree_444_720p50.y4m_searchArea_4_quantization_100.y4m
+Decoding took 92285 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/in_to_tree_444_720p50.y4m/in_to_tree_444_720p50.y4m_searchArea_5_quantization_2.bin
+Enter the name of the file to save to (absolute path): in_to_tree_444_720p50.y4m_searchArea_5_quantization_2.y4m
+Decoding took 65211 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/in_to_tree_444_720p50.y4m/in_to_tree_444_720p50.y4m_searchArea_5_quantization_25.bin
+Enter the name of the file to save to (absolute path): in_to_tree_444_720p50.y4m_searchArea_5_quantization_25.y4m
+Decoding took 74681 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/in_to_tree_444_720p50.y4m/in_to_tree_444_720p50.y4m_searchArea_5_quantization_50.bin
+Enter the name of the file to save to (absolute path): in_to_tree_444_720p50.y4m_searchArea_5_quantization_50.y4m
+Decoding took 81643 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/in_to_tree_444_720p50.y4m/in_to_tree_444_720p50.y4m_searchArea_5_quantization_100.bin
+Enter the name of the file to save to (absolute path): in_to_tree_444_720p50.y4m_searchArea_5_quantization_100.y4m
+Decoding took 87660 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/park_joy_444_720p50.y4m/park_joy_444_720p50.y4m_searchArea_3_quantization_2.bin
+Enter the name of the file to save to (absolute path): park_joy_444_720p50.y4m_searchArea_3_quantization_2.y4m
+Decoding took 81440 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/park_joy_444_720p50.y4m/park_joy_444_720p50.y4m_searchArea_3_quantization_25.bin
+Enter the name of the file to save to (absolute path): park_joy_444_720p50.y4m_searchArea_3_quantization_25.y4m
+Decoding took 94227 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/park_joy_444_720p50.y4m/park_joy_444_720p50.y4m_searchArea_3_quantization_50.bin
+Enter the name of the file to save to (absolute path): park_joy_444_720p50.y4m_searchArea_3_quantization_50.y4m
+Decoding took 99486 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/park_joy_444_720p50.y4m/park_joy_444_720p50.y4m_searchArea_3_quantization_100.bin
+Enter the name of the file to save to (absolute path): park_joy_444_720p50.y4m_searchArea_3_quantization_100.y4m
+Decoding took 96950 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/park_joy_444_720p50.y4m/park_joy_444_720p50.y4m_searchArea_4_quantization_2.bin
+Enter the name of the file to save to (absolute path): park_joy_444_720p50.y4m_searchArea_4_quantization_2.y4m
+Decoding took 75701 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/park_joy_444_720p50.y4m/park_joy_444_720p50.y4m_searchArea_4_quantization_25.bin
+Enter the name of the file to save to (absolute path): park_joy_444_720p50.y4m_searchArea_4_quantization_25.y4m
+Decoding took 88799 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/park_joy_444_720p50.y4m/park_joy_444_720p50.y4m_searchArea_4_quantization_50.bin
+Enter the name of the file to save to (absolute path): park_joy_444_720p50.y4m_searchArea_4_quantization_50.y4m
+Decoding took 91731 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/park_joy_444_720p50.y4m/park_joy_444_720p50.y4m_searchArea_4_quantization_100.bin
+Enter the name of the file to save to (absolute path): park_joy_444_720p50.y4m_searchArea_4_quantization_100.y4m
+Decoding took 99293 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/park_joy_444_720p50.y4m/park_joy_444_720p50.y4m_searchArea_5_quantization_2.bin
+Enter the name of the file to save to (absolute path): park_joy_444_720p50.y4m_searchArea_5_quantization_2.y4m
+Decoding took 75631 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/park_joy_444_720p50.y4m/park_joy_444_720p50.y4m_searchArea_5_quantization_25.bin
+Enter the name of the file to save to (absolute path): park_joy_444_720p50.y4m_searchArea_5_quantization_25.y4m
+Decoding took 91871 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/park_joy_444_720p50.y4m/park_joy_444_720p50.y4m_searchArea_5_quantization_50.bin
+Enter the name of the file to save to (absolute path): park_joy_444_720p50.y4m_searchArea_5_quantization_50.y4m
+Decoding took 95973 milliseconds
+
+Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/park_joy_444_720p50.y4m/park_joy_444_720p50.y4m_searchArea_5_quantization_100.bin
+Enter the name of the file to save to (absolute path): park_joy_444_720p50.y4m_searchArea_5_quantization_100.y4m
+Decoding took 101111 milliseconds
+
 Enter the name of the file to read from (absolute path): /Users/andreoliveira/Documents/GitHub/Projeto-CSLP/build/Deliverable_6/encode_output_lossyHybrid/old_town_cross_444_720p50.y4m/old_town_cross_444_720p50.y4m_searchArea_3_quantization_2.bin
 Enter the name of the file to save to (absolute path): old_town_cross_444_720p50.y4m_searchArea_3_quantization_2.y4m
 Decoding took 60247 milliseconds
