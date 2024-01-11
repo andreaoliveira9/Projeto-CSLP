@@ -12,7 +12,7 @@ Decoding took 99064 milliseconds
 
 Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/ducks_take_off_444_720p50.y4m/ducks_take_off_444_720p50.y4m_searchArea_3_quantization_100.bin
 Enter the name of the file to save to (absolute path): ducks_take_off_444_720p50.y4m_searchArea_3_quantization_100.y4m
-Decoding took 109979 milliseconds
+Decoding took 93455 milliseconds
 
 Enter the name of the file to read from (absolute path): build/Deliverable_6/encode_output_lossyHybrid/ducks_take_off_444_720p50.y4m/ducks_take_off_444_720p50.y4m_searchArea_4_quantization_2.bin
 Enter the name of the file to save to (absolute path): ducks_take_off_444_720p50.y4m_searchArea_4_quantization_2.y4m
