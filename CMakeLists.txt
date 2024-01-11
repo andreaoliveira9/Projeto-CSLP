@@ -5,14 +5,6 @@ find_package(OpenCV REQUIRED)
 include_directories( ${OpenCV_INCLUDE_DIRS} )
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/build)
 
-add_executable( IntraDecoderTest.out tests/IntraDecoderTest.cpp src/IntraCoding.cpp src/Golomb.cpp src/BitStream.cpp src/Converter.cpp )
-target_link_libraries( IntraDecoderTest.out ${OpenCV_LIBS} )
-set_target_properties( IntraDecoderTest.out PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Deliverable_4")
-
-add_executable( IntraEncoderTest.out tests/IntraEncoderTest.cpp src/IntraCoding.cpp src/Golomb.cpp src/BitStream.cpp src/Converter.cpp)
-target_link_libraries( IntraEncoderTest.out ${OpenCV_LIBS} )
-set_target_properties( IntraEncoderTest.out PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Deliverable_4")
-
 add_executable( HybridEncoderTest.out tests/HybridEncoderTest.cpp src/HybridCoding.cpp src/IntraCoding.cpp src/InterCoding.cpp src/Golomb.cpp src/BitStream.cpp src/Converter.cpp src/YUVReader.cpp)
 target_link_libraries( HybridEncoderTest.out ${OpenCV_LIBS} )
 set_target_properties( HybridEncoderTest.out PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Deliverable_5")
