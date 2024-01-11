@@ -2,14 +2,46 @@ Enter the name of the file to read from (absolute path): /Users/andreoliveira/Do
 Enter the name of the file to save to (absolute path): ducks_take_off_444_720p50.y4m_searchArea_3.y4m
 Decoding took 87195 milliseconds
 
+Enter the name of the file to read from (absolute path): /Users/andreoliveira/Documents/GitHub/Projeto-CSLP/build/Deliverable_5/encode_output_hybrid/ducks_take_off_444_720p50.y4m/ducks_take_off_444_720p50.y4m_searchArea_4.bin
+Enter the name of the file to save to (absolute path): ducks_take_off_444_720p50.y4m_searchArea_4.y4m
+Decoding took 86329 milliseconds
+
+Enter the name of the file to read from (absolute path): /Users/andreoliveira/Documents/GitHub/Projeto-CSLP/build/Deliverable_5/encode_output_hybrid/ducks_take_off_444_720p50.y4m/ducks_take_off_444_720p50.y4m_searchArea_5.bin
+Enter the name of the file to save to (absolute path): ducks_take_off_444_720p50.y4m_searchArea_5.y4m
+Decoding took 86808 milliseconds
+
 Enter the name of the file to read from (absolute path): /Users/andreoliveira/Documents/GitHub/Projeto-CSLP/build/Deliverable_5/encode_output_hybrid/in_to_tree_444_720p50.y4m/in_to_tree_444_720p50.y4m_searchArea_3.bin
 Enter the name of the file to save to (absolute path): in_to_tree_444_720p50.y4m_searchArea_3.y4m
 Decoding took 82786 milliseconds
+
+Enter the name of the file to read from (absolute path): /Users/andreoliveira/Documents/GitHub/Projeto-CSLP/build/Deliverable_5/encode_output_hybrid/in_to_tree_444_720p50.y4m/in_to_tree_444_720p50.y4m_searchArea_4.bin
+Enter the name of the file to save to (absolute path): in_to_tree_444_720p50.y4m_searchArea_4.y4m
+Decoding took 80621 milliseconds
+
+Enter the name of the file to read from (absolute path): /Users/andreoliveira/Documents/GitHub/Projeto-CSLP/build/Deliverable_5/encode_output_hybrid/in_to_tree_444_720p50.y4m/in_to_tree_444_720p50.y4m_searchArea_5.bin
+Enter the name of the file to save to (absolute path): in_to_tree_444_720p50.y4m_searchArea_5.y4m
+Decoding took 80427 milliseconds
 
 Enter the name of the file to read from (absolute path): /Users/andreoliveira/Documents/GitHub/Projeto-CSLP/build/Deliverable_5/encode_output_hybrid/old_town_cross_444_720p50.y4m/old_town_cross_444_720p50.y4m_searchArea_3.bin
 Enter the name of the file to save to (absolute path): old_town_cross_444_720p50.y4m_searchArea_3.y4m
 Decoding took 80283 milliseconds
 
+Enter the name of the file to read from (absolute path): /Users/andreoliveira/Documents/GitHub/Projeto-CSLP/build/Deliverable_5/encode_output_hybrid/old_town_cross_444_720p50.y4m/old_town_cross_444_720p50.y4m_searchArea_4.bin
+Enter the name of the file to save to (absolute path): old_town_cross_444_720p50.y4m_searchArea_4.y4m
+Decoding took 81571 milliseconds
+
+Enter the name of the file to read from (absolute path): /Users/andreoliveira/Documents/GitHub/Projeto-CSLP/build/Deliverable_5/encode_output_hybrid/old_town_cross_444_720p50.y4m/old_town_cross_444_720p50.y4m_searchArea_5.bin
+Enter the name of the file to save to (absolute path): old_town_cross_444_720p50.y4m_searchArea_5.y4m
+Decoding took 80531 milliseconds
+
 Enter the name of the file to read from (absolute path): /Users/andreoliveira/Documents/GitHub/Projeto-CSLP/build/Deliverable_5/encode_output_hybrid/park_joy_444_720p50.y4m/park_joy_444_720p50.y4m_searchArea_3.bin
 Enter the name of the file to save to (absolute path): park_joy_444_720p50.y4m_searchArea_3.y4m
 Decoding took 89384 milliseconds
+
+Enter the name of the file to read from (absolute path): /Users/andreoliveira/Documents/GitHub/Projeto-CSLP/build/Deliverable_5/encode_output_hybrid/park_joy_444_720p50.y4m/park_joy_444_720p50.y4m_searchArea_4.bin
+Enter the name of the file to save to (absolute path): park_joy_444_720p50.y4m_searchArea_4.y4m
+Decoding took 89034 milliseconds
+
+Enter the name of the file to read from (absolute path): /Users/andreoliveira/Documents/GitHub/Projeto-CSLP/build/Deliverable_5/encode_output_hybrid/park_joy_444_720p50.y4m/park_joy_444_720p50.y4m_searchArea_5.bin
+Enter the name of the file to save to (absolute path): park_joy_444_720p50.y4m_searchArea_5.y4m
+Decoding took 87314 milliseconds
