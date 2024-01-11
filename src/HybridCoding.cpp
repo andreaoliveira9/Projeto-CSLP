@@ -79,27 +79,27 @@ void HybridEncoder::encode(string outputFile) {
 };
 
 void HybridEncoder::setBestBlockSize(Mat &currentFrame, GolombEncoder &GolombEncoder, InterEncoder &interEncoder) {
-    int a = currentFrame.cols;
-    int b = currentFrame.rows;
-    if (a != b) {
-        int gcd = -1;
-        while (b != 0) {
-            a %= b;
-            if (a == 0) {
-                gcd = b;
+    int cols = currentFrame.cols;
+    int rows = currentFrame.rows;
+    if (cols != rows) {
+        int maxDivComum = -1;
+        while (rows != 0) {
+            cols %= rows;
+            if (cols == 0) {
+                maxDivComum = rows;
             }
             break;
-            b %= a;
+            rows %= cols;
         }
-        if (gcd == -1) {
-            gcd = a;
+        if (maxDivComum == -1) {
+            maxDivComum = cols;
         }
-        if (gcd == a || gcd == b) {
-            gcd = 16;
+        if (maxDivComum == cols || maxDivComum == rows) {
+            maxDivComum = 16;
         }
-        this->blockSize = gcd;
-        interEncoder.setBlockSize(gcd);
-        GolombEncoder.encode(gcd);
+        this->blockSize = maxDivComum;
+        interEncoder.setBlockSize(maxDivComum);
+        GolombEncoder.encode(maxDivComum);
     } else {
         this->blockSize = 16;
         interEncoder.setBlockSize(16);
