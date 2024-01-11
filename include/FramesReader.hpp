@@ -18,15 +18,10 @@ private:
     ifstream file;
     int height;
     int width;
-    int frameSize;
     int framesNumber;
-    int readFrames = 0;
+    int readedFrames = 0;
 
-    bool assertFrame(char *buffer);
-    void openFile(string filename);
-    void readHeader();
     int countFrames();
-    void handleFrameReadError();
 
 public:
     FramesReader(string filename);

@@ -1,5 +1,27 @@
 #include "FramesReader.hpp"
 
+FramesReader::FramesReader(string filename)
+{
+    file.open(filename, ios::binary);
+    if (!file.is_open())
+    {
+        cout << "Error opening file" << endl;
+        exit(1);
+    }
+
+    getline(file, this->fileHeader);
+
+    istringstream iss(fileHeader);
+    vector<string> header{istream_iterator<string>{iss},
+                          istream_iterator<string>{}};
+
+    this->width = stoi(header[1].substr(1));
+    this->height = stoi(header[2].substr(1));
+
+    int count = countFrames();
+    this->framesNumber = count;
+}
+
 FramesReader::~FramesReader()
 {
     if (file.is_open())
@@ -8,42 +30,24 @@ FramesReader::~FramesReader()
     }
 }
 
-bool FramesReader::assertFrame(char *buffer)
+bool FramesReader::nextFrameExists()
 {
-    string frameHeader(buffer, 5);
-    return frameHeader == "FRAME";
+    return this->readedFrames < this->framesNumber;
 }
 
-FramesReader::FramesReader(string filename)
+int FramesReader::getFrameSize()
 {
-    openFile(filename);
-    readHeader();
+    return this->width * this->height;
 }
 
-void FramesReader::openFile(string filename)
+int FramesReader::getNumFrames()
 {
-    file.open(filename, ios::binary);
-    if (!file.is_open())
-    {
-        cout << "Error opening file" << endl;
-        exit(1);
-    }
+    return this->framesNumber;
 }
 
-void FramesReader::readHeader()
+bool FramesReader::endOfFile()
 {
-    getline(file, this->fileHeader);
-
-    istringstream iss(fileHeader);
-    vector<string> tokens{istream_iterator<string>{iss},
-                          istream_iterator<string>{}};
-
-    this->width = stoi(tokens[1].substr(1));
-    this->height = stoi(tokens[2].substr(1));
-    this->frameSize = this->width * this->height;
-
-    int count = countFrames();
-    this->framesNumber = count;
+    return file.eof();
 }
 
 int FramesReader::countFrames()
@@ -66,65 +70,33 @@ int FramesReader::countFrames()
     return count;
 }
 
-int FramesReader::getNumFrames()
-{
-    return this->framesNumber;
-}
-
-bool FramesReader::endOfFile()
-{
-    return file.eof();
-}
-
 Mat FramesReader::getNextFrame()
 {
-    char *FRAME_buffer = new char[5];
+    char *FRAMEword = new char[5];
 
-    file.read(FRAME_buffer, 5);
-    if (!assertFrame(FRAME_buffer))
-    {
-        handleFrameReadError();
+    file.read(FRAMEword, 5);
+    if (strncmp(FRAMEword, "FRAME", 5) != 0)
+    {   
+        cout << "Error reading frame header" << endl;
+        exit(1);
     }
 
     file.ignore(1);
     Mat frame(height, width, CV_8UC3);
+    
+    char *frameY = new char[getFrameSize()];
+    char *frameU = new char[getFrameSize()];
+    char *frameV = new char[getFrameSize()];
 
-    char *frame_buffer_y = new char[frameSize];
-    file.read(frame_buffer_y, frameSize);
-    char *frame_buffer_u = new char[frameSize];
-    file.read(frame_buffer_u, frameSize);
-    char *frame_buffer_v = new char[frameSize];
-    file.read(frame_buffer_v, frameSize);
+    file.read(frameY, getFrameSize());
+    file.read(frameU, getFrameSize());
+    file.read(frameV, getFrameSize());
 
-    for (int i = 0; i < frameSize; i++)
+    for (int i = 0; i < getFrameSize(); i++)
     {
-        frame.at<Vec3b>(i) = Vec3b(frame_buffer_y[i], frame_buffer_u[i], frame_buffer_v[i]);
+        frame.at<Vec3b>(i) = Vec3b(frameY[i], frameU[i], frameV[i]);
     }
 
-    delete[] frame_buffer_y;
-    delete[] frame_buffer_u;
-    delete[] frame_buffer_v;
-    delete[] FRAME_buffer;
-
-    this->readFrames++;
+    this->readedFrames++;
     return frame;
-}
-
-void FramesReader::handleFrameReadError()
-{
-    cout << "Error reading frame" << endl;
-    file.seekg(0, std::ios::cur);
-    std::string contents((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
-    cout << contents << endl;
-    exit(1);
-}
-
-bool FramesReader::nextFrameExists()
-{
-    return this->readFrames < this->framesNumber;
-}
-
-int FramesReader::getFrameSize()
-{
-    return this->frameSize;
 }
