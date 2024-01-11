@@ -22,6 +22,40 @@
   sudo apt-get install libopencv-dev
   ```
 
-### To run each of the programs, you need to specify the program name on CMakeLists.txt file, and then run the following commands:
+### You need to put de videos in the following folder:
+
+- static/videos
+
+### To run the programs, you need to run the following commands:
+
+- To compile the programs:
+
+  ```
+  cmake . && make
+  ```
+
+- To run the program of Hydrid Lossloss Endode:
+
+  ```
+  ./build/Deliverable_5/HybridEncoderTest.out
+  ```
+
+- To run the program of Hydrid Lossy Encode:
+
+  ```
+  ./build/Deliverable_6/HybridLossyEncoderTest.out
+  ```
+
+- To run the program of Hydrid Losseless Decode:
+
+  ```
+  ./build/Deliverable_5/HybridDecoderTest.out
+  ```
+
+- To run the program of Hydrid Lossy Decode:
+
+  ```
+  ./build/Deliverable_6/HybridLossyDecoderTest.out
+  ```
 
 <br>
