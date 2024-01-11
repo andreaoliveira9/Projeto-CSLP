@@ -103,7 +103,6 @@ A estratégia de quantização foi definida da seguinte maneira:
 2. Vários intervalos são criados, abrangendo toda a gama de valores possíveis.
 3. O valor a ser quantizado é ajustado para o valor mínimo do intervalo ao qual pertence.
 
-
 Decidimos, como grupo, aplicar a quantização tanto na codificação intra-frame quanto na codificação inter-frame.
 
 ### Melhorias
@@ -120,7 +119,7 @@ Nesta secção, apresentamos os resultados dos nossos três codecs: Intraframe, 
 
 ### Hibrid Lossless
 
-_O codec Hibrid Lossless combina técnicas de codificação intraframe e interframe para alcançar a compressão de vídeo sem perda. A codificação intraframe processa cada quadro de forma independente, enquanto a interframe explora a redundância temporal entre quadros consecutivos para reduzir ainda mais o tamanho do arquivo. Essa abordagem híbrida é eficaz em manter a qualidade original do vídeo, ideal para aplicações onde a fidelidade é crucial._
+O codec Hibrid Lossless combina técnicas de codificação intraframe e interframe para alcançar a compressão de vídeo sem perda. A codificação intraframe processa cada quadro de forma independente, enquanto a interframe explora a redundância temporal entre quadros consecutivos para reduzir ainda mais o tamanho do arquivo. Essa abordagem híbrida é eficaz em manter a qualidade original do vídeo, ideal para aplicações onde a fidelidade é crucial.
 
 #### Encode
 
