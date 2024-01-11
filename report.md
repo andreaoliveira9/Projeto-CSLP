@@ -50,15 +50,15 @@ All students contributed equally to the project.
       - [Decode](#decode)
     - [Hibrid Lossy](#hibrid-lossy)
       - [Encode](#encode-1)
-        - [ducks\_take\_off\_444\_720p50.y4m](#ducks_take_off_444_720p50y4m)
-        - [park\_joy\_444\_720p50.y4m](#park_joy_444_720p50y4m)
-        - [in\_to\_tree\_444\_720p50.y4m](#in_to_tree_444_720p50y4m)
-        - [old\_town\_cross\_444\_720p50.y4m](#old_town_cross_444_720p50y4m)
+        - [ducks_take_off_444_720p50.y4m](#ducks_take_off_444_720p50y4m)
+        - [park_joy_444_720p50.y4m](#park_joy_444_720p50y4m)
+        - [in_to_tree_444_720p50.y4m](#in_to_tree_444_720p50y4m)
+        - [old_town_cross_444_720p50.y4m](#old_town_cross_444_720p50y4m)
       - [Decode](#decode-1)
-        - [ducks\_take\_off\_444\_720p50.y4m](#ducks_take_off_444_720p50y4m-1)
-        - [park\_joy\_444\_720p50.y4m](#park_joy_444_720p50y4m-1)
-        - [in\_to\_tree\_444\_720p50.y4m](#in_to_tree_444_720p50y4m-1)
-        - [old\_town\_cross\_444\_720p50.y4m](#old_town_cross_444_720p50y4m-1)
+        - [ducks_take_off_444_720p50.y4m](#ducks_take_off_444_720p50y4m-1)
+        - [park_joy_444_720p50.y4m](#park_joy_444_720p50y4m-1)
+        - [in_to_tree_444_720p50.y4m](#in_to_tree_444_720p50y4m-1)
+        - [old_town_cross_444_720p50.y4m](#old_town_cross_444_720p50y4m-1)
   - [Conclusão](#conclusão)
 
 ## Introdução
@@ -117,59 +117,61 @@ Essa melhoria não apenas simplifica a configuração manual do parâmetro 'm', 
 
 Nesta secção, apresentamos os resultados dos nossos três codecs: Intraframe, Hibrid Lossless e Hibrid Lossy.
 
+O tamanho dos blocos foi calculado através do máximo divisor comum entre a largura e a altura do vídeo e o parâmetro 'm' do GOlomb é calculado dinâmicamente.
+
 ### Hibrid Lossless
 
 O codec Hibrid Lossless combina técnicas de codificação intraframe e interframe para alcançar a compressão de vídeo sem perda. A codificação intraframe processa cada quadro de forma independente, enquanto a interframe explora a redundância temporal entre quadros consecutivos para reduzir ainda mais o tamanho do arquivo. Essa abordagem híbrida é eficaz em manter a qualidade original do vídeo, ideal para aplicações onde a fidelidade é crucial.
 
 #### Encode
 
-| Vídeo                    | Search Area 3 | Search Area 4 | Search Area 5 |
-|--------------------------|------------------|-----------------|----------------------------|
-| **ducks_take_off_444_720p50** |  |  |  |
-| Tempo Total (s) | 262.552 | 611.553 | 1068.3 |
-| Tempo Médio por Quadro (s) | 0.525103 | 1.22311 | 2.1366 |
-| Bits por Pixel (bpp) | 5.79571 | 5.78789 | 5.78509 |
-| Relação Sinal-Ruído (snr) | 0.961046 | 0.91193 | 0.882177 |
-| Tamanho do Arquivo Original (MB) | 1382.4 | 1382.4 | 1382.4 |
-| Tamanho do Arquivo Codificado (MB) | 1001.5 | 1000.15 | 999.663 |
-| Taxa de Compressão (%) | 27.5538 | 27.6515 | 27.6866 |
-| **park_joy_444_720p50** |  |  |  |
-| Tempo Total (s) | 268.018 | 620.02 | 1074.57 |
-| Tempo Médio por Quadro (s) | 0.536037 | 1.24004 | 2.14914 |
-| Bits por Pixel (bpp) | 5.94874 | 5.87967 | 5.82905 |
-| Relação Sinal-Ruído (snr) | -1.11509 | -1.70315 | 1.31796 |
-| Tamanho do Arquivo Original (MB) | 1382.4 | 1382.4 | 1382.4 |
-| Tamanho do Arquivo Codificado (MB) | 1027.94 | 1016.01 | 1007.26 |
-| Taxa de Compressão (%) | 25.641 | 26.5043 | 27.137 |
-| **in_to_tree_444_720p50** |  |  |  |
-| Tempo Total (s) | 256.971 | 604.646 | 1053.03 |
-| Tempo Médio por Quadro (s) | 0.513941 | 1.20929 | 2.10605 |
-| Bits por Pixel (bpp) | 5.10835 | 5.03366 | 4.97155 |
-| Relação Sinal-Ruído (snr) | 1.98952 | 1.5414 | 1.1991 |
-| Tamanho do Arquivo Original (MB) | 1382.4 | 1382.4 | 1382.4 |
-| Tamanho do Arquivo Codificado (MB) | 882.723 | 869.816 | 859.084 |
-| Taxa de Compressão (%) | 36.1457 | 37.0794 | 37.8557 |
-| **old_town_cross_444_720p50** |  |  |  |
-| Tempo Total (s) | 258.386 | 600.785 | 1047.91 |
-| Tempo Médio por Quadro (s) | 0.516772 | 1.20157 | 2.09581 |
-| Bits por Pixel (bpp) | 4.96251 | 4.89859 | 4.83666 |
-| Relação Sinal-Ruído (snr) | 1.16632 | 0.915971 | 0.756518 |
-| Tamanho do Arquivo Original (MB) | 1382.4 | 1382.4 | 1382.4 |
-| Tamanho do Arquivo Codificado (MB) | 857.523 | 846.477 | 835.775 |
-| Taxa de Compressão (%) | 37.9687 | 38.7677 | 39.5419 |
+| Vídeo                              | Search Area 3 | Search Area 4 | Search Area 5 |
+| ---------------------------------- | ------------- | ------------- | ------------- |
+| **ducks_take_off_444_720p50**      |               |               |               |
+| Tempo Total (s)                    | 262.552       | 611.553       | 1068.3        |
+| Tempo Médio por Quadro (s)         | 0.525103      | 1.22311       | 2.1366        |
+| Bits por Pixel (bpp)               | 5.79571       | 5.78789       | 5.78509       |
+| Relação Sinal-Ruído (snr)          | 0.961046      | 0.91193       | 0.882177      |
+| Tamanho do Arquivo Original (MB)   | 1382.4        | 1382.4        | 1382.4        |
+| Tamanho do Arquivo Codificado (MB) | 1001.5        | 1000.15       | 999.663       |
+| Taxa de Compressão (%)             | 27.5538       | 27.6515       | 27.6866       |
+| **park_joy_444_720p50**            |               |               |               |
+| Tempo Total (s)                    | 268.018       | 620.02        | 1074.57       |
+| Tempo Médio por Quadro (s)         | 0.536037      | 1.24004       | 2.14914       |
+| Bits por Pixel (bpp)               | 5.94874       | 5.87967       | 5.82905       |
+| Relação Sinal-Ruído (snr)          | -1.11509      | -1.70315      | 1.31796       |
+| Tamanho do Arquivo Original (MB)   | 1382.4        | 1382.4        | 1382.4        |
+| Tamanho do Arquivo Codificado (MB) | 1027.94       | 1016.01       | 1007.26       |
+| Taxa de Compressão (%)             | 25.641        | 26.5043       | 27.137        |
+| **in_to_tree_444_720p50**          |               |               |               |
+| Tempo Total (s)                    | 256.971       | 604.646       | 1053.03       |
+| Tempo Médio por Quadro (s)         | 0.513941      | 1.20929       | 2.10605       |
+| Bits por Pixel (bpp)               | 5.10835       | 5.03366       | 4.97155       |
+| Relação Sinal-Ruído (snr)          | 1.98952       | 1.5414        | 1.1991        |
+| Tamanho do Arquivo Original (MB)   | 1382.4        | 1382.4        | 1382.4        |
+| Tamanho do Arquivo Codificado (MB) | 882.723       | 869.816       | 859.084       |
+| Taxa de Compressão (%)             | 36.1457       | 37.0794       | 37.8557       |
+| **old_town_cross_444_720p50**      |               |               |               |
+| Tempo Total (s)                    | 258.386       | 600.785       | 1047.91       |
+| Tempo Médio por Quadro (s)         | 0.516772      | 1.20157       | 2.09581       |
+| Bits por Pixel (bpp)               | 4.96251       | 4.89859       | 4.83666       |
+| Relação Sinal-Ruído (snr)          | 1.16632       | 0.915971      | 0.756518      |
+| Tamanho do Arquivo Original (MB)   | 1382.4        | 1382.4        | 1382.4        |
+| Tamanho do Arquivo Codificado (MB) | 857.523       | 846.477       | 835.775       |
+| Taxa de Compressão (%)             | 37.9687       | 38.7677       | 39.5419       |
 
 #### Decode
 
-| Vídeo                    | Search Area 3 | Search Area 4 | Search Area 5 |
-|--------------------------|------------------|-----------------|----------------------------|
-| **ducks_take_off_444_720p50** |  |  |  |
-| Tempo de Decodificação (ms) | 87195 | 86329 | 86808 |
-| **in_to_tree_444_720p50** |  |  |  |
-| Tempo de Decodificação (ms) | 82786 | 80621 | 80427 |
-| **old_town_cross_444_720p50** |  |  |  |
-| Tempo de Decodificação (ms) | 80283 | 81571 | 80531 |
-| **park_joy_444_720p50** |  |  |  |
-| Tempo de Decodificação (ms) | 89384 | 89034 | 87314 |
+| Vídeo                         | Search Area 3 | Search Area 4 | Search Area 5 |
+| ----------------------------- | ------------- | ------------- | ------------- |
+| **ducks_take_off_444_720p50** |               |               |               |
+| Tempo de Decodificação (ms)   | 87195         | 86329         | 86808         |
+| **in_to_tree_444_720p50**     |               |               |               |
+| Tempo de Decodificação (ms)   | 82786         | 80621         | 80427         |
+| **old_town_cross_444_720p50** |               |               |               |
+| Tempo de Decodificação (ms)   | 80283         | 81571         | 80531         |
+| **park_joy_444_720p50**       |               |               |               |
+| Tempo de Decodificação (ms)   | 89384         | 89034         | 87314         |
 
 ### Hibrid Lossy
 
