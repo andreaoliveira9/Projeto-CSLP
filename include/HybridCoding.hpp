@@ -5,7 +5,7 @@
 #include "Golomb.hpp"
 #include "intraCoding.hpp"
 #include "interCoding.hpp"
-#include "YUVReader.hpp"
+#include "FramesReader.hpp"
 #include <vector>
 
 using namespace cv;
@@ -21,7 +21,7 @@ using namespace std;
  */
 class HybridEncoder {
 private:
-    YUVReader video;
+    FramesReader video;
     int format; 
     int videoWidth; 
     int videoHeight; 
