@@ -1,0 +1,45 @@
+\doxysection{intra\+Coding.\+hpp}
+\hypertarget{intra_coding_8hpp_source}{}\label{intra_coding_8hpp_source}\index{include/intraCoding.hpp@{include/intraCoding.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_INTRA\_CODING\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_INTRA\_CODING\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}opencv2/opencv.hpp"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_golomb_8hpp}{Golomb.hpp}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{using\ namespace\ }cv;}
+\DoxyCodeLine{00009\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_intra_encoder}{IntraEncoder}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{class_golomb_encoder}{GolombEncoder}}\ \&golombEncoder;\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \mbox{\hyperlink{class_intra_encoder}{IntraEncoder}}(\mbox{\hyperlink{class_golomb_encoder}{GolombEncoder}}\ \&golombEncoder);}
+\DoxyCodeLine{00027\ \ \ }
+\DoxyCodeLine{00031\ \ \ \mbox{\hyperlink{class_intra_encoder_a23bbfa750a99b76ee45eace988af7484}{\string~IntraEncoder}}();}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00042\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_intra_encoder_a6a6814e545dd8135d310f2751772c66b}{encode}}(Mat\ \&currentFrame,\ \textcolor{keywordtype}{int}\ quantization1,\ \textcolor{keywordtype}{int}\ quantization2,\ \textcolor{keywordtype}{int}\ quantization3,\ \textcolor{keywordtype}{int}\ \&totalSignal,\ \textcolor{keywordtype}{int}\ \&totalNoise);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ ...}}
+\DoxyCodeLine{00045\ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_intra_decoder}{IntraDecoder}}\ \{}
+\DoxyCodeLine{00055\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{class_golomb_decoder}{GolombDecoder}}\ \&golombDecoder;\ }
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00064\ \ \ \mbox{\hyperlink{class_intra_decoder}{IntraDecoder}}(\mbox{\hyperlink{class_golomb_decoder}{GolombDecoder}}\ \&golombDecoder);}
+\DoxyCodeLine{00065\ \ \ }
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00070\ \ \ \mbox{\hyperlink{class_intra_decoder_a35df5df502a72d8ef398b5a595938b41}{\string~IntraDecoder}}();}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00076\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_intra_decoder_a90b9543e3a23eee0b488643be4b50a1a}{decode}}(Mat\ \&currentFrame);}
+\DoxyCodeLine{00077\ \};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#endif\ }}
+
+\end{DoxyCode}

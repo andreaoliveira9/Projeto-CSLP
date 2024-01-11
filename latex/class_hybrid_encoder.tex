@@ -1,0 +1,142 @@
+\doxysection{Hybrid\+Encoder Class Reference}
+\hypertarget{class_hybrid_encoder}{}\label{class_hybrid_encoder}\index{HybridEncoder@{HybridEncoder}}
+
+
+Encodes video using hybrid coding techniques.  
+
+
+
+
+{\ttfamily \#include $<$Hybrid\+Coding.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_hybrid_encoder_a24deb85fa797c506919a9786ae55199b}{Hybrid\+Encoder}} (string input\+File, int periodicity, int search\+Area, int quantization1=255, int quantization2=255, int quantization3=255)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{class_hybrid_encoder}{Hybrid\+Encoder}. \end{DoxyCompactList}\item 
+\Hypertarget{class_hybrid_encoder_aa8b5e8203b876bd4845dbc81c16c702b}\label{class_hybrid_encoder_aa8b5e8203b876bd4845dbc81c16c702b} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Hybrid\+Encoder} ()
+\begin{DoxyCompactList}\small\item\em Destructor for \doxylink{class_hybrid_encoder}{Hybrid\+Encoder}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_hybrid_encoder_a3e4478af1624336f353d01615b5721e2}{get\+Frame\+Number}} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of frames in the video. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_hybrid_encoder_aa0f70e3188bfd5e46b003c1efdc3d0d6}{get\+Time\+To\+Create\+Reader}} ()
+\begin{DoxyCompactList}\small\item\em Gets the time taken to create the YUV reader. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_hybrid_encoder_ac11dd5d4b167743c0916a525ad2686c6}{get\+Signal\+To\+Noise\+Ratio}} ()
+\begin{DoxyCompactList}\small\item\em Gets the signal-\/to-\/noise ratio of the encoded video. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_hybrid_encoder_adec80c69d27ba88d1689ffd3ed91fea0}{get\+Bits\+Per\+Pixel}} ()
+\begin{DoxyCompactList}\small\item\em Gets the bits per pixel of the encoded video. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_hybrid_encoder_a9a0d371ff0c3c7120eee5fd8e0c11b2d}{encode}} (string output\+File)
+\begin{DoxyCompactList}\small\item\em Encodes a video using hybrid coding. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Encodes video using hybrid coding techniques. 
+
+The \doxylink{class_hybrid_encoder}{Hybrid\+Encoder} class is designed to encode video using a combination of motion-\/compensated predictive coding (inter-\/coding) and transform coding (intra-\/coding). 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_hybrid_encoder_a24deb85fa797c506919a9786ae55199b}\label{class_hybrid_encoder_a24deb85fa797c506919a9786ae55199b} 
+\index{HybridEncoder@{HybridEncoder}!HybridEncoder@{HybridEncoder}}
+\index{HybridEncoder@{HybridEncoder}!HybridEncoder@{HybridEncoder}}
+\doxysubsubsection{\texorpdfstring{HybridEncoder()}{HybridEncoder()}}
+{\footnotesize\ttfamily Hybrid\+Encoder\+::\+Hybrid\+Encoder (\begin{DoxyParamCaption}\item[{string}]{input\+File,  }\item[{int}]{periodicity,  }\item[{int}]{search\+Area,  }\item[{int}]{quantization1 = {\ttfamily 255},  }\item[{int}]{quantization2 = {\ttfamily 255},  }\item[{int}]{quantization3 = {\ttfamily 255} }\end{DoxyParamCaption})}
+
+
+
+Constructor for \doxylink{class_hybrid_encoder}{Hybrid\+Encoder}. 
+
+Initializes the hybrid encoder with the necessary parameters for video encoding.
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+File} & The path to the input video file. \\
+\hline
+{\em periodicity} & The number of frames between two consecutive intra-\/coded frames. \\
+\hline
+{\em search\+Area} & The size of the search area for motion estimation. \\
+\hline
+{\em quantization1} & The quantization level for the first channel. \\
+\hline
+{\em quantization2} & The quantization level for the second channel. \\
+\hline
+{\em quantization3} & The quantization level for the third channel. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_hybrid_encoder_a9a0d371ff0c3c7120eee5fd8e0c11b2d}\label{class_hybrid_encoder_a9a0d371ff0c3c7120eee5fd8e0c11b2d} 
+\index{HybridEncoder@{HybridEncoder}!encode@{encode}}
+\index{encode@{encode}!HybridEncoder@{HybridEncoder}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily void Hybrid\+Encoder\+::encode (\begin{DoxyParamCaption}\item[{string}]{output\+File }\end{DoxyParamCaption})}
+
+
+
+Encodes a video using hybrid coding. 
+
+Encodes video by comparing each frame with a reference frame and storing the differences. It alternates between intra and inter coding, depending on the periodicity.
+
+
+\begin{DoxyParams}{Parameters}
+{\em output\+File} & The path to the output file where the encoded data will be saved. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_hybrid_encoder_adec80c69d27ba88d1689ffd3ed91fea0}\label{class_hybrid_encoder_adec80c69d27ba88d1689ffd3ed91fea0} 
+\index{HybridEncoder@{HybridEncoder}!getBitsPerPixel@{getBitsPerPixel}}
+\index{getBitsPerPixel@{getBitsPerPixel}!HybridEncoder@{HybridEncoder}}
+\doxysubsubsection{\texorpdfstring{getBitsPerPixel()}{getBitsPerPixel()}}
+{\footnotesize\ttfamily double Hybrid\+Encoder\+::get\+Bits\+Per\+Pixel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the bits per pixel of the encoded video. 
+
+\begin{DoxyReturn}{Returns}
+The bits per pixel of the encoded video. 
+\end{DoxyReturn}
+\Hypertarget{class_hybrid_encoder_a3e4478af1624336f353d01615b5721e2}\label{class_hybrid_encoder_a3e4478af1624336f353d01615b5721e2} 
+\index{HybridEncoder@{HybridEncoder}!getFrameNumber@{getFrameNumber}}
+\index{getFrameNumber@{getFrameNumber}!HybridEncoder@{HybridEncoder}}
+\doxysubsubsection{\texorpdfstring{getFrameNumber()}{getFrameNumber()}}
+{\footnotesize\ttfamily int Hybrid\+Encoder\+::get\+Frame\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the number of frames in the video. 
+
+\begin{DoxyReturn}{Returns}
+The number of frames in the video. 
+\end{DoxyReturn}
+\Hypertarget{class_hybrid_encoder_ac11dd5d4b167743c0916a525ad2686c6}\label{class_hybrid_encoder_ac11dd5d4b167743c0916a525ad2686c6} 
+\index{HybridEncoder@{HybridEncoder}!getSignalToNoiseRatio@{getSignalToNoiseRatio}}
+\index{getSignalToNoiseRatio@{getSignalToNoiseRatio}!HybridEncoder@{HybridEncoder}}
+\doxysubsubsection{\texorpdfstring{getSignalToNoiseRatio()}{getSignalToNoiseRatio()}}
+{\footnotesize\ttfamily double Hybrid\+Encoder\+::get\+Signal\+To\+Noise\+Ratio (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the signal-\/to-\/noise ratio of the encoded video. 
+
+\begin{DoxyReturn}{Returns}
+The signal-\/to-\/noise ratio of the encoded video. 
+\end{DoxyReturn}
+\Hypertarget{class_hybrid_encoder_aa0f70e3188bfd5e46b003c1efdc3d0d6}\label{class_hybrid_encoder_aa0f70e3188bfd5e46b003c1efdc3d0d6} 
+\index{HybridEncoder@{HybridEncoder}!getTimeToCreateReader@{getTimeToCreateReader}}
+\index{getTimeToCreateReader@{getTimeToCreateReader}!HybridEncoder@{HybridEncoder}}
+\doxysubsubsection{\texorpdfstring{getTimeToCreateReader()}{getTimeToCreateReader()}}
+{\footnotesize\ttfamily double Hybrid\+Encoder\+::get\+Time\+To\+Create\+Reader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the time taken to create the YUV reader. 
+
+\begin{DoxyReturn}{Returns}
+The time taken to create the YUV reader. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/Hybrid\+Coding.\+hpp\item 
+src/Hybrid\+Coding.\+cpp\end{DoxyCompactItemize}

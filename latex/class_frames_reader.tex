@@ -1,0 +1,124 @@
+\doxysection{Frames\+Reader Class Reference}
+\hypertarget{class_frames_reader}{}\label{class_frames_reader}\index{FramesReader@{FramesReader}}
+
+
+Class for reading frames from a YUV file.  
+
+
+
+
+{\ttfamily \#include $<$Frames\+Reader.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_frames_reader_a3f3f5a57de70e2293e996101fdb45c16}{Frames\+Reader}} (string filename)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{class_frames_reader}{Frames\+Reader}. \end{DoxyCompactList}\item 
+\Hypertarget{class_frames_reader_ae07d7147b28256e098cfe856ec604041}\label{class_frames_reader_ae07d7147b28256e098cfe856ec604041} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Frames\+Reader} ()
+\begin{DoxyCompactList}\small\item\em Destructor for \doxylink{class_frames_reader}{Frames\+Reader}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_frames_reader_a3253802250dda7277e796f3cb46c003d}{end\+Of\+File}} ()
+\begin{DoxyCompactList}\small\item\em Check if the end of the file has been reached. \end{DoxyCompactList}\item 
+Mat \mbox{\hyperlink{class_frames_reader_a68fa3980dbba00415a21b3d4e02a1ae8}{get\+Next\+Frame}} ()
+\begin{DoxyCompactList}\small\item\em Get the next frame from the YUV file. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_frames_reader_a8671af143cdcb76d323d85853ebca7d5}{next\+Frame\+Exists}} ()
+\begin{DoxyCompactList}\small\item\em Check if there is another frame available for reading. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_frames_reader_a9d708aa26d392ad8319fbff764d41dc6}{get\+Num\+Frames}} ()
+\begin{DoxyCompactList}\small\item\em Get the total number of frames in the YUV file. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_frames_reader_ab28d3c615b389ba0558e8fc7fbe1986a}{get\+Frame\+Size}} ()
+\begin{DoxyCompactList}\small\item\em Get the size of each frame in the YUV file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for reading frames from a YUV file. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_frames_reader_a3f3f5a57de70e2293e996101fdb45c16}\label{class_frames_reader_a3f3f5a57de70e2293e996101fdb45c16} 
+\index{FramesReader@{FramesReader}!FramesReader@{FramesReader}}
+\index{FramesReader@{FramesReader}!FramesReader@{FramesReader}}
+\doxysubsubsection{\texorpdfstring{FramesReader()}{FramesReader()}}
+{\footnotesize\ttfamily Frames\+Reader\+::\+Frames\+Reader (\begin{DoxyParamCaption}\item[{string}]{filename }\end{DoxyParamCaption})}
+
+
+
+Constructor for \doxylink{class_frames_reader}{Frames\+Reader}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Path to the YUV file. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_frames_reader_a3253802250dda7277e796f3cb46c003d}\label{class_frames_reader_a3253802250dda7277e796f3cb46c003d} 
+\index{FramesReader@{FramesReader}!endOfFile@{endOfFile}}
+\index{endOfFile@{endOfFile}!FramesReader@{FramesReader}}
+\doxysubsubsection{\texorpdfstring{endOfFile()}{endOfFile()}}
+{\footnotesize\ttfamily bool Frames\+Reader\+::end\+Of\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Check if the end of the file has been reached. 
+
+\begin{DoxyReturn}{Returns}
+True if the end of the file is reached, otherwise false. 
+\end{DoxyReturn}
+\Hypertarget{class_frames_reader_ab28d3c615b389ba0558e8fc7fbe1986a}\label{class_frames_reader_ab28d3c615b389ba0558e8fc7fbe1986a} 
+\index{FramesReader@{FramesReader}!getFrameSize@{getFrameSize}}
+\index{getFrameSize@{getFrameSize}!FramesReader@{FramesReader}}
+\doxysubsubsection{\texorpdfstring{getFrameSize()}{getFrameSize()}}
+{\footnotesize\ttfamily int Frames\+Reader\+::get\+Frame\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the size of each frame in the YUV file. 
+
+\begin{DoxyReturn}{Returns}
+Size of each frame. 
+\end{DoxyReturn}
+\Hypertarget{class_frames_reader_a68fa3980dbba00415a21b3d4e02a1ae8}\label{class_frames_reader_a68fa3980dbba00415a21b3d4e02a1ae8} 
+\index{FramesReader@{FramesReader}!getNextFrame@{getNextFrame}}
+\index{getNextFrame@{getNextFrame}!FramesReader@{FramesReader}}
+\doxysubsubsection{\texorpdfstring{getNextFrame()}{getNextFrame()}}
+{\footnotesize\ttfamily Mat Frames\+Reader\+::get\+Next\+Frame (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the next frame from the YUV file. 
+
+\begin{DoxyReturn}{Returns}
+The next frame as a Mat object. 
+\end{DoxyReturn}
+\Hypertarget{class_frames_reader_a9d708aa26d392ad8319fbff764d41dc6}\label{class_frames_reader_a9d708aa26d392ad8319fbff764d41dc6} 
+\index{FramesReader@{FramesReader}!getNumFrames@{getNumFrames}}
+\index{getNumFrames@{getNumFrames}!FramesReader@{FramesReader}}
+\doxysubsubsection{\texorpdfstring{getNumFrames()}{getNumFrames()}}
+{\footnotesize\ttfamily int Frames\+Reader\+::get\+Num\+Frames (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the total number of frames in the YUV file. 
+
+\begin{DoxyReturn}{Returns}
+Total number of frames. 
+\end{DoxyReturn}
+\Hypertarget{class_frames_reader_a8671af143cdcb76d323d85853ebca7d5}\label{class_frames_reader_a8671af143cdcb76d323d85853ebca7d5} 
+\index{FramesReader@{FramesReader}!nextFrameExists@{nextFrameExists}}
+\index{nextFrameExists@{nextFrameExists}!FramesReader@{FramesReader}}
+\doxysubsubsection{\texorpdfstring{nextFrameExists()}{nextFrameExists()}}
+{\footnotesize\ttfamily bool Frames\+Reader\+::next\+Frame\+Exists (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Check if there is another frame available for reading. 
+
+\begin{DoxyReturn}{Returns}
+True if there is another frame, otherwise false. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/Frames\+Reader.\+hpp\item 
+src/Frames\+Reader.\+cpp\end{DoxyCompactItemize}

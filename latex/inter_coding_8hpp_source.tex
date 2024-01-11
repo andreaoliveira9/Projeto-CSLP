@@ -1,0 +1,55 @@
+\doxysection{inter\+Coding.\+hpp}
+\hypertarget{inter_coding_8hpp_source}{}\label{inter_coding_8hpp_source}\index{include/interCoding.hpp@{include/interCoding.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_INTER\_CODING\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_INTER\_CODING\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <queue>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}opencv2/opencv.hpp"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_golomb_8hpp}{Golomb.hpp}}"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{using\ namespace\ }cv;}
+\DoxyCodeLine{00011\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_inter_encoder}{InterEncoder}}}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{int}\ blockSize;\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{int}\ searchArea;\ }
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{class_golomb_encoder}{GolombEncoder}}\ \&\mbox{\hyperlink{class_golomb_encoder}{GolombEncoder}};\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ findNearestBlock(Mat\ \&previousFrame,\ Mat\ \&currentBlock,\ \textcolor{keywordtype}{int}\ startRow,\ \textcolor{keywordtype}{int}\ startCol,\ \textcolor{keywordtype}{int}\ endRow,\ \textcolor{keywordtype}{int}\ endCol,\ \textcolor{keywordtype}{int}\ \&d\_x,\ \textcolor{keywordtype}{int}\ \&d\_y,\ \textcolor{keywordtype}{int}\ \&lastSum,\ Mat\ \&blocksDifferences,\ Mat\ \&fewestDifferences,\ \textcolor{keywordtype}{int}\ channelsNumber);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ encodeAndApplyMotionCompenstation(Mat\ \&previousFrame,\ Mat\ \&currentFrame,\ Mat\ \&auxiliarFrame,\ \textcolor{keywordtype}{int}\ row,\ \textcolor{keywordtype}{int}\ col,\ \textcolor{keywordtype}{int}\ channelsNumber,\ std::queue<int>\ \&vectorCoordinates,\ \textcolor{keywordtype}{int}\ quantization1,\ \textcolor{keywordtype}{int}\ quantization2,\ \textcolor{keywordtype}{int}\ quantization3,\ \textcolor{keywordtype}{int}\ \&totalSignal,\ \textcolor{keywordtype}{int}\ \&totalNoise);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{class_inter_encoder}{InterEncoder}}(\textcolor{keyword}{class}\ \mbox{\hyperlink{class_golomb_encoder}{GolombEncoder}}\ \&\mbox{\hyperlink{class_golomb_encoder}{GolombEncoder}},\ \textcolor{keywordtype}{int}\ blockSize,\ \textcolor{keywordtype}{int}\ searchArea);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{class_inter_encoder_ac83d4d98cfd08cd6d5596efa52358af7}{\string~InterEncoder}}();}
+\DoxyCodeLine{00074\ \ \ \ \ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ setBlockSize(\textcolor{keywordtype}{int}\ blockSize);}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_inter_encoder_aa850432e155dafc236364c23f0859403}{encode}}(Mat\ \&previousFrame,\ Mat\ \&currentFrame,\ \textcolor{keywordtype}{int}\ quantization1,\ \textcolor{keywordtype}{int}\ quantization2,\ \textcolor{keywordtype}{int}\ quantization3,\ \textcolor{keywordtype}{int}\ \&totalSignal,\ \textcolor{keywordtype}{int}\ \&totalNoise);}
+\DoxyCodeLine{00087\ \};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_inter_decoder}{InterDecoder}}}
+\DoxyCodeLine{00098\ \{}
+\DoxyCodeLine{00099\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{int}\ blockSize;\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{int}\ searchArea;\ }
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{class_golomb_decoder}{GolombDecoder}}\ \&\mbox{\hyperlink{class_golomb_decoder}{GolombDecoder}};\ }
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{class_inter_decoder}{InterDecoder}}(\textcolor{keyword}{class}\ \mbox{\hyperlink{class_golomb_decoder}{GolombDecoder}}\ \&\mbox{\hyperlink{class_golomb_decoder}{GolombDecoder}},\ \textcolor{keywordtype}{int}\ blockSize,\ \textcolor{keywordtype}{int}\ searchArea);}
+\DoxyCodeLine{00112\ \ \ \ \ }
+\DoxyCodeLine{00116\ \ \ \ \ \mbox{\hyperlink{class_inter_decoder_a2836be66c95bd48902151b4bdb513bc6}{\string~InterDecoder}}();}
+\DoxyCodeLine{00117\ \ \ \ \ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_inter_decoder_abad028f9978c733a5090a8ed607ed862}{decode}}(Mat\ \&previousFrame,\ Mat\ \&currentFrame);}
+\DoxyCodeLine{00124\ \};}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

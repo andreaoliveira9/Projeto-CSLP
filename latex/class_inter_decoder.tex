@@ -1,0 +1,74 @@
+\doxysection{Inter\+Decoder Class Reference}
+\hypertarget{class_inter_decoder}{}\label{class_inter_decoder}\index{InterDecoder@{InterDecoder}}
+
+
+Class for implementing inter-\/frame decoding.  
+
+
+
+
+{\ttfamily \#include $<$inter\+Coding.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_inter_decoder_a2bf4fb8434731e34768fdfeaa10641c1}{Inter\+Decoder}} (class \mbox{\hyperlink{class_golomb_decoder}{Golomb\+Decoder}} \&\mbox{\hyperlink{class_golomb_decoder}{Golomb\+Decoder}}, int block\+Size, int search\+Area)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_inter_decoder}{Inter\+Decoder} class. \end{DoxyCompactList}\item 
+\Hypertarget{class_inter_decoder_a2836be66c95bd48902151b4bdb513bc6}\label{class_inter_decoder_a2836be66c95bd48902151b4bdb513bc6} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Inter\+Decoder} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_inter_decoder}{Inter\+Decoder} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_inter_decoder_abad028f9978c733a5090a8ed607ed862}{decode}} (Mat \&previous\+Frame, Mat \&current\+Frame)
+\begin{DoxyCompactList}\small\item\em Decode a frame using inter-\/frame decoding. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for implementing inter-\/frame decoding. 
+
+Utilizes motion compensation techniques to efficiently decode video frames by reconstructing frame content based on previous frames. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_inter_decoder_a2bf4fb8434731e34768fdfeaa10641c1}\label{class_inter_decoder_a2bf4fb8434731e34768fdfeaa10641c1} 
+\index{InterDecoder@{InterDecoder}!InterDecoder@{InterDecoder}}
+\index{InterDecoder@{InterDecoder}!InterDecoder@{InterDecoder}}
+\doxysubsubsection{\texorpdfstring{InterDecoder()}{InterDecoder()}}
+{\footnotesize\ttfamily Inter\+Decoder\+::\+Inter\+Decoder (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{class_golomb_decoder}{Golomb\+Decoder}} \&}]{Golomb\+Decoder,  }\item[{int}]{block\+Size,  }\item[{int}]{search\+Area }\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{class_inter_decoder}{Inter\+Decoder} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em golomb\+Decoder} & Reference to a \doxylink{class_golomb_decoder}{Golomb\+Decoder} object for entropy decoding. \\
+\hline
+{\em block\+Size} & Size of the blocks used for motion compensation. \\
+\hline
+{\em search\+Area} & Size of the search area for motion compensation. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_inter_decoder_abad028f9978c733a5090a8ed607ed862}\label{class_inter_decoder_abad028f9978c733a5090a8ed607ed862} 
+\index{InterDecoder@{InterDecoder}!decode@{decode}}
+\index{decode@{decode}!InterDecoder@{InterDecoder}}
+\doxysubsubsection{\texorpdfstring{decode()}{decode()}}
+{\footnotesize\ttfamily void Inter\+Decoder\+::decode (\begin{DoxyParamCaption}\item[{Mat \&}]{previous\+Frame,  }\item[{Mat \&}]{current\+Frame }\end{DoxyParamCaption})}
+
+
+
+Decode a frame using inter-\/frame decoding. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em previous\+Frame} & The reference video frame from which the current frame will be predicted. \\
+\hline
+{\em current\+Frame} & The current video frame to be decoded and reconstructed. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/inter\+Coding.\+hpp\item 
+src/inter\+Coding.\+cpp\end{DoxyCompactItemize}

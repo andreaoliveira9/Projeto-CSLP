@@ -1,0 +1,78 @@
+\doxysection{Intra\+Encoder Class Reference}
+\hypertarget{class_intra_encoder}{}\label{class_intra_encoder}\index{IntraEncoder@{IntraEncoder}}
+
+
+Class for implementing intra-\/frame encoding.  
+
+
+
+
+{\ttfamily \#include $<$intra\+Coding.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_intra_encoder_a216772cb708bb93f8baea3e796071696}{Intra\+Encoder}} (\mbox{\hyperlink{class_golomb_encoder}{Golomb\+Encoder}} \&golomb\+Encoder)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_intra_encoder}{Intra\+Encoder} class. \end{DoxyCompactList}\item 
+\Hypertarget{class_intra_encoder_a23bbfa750a99b76ee45eace988af7484}\label{class_intra_encoder_a23bbfa750a99b76ee45eace988af7484} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Intra\+Encoder} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_intra_encoder}{Intra\+Encoder} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_intra_encoder_a6a6814e545dd8135d310f2751772c66b}{encode}} (Mat \&current\+Frame, int quantization1, int quantization2, int quantization3, int \&total\+Signal, int \&total\+Noise)
+\begin{DoxyCompactList}\small\item\em Encodes a video frame using intra-\/frame encoding. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for implementing intra-\/frame encoding. 
+
+Encodes video frames individually using the non-\/linear predictor of JPEG-\/\+LS technique and Golomb coding for entropy coding. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_intra_encoder_a216772cb708bb93f8baea3e796071696}\label{class_intra_encoder_a216772cb708bb93f8baea3e796071696} 
+\index{IntraEncoder@{IntraEncoder}!IntraEncoder@{IntraEncoder}}
+\index{IntraEncoder@{IntraEncoder}!IntraEncoder@{IntraEncoder}}
+\doxysubsubsection{\texorpdfstring{IntraEncoder()}{IntraEncoder()}}
+{\footnotesize\ttfamily Intra\+Encoder\+::\+Intra\+Encoder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_golomb_encoder}{Golomb\+Encoder}} \&}]{golomb\+Encoder }\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{class_intra_encoder}{Intra\+Encoder} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em golomb\+Encoder} & Reference to a \doxylink{class_golomb_encoder}{Golomb\+Encoder} object for entropy coding. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_intra_encoder_a6a6814e545dd8135d310f2751772c66b}\label{class_intra_encoder_a6a6814e545dd8135d310f2751772c66b} 
+\index{IntraEncoder@{IntraEncoder}!encode@{encode}}
+\index{encode@{encode}!IntraEncoder@{IntraEncoder}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily void Intra\+Encoder\+::encode (\begin{DoxyParamCaption}\item[{Mat \&}]{current\+Frame,  }\item[{int}]{quantization1,  }\item[{int}]{quantization2,  }\item[{int}]{quantization3,  }\item[{int \&}]{total\+Signal,  }\item[{int \&}]{total\+Noise }\end{DoxyParamCaption})}
+
+
+
+Encodes a video frame using intra-\/frame encoding. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Frame} & The video frame to be encoded. \\
+\hline
+{\em quantization1} & The quantization level for the first channel. \\
+\hline
+{\em quantization2} & The quantization level for the second channel. \\
+\hline
+{\em quantization3} & The quantization level for the third channel. \\
+\hline
+{\em total\+Signal} & Total signal of the video. \\
+\hline
+{\em total\+Noise} & Total noise of the video. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/intra\+Coding.\+hpp\item 
+src/intra\+Coding.\+cpp\end{DoxyCompactItemize}

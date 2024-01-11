@@ -1,0 +1,68 @@
+\doxysection{Intra\+Decoder Class Reference}
+\hypertarget{class_intra_decoder}{}\label{class_intra_decoder}\index{IntraDecoder@{IntraDecoder}}
+
+
+Class for implementing intra-\/frame decoding.  
+
+
+
+
+{\ttfamily \#include $<$intra\+Coding.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_intra_decoder_a259e25d94f1e425bbb130ae017b4c36e}{Intra\+Decoder}} (\mbox{\hyperlink{class_golomb_decoder}{Golomb\+Decoder}} \&golomb\+Decoder)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_intra_decoder}{Intra\+Decoder} class. \end{DoxyCompactList}\item 
+\Hypertarget{class_intra_decoder_a35df5df502a72d8ef398b5a595938b41}\label{class_intra_decoder_a35df5df502a72d8ef398b5a595938b41} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Intra\+Decoder} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_intra_decoder}{Intra\+Decoder} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_intra_decoder_a90b9543e3a23eee0b488643be4b50a1a}{decode}} (Mat \&current\+Frame)
+\begin{DoxyCompactList}\small\item\em Decodes an encoded video frame using intra-\/frame decoding. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for implementing intra-\/frame decoding. 
+
+Decodes video frames from their encoded state using the non-\/linear predictor of JPEG-\/\+LS technique and using Golomb coding for entropy decoding. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_intra_decoder_a259e25d94f1e425bbb130ae017b4c36e}\label{class_intra_decoder_a259e25d94f1e425bbb130ae017b4c36e} 
+\index{IntraDecoder@{IntraDecoder}!IntraDecoder@{IntraDecoder}}
+\index{IntraDecoder@{IntraDecoder}!IntraDecoder@{IntraDecoder}}
+\doxysubsubsection{\texorpdfstring{IntraDecoder()}{IntraDecoder()}}
+{\footnotesize\ttfamily Intra\+Decoder\+::\+Intra\+Decoder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_golomb_decoder}{Golomb\+Decoder}} \&}]{golomb\+Decoder }\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{class_intra_decoder}{Intra\+Decoder} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em golomb\+Decoder} & Reference to a \doxylink{class_golomb_decoder}{Golomb\+Decoder} object for entropy decoding. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_intra_decoder_a90b9543e3a23eee0b488643be4b50a1a}\label{class_intra_decoder_a90b9543e3a23eee0b488643be4b50a1a} 
+\index{IntraDecoder@{IntraDecoder}!decode@{decode}}
+\index{decode@{decode}!IntraDecoder@{IntraDecoder}}
+\doxysubsubsection{\texorpdfstring{decode()}{decode()}}
+{\footnotesize\ttfamily void Intra\+Decoder\+::decode (\begin{DoxyParamCaption}\item[{Mat \&}]{current\+Frame }\end{DoxyParamCaption})}
+
+
+
+Decodes an encoded video frame using intra-\/frame decoding. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Frame} & The video frame to be decoded and reconstructed. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/intra\+Coding.\+hpp\item 
+src/intra\+Coding.\+cpp\end{DoxyCompactItemize}

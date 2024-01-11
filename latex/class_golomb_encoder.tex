@@ -1,0 +1,123 @@
+\doxysection{Golomb\+Encoder Class Reference}
+\hypertarget{class_golomb_encoder}{}\label{class_golomb_encoder}\index{GolombEncoder@{GolombEncoder}}
+
+
+Class used to encode numbers to a file using Golomb codes.  
+
+
+
+
+{\ttfamily \#include $<$Golomb.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_golomb_encoder_a5b463eb6c457fba0836b3d7b89d63b43}{Golomb\+Encoder}} (string file\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{class_golomb_encoder}{Golomb\+Encoder} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_golomb_encoder_abdd4b26148aa79c05e5142182c5fddfb}{set\+\_\+m}} (int m)
+\begin{DoxyCompactList}\small\item\em Set method for property m. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_golomb_encoder_a379f2cc225fc6e23d764ecb5cc210b3c}{get\+\_\+m}} ()
+\begin{DoxyCompactList}\small\item\em Get method for property m. \end{DoxyCompactList}\item 
+\Hypertarget{class_golomb_encoder_a6db07b01d90304eb21ac559cef67aa56}\label{class_golomb_encoder_a6db07b01d90304eb21ac559cef67aa56} 
+long double {\bfseries get\+Bitstream\+Size} () const
+\item 
+int \mbox{\hyperlink{class_golomb_encoder_ab136427e330d9fb8bb6eb7007f83bb54}{optimal\+\_\+m}} (Mat \&frame)
+\begin{DoxyCompactList}\small\item\em Method used to calculate the optimal parameter value for Golomb encoding based on a given frame. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_golomb_encoder_a975c202a8d1e51b66e03814fc5298914}{encode}} (int num)
+\begin{DoxyCompactList}\small\item\em Method used to encoded a signed int. \end{DoxyCompactList}\item 
+\Hypertarget{class_golomb_encoder_a2771a534676a9c4d0ef8bb8b1632a9b7}\label{class_golomb_encoder_a2771a534676a9c4d0ef8bb8b1632a9b7} 
+void {\bfseries finish\+Encoding} ()
+\begin{DoxyCompactList}\small\item\em Calls \doxylink{class_bit_stream}{Bit\+Stream}\textquotesingle{}s close method, closing the output file and flushing the write buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class used to encode numbers to a file using Golomb codes. 
+
+Given a file path and value m (which is written in the first byte of the file), encodes and writes given numbers to the file. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_golomb_encoder_a5b463eb6c457fba0836b3d7b89d63b43}\label{class_golomb_encoder_a5b463eb6c457fba0836b3d7b89d63b43} 
+\index{GolombEncoder@{GolombEncoder}!GolombEncoder@{GolombEncoder}}
+\index{GolombEncoder@{GolombEncoder}!GolombEncoder@{GolombEncoder}}
+\doxysubsubsection{\texorpdfstring{GolombEncoder()}{GolombEncoder()}}
+{\footnotesize\ttfamily Golomb\+Encoder\+::\+Golomb\+Encoder (\begin{DoxyParamCaption}\item[{string}]{file\+\_\+path }\end{DoxyParamCaption})}
+
+
+
+Constructor for \doxylink{class_golomb_encoder}{Golomb\+Encoder} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+path} & String containing the path to the file where the encoded data will be stored. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_golomb_encoder_a975c202a8d1e51b66e03814fc5298914}\label{class_golomb_encoder_a975c202a8d1e51b66e03814fc5298914} 
+\index{GolombEncoder@{GolombEncoder}!encode@{encode}}
+\index{encode@{encode}!GolombEncoder@{GolombEncoder}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily void Golomb\+Encoder\+::encode (\begin{DoxyParamCaption}\item[{int}]{num }\end{DoxyParamCaption})}
+
+
+
+Method used to encoded a signed int. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num} & Integer that will be encoded and written to the output file. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_golomb_encoder_a379f2cc225fc6e23d764ecb5cc210b3c}\label{class_golomb_encoder_a379f2cc225fc6e23d764ecb5cc210b3c} 
+\index{GolombEncoder@{GolombEncoder}!get\_m@{get\_m}}
+\index{get\_m@{get\_m}!GolombEncoder@{GolombEncoder}}
+\doxysubsubsection{\texorpdfstring{get\_m()}{get\_m()}}
+{\footnotesize\ttfamily Golomb\+Encoder\+::get\+\_\+m (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get method for property m. 
+
+\begin{DoxyReturn}{Returns}
+Integer which represents the parameter of Golomb codes. 
+\end{DoxyReturn}
+\Hypertarget{class_golomb_encoder_ab136427e330d9fb8bb6eb7007f83bb54}\label{class_golomb_encoder_ab136427e330d9fb8bb6eb7007f83bb54} 
+\index{GolombEncoder@{GolombEncoder}!optimal\_m@{optimal\_m}}
+\index{optimal\_m@{optimal\_m}!GolombEncoder@{GolombEncoder}}
+\doxysubsubsection{\texorpdfstring{optimal\_m()}{optimal\_m()}}
+{\footnotesize\ttfamily Golomb\+Encoder\+::optimal\+\_\+m (\begin{DoxyParamCaption}\item[{Mat \&}]{frame }\end{DoxyParamCaption})}
+
+
+
+Method used to calculate the optimal parameter value for Golomb encoding based on a given frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame} & Mat object which includes the values used for calculating optimal m. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Integer representing the optimal m for Golomb encoding. 
+\end{DoxyReturn}
+\Hypertarget{class_golomb_encoder_abdd4b26148aa79c05e5142182c5fddfb}\label{class_golomb_encoder_abdd4b26148aa79c05e5142182c5fddfb} 
+\index{GolombEncoder@{GolombEncoder}!set\_m@{set\_m}}
+\index{set\_m@{set\_m}!GolombEncoder@{GolombEncoder}}
+\doxysubsubsection{\texorpdfstring{set\_m()}{set\_m()}}
+{\footnotesize\ttfamily Golomb\+Encoder\+::set\+\_\+m (\begin{DoxyParamCaption}\item[{int}]{m }\end{DoxyParamCaption})}
+
+
+
+Set method for property m. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Golomb codes parameter that will be set. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_golomb_8hpp}{Golomb.\+hpp}}\item 
+src/Golomb.\+cpp\end{DoxyCompactItemize}

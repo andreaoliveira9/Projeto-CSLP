@@ -1,0 +1,49 @@
+\doxysection{Bit\+Stream.\+hpp}
+\hypertarget{_bit_stream_8hpp_source}{}\label{_bit_stream_8hpp_source}\index{include/BitStream.hpp@{include/BitStream.hpp}}
+\mbox{\hyperlink{_bit_stream_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ BITSTREAM\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ BITSTREAM\_H}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_bit_stream}{BitStream}}}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ buff;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{int}\ bitCount;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{bool}\ eof;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{int}\ mode;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00038\ \ \ \ \ fstream\ fp;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_bit_stream_a37be262d771e3e2a4e36151a264810cb}{setToRead}}(\textcolor{keywordtype}{string}\ file);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_bit_stream_a2baed728efadc3c46503d3d47d9dc286}{setToWrite}}(\textcolor{keywordtype}{string}\ file);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_bit_stream_ac80e4a989da745d5ccda571d37340fe4}{close}}();}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_bit_stream_af73fe64bbdd98b6ed40c151be9cfb0f1}{inputFileIsOpen}}();}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_bit_stream_a9bf90aa484b3119625f4bb8ea291bb49}{getEOF}}();}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_bit_stream_a5e3e36adf7ca1668b20ef1a4c3bea952}{writeBit}}(\textcolor{keywordtype}{int}\ bit);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_bit_stream_ad14e834f5897767b5410d858f060e549}{writeNBits}}(\textcolor{keywordtype}{int}\ number,\ \textcolor{keywordtype}{int}\ nBits);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{class_bit_stream_a848b1e0967ed98dd3d131e70336ea69c}{readBit}}();}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_bit_stream_ad2b3ad61d87b324175461c5c966f5913}{readNBits}}(\textcolor{keywordtype}{int}\ nBits);}
+\DoxyCodeLine{00112\ \};}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

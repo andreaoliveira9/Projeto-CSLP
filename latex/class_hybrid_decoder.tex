@@ -1,0 +1,72 @@
+\doxysection{Hybrid\+Decoder Class Reference}
+\hypertarget{class_hybrid_decoder}{}\label{class_hybrid_decoder}\index{HybridDecoder@{HybridDecoder}}
+
+
+Decodes video that was encoded using hybrid coding techniques.  
+
+
+
+
+{\ttfamily \#include $<$Hybrid\+Coding.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_hybrid_decoder_aaae189e3626fd7f3b1cd53ac50c7cfa5}{Hybrid\+Decoder}} (string input\+File)
+\begin{DoxyCompactList}\small\item\em Constructor for \doxylink{class_hybrid_decoder}{Hybrid\+Decoder}. \end{DoxyCompactList}\item 
+\Hypertarget{class_hybrid_decoder_a8c31e5c9e952d05732b2afbe0900cc55}\label{class_hybrid_decoder_a8c31e5c9e952d05732b2afbe0900cc55} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Hybrid\+Decoder} ()
+\begin{DoxyCompactList}\small\item\em Destructor for \doxylink{class_hybrid_decoder}{Hybrid\+Decoder}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_hybrid_decoder_a68214c1bec741b9260026efea39fc9d2}{decode}} (string output\+File)
+\begin{DoxyCompactList}\small\item\em Decodes an encoded video. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Decodes video that was encoded using hybrid coding techniques. 
+
+The \doxylink{class_hybrid_decoder}{Hybrid\+Decoder} class is responsible for decoding video that was encoded by the \doxylink{class_hybrid_encoder}{Hybrid\+Encoder} class. It uses motion-\/compensated predictive coding and transform coding to reconstruct the original video frames. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_hybrid_decoder_aaae189e3626fd7f3b1cd53ac50c7cfa5}\label{class_hybrid_decoder_aaae189e3626fd7f3b1cd53ac50c7cfa5} 
+\index{HybridDecoder@{HybridDecoder}!HybridDecoder@{HybridDecoder}}
+\index{HybridDecoder@{HybridDecoder}!HybridDecoder@{HybridDecoder}}
+\doxysubsubsection{\texorpdfstring{HybridDecoder()}{HybridDecoder()}}
+{\footnotesize\ttfamily Hybrid\+Decoder\+::\+Hybrid\+Decoder (\begin{DoxyParamCaption}\item[{string}]{input\+File }\end{DoxyParamCaption})}
+
+
+
+Constructor for \doxylink{class_hybrid_decoder}{Hybrid\+Decoder}. 
+
+Initializes the hybrid decoder with the necessary parameters for video decoding.
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+File} & The path to the encoded input video file. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_hybrid_decoder_a68214c1bec741b9260026efea39fc9d2}\label{class_hybrid_decoder_a68214c1bec741b9260026efea39fc9d2} 
+\index{HybridDecoder@{HybridDecoder}!decode@{decode}}
+\index{decode@{decode}!HybridDecoder@{HybridDecoder}}
+\doxysubsubsection{\texorpdfstring{decode()}{decode()}}
+{\footnotesize\ttfamily void Hybrid\+Decoder\+::decode (\begin{DoxyParamCaption}\item[{string}]{output\+File }\end{DoxyParamCaption})}
+
+
+
+Decodes an encoded video. 
+
+Reconstructs the video frames from the encoded data, using the previous frame as a reference. It alternates between inter and intra coding methods during the decoding process.
+
+
+\begin{DoxyParams}{Parameters}
+{\em output\+File} & The path to the output file where the decoded video will be saved. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/Hybrid\+Coding.\+hpp\item 
+src/Hybrid\+Coding.\+cpp\end{DoxyCompactItemize}

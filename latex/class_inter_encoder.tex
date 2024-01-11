@@ -1,0 +1,87 @@
+\doxysection{Inter\+Encoder Class Reference}
+\hypertarget{class_inter_encoder}{}\label{class_inter_encoder}\index{InterEncoder@{InterEncoder}}
+
+
+Class for implementing inter-\/frame encoding.  
+
+
+
+
+{\ttfamily \#include $<$inter\+Coding.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_inter_encoder_a02d50699fb0497a5d8d148164c2d4a9a}{Inter\+Encoder}} (class \mbox{\hyperlink{class_golomb_encoder}{Golomb\+Encoder}} \&\mbox{\hyperlink{class_golomb_encoder}{Golomb\+Encoder}}, int block\+Size, int search\+Area)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_inter_encoder}{Inter\+Encoder} class. \end{DoxyCompactList}\item 
+\Hypertarget{class_inter_encoder_ac83d4d98cfd08cd6d5596efa52358af7}\label{class_inter_encoder_ac83d4d98cfd08cd6d5596efa52358af7} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Inter\+Encoder} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_inter_encoder}{Inter\+Encoder} class. \end{DoxyCompactList}\item 
+\Hypertarget{class_inter_encoder_a850b7928467280091e4c271c7db494b0}\label{class_inter_encoder_a850b7928467280091e4c271c7db494b0} 
+void {\bfseries set\+Block\+Size} (int block\+Size)
+\item 
+void \mbox{\hyperlink{class_inter_encoder_aa850432e155dafc236364c23f0859403}{encode}} (Mat \&previous\+Frame, Mat \&current\+Frame, int quantization1, int quantization2, int quantization3, int \&total\+Signal, int \&total\+Noise)
+\begin{DoxyCompactList}\small\item\em Encode a frame using inter-\/frame coding. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for implementing inter-\/frame encoding. 
+
+Utilizes motion estimation and compensation techniques to efficiently encode video frames by predicting frame content based on previous frames. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_inter_encoder_a02d50699fb0497a5d8d148164c2d4a9a}\label{class_inter_encoder_a02d50699fb0497a5d8d148164c2d4a9a} 
+\index{InterEncoder@{InterEncoder}!InterEncoder@{InterEncoder}}
+\index{InterEncoder@{InterEncoder}!InterEncoder@{InterEncoder}}
+\doxysubsubsection{\texorpdfstring{InterEncoder()}{InterEncoder()}}
+{\footnotesize\ttfamily Inter\+Encoder\+::\+Inter\+Encoder (\begin{DoxyParamCaption}\item[{class \mbox{\hyperlink{class_golomb_encoder}{Golomb\+Encoder}} \&}]{Golomb\+Encoder,  }\item[{int}]{block\+Size,  }\item[{int}]{search\+Area }\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{class_inter_encoder}{Inter\+Encoder} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em golomb\+Encoder} & Reference to a \doxylink{class_golomb_encoder}{Golomb\+Encoder} object for entropy coding. \\
+\hline
+{\em block\+Size} & Size of the blocks used for motion estimation. \\
+\hline
+{\em search\+Area} & Size of the search area for motion estimation. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_inter_encoder_aa850432e155dafc236364c23f0859403}\label{class_inter_encoder_aa850432e155dafc236364c23f0859403} 
+\index{InterEncoder@{InterEncoder}!encode@{encode}}
+\index{encode@{encode}!InterEncoder@{InterEncoder}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily void Inter\+Encoder\+::encode (\begin{DoxyParamCaption}\item[{Mat \&}]{previous\+Frame,  }\item[{Mat \&}]{current\+Frame,  }\item[{int}]{quantization1,  }\item[{int}]{quantization2,  }\item[{int}]{quantization3,  }\item[{int \&}]{total\+Signal,  }\item[{int \&}]{total\+Noise }\end{DoxyParamCaption})}
+
+
+
+Encode a frame using inter-\/frame coding. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em previous\+Frame} & The previous video frame for reference. \\
+\hline
+{\em current\+Frame} & The current video frame to be encoded. \\
+\hline
+{\em quantization1} & The quantization level for the first channel. \\
+\hline
+{\em quantization2} & The quantization level for the second channel. \\
+\hline
+{\em quantization3} & The quantization level for the third channel. \\
+\hline
+{\em total\+Signal} & Total signal of the video. \\
+\hline
+{\em total\+Noise} & Total noise of the video. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/inter\+Coding.\+hpp\item 
+src/inter\+Coding.\+cpp\end{DoxyCompactItemize}
