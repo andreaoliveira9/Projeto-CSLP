@@ -34,7 +34,7 @@
   cmake . && make
   ```
 
-- To run the program of Hydrid Lossloss Endode:
+- To run the program of Hydrid Lossless Endode:
 
   ```
   ./build/Deliverable_5/HybridEncoderTest.out
@@ -46,7 +46,7 @@
   ./build/Deliverable_6/HybridLossyEncoderTest.out
   ```
 
-- To run the program of Hydrid Losseless Decode:
+- To run the program of Hydrid Lossless Decode:
 
   ```
   ./build/Deliverable_5/HybridDecoderTest.out
