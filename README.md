@@ -1,5 +1,7 @@
 # Projeto-CSLP - Image and Video compression
 
+Nota: 16
+
 ## Members of the group
 
 | Nmec   | Name           | Email                  | Github                                                |
